@@ -1,0 +1,19 @@
+/* CSS Document */
+
+.iphone-style {
+	display: block;
+	width: 200px;
+	height: 28px;
+	background: url('../../images/check-square.png') no-repeat;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	overflow: hidden;
+	cursor: pointer;
+}
+.on {
+	background-position: 0% 100%;
+}
+.off {
+	background-position: 100% 0%;
+}

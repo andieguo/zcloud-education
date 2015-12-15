@@ -1,0 +1,285 @@
+/* CSS Document */
+
+.statisticsTitle{
+	font-size:14px;
+	font-weight:bold;
+	border-bottom:1px dotted #ccc;
+	padding:8px 10px;
+	margin-bottom:20px;
+}
+
+
+.clueNavi{
+	border:1px solid #08c;
+	width:560px;
+	height:32px;
+	margin:10px auto;
+}
+.clueNavi ul{
+}
+.clueNavi li{
+	float:left;
+	width:280px;
+	height:32px;
+}
+.clueNavi li a{
+	display:block;
+	text-align:center;
+	width:280px;
+	height:32px;
+	line-height:32px;
+	font-size:14px;
+	background-image:url(../../images/caseBoxNavi.gif);
+	background-repeat:no-repeat;
+}
+.clueNavi .current a{
+	color:#fff;
+	font-weight:bold;
+}
+.clueNavi .li1 a{
+	background-position:right -128px;
+}
+.clueNavi .li1.current a{
+	background-position:right -32px;
+}
+.clueNavi .li2.current a{
+	background-position:0 -96px;
+}
+
+.clueSearchBox{
+	width:750px;
+	margin:0 auto;
+	font-size:14px;
+	padding-top:20px;
+}
+.clueSearchBox dl{
+	line-height:32px;
+	padding:0 0 10px;
+}
+.clueSearchBox dt{
+	float:left;
+	width:220px;
+	text-align:right;
+}
+.clueSearchBox dd{
+	margin-left:220px;
+}
+.clueSearchBox dd .label{
+	display: inline-block;
+}
+.clueSearchBox dd .dateTime,
+.clueSearchBox dd .dateTime2{
+	float:left;
+}
+.toTime{
+	line-height:32px;
+}
+.clueSearchBox dd .text{
+	float:left;
+}
+.clueSearchBox dd .text input{
+	height: 28px;
+	width: 180px;
+	line-height: 28px\9;
+	padding: 0 8px;
+	color: #333;
+}
+.clueSearchBox dd .selectbox{
+	background: url(../../images/iconBtn.gif) no-repeat;
+	background-position: 178px -58px;
+	cursor:pointer;
+}
+.clueSearchBox dd .selectbox-wrapper{
+	position:absolute;
+	top:26px;
+	left:-1px;
+	border:1px solid #ccc;
+	background-color:#fff;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	width:196px !important;
+	max-height:256px;
+	_height:256px;
+	overflow-y:auto;
+}
+.clueSearchBox dd .selectbox-wrapper li{
+	padding-left:10px;
+	cursor:pointer;
+}
+.clueSearchBox dd .selectbox-wrapper li.current{
+	background-color:#08c;
+	color:#fff;
+}
+
+.clueSearchBox dd .text textarea{
+	border:none;
+	background-color:transparent;
+	width:360px;
+	height:56px;
+	line-height: 28px\9;
+	padding: 0 8px;
+	color: #333;
+}
+
+.clueSearchBox dd .btn input{
+	background: url(../../images/iconBtn.png) no-repeat 0 -110px;
+	background-color: transparent;
+	border: none;
+	height: 35px;
+	width: 85px;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+
+/* 集合运算 */
+.clueSearchGroup .pointBox{
+	background:#e2e2e2;
+	border-color:#ccc;
+	border-style: dashed;
+	border-width:1px 0;
+	padding:10px;
+	line-height:22px;
+}
+.clueSearchGroup .pointBox b{
+	color:#000;
+}
+.clueSearchGroup .list{
+	padding:10px 0;
+}
+.clueSearchGroup .list li.box{
+	border:1px solid #ccc;
+	background-color:#f2f0f0;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	float:left;
+	width:227px;
+	margin:0 0 10px 7px;
+	-moz-box-shadow:3px 3px 3px #e2e2e2;
+	box-shadow:3px 3px 3px #e2e2e2;
+}
+
+
+.clueSearchGroup .list li.box .header{
+	border-bottom:1px dotted #ccc;
+	position:relative;
+	padding:4px 0;
+	line-height:22px;
+}
+.clueSearchGroup .list li.box .header .title{
+	font-weight:bold;
+	float:left;
+	padding-left:40px;
+}
+.clueSearchGroup .list li.box .header.selected{
+	background: url(../../images/iconSelected.gif) no-repeat 0 0;
+}
+.clueSearchGroup .list li.box .header.selected2{
+	background: url(../../images/iconSelected2.gif) no-repeat 0 0;
+}
+.clueSearchGroup .list li.box .header .select,
+.clueSearchGroup .list li.box .header .select2,
+.clueSearchGroup .list li.box .header .edit,
+.clueSearchGroup .list li.box .header .cancel{
+	border:1px solid #ccc;
+	background-color:#fff;
+	padding:0px 8px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	top:5px;
+	filter: Alpha(Opacity=80);
+	opacity:0.8;
+}
+.clueSearchGroup .list li.box .header .select,
+.clueSearchGroup .list li.box .header .select2,
+.clueSearchGroup .list li.box .header .cancel{
+	position:absolute;
+	left:5px;
+	cursor:pointer;
+	background-color:#fff;
+	background-position:0 -38px;
+	background-repeat:no-repeat;
+	background-image:url(../../images/iconSelected.gif);
+	padding-left:40px;
+}
+.clueSearchGroup .list li.box .header .select2{
+	background-image:url(../../images/iconSelected2.gif);
+}
+.clueSearchGroup .list li.box .header .cancel{
+	background-image:url(../../images/iconSelected2.gif);
+	background-position:0 -68px;
+}
+.clueSearchGroup .list li.box .header .edit{
+	position:absolute;
+	right:5px;
+	color:#ccc;
+}
+
+.clueSearchGroup .list li.box .con{
+	background-color:#f2f0f0;
+}
+.clueSearchGroup .list li.box .con dl{
+	line-height:32px;
+	border-top:1px solid #fcfafa;
+	border-bottom:1px solid #d9d4d4;
+}
+.clueSearchGroup .list li.box .con dt{
+	float:left;
+	width:47px;
+	text-align:right;
+}
+.clueSearchGroup .list li.box .con dd{
+	float:left;
+	width:180px;
+}
+.clueSearchGroup .list li.box .con dd .groupList{
+	height:66px;
+	line-height:22px;
+	overflow-y:scroll;
+	border:1px solid #ccc;
+	margin:4px;
+}
+.clueSearchGroup .list li.box .con dd .groupList label{
+	display:block;
+	cursor:pointer;
+	padding-left:6px;
+}
+.clueSearchGroup .list li.box .con dd .groupList label:hover{
+	background-color:#08c;
+	color:#fff;
+}
+
+
+.clueSearchGroup .list li.box .con dd .dlG{
+	line-height:22px;
+	padding:4px 0;
+}
+.clueSearchGroup .list li.box .con dd .dtG{
+	float:left;
+	width:40px;
+	text-align:right;
+}
+.clueSearchGroup .list li.box .con dd .ddG{
+	float:left;
+	width:140px;
+}
+
+
+.clueSearchGroup .titleTime{
+	border-bottom:1px solid #ccc;
+	font-weight:bold;
+	line-height:28px;
+	padding:0 10px;
+}
+
+
+
+
+
+
+#listFooter{
+	padding:10px 5px;
+}
+

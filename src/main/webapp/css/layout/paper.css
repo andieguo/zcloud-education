@@ -1,0 +1,379 @@
+/* CSS Document */
+
+/* 样式统计 */
+.noData {
+	width: 240px;
+	line-height: 26px;
+	color: #F93;
+	padding: 10px 0 10px 50px;
+	background: url(../../images/iconform.gif) no-repeat 12px -166px #ffc;
+	border: 1px solid #f93;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin:20px auto;
+}
+#paper{
+	width:980px;
+	margin:0 auto;
+}
+#paper.auto{
+	width:auto;
+}
+#paper .title{
+	font-size:24px;
+	line-height:40px;
+	text-align:center;
+	font-weight:bold;
+	color:#333;
+	padding:50px 0 0 0;
+}
+#paper .info{
+	line-height:22px;
+	color:#999;
+	border-bottom:1px dotted #ccc;
+	margin-bottom:20px;
+}
+#paper .info .time{
+}
+#paper .info .user{
+	margin-left:10px;
+}
+#paper .label{
+	font-size:14px;
+	background-color:#f4f4f4;
+	padding:10px;
+	border:1px solid #ccc;
+	margin-bottom:10px;
+}
+#paper .label dt{
+	float:left;
+	text-align:right;
+	width:80px;
+}
+#paper .label dd{
+	float:left;
+	color:#999;
+}
+
+#list #title {
+	font-size: 14px;
+	color: #333;
+	border-bottom: 1px solid #CCC;
+	height: 32px;
+	line-height: 32px;
+	padding-left: 50px;
+}
+#list #title h2 {
+	font-weight:bold;
+	float:left;
+}
+#list #title #amount {
+	float:left;
+	margin-left:80px;
+	display:inline;
+	color:#999;
+}
+#list #title #amount .loading {
+	background:url(../../images/loading.gif) no-repeat 50px 7px;
+	float:left;
+	width:80px;
+}
+#list #title #amount .result {
+	float:left;
+}
+#list #title #amount .over {
+	float:left;
+	color:#393;
+}
+
+#list #title #sort {
+	float:right;
+	color:#666;
+	position:relative;
+	z-index:10;
+	right:20px;
+}
+#list #title #sort .selectbox {
+	background:url(../../images/iconBtn.gif) 97px -60px no-repeat;
+	padding:0 20px 0 8px;
+	width:85px !important;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	cursor:pointer;
+	font-size:12px;
+	color:#666;
+}
+#list #title #sort .selectbox-wrapper {
+	position:absolute;
+	left:0;
+	top:26px;
+	border:1px solid #ccc;
+	background-color:#fff;
+	width:113px !important;
+	font-size:12px;
+}
+#list #title #sort .selectbox-wrapper li {
+	cursor:pointer;
+	padding-left:10px;
+	text-align:left;
+	display:block;
+}
+#list #title #sort .selectbox-wrapper li.current,
+#list #title #sort .selectbox-wrapper li.selected {
+	background-color:#08c;
+	color:#fff;
+}
+
+#list .titleBox{
+	border-bottom:1px solid #ccc;
+	padding: 6px 0;
+	line-height:28px;
+}
+#list .listBox{
+	border-bottom:1px dotted #ccc;
+	line-height:28px;
+}
+
+#list .titleBox li,
+#list .listBox li{
+	float:left;
+}
+#list .titleBox li{
+	line-height:18px;
+	height:18px;
+}
+#list .listBox li{
+	line-height:28px;
+	height:28px;
+}
+#list .titleBox .li1,
+#list .titleBox .li2,
+#list .titleBox .li3,
+#list .titleBox .li4,
+#list .titleBox .li5,
+#list .titleBox .li6,
+#list .titleBox .li7{
+	text-align:center;
+}
+#list .titleBox .li1,
+#list .titleBox .li2,
+#list .titleBox .li3,
+#list .titleBox .li4,
+#list .titleBox .li5,
+#list .titleBox .li6,
+#list .titleBox .li7{
+	border-right:1px solid #ccc;
+}
+
+#list .titleBox .li1{
+	width:89px;
+}
+#list .titleBox .li2{
+	width:69px;
+}
+#list .titleBox .li3{
+	width:124px;
+}
+#list .titleBox .li3.percent3{
+	width:10%;
+	padding:6px 0;
+}
+#list .titleBox .li4{
+	width:99px;
+}
+#list .titleBox .li4.percent4{
+	width:8%;
+}
+#list .titleBox .li5{
+	width:149px;
+	border-right:none;
+}
+#list .titleBox .li5Statistics{
+	border-right:1px solid #ccc;
+	width:129px;
+}
+#list .titleBox .li5.records5{
+	width:99px;
+	border-right:1px solid #ccc;
+}
+#list .titleBox .li5.percent5{
+	width:12%;
+}
+#list .titleBox .li6{
+	width:49px;
+	border-right:none;
+}
+#list .titleBox .li6.percent6{
+	width:6%;
+}
+#list .titleBox .li7{
+	width:199px;
+}
+#list .titleBox .li7.records7{
+	width:169px;
+}
+#list .titleBox .li7.percent7{
+	width15%;
+}
+
+#list .listBox li.li1,
+#list .listBox li.li1 h4{
+	width:90px;
+}
+#list .listBox li.li2,
+#list .listBox li.li2 h4{
+	width:70px;
+}
+#list .listBox li.li3,
+#list .listBox li.li3 h4{
+	width:125px;
+}
+
+#list .listBox .li2.percent2,
+#list .listBox .li3.percent3,
+#list .listBox .li7.percent7{
+	border-right:1px solid #ccc;
+}
+
+#list .listBox li.li4,
+#list .listBox li.li4 h4{
+	width:100px;
+}
+#list .listBox li.li5{
+	width:150px;
+	text-align:center;
+	color:#999;
+}
+#list .listBox li.li5Statistics,
+#list .listBox li.li5Statistics h4{
+	width:130px;
+}
+
+#list .listBox li.li5.records5,
+#list .listBox li.li5.records5 h4{
+	width:100px;
+}
+
+#list .listBox li.li6,
+#list .listBox li.li6 h6{
+	width:50px;
+	text-align:center;
+}
+#list .listBox li.li7,
+#list .listBox li.li7 h4{
+	width:200px;
+}
+#list .listBox li.li7.records7,
+#list .listBox li.li7.records7 h4{
+	width:170px;
+}
+
+
+
+#list #listFooter{
+	padding:10px 5px;
+}
+#list #listFooter #menuListfooter{
+	float:left;
+	margin-top:6px;
+}
+#list #listFooter #menuListfooter li{
+	border-right:1px solid #ccc;
+	float:left;
+	padding:0 10px;
+	position:relative;
+}
+#list #listFooter #menuListfooter li .print{
+	border:none;
+	background-color:transparent;
+	cursor:pointer;
+	color:#08c;
+	width:45px;
+}
+#list #listFooter #menuListfooter li .print,
+#list #listFooter #menuListfooter li .export{
+	background:url(../../images/iconform.gif) no-repeat;
+	background-position: 30px -405px;
+	padding-right:20px;
+}
+#list #listFooter #menuListfooter li .export{
+	background-position: 26px -372px;
+	_background-position: 26px -373px;
+}
+
+/* 案件统计 */
+.statistics{
+	border-right:1px solid #ccc;
+}
+.statistics .th{
+	line-height:32px;
+}
+.statistics .td,
+.statistics .thBottom{
+	line-height:28px;
+}
+.statistics .th th,
+.statistics .td td,
+.statistics .td th,
+.statistics .thBottom td,
+.statistics .thBottom th{
+	border-bottom:1px solid #ccc;
+	border-left:1px solid #ccc;
+}
+.statistics .thBottom{
+	border-top:1px solid #333;
+}
+
+
+/* 子导航条 */
+
+.subNavi {
+	border-bottom:1px solid #ccc;
+	height:36px;
+	position:relative;
+}
+.subNavi li {
+	float:left;
+	font-size:14px;
+	margin-left:10px;
+	position:relative;
+	top:9px;
+	z-index:150;
+}
+.subNavi li a {
+	display:block;
+	float:left;
+	text-align:center;
+	padding:7px 15px 0;
+	height:19px;
+	border:1px solid #ccc;
+	background-color:#e4f1f7;
+	-moz-border-radius:3px 3px 0 0;
+	border-radius:3px 3px 0 0;
+	color:#69c;
+}
+.subNavi li a:hover {
+	text-decoration:none;
+}
+.subNavi li.current {
+	top:6px;
+}
+.subNavi li.current a {
+	padding-top:10px;
+	height:20px;
+	border-color: #ccc;
+	border-style: solid;
+	border-width:1px 1px 0 1px;
+	background-color:#fff;
+	color:#333;
+}
+
+
+
+
+
+
+
+
+

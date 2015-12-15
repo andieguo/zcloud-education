@@ -1,0 +1,1283 @@
+/* CSS Document */
+
+/* 搜索结果列表样式 */
+.noData {
+	width: 240px;
+	line-height: 26px;
+	color: #F93;
+	padding: 10px 0 10px 50px;
+	background: url(../../images/iconform.gif) no-repeat 12px -166px #ffc;
+	border: 1px solid #f93;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin:20px auto;
+}
+#boxSearch {
+	background: url(../../images/backgroundNavishadow.jpg) repeat-x top;
+	margin-bottom:10px;
+}
+#boxSearch .title {
+	border-bottom:1px solid #ccc;
+	height:36px;
+	line-height:36px;
+	padding-left:20px;
+	font-size:14px;
+}
+#boxSearch .title h2 {
+	font-weight:bold;
+}
+#listSearch {
+}
+#listSearch .protocolbox {
+	width:236px;
+	float:left;
+	line-height: 32px;
+	margin-left: 20px;
+	color: #999;
+	display:inline;
+}
+#listSearch .protocolbox .h3{
+	display:block;
+	float:left;
+}
+#listSearch .protocolbox .selected {
+	background: url(../../images/iconBtn.gif) no-repeat 145px -60px;
+	display: block;
+	height: 33px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #333;
+	float:left;
+}
+#listSearch .protocolbox .selected.proBtn{
+	height:26px;
+	padding:0 8px;
+	width:150px;
+	line-height:26px;
+}
+#listSearch .protocolbox a:hover {
+	text-decoration:none;
+}
+#listSearch .protocolbox .protocol {
+	left:70px;
+	right:auto;
+}
+.listSearchBackground {
+	background: url(../../images/backgroundNavishadow.jpg) repeat-x top;
+	min-height:300px;
+	_height:300px;
+	padding-top:10px;
+}
+#listSearch #title {
+	font-size: 14px;
+	color: #333;
+	border-bottom: 1px solid #666;
+	height: 32px;
+	line-height: 32px;
+	padding-left: 20px;
+}
+#listSearch #title h2 {
+	font-weight:bold;
+	float:left;
+}
+#listSearch .alert {
+	background:url(../../images/iconMenu.png) no-repeat 22px -291px;
+	padding-left:40px !important;
+}
+#listSearch #title .crumb {
+	display:inline-block;
+	float:left;
+	margin-right:5px;
+}
+#listSearch #title #amount {
+	float:left;
+	margin-left:20px;
+	display:inline;
+	color:#999;
+	width:520px;
+}
+#listSearch #title .edit {
+	float:right;
+	color:#999;
+}
+#listSearch #title .edit a {
+	margin:0 8px
+}
+#listSearch #title #amount .loading {
+	background:url(../../images/loading.gif) no-repeat 50px 7px;
+	float: right;
+	width:80px;
+	color:#393;
+}
+#listSearch #title #amount .over {
+	float: right;
+	color:#393;
+}
+#listSearch #title #amount .result {
+	float:left;
+}
+#listSearch #title #sort {
+	float:right;
+	color:#666;
+	position:relative;
+	z-index:10;
+	right:20px;
+}
+#listSearch #title #sort .selectbox {
+	background:url(../../images/iconBtn.gif) 97px -60px no-repeat;
+	padding:0 20px 0 8px;
+	width:85px !important;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	cursor:pointer;
+	font-size:12px;
+	color:#666;
+}
+#listSearch #title #sort .selectbox-wrapper {
+	position:absolute;
+	left:0;
+	top:26px;
+	border:1px solid #ccc;
+	background-color:#fff;
+	width:113px !important;
+	font-size:12px;
+}
+#listSearch #title #sort .selectbox-wrapper li {
+	cursor:pointer;
+	padding-left:10px;
+	text-align:left;
+	display:block;
+}
+#listSearch #title #sort .selectbox-wrapper li.current, #listSearch #title #sort .selectbox-wrapper li.selected {
+	background-color:#08c;
+	color:#fff;
+}
+#listSearch #title .new,
+#listSearch #title .search  {
+	background-image: url(../../images/iconMenu.png);
+	background-repeat: no-repeat;
+	background-position: 0 -21px;
+	padding: 0 0 0 20px;
+	display: block;
+	float:right;
+	font-size:12px;
+	margin-right:20px;
+}
+#listSearch #title .search {
+	background-image: url(../../images/iconBtn.gif);
+	background-position: 1px -311px;
+}
+/* 层级导航 */
+#boxSearch .levelNavi {
+	border:1px solid #ccc;
+	width:750px;
+	margin:10px auto;
+}
+#boxSearch .levelNavi li {
+	float:left;
+	width:187.5px;
+}
+#boxSearch .levelNavi li a {
+	height:38px;
+	line-height:38px;
+	text-align:center;
+	display:block;
+	background-image:url(../../images/boxNavi.gif);
+	background-repeat:no-repeat;
+	background-position:right -81px;
+}
+#boxSearch .levelNavi li.current a {
+	background-position:right -41px;
+	color:#fff;
+	font-weight:bold;
+}
+#boxSearch .levelNavi .li4 a {
+	background-position:right 0;
+}
+#boxSearch .levelNavi .li4.current a {
+	background-position:right -121px;
+}
+#boxSearch .levelNavi li.up a {
+	background-position:right -161px;
+}
+/* 级联导航 */
+#listSearch .levelNavi {
+	border-left:none;
+	border-right:none;
+	border-top:none;
+	border-bottom:1px solid #ccc;
+	width:auto;
+	margin:0;
+}
+#listSearch .levelNavi li {
+	float:left;
+	width:100px;
+}
+#listSearch .levelNavi li a {
+	height:38px;
+	line-height:38px;
+	text-align:center;
+	display:block;
+	background-image:url(../../images/boxNavi.gif);
+	background-repeat:no-repeat;
+	background-position:right -81px;
+	padding-right:20px;
+}
+#listSearch .levelNavi li.current a {
+	background-position:right -41px;
+	color:#fff;
+	font-weight:bold;
+}
+#listSearch .levelNavi li.up a {
+	background-position:right -161px;
+}
+/* 列表开始 */
+#listSearch #list {
+	margin:0 !important;
+}
+#listSearch #list .li {
+	border-bottom:1px solid #999;
+	_height:1%;
+}
+#listSearch #list .li .title {
+	font-weight:bold;
+	padding-left:40px;
+	font-size:14px;
+	line-height:36px;
+}
+#listSearch #list .li .note {
+	font-size:14px;
+	line-height:22px;
+	padding:8px 0 8px 40px;
+}
+#listSearch #list .li .note b {
+	color:#f00;
+}
+#listSearch #list .li .normal {
+}
+#listSearch #list .li.p .normal {
+	height:26px;
+	padding:4px 0;
+}
+#listSearch #list .li .normal.current {
+	background:#eee;
+	border-left:3px solid #393;
+}
+#listSearch #list .li .normal.current .td0{
+	width:37px !important;
+}
+#listSearch #list .li .normal.current .td0 input{
+	margin-right:6px;
+}
+#listSearch #list .li .normal.current .boxP{
+	padding:0 50px 0 37px;
+}
+#listSearch #list .li .normal.cur {
+	background-color:#ffc;
+}
+#listSearch #list .li .normal .box1, #listSearch #list .li .normal .box2, #listSearch #list .li .normal .box3, #listSearch #list .li .normal .box4 {
+	float:left;
+}
+#listSearch #list .li .normal .box1 {
+	width:35px;
+	padding:18px 0 0 15px
+}
+#listSearch #list .li.p .normal .box1 {
+	padding:5px 0 0 15px;
+}
+#listSearch #list .li .normal .box2 {
+	width:500px;
+	font-size:14px;
+	line-height:25px;
+	color:#666;
+}
+#listSearch #list .li .normal .box2 .tit {
+	float:left;
+}
+#listSearch #list .li .normal .box2 .tit b {
+	color:#000;
+}
+#listSearch #list .li .normal .box2 .ip {
+	float:right;
+	color:#393;
+}
+#listSearch #list .li .normal .box2 p {
+	clear:both;
+}
+.keyword {
+	color:#f00
+}
+#listSearch #list .li .normal .box3 {
+	line-height:50px;
+	width:210px;
+	font-size:14px;
+	color:#666;
+	padding-left:20px;
+}
+#listSearch #list .li.p .normal .box3 {
+	line-height:26px;
+	width:130px;
+}
+#listSearch #list .li .normal .box4 {
+	line-height:50px;
+	width:120px;
+	font-size:12px;
+	color:#393;
+}
+#listSearch #list .li.p .normal .box4 {
+	line-height:26px;
+	width:120px;
+}
+#listSearch #list .li .normal .box5 {
+	float:right;
+	position:relative;
+}
+#listSearch #list .li .normal .box5 .more {
+	line-height:50px;
+	margin-right:8px;
+}
+#listSearch #list .li.p .normal .box5 .more {
+	line-height:26px;
+}
+#listSearch #list .li .normal .box5 .iconMore {
+	background:url(../../images/iconBtn.png) no-repeat 4px -231px;
+	width:20px;
+	height:20px;
+	margin:15px 20px 0 0;
+	cursor:pointer;
+	position:relative;
+	z-index:1;
+	display:block;
+}
+#listSearch #list .li.p .normal .box5 .iconMore {
+	margin:4px 20px 0 0;
+}
+#listSearch #list .li .normal .box5 .iconMore.cur {
+	background-color:#fff;
+	border-color:#ccc;
+	border-style:solid;
+	border-width:1px 1px 0 1px;
+	-moz-border-radius:3px 3px 0 0;
+	border-radius:3px 3px 0 0;
+	top:-1px;
+	right:-1px;
+}
+#listSearch #list .li .normal .box5 .moreList {
+	width:50px;
+	top:29px;
+	right:19px;
+	position:absolute;
+	-moz-border-radius:3px 0 3px 3px;
+	border-radius:3px 0 3px 3px;
+}
+#listSearch #list .li .normal .box5 .moreList li {
+	margin:1px;
+}
+#listSearch #list .li .normal .box5 .moreList li a {
+	display:block;
+	line-height:24px;
+	text-align:center;
+	color:#666;
+}
+#listSearch #list .li .normal .box5 .moreList li a:hover {
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+#listSearch #list .li .normal .boxP {
+	padding:0 40px;
+	line-height:28px;
+	font-size:14px;
+	color:#999;
+	border-top:1px dotted #ccc;
+}
+#listSearch #list .li .normal .boxP .more{
+	background:url(../../images/iconBtn.gif) no-repeat 2px -316px;
+	width:20px;
+	height:20px;
+	display:block;
+	float:right;
+	margin:2px -30px 0 0;
+}
+#listSearch #list .li .normal .boxP .download{
+	background: url(../../images/iconBtn.gif) no-repeat 0px -233px;
+	width: 12px;
+	height: 14px;
+	display: block;
+	float:right;
+	margin:5px -30px 0 0;
+	_margin:5px -15px 0 0;
+}
+#listSearch #list .li .normal.current .boxP .download{
+	margin:5px -40px 0 0;
+	_margin:5px -15px 0 0;
+}
+#listSearch #list .li .normal .boxP .text{
+	font-size:12px;
+}
+#listSearch #list .li .normal .boxP .text span{
+	padding-right:10px;
+	display:block;
+	float:left;
+}
+#listSearch #list .li .normal .boxP .text .h3{
+	font-weight:bold;
+	color:#333;
+	max-width:330px;
+	_width:330px;
+}
+#listSearch #list .li .normal .boxP .text .person{
+	max-width:200px;
+	_width:200px;
+}
+#listSearch #list .li .normal .boxP .text .time{
+	max-width:110px;
+	_width:110px;
+	padding:0;
+}
+
+#listSearch #list .submitBtn {
+	padding: 10px 0 20px 400px;
+}
+#listSearch #list .submitBtn .btn {
+	display: inline;
+	background-image: url(../../images/iconBtn.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	width: 102px;
+	height: 42px;
+	float: left;
+	margin-right: 10px;
+}
+#listSearch #list .submitBtn .btn input {
+	background-color: transparent;
+	color: white;
+	border: none;
+	width: 102px;
+	height: 42px;
+	line-height: 42px;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+}
+/* 新列表 */
+#listSearch #list .thList {
+	border-bottom:1px solid #999;
+	padding:8px 0 8px 40px;
+	font-size:14px;
+}
+#listSearch #list .thList .th1,
+#listSearch #list .thList .th2,
+#listSearch #list .thList .th3,
+#listSearch #list .thList .th4,
+#listSearch #list .thList .th5,
+#listSearch #list .thList .th6,
+#listSearch #list .thList .th7 {
+	float:left;
+	border-right:1px solid #ccc;
+	text-align:center;
+	font-weight:bold;
+}
+#listSearch #list .thList .th1 {
+	width:79px;
+	border-left:1px solid #ccc;
+}
+#listSearch #list .thList .th2 {
+	width:179px;
+}
+#listSearch #list .thList .th3 {
+	width:149px;
+}
+#listSearch #list .thList .th4 {
+	width:199px;
+}
+#listSearch #list .thList .th5 {
+	width:99px;
+}
+#listSearch #list .thList .th6 {
+	width:139px;
+}
+#listSearch #list .thList .th7 {
+	width:57px;
+	border:none;
+}
+
+
+#listSearch #list .thList .th1.recall1 {
+	width:445px;
+}
+#listSearch #list .thList .th2.recall2 {
+	width:159px
+}
+#listSearch #list .thList .th6.recall6 {
+	width:297px;
+	border:none;
+}
+
+#listSearch #list .thList .th1.info1 {
+	width:308px;
+}
+#listSearch #list .thList .th2.info2 {
+	width:159px
+}
+#listSearch #list .thList .th3.info3 {
+	width:159px;
+}
+#listSearch #list .thList .th4.info4 {
+	width:129px;
+}
+#listSearch #list .thList .th5.info5 {
+	width:147px;
+	border:none;
+}
+
+#listSearch #list .thList .th1.case1 {
+	width:435px;
+}
+#listSearch #list .thList .th2.case2 {
+	width:159px
+}
+#listSearch #list .thList .th3.case3 {
+	width:159px;
+}
+#listSearch #list .thList .th6.case6 {
+	width:147px;
+	border:none;
+}
+
+#listSearch #list .thList .th1.file1 {
+	width:79px;
+}
+#listSearch #list .thList .th2.file2 {
+	width:179px
+}
+#listSearch #list .thList .th3.file3 {
+	width:129px;
+}
+#listSearch #list .thList .th5.file5 {
+	width:129px;
+}
+#listSearch #list .thList .th7.file7 {
+	width:77px;
+	border:none;
+}
+#listSearch #list .thList .th1.keywords1 {
+	width:149px;
+}
+#listSearch #list .thList .th2.keywords2 {
+	width:79px;
+}
+#listSearch #list .thList .th3.keywords3 {
+	width:69px;
+}
+#listSearch #list .thList .th4.keywords4 {
+	width:169px;
+}
+#listSearch #list .thList .th5.keywords5 {
+	width:99px;
+}
+#listSearch #list .thList .th6.keywords6 {
+	width:97px;
+	border:none;
+}
+#listSearch #list .thList .th1.keywordsLi1 {
+	width:149px;
+}
+#listSearch #list .thList .th2.keywordsLi2 {
+	width:179px;
+}
+#listSearch #list .thList .th3.keywordsLi3 {
+	width:79px;
+}
+#listSearch #list .thList .th4.keywordsLi4 {
+	width:79px;
+}
+#listSearch #list .thList .th6.keywordsLi6 {
+	width:117px;
+	border:none;
+}
+#listSearch #list .thList .th1.fileLi1 {
+	width:829px;
+}
+#listSearch #list .thList .th1.fileList1 {
+	width:829px;
+	border-left:1px solid #ccc;
+}
+#listSearch #list .thList .th2.fileLi2 {
+	width:179px
+}
+#listSearch #list .thList .th3.fileLi3 {
+	width:129px;
+}
+#listSearch #list .thList .th4.fileLi4 {
+	width:259px;
+}
+#listSearch #list .thList .th6.fileLi6 {
+	width:77px;
+	border:none;
+}
+#listSearch #list .thList .th1.fileUser1 {
+	width:180px;
+	border-left:1px solid #ccc;
+}
+#listSearch #list .thList .th2.fileUser2,
+#listSearch #list .thList .th3.fileUser3 {
+	width:180px;
+}
+#listSearch #list .thList .th6.fileUser6 {
+	width:360px;
+	border:none;
+}
+#listSearch #list .thList .th1.ip1 {
+	width:299px;
+}
+#listSearch #list .thList .th6.ip6 {
+	width:307px;
+	border:none;
+}
+#listSearch #list .thList .th1.http1 {
+	width:209px;
+}
+#listSearch #list .thList .th2.http2 {
+	width:179px
+}
+#listSearch #list .thList .th6.http6 {
+	width:157px;
+	border:none;
+}
+#listSearch #list .thList .th1.app1 {
+	width:179px;
+}
+#listSearch #list .thList .th2.app2 {
+	width:189px;
+}
+#listSearch #list .thList .th3.app3 {
+	width:99px;
+}
+#listSearch #list .thList .th4.app4 {
+	width:239px;
+}
+#listSearch #list .thList .th5.app5 {
+	width:119px;
+}
+#listSearch #list .thList .th6.app6 {
+	width:77px;
+	border:none;
+}
+#listSearch #list .thList .th1.appTarget1 {
+	width:349px;
+}
+#listSearch #list .thList .th2.appTarget2 {
+	width:359px;
+}
+#listSearch #list .thList .th1.appClue1 {
+	width:199px;
+}
+#listSearch #list .thList .th2.appClue2 {
+	width:199px;
+}
+#listSearch #list .thList .th3.appClue3 {
+	width:199px;
+}
+#listSearch #list .thList .th4.appClue4 {
+	width:99px;
+}
+#listSearch #list .thList .th5.appClue5 {
+	width:99px;
+}
+#listSearch #list .thList .th6.appClue6 {
+	width:107px;
+	border:none;
+}
+#listSearch #list .thList .th1.tools1 {
+	width:299px;
+}
+#listSearch #list .thList .th2.tools2 {
+	width:429px;
+}
+#listSearch #list .thList .th3.tools3 {
+	width:99px;
+}
+#listSearch #list .thList .th6.tools6 {
+	width:77px;
+	border:none;
+}
+#listSearch #list .thList .th2.shield2 {
+	width:379px;
+}
+#listSearch #list .thList .th7.shield7 {
+	width:137px;
+	border:none;
+}
+#listSearch #list .thList .th1.job1 {
+	width:79px;
+}
+#listSearch #list .thList .th2.job2 {
+	width:379px;
+}
+#listSearch #list .thList .th3.job3 {
+	width:299px;
+}
+#listSearch #list .thList .th7.job7 {
+	width:149px;
+}
+#listSearch #list .thList .th1.set1 {
+	width:279px;
+}
+#listSearch #list .thList .th2.set2 {
+	width:319px;
+}
+#listSearch #list .thList .th7.set7 {
+	width:307px;
+}
+#listSearch #list .thList .th1.setLi1 {
+	width:279px;
+}
+#listSearch #list .thList .th2.setLi2 {
+	width:79px;
+}
+#listSearch #list .thList .th3.setLi3 {
+	width:309px;
+}
+#listSearch #list .thList .th7.setLi7 {
+	width:237px;
+}
+#listSearch #list .thList .th1.httpsClass1 {
+	width:379px;
+}
+#listSearch #list .thList .th7.httpsClass7 {
+	width:527px;
+}
+#listSearch #list .thList .th2.httpsCert2 {
+	width:219px;
+}
+#listSearch #list .thList .th3.httpsCert3 {
+	width:99px;
+}
+#listSearch #list .thList .th5.httpsCert5 {
+	width:169px;
+}
+#listSearch #list .thList .th6.httpsCert6 {
+	width:79px;
+}
+#listSearch #list .thList .th1.httpsV1 {
+}
+#listSearch #list .thList .th2.httpsV2 {
+	width:149px;
+}
+#listSearch #list .thList .th3.httpsV3 {
+	width:130px;
+}
+#listSearch #list .thList .th4.httpsV4 {
+	width:109px;
+}
+#listSearch #list .thList .th5.httpsV5 {
+	width:119px;
+}
+#listSearch #list .thList .th6.httpsV6 {
+	width:129px;
+}
+#listSearch #list .thList .th1.webPolice1 {
+	width:109px;
+}
+#listSearch #list .thList .th2.webPolice2 {
+	width:119px;
+}
+#listSearch #list .thList .th7.webPolice7 {
+	width:677px;
+}
+#listSearch #list .li .normal .tr {
+	line-height:28px;
+}
+#listSearch #list .li .normal .tr .td0,
+#listSearch #list .li .normal .tr .td1,
+#listSearch #list .li .normal .tr .td2,
+#listSearch #list .li .normal .tr .td3,
+#listSearch #list .li .normal .tr .td4,
+#listSearch #list .li .normal .tr .td5,
+#listSearch #list .li .normal .tr .td6,
+#listSearch #list .li .normal .tr .td7 {
+	float:left;
+	text-align:left;
+	font-size:14px;
+	min-height:28px;
+	_height:28px;
+}
+#listSearch #list .li .normal .tr .td0 {
+	width:40px;
+	text-align:center;
+}
+#listSearch #list .li .normal .tr .td0 input {
+	margin-top:7px;
+}
+#listSearch #list .li .normal .tr .td1 {
+	width:80px;
+}
+#listSearch #list .li .normal .tr .td2 {
+	width:180px;
+}
+#listSearch #list .li .normal .tr .td3 {
+	width:150px;
+}
+#listSearch #list .li .normal .tr .td4 {
+	width:200px;
+}
+#listSearch #list .li .normal .tr .td5 {
+	width:100px;
+}
+#listSearch #list .li .normal .tr .td6 {
+	width:140px;
+	text-align: center;
+	color:#666;
+}
+#listSearch #list .li .normal .tr .td7 {
+	width:57px;
+	text-align: center;
+}
+#listSearch #list .li .normal .tr .td7 .download {
+	background: url(../../images/iconBtn.gif) no-repeat 0px -233px;
+	width: 12px;
+	height: 14px;
+	display: block;
+	margin: 6px auto 0;
+}
+
+#listSearch #list .li .normal .tr .td1.recall1 {
+	width:439px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td2.recall2 {
+	width:152px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td6.recall6 {
+	width:292px;
+	padding:0 4px;
+	text-align:center;
+	color:#999;
+}
+
+
+#listSearch #list .li .normal .tr .td1.info1 {
+	width:302px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td2.info2 {
+	width:152px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td3.info3 {
+	width:152px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td4.info4 {
+	width:122px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td5.info5 {
+	width:142px;
+	padding:0 4px;
+	text-align:center;
+	color:#999;
+}
+
+#listSearch #list .li .normal .tr .td1.case1 {
+	width:429px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td2.case2 {
+	width:152px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td3.case3 {
+	width:152px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td6.case6 {
+	width:142px;
+	padding:0 4px;
+	text-align:center;
+	color:#999;
+}
+
+#listSearch #list .li .normal .tr .td1.file1 {
+	width:80px;
+}
+#listSearch #list .li .normal .tr .td2.file2 {
+	width:180px;
+}
+#listSearch #list .li .normal .tr .td3.file3 {
+	width:130px;
+}
+#listSearch #list .li .normal .tr .td5.file5 {
+	width:130px;
+}
+#listSearch #list .li .normal .tr .td7.file7 {
+	width:77px;
+}
+#listSearch #list .li .normal .tr .td1.fileLi1 {
+	width:830px;
+}
+#listSearch #list .li .normal .tr .td1.fileList1 {
+	width:822px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td2.fileLi2 {
+	width:172px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td3.fileLi3 {
+	width:122px;
+	padding:0 4px;
+	text-align:center;
+	color:#666;
+}
+#listSearch #list .li .normal .tr .td4.fileLi4 {
+	width:252px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td6.fileLi6 {
+	width:77px;
+}
+#listSearch #list .li .normal .tr .td1.fileUser1,
+#listSearch #list .li .normal .tr .td2.fileUser2,
+#listSearch #list .li .normal .tr .td3.fileUser3 {
+	width:180px;
+	text-align:center;
+}
+#listSearch #list .li .normal .tr .td6.fileUser6 {
+	width:360px;
+}
+#listSearch #list .li .normal .tr .td1.keywords1 {
+	width:150px;
+}
+#listSearch #list .li .normal .tr .td2.keywords2 {
+	width:80px;
+}
+#listSearch #list .li .normal .tr .td3.keywords3 {
+	width:70px;
+}
+#listSearch #list .li .normal .tr .td4.keywords4 {
+	width:170px;
+}
+#listSearch #list .li .normal .tr .td5.keywords5 {
+	width:100px;
+}
+#listSearch #list .li .normal .tr .td6.keywords6 {
+	width:97px;
+}
+#listSearch #list .li .normal .tr .td1.keywordsLi1 {
+	width:150px;
+}
+#listSearch #list .li .normal .tr .td2.keywordsLi2 {
+	width:180px;
+}
+#listSearch #list .li .normal .tr .td3.keywordsLi3 {
+	width:80px;
+}
+#listSearch #list .li .normal .tr .td4.keywordsLi4 {
+	width:80px;
+}
+#listSearch #list .li .normal .tr .td6.keywordsLi6 {
+	width:117px;
+}
+#listSearch #list .li .normal .tr .td1.ip1 {
+	width:300px;
+}
+#listSearch #list .li .normal .tr .td6.ip6 {
+	width:307px;
+	border:none;
+	text-align:left;
+}
+#listSearch #list .li .normal .tr .td1.http1 {
+	width:210px;
+}
+#listSearch #list .li .normal .tr .td2.http2 {
+	width:180px
+}
+#listSearch #list .li .normal .tr .td6.http6 {
+	width:157px;
+	border:none;
+}
+#listSearch #list .li .normal .tr .td1.app1 {
+	width:180px;
+}
+#listSearch #list .li .normal .tr .td2.app2 {
+	width:190px;
+}
+#listSearch #list .li .normal .tr .td3.app3 {
+	width:100px;
+}
+#listSearch #list .li .normal .tr .td4.app4 {
+	width:240px;
+}
+#listSearch #list .li .normal .tr .td5.app5 {
+	width:120px;
+	text-align:center;
+}
+#listSearch #list .li .normal .tr .td6.app6 {
+	width:77px;
+}
+#listSearch #list .li .normal .tr .td1.appTarget1 {
+	width:350px;
+}
+#listSearch #list .li .normal .tr .td2.appTarget2 {
+	width:360px;
+}
+#listSearch #list .li .normal .tr .td1.appClue1 {
+	width:200px;
+}
+#listSearch #list .li .normal .tr .td2.appClue2 {
+	width:200px;
+}
+#listSearch #list .li .normal .tr .td3.appClue3 {
+	width:200px;
+}
+#listSearch #list .li .normal .tr .td4.appClue4 {
+	width:100px;
+	text-align:center;
+}
+#listSearch #list .li .normal .tr .td5.appClue5 {
+	width:100px;
+}
+#listSearch #list .li .normal .tr .td6.appClue6 {
+	width:107px;
+}
+#listSearch #list .li .normal .tr .td1.tools1 {
+	width:292px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td2.tools2 {
+	width:422px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td3.tools3 {
+	width:92px;
+	padding:0 4px;
+}
+#listSearch #list .li .normal .tr .td6.tools6 {
+	width:77px;
+}
+#listSearch #list .li .normal .tr .td6.tools6 .download {
+	background:url(../../images/iconBtn.gif) no-repeat 4px -230px;
+	display:block;
+	margin:0 auto;
+	width:20px;
+	height:20px;
+}
+#listSearch #list .li .normal .tr .td6.tools6 .download:hover{
+	text-decoration: none;
+}
+#listSearch #list .li .normal .tr .td1.job1 {
+	width:80px;
+}
+#listSearch #list .li .normal .tr .td2.job2 {
+	width:380px;
+}
+#listSearch #list .li .normal .tr .td3.job3 {
+	width:300px;
+}
+#listSearch #list .li .normal .tr .td7.job7 {
+	width:150px;
+}
+#listSearch #list .li .normal .tr .td2.shield2 {
+	width:380px;
+}
+#listSearch #list .li .normal .tr .td7.shield7 {
+	width:137px;
+	border:none;
+	text-align:left;
+}
+#listSearch #list .li .normal .tr .td1.set1 {
+	width:280px;
+}
+#listSearch #list .li .normal .tr .td2.set2 {
+	width:320px;
+}
+#listSearch #list .li .normal .tr .td7.set7 {
+	width:307px;
+	text-align:left;
+}
+#listSearch #list .li .normal .tr .td2.set2 .text, #listSearch #list .li .normal .tr .td2.set2 .select {
+	float:left;
+	margin-right:8px;
+}
+#listSearch #list .li .normal .tr .td2.set2 .text input, #listSearch #list .li .normal .tr .td2.set2 .select .selectbox {
+	width:150px;
+	height:26px;
+	line-height:26px;
+	padding:0 8px;
+}
+#listSearch #list .li .normal .tr .td2.set2 .select .selectbox {
+	background: url(../../images/iconBtn.gif) no-repeat 150px -58px;
+	cursor:pointer;
+}
+#listSearch #list .li .normal .tr .td2.set2 .select .selectbox-wrapper {
+	position:absolute;
+	width:165px !important;
+	top:26px;
+	left:0;
+}
+#listSearch #list .li .normal .tr .td1.setLi1 {
+	width:280px;
+}
+#listSearch #list .li .normal .tr .td2.setLi2 {
+	width:80px;
+}
+#listSearch #list .li .normal .tr .td2.setLi2 .set {
+	padding-right:20px;
+	background:url(../../images/iconBtn.gif) no-repeat 60px -767px;
+}
+#listSearch #list .li .normal .tr .td3.setLi3 {
+	width:310px;
+}
+#listSearch #list .li .normal .tr .td7.setLi7 {
+	width:237px;
+	text-align:left;
+}
+#listSearch #list .li .normal .tr .td1.httpsClass1 {
+	width:380px;
+}
+#listSearch #list .li .normal .tr .td7.httpsClass1 {
+	width:527px;
+	text-align:left;
+}
+#listSearch #list .li .normal .tr .td2.httpsCert2 {
+	width:220px;
+}
+#listSearch #list .li .normal .tr .td3.httpsCert3 {
+	width:100px;
+}
+#listSearch #list .li .normal .tr .td5.httpsCert5 {
+	width:170px;
+}
+#listSearch #list .li .normal .tr .td6.httpsCert6 {
+	width:80px;
+	color:#444;
+}
+#listSearch #list .li .normal .tr .td1.httpsV1 {
+}
+#listSearch #list .li .normal .tr .td2.httpsV2 {
+	width:150px;
+}
+#listSearch #list .li .normal .tr .td3.httpsV3 {
+	width:130px;
+}
+#listSearch #list .li .normal .tr .td4.httpsV4 {
+	width:110px;
+}
+#listSearch #list .li .normal .tr .td5.httpsV5 {
+	width:120px;
+}
+#listSearch #list .li .normal .tr .td6.httpsV6 {
+	width:130px;
+}
+#listSearch #list .li .normal .tr .td7.httpsV7 {
+}
+#listSearch #list .li .normal .tr .td1.webPolice1 {
+	width:110px;
+}
+#listSearch #list .li .normal .tr .td2.webPolice2 {
+	width:120px;
+}
+#listSearch #list .li .normal .tr .td7.webPolice7 {
+	width:667px;
+	text-align:left;
+}
+#listSearch #list .li .normal .form {
+	border-top:1px dotted #ccc;
+	padding-top:4px;
+	line-height:28px;
+	padding:0 40px;
+}
+#listSearch #list .li .normal .form dl {
+}
+#listSearch #list .li .normal .form dt {
+	width:80px;
+	text-align:right;
+	float:left;
+	color:#777;
+}
+#listSearch #list .li .normal .form dd {
+	margin-left:80px;
+	word-break:break-all;
+	word-wrap:break-word;
+	padding-right:10px;
+}
+#listSearch #list .details .code {
+	border-top:1px dotted #ccc;
+}
+#listSearch #list .details .files h2 {
+	font-weight:bold;
+	color:#444;
+	border-bottom:1px dotted #ccc;
+}
+#listSearch #list .details .files dl {
+	float:left;
+	width:435px;
+	width:290px;
+}
+#listSearch #list .details .files dt {
+	width:100px;
+}
+#listSearch #list .details .files dd {
+}
+#listSearch #list .details {
+	line-height:26px;
+	color:#666;
+	background-color:#fff;
+	border-left:3px solid #393;
+	*height:1%;
+}
+#listSearch #list .details dt {
+	width:160px;
+	text-align:right;
+	float:left;
+}
+#listSearch #list .details dd {
+	margin-left:160px;
+	word-break:break-all;
+	word-wrap:break-word;
+	color:#444;
+}
+#listSearch #list .details .form {
+	border-top:1px solid #999;
+	padding:10px 40px;
+}
+#listSearch #list .details .text {
+	border-top:1px solid #ccc;
+}
+#listSearch #listFooter {
+	padding:10px 5px;
+}
+#listSearch #listFooter #menuListfooter {
+	float:left;
+	margin-top:6px;
+}
+#listSearch #listFooter #menuListfooter li {
+	border-right:1px solid #ccc;
+	float:left;
+	padding:0 10px;
+	position:relative;
+}
+.versions .con {
+	padding:30px 40px;
+}
+.versions .submitBtn {
+	padding:20px;
+}
+.versions .submitBtn input {
+	background: url(../../images/iconBtn.png) no-repeat 0 -110px;
+	border:none;
+	cursor:pointer;
+	width: 85px;
+	height: 35px;
+	line-height:35px;
+	text-align:center;
+	color:#fff;
+	display:block;
+	font-size:14px;
+	font-weight:bold;
+	margin:0 auto;
+}

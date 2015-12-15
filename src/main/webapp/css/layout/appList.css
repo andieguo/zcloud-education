@@ -1,0 +1,87 @@
+/* CSS Document */
+
+/* 认证搜索样式 */
+#list .title {
+	border-bottom:1px solid #999;
+	padding:6px 0;
+}
+#list .title span{
+	float:left;
+	font-size:14px;
+	text-align:center;
+	height:20px;
+	line-height:20px;
+}
+#list .title .li1,
+#list .title .li2,
+#list .title .li3,
+#list .title .li4,
+#list .title .li5,
+#list .li .li1,
+#list .li .li2,
+#list .li .li3,
+#list .li .li4,
+#list .li .li5{
+	border-right:1px solid #ccc;
+}
+#list .li{
+	border-bottom:1px dotted #999 !important;
+	padding:6px 0;
+}
+#list .li .li1,
+#list .li .li2,
+#list .li .li3,
+#list .li .li4,
+#list .li .li5,
+#list .li .li6{
+	float:left;
+	font-size:12px;
+	height:20px;
+	line-height:20px;
+}
+#list .title .li1,
+#list .li .li1,
+#list .li .li1 h4{
+	width:89px;
+}
+#list .title .li2,
+#list .li .li2,
+#list .li .li2 h4{
+	width:119px;
+}
+#list .title .li3,
+#list .li .li3,
+#list .li .li3 h4{
+	width:109px;
+}
+#list .title .li4,
+#list .li .li4,
+#list .li .li4 h4{
+	width:99px;
+}
+#list .title .li5,
+#list .li .li5,
+#list .li .li5 h4{
+	width:99px;
+}
+#list .title .li6,
+#list .li .li6,
+#list .li .li6 h4{
+	width:99px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

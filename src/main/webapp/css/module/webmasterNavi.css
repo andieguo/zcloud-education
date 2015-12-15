@@ -1,0 +1,74 @@
+/* CSS Document */
+
+.webmasterNavi{
+	background: url(../../images/backgroundNavishadow.jpg) repeat-x top;
+	border-bottom:1px solid #ccc;
+	padding:8px;
+}
+.webmasterNavi li.li{
+	float:left;
+	width:150px;
+	height:24px;
+	line-height:24px;
+	font-size:14px;
+	text-align:center;
+	border-right:1px solid #ccc;
+}
+.webmasterNavi li.li .link{
+	background: url(../../images/iconBtn.png) no-repeat;
+	background-position: 135px -60px;
+	display:block;
+	height:28px;
+	line-height:28px;
+	cursor:pointer;
+}
+.webmasterNavi li.current{
+	color:#666;
+	background-color:#fff;
+	border-color:#ccc;
+	border-style:solid;
+	border-width:1px 1px 0 1px;
+	margin:-1px 0 0 -1px;
+	-moz-border-radius:3px 3px 0 0;
+	border-radius:3px 3px 0 0;
+	position:relative;
+}
+.webmasterNavi li.current .box{
+	display:block;
+	color:#666;
+	background-color:#fff;
+	border-color:#ccc;
+	border-style:solid;
+	border-width:0 1px 1px 1px;
+	-moz-border-radius:0 0 3px 3px;
+	border-radius:0 0 3px 3px;
+	position:absolute;
+	top:24px;
+	left:-1px;
+}
+.webmasterNavi li.current .box li{
+	width:150px;
+	height:28px;
+	line-height:28px;
+	text-align:left;
+}
+.webmasterNavi li.current .box a{
+	display:block;
+	padding-left:10px;
+}
+.webmasterNavi li.current .box a:hover{
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+
+
+
+
+
+
+
+
+
+
+

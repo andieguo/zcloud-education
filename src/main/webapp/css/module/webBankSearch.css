@@ -1,0 +1,188 @@
+/* CSS Document */
+
+/* 虚拟身份搜索条 */
+.searchBar{
+	width:750px;
+	margin:0 auto;
+	padding-top:40px;
+}
+.searchBar.login{
+	width:540px;
+}
+.searchBar .tag{
+	position:relative;
+	z-index:1;
+}
+.searchBar .tag li{
+	float:left;
+	padding:7px 5px;
+	margin-left:10px;
+	font-size:14px;
+	color:#0088cc;
+	cursor:pointer;
+}
+.searchBar .tag li.current{
+	font-weight:bold;
+	color:#333;
+	cursor:default;
+	background:url(../../images/search.gif) no-repeat 15px 25px;
+}
+.searchBar .tag li.hover{
+	background:url(../../images/search.gif) no-repeat 0 0;
+}
+.searchBar .box .text{
+	float:left;
+	position:relative;
+	top:-3px;
+	display:inline-block;
+	border-color:#ddd;
+	border-style:solid;
+	border-width:3px;
+	_border-width:2px 3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.searchBar .box .text input{
+	border:1px solid #999;
+	-moz-border-radius:1px;
+	border-radius:2px;
+	background-color: transparent;
+	width:520px;
+	height:33px;
+	line-height:33px \9;
+	padding:0 8px;
+	font-size:14px;
+	color:#999;
+}
+.searchBar.login .box .text input{
+	width:420px;
+}
+
+/* 历史查询 */
+.searchBar .box .text .select{
+	border:1px solid #999;
+	background: url(../../images/iconBtn.gif) no-repeat 115px -55px;
+	float:left;
+}
+.searchBar .box .text .select input{
+	font-size: 14px;
+	font-weight: bold;
+	color: #333;
+	border:none;
+	padding:0 10px;
+	width:120px;
+	cursor:pointer;
+}
+.searchBar .box .text .select .selectbox-wrapper{
+	top:33px;
+}
+.searchBar .box .text .t1,
+.searchBar .box .text .t2{
+	border-color:#999;
+	border-style:solid;
+	border-width:1px 1px 1px 0;
+	float:left;
+	display:block;
+}
+.searchBar .box .text .t1 input,
+.searchBar .box .text .t2 input{
+	border:none;
+	width:200px;
+}
+
+
+
+.searchBar .box .btn{
+	float:left;
+	display:inline;
+	margin-left:5px;
+}
+.searchBar .box .btn input{
+	background-color:transparent;
+	border:1px dotted #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	font-size:14px;
+	font-weight:bold;
+	color:#333;
+	text-align:center;
+	width:85px;
+	height:35px;
+	line-height:35px;
+	cursor:pointer;
+	padding-top:1px;
+}
+.searchBar .box .btn.current input{
+	background:url(../../images/iconBtn.png) no-repeat 0 -110px;
+	border:none;
+	color:#fff;
+}
+
+
+/* 数据库统计表查询 */
+.searchBar.web{
+	padding:0;
+	width:600px;
+}
+.searchBar.web .box .text{
+	position:relative;
+	z-index:2;
+	width:501px;
+}
+.searchBar.web .box .text input{
+	border:none;
+	background-color: transparent;
+	width: auto;
+	height:33px;
+	line-height:33px;
+	padding:0;
+	font-size:14px;
+	color:#999;
+}
+.searchBar.web .box .text .border{
+	border:1px solid #999;
+	-moz-border-radius:1px;
+	border-radius:2px;
+}
+.searchBar.web .box .text .selectbox{
+	background: url(../../images/iconBtn.gif) no-repeat;
+	background-position: 85px -56px;
+	padding: 0 0 0 10px !important;
+	width:90px !important;
+	border-right:1px solid #ccc !important;
+	float:left;
+	cursor:pointer;
+}
+.searchBar.web .box .text .dateTime,
+.searchBar.web .box .text .dateTime2{
+	float:left;
+}
+.searchBar.web .box .text .dateTime input,
+.searchBar.web .box .text .dateTime2 input{
+	padding:0 0 0 10px;
+	width:170px;
+	background-position:160px 10px;
+}
+.searchBar.web .box .text .toTime{
+	padding-top:10px;
+}
+.searchBar.web .box .text .selectbox-wrapper{
+	position:absolute;
+	left:0px;
+	top:33px;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	width:100px !important;
+	line-height:30px;
+	font-size:14px;
+}
+.searchBar.web .box .text .selectbox-wrapper li{
+	padding-left:10px;
+	cursor:pointer;
+}
+.searchBar.web .box .text .selectbox-wrapper .current{
+	background-color:#08c;
+	color:#fff;
+}

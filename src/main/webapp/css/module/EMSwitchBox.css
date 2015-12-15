@@ -1,0 +1,43 @@
+/* CSS Document */
+
+div.switch {
+	display:inline-block;
+	width: 220px;
+	height: 28px;
+	text-align: center;
+	background: url(../../images/switch_track.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+	position:relative;
+}
+div.switch div.thumb {
+	position: absolute;
+	display: inline-block;
+	width: 110px;
+	height: 28px;
+	background: url(../../images/switch_thumb.png);
+	background-repeat: no-repeat;
+	top:0;
+	left: 111px;
+	z-index:20;
+}
+div.switch span {
+	position: relative;
+	font-family: 'Arial', sans-serif;
+	font-weight: bold;
+	font-size: 14px;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 28px;
+	width:110px;
+	float:left;
+	display:block;
+	z-index:1;
+}
+.green {
+	color: #a2c66c;
+}
+.red {
+	color: #d87767;
+}

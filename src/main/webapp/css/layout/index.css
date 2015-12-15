@@ -1,0 +1,100 @@
+/* CSS Document */
+
+/* 主页样式 */
+#content #list{
+	margin:40px 40px 20px;
+}
+#content #list .box{
+	margin-bottom:10px;
+	padding-bottom:10px;
+	border-bottom:1px dotted #999;
+}
+#content #list .box .icon{
+	float:left;
+	width:160px;
+	display:inline;
+}
+#content #list .box .icon a{
+	display:block;
+	margin:0 auto;
+	width:104px;
+	height:104px;
+	background-image:url(../../images/iconHome.png);
+}
+#content #list .box .iconHome_0 a{
+	background-position:104px 0;
+}
+#content #list .box .iconHome_1 a{
+	background-position:104px -104px;
+}
+#content #list .box .iconHome_2 a{
+	background-position:104px -208px;
+}
+#content #list .box .iconHome_3 a{
+	background-position:104px -312px;
+}
+#content #list .box .iconHome_4 a{
+	background-position:104px -416px;
+}
+#content #list .box .iconHome_5 a{
+	background-position:104px -520px;
+}
+
+#content #list .box .iconHome_0 a:hover{
+	background-position:0 0;
+}
+#content #list .box .iconHome_1 a:hover{
+	background-position:0 -104px;
+}
+#content #list .box .iconHome_2 a:hover{
+	background-position:0 -208px;
+}
+#content #list .box .iconHome_3 a:hover{
+	background-position:0 -312px;
+}
+#content #list .box .iconHome_4 a:hover{
+	background-position:0 -416px;
+}
+#content #list .box .iconHome_5 a:hover{
+	background-position:0 -520px;
+}
+
+
+
+
+
+
+#content #list .box .con{
+	margin-left:160px;
+}
+#content #list .box .con .tit{
+	font-size:22px;
+	font-family: 'Microsoft YaHei UI','Microsoft YaHei',SimSun,'Segoe UI',Tahoma,Helvetica,Sans-Serif;
+	color:#333;
+	line-height:45px;
+	padding-top:30px;
+}
+#content #list .box .con .tit a{
+	color:#333;
+}
+#content #list .box .con .p{
+	line-height:22px;
+	color:#666;
+}
+#content #list .box .con .more{
+	float:right;
+	margin-top:15px;
+}
+#content #list .box .con .more a{
+	display:block;
+	background:url(../../images/iconMenu.png) no-repeat right -90px;
+	padding-right:20px;
+	width:40px;
+}
+
+
+
+
+
+
+

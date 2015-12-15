@@ -1,0 +1,370 @@
+/* CSS Document */
+
+/* oa */
+.main {
+	background:url(../../images/backgroundNavishadow.jpg) repeat-x;
+	margin-bottom:20px;
+}
+/* 标题 */
+.main .title {
+	border-bottom:1px solid #ccc;
+	line-height:32px;
+}
+.main .title h2 {
+	font-size:14px;
+	font-weight:bold;
+	padding-left:20px;
+}
+/* 左侧菜单 */
+.main .leftMenu {
+	float:left;
+	width:210px;
+}
+.main .leftMenu .sendMsgBtn a {
+	background-image: url(../../images/msgBtn.gif);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	width: 115px;
+	height: 29px;
+	line-height:29px;
+	text-align:center;
+	color: #fff;
+	font-weight: bold;
+	font-size: 14px;
+	display:block;
+	margin:15px auto;
+}
+.main .leftMenu .list{
+	font-size:14px;
+}
+.main .leftMenu .list li a{
+	line-height:34px;
+	padding-left:45px;
+	display:block;
+}
+.main .leftMenu .list li.current a{
+	border-left:5px solid #08c;
+	padding-left:40px;
+	font-weight:bold;
+	color:#08c;
+}
+.main .leftMenu .list li a:hover{
+	background-color:#e2e2e2;
+}
+/* 右侧主体 */
+.main .rightMain {
+	float:left;
+	width:740px;
+}
+/* 头部开始 */
+.main .rightMain .title{
+	line-height:60px;
+	height:60px;
+}
+.main .rightMain .title .seleteAll,
+.main .rightMain .title .del,
+.main .rightMain .title .refresh,
+.main .rightMain .title .send,
+.main .rightMain .title .cancel,
+.main .rightMain .title .td1,
+.main .rightMain .title .td2,
+.main .rightMain .title .td3{
+	float:left;
+	line-height:24px;
+	margin:18px 10px 0 0;
+}
+.main .rightMain .title .td1,
+.main .rightMain .title .td2,
+.main .rightMain .title .td3{
+	float:right;
+}
+.main .rightMain .title .seleteAll{}
+.main .rightMain .title .seleteAll label,
+.main .rightMain .title .del a,
+.main .rightMain .title .refresh a,
+.main .rightMain .title .send a,
+.main .rightMain .title .cancel a{
+	display:block;
+	padding:0 5px;
+	float:left;
+	color:#333;
+}
+.main .rightMain .title .del a:hover,
+.main .rightMain .title .refresh a:hover,
+.main .rightMain .title .send a:hover,
+.main .rightMain .title .cancel a:hover{
+	text-decoration: none;
+}
+.main .rightMain .title .del a,
+.main .rightMain .title .refresh a{
+	background-image: url(../../images/iconform.gif);
+	background-repeat:no-repeat;
+	padding-left:20px;
+}
+.main .rightMain .title .del a{
+	background-position:4px -476px;
+}
+.main .rightMain .title .refresh a{
+	background-position:3px -524px;
+}
+.main .rightMain .title .cancel a{
+	padding:0 10px;
+	color:#666;
+}
+.main .rightMain .title .send a{
+	background-image: url(../../images/iconform.gif);
+	background-repeat:no-repeat;
+	background-position:14px -650px;
+	background-color:#393;
+	color:#fff;
+	border:1px solid #393;
+	padding:0 15px 0 30px;
+}
+
+.main .rightMain .title .td1 i,
+.main .rightMain .title .td2 i,
+.main .rightMain .title .td3 i{
+	font-style:normal;
+	color:#f90;
+}
+/* 列表开始 */
+.main .rightMain .list{
+	background-color:#eee;
+}
+.main .rightMain .list .thead{
+	border-bottom:1px solid #ccc;
+	line-height:20px;
+	padding:8px 0;
+}
+.main .rightMain .list .thead .td1,
+.main .rightMain .list .thead .td2,
+.main .rightMain .list .thead .td3,
+.main .rightMain .list .thead .td4,
+.main .rightMain .list .thead .td5{
+	float:left;
+	display:block;
+	border-right:1px solid #ccc;
+	text-align:center;
+}
+.main .rightMain .list .thead .td1{
+	width:50px;
+}
+.main .rightMain .list .thead .td2{
+	width:300px;
+}
+.main .rightMain .list .thead .td3{
+	width:150px;
+}
+.main .rightMain .list .thead .td3.send3{
+	width:265px;
+}
+.main .rightMain .list .thead .td4{
+	width:180px;
+}
+.main .rightMain .list .thead .td4.send4{
+	width:120px;
+	border:none;
+}
+.main .rightMain .list .thead .td5{
+	width:50px;
+	border:none;
+}
+
+.main .rightMain .list .tbody{
+	border-bottom:1px dotted #ccc;
+	line-height:28px;
+}
+.main .rightMain .list .tbody .td1,
+.main .rightMain .list .tbody .td2,
+.main .rightMain .list .tbody .td3,
+.main .rightMain .list .tbody .td4,
+.main .rightMain .list .tbody .td5{
+	float:left;
+	display:block;
+}
+.main .rightMain .list .tbody .td1{
+	width:50px;
+	text-align:center;
+}
+.main .rightMain .list .tbody .td1 input{
+	margin-top:8px;
+}
+.main .rightMain .list .tbody .td2{
+	width:300px;
+	font-weight:bold;
+}
+.main .rightMain .list .tbody .td2 a{
+	color:#333;
+}
+.main .rightMain .list .tbody .td3{
+	width:150px;
+}
+.main .rightMain .list .tbody .td3.send3{
+	width:265px;
+}
+.main .rightMain .list .tbody .td3.send3 .read{
+	color:#999;
+	font-style:normal;
+}
+.main .rightMain .list .tbody .td3.send3 .unread{
+	color:#08c;
+	font-style:normal;
+}
+.main .rightMain .list .tbody .td4{
+	width:180px;
+	text-align:center;
+	color:#999;
+}
+.main .rightMain .list .tbody .td4.send4{
+	width:120px;
+}
+.main .rightMain .list .tbody .td5{
+	width:50px;
+	text-align:center;
+}
+.main .rightMain .list .tbody .td5.read{
+	color:#999;
+}
+.main .rightMain .list .tbody .td5.unread{
+	color:#08c;
+}
+
+.main .rightMain .sendTitle{
+}
+.main .rightMain .sendTitle dl{
+	line-height:36px;
+}
+.main .rightMain .sendTitle dt{
+	width:50px;
+	float:left;
+	text-align:right;
+}
+.main .rightMain .sendTitle dd{
+	margin-left:60px;
+}
+.main .rightMain .sendTitle dd .text{
+	display:block;
+	float:left;
+	margin-top:3px;
+}
+.main .rightMain .sendTitle dd .text input{
+	height:26px;
+	width:660px;
+	line-height:26px\9;
+	padding:0 6px;
+}
+/* 联系人列表 */
+.main .rightMain .sendTitle dd .contact{
+	position:absolute;
+	right:6px;
+	top:32px;
+	width:660px;
+	padding:0 6px;
+	line-height:22px;
+}
+.main .rightMain .sendTitle dd .contact .arrow{
+	height: 10px;
+	width: 25px;
+	overflow: hidden;
+	position: absolute;
+	top: -10px;
+	left:22px;
+}
+
+.main .rightMain .sendTitle dd .contact .arrow .arrline,
+.main .rightMain .sendTitle dd .contact .arrow span{
+	display: block;
+	font-family: "SimSun";
+	font-size: 21px;
+	height: 10px;
+	overflow: hidden;
+	color: #ccc;
+	font-style: normal;
+	font-weight: normal;
+}
+.main .rightMain .sendTitle dd .contact .arrow span{
+	margin: -9px 0 0 0px;
+	color: #fff;
+}
+
+.main .rightMain .sendTitle dd .contact label{
+	padding:4px 6px;
+}
+.main .rightMain .sendTitle dd .contact label.current{
+	background-color:#08c;
+	color:#fff;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.main .rightMain .sendTitle dd .contact label.current i{
+	color:#fff !important;
+}
+.main .rightMain .sendTitle dd .contact .tit{
+	border-bottom:1px solid #ccc;
+	line-height:28px;
+}
+.main .rightMain .sendTitle dd .contact .tit h3{
+	font-weight:bold;
+}
+.main .rightMain .sendTitle dd .contact .tit .close{
+	float:right;
+}
+.main .rightMain .sendTitle dd .contact .group{
+	padding:8px 0;
+}
+.main .rightMain .sendTitle dd .contact .group .open,
+.main .rightMain .sendTitle dd .contact .group .close{
+	display:block;
+	width:20px;
+	height:20px;
+	margin:4px 5px 0 0;
+	float:right;
+	background-image: url(../../images/iconBtn.gif);
+	background-position: 3px -578px;
+	background-repeat: no-repeat;
+}
+.main .rightMain .sendTitle dd .contact .group .close{
+	background-position: 3px -610px;
+}
+.main .rightMain .sendTitle dd .contact .group h2{
+	border-bottom:1px dotted #ccc;
+	line-height:28px;
+	font-weight:bold;
+}
+.main .rightMain .sendTitle dd .contact .group .department{
+	line-height:28px;
+}
+.main .rightMain .sendTitle dd .contact .group .department.BGcolor{
+	background-color:#e2e2e2;
+}
+.main .rightMain .sendTitle dd .contact .group .department h3{
+	font-weight:bold;
+	float:left;
+	width:100px;
+	padding-left:20px;
+}
+.main .rightMain .sendTitle dd .contact .group .departmentLi{
+	margin-left:120px;
+	color:#666;
+}
+.main .rightMain .sendTitle dd .contact .group .departmentLi li{
+	float:left;
+	padding:0 4px;
+}
+.main .rightMain .sendTitle dd .contact .group .departmentLi li.online i{
+	color:#393;
+	font-style:normal;
+}
+
+
+
+
+
+
+
+
+
+
+
+

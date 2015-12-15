@@ -1,0 +1,56 @@
+/* CSS Document */
+
+/* 网络综合资源库导航 */
+#naviLogin{
+	background:url(../../images/naviLogin.png) no-repeat 0 0;
+	height:132px;
+}
+#naviLogin .box{
+	width:896px;
+	margin:0 auto;
+	padding-top:16px;
+}
+#naviLogin .box li{
+	width:112px;
+	float:left;
+}
+#naviLogin .box li a{
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+	_position:relative;
+	display:block;
+	width:112px;
+	height:25px;
+	padding-top:75px;
+	margin:0 auto;
+	background:url(../../images/naviLogin.png) no-repeat;
+}
+#naviLogin .box li a:hover{
+	text-decoration:none;
+}
+
+#naviLogin .box li .virtualIdentity{
+	background-position:-21px -280px;
+}
+#naviLogin .box li .case{
+	background-position:-135px -280px;
+}
+
+#naviLogin .box li .diary{
+	background-position:-817px -280px;
+}
+
+#naviLogin .box li.cur .virtualIdentity,
+#naviLogin .box li .virtualIdentity:hover{
+	background-position:-21px -148px;
+}
+#naviLogin .box li.cur .case,
+#naviLogin .box li .case:hover{
+	background-position:-135px -148px;
+}
+
+#naviLogin .box li.cur .diary,
+#naviLogin .box li .diary:hover{
+	background-position:-817px -148px;
+}

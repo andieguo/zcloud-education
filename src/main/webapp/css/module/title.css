@@ -1,0 +1,89 @@
+/* CSS Document */
+
+/* 页面头部样式 */
+#content #title,
+#caseCreate #title{
+	font-size:14px;
+	color:#333;
+	border-bottom:1px solid #ccc;
+	height:32px;
+	line-height:32px;
+	padding:0 10px 0 20px;
+}
+#content #title h1,
+#caseCreate #title h1{
+	float:left;
+	font-weight:bold;
+}
+#content #title .menu,
+#caseCreate #title .menu{
+	float:right;
+	font-size:12px;
+	font-weight:normal;
+	margin-right:10px;
+	width:320px;
+	display:inline;
+}
+#content #title .menu li{
+	float:right;
+	margin:0 5px;
+}
+#content #title .menu li a{
+	display:block;
+}
+#content #title .menu li .iconTool,
+#content #title .menu li .iconAbout,
+#content #title .menu li .iconSet,
+#content #title .menu li .statistics,
+#content #title .menu li .systemUpdata,
+#content #title .menu li .systemStatus,
+#content #title .menu li .iconAlert{
+	background-image:url(../../images/iconMenu.png);
+	background-repeat:no-repeat;
+	padding:0 0 0 20px;
+	width:24px;
+	height:32px;
+}
+#content #title .menu li .iconTool{
+	background-position:0 8px;
+}
+#content #title .menu li .iconAbout{
+	background-position:0 -21px;
+}
+#content #title .menu li .iconSet{
+	background-position:0 -51px;
+}
+#content #title .menu li .statistics{
+	background-position:0 -203px;
+}
+#content #title .menu li .systemUpdata{
+	background-position:0 -232px;
+}
+#content #title .menu li .systemStatus{
+	background-position:0 -260px;
+}
+#content #title .menu li .iconAlert{
+	background-position:0 -323px;
+}
+#content #title .menu li .return,
+#content #title .menu li .turnoff,
+#content #title .menu li .del{
+	background-image:url(../../images/iconform.gif);
+	background-repeat:no-repeat;
+	padding:0 0 0 20px;
+	width:48px;
+	height:32px;
+}
+#content #title .menu li .return{
+	background-position:3px -521px;
+}
+#content #title .menu li .turnoff{
+	background-position:3px -565px;
+}
+#content #title .menu li .del{
+	background-position:4px -606px;
+}
+
+
+
+

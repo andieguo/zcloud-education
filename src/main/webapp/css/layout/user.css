@@ -1,0 +1,338 @@
+/* CSS Document */
+
+/* 用户管理 */
+/* 用户头部菜单 */
+#submenuUser{
+	border-bottom:1px solid #ccc;
+	line-height:32px;
+}
+#submenuUser #box1{
+	float:left;
+	padding:0 5px 0 70px;
+	border-right:1px solid #ccc;
+}
+#submenuUser #box1 span{
+	float:left;
+}
+#submenuUser #box1 ul{
+	float:left;
+}
+#submenuUser #box1 ul li{
+	float:left;
+	margin:6px 6px 0;
+}
+#submenuUser #box1 ul li a{
+	display:block;
+	padding:4px 6px;
+	line-height:12px;
+}
+#submenuUser #box1 ul li.current a,
+#submenuUser #box1 ul li a:hover{
+	background-color:#08c;
+	color:#fff;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	text-decoration:none;
+}
+
+#submenuUser #box2,
+#submenuUser #box3{
+	padding:0 10px;
+	float:left;
+	border-right:1px solid #ccc;
+}
+#submenuUser #box2 span,
+#submenuUser #box3 span{
+	float:left
+}
+#submenuUser #box2 .select,
+#submenuUser #box3 .select{
+	float:left;
+	position:relative;
+	margin-top:3px;
+	line-height:25px;
+}
+#submenuUser #box2 .selected.current,
+#submenuUser #box3 .selected.current{
+	background-color:#fff;
+	border-color:#ccc;
+	border-style:solid;
+	border-width:1px 1px 0px 1px;
+	-moz-border-radius:3px 3px 0 0;
+	border-radius:3px 3px 0 0;
+	position:relative;
+	margin:-1px -1px 0;
+}
+#submenuUser #box2 .select .selected a,
+#submenuUser #box3 .select .selected a{
+	background: url(../../images/iconBtn.gif) no-repeat;
+	background-position: 56px -59px;
+	padding:0 15px 0 5px;
+	display:block;
+	text-decoration:none;
+}
+#submenuUser #box3 .select .selected a{
+	background-position: 32px -59px;
+}
+#submenuUser #box2 .select ul,
+#submenuUser #box3 .select ul{
+	background-color:#fff;
+	border-color:#ccc;
+	border-style:solid;
+	border-width:0 1px 1px 1px;
+	-moz-border-radius:0px 0px 3px 3px;
+	border-radius:0px 0px 3px 3px;
+	position:absolute;
+	right:-1px;
+	top:25px;
+}
+#submenuUser #box2 .select ul li,
+#submenuUser #box3 .select ul li{
+	padding:1px;
+}
+#submenuUser #box2 .select ul li a,
+#submenuUser #box3 .select ul li a{
+	padding:0 0 0 6px;
+	width:60px;
+	color:#666;
+	display:block;
+	line-height:25px;
+}
+#submenuUser #box3 .select ul li a{
+	width:36px;
+}
+#submenuUser #box2 .select ul li a:hover,
+#submenuUser #box3 .select ul li a:hover{
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+#submenuUser #box2 .sequence,
+#submenuUser #box2 .up{
+	padding: 2px 5px 2px 15px;
+	background:url(../../images/iconMenu.png) no-repeat;
+	background-position:0 -116px;
+	cursor:pointer;
+	font-weight: normal;
+	line-height:normal;
+}
+#submenuUser #box2 .cur{
+	border:1px dotted #ccc !important;
+}
+#submenuUser #box2 .up{
+	background-position:0 -146px;
+}
+
+#submenuUser #box4{
+	float:right;
+	margin-right:80px;
+}
+#submenuUser #box5{
+	float:right;
+	margin-right:15px;
+}
+#submenuUser #box5 a{
+	background-image: url(../../images/iconMenu.png);
+	background-repeat: no-repeat;
+	padding: 0 0 0 20px;
+	background-position: 0 -21px;
+	display: block;
+	width: 50px;
+}
+
+
+/* 列表开始 */
+#list{
+}
+#list .box{
+	border-bottom:1px dotted #ccc;
+	line-height:32px;
+}
+
+#list .box .thead{
+}
+#list .box .thead .td1,
+#list .box .thead .td2,
+#list .box .thead .td3,
+#list .box .thead .td4,
+#list .box .thead .td5{
+	border-right:1px solid #ccc;
+	float:left;
+	font-weight:bold;
+	text-align:center;
+}
+#list .box .thead .td1{
+	width: 300px;
+	padding-left: 40px;
+}
+#list .box .thead .td1 h2{
+	font-size:14px;
+	float:left;
+	padding:0 8px;
+	font-weight:bold;
+}
+#list .box .thead .td1 span{
+	float:left;
+}
+#list .box .thead .td2,
+#list .box .thead .td3{
+	width:180px;
+}
+#list .box .thead .td4{
+	width:160px;
+}
+#list .box .thead .td5{
+	width:80px;
+	border:none;
+}
+
+#list .box .normal .li1{
+	float:left;
+	width:300px;
+	padding-left:40px;
+	border-right:1px solid #ccc;
+}
+#list .box .normal .li1 h2{
+	font-size:14px;
+	float:left;
+	padding:0 8px;
+}
+#list .box .normal .li1 span{
+	color:#999;
+	float:left;
+}
+#list .box .normal .li1 span b{
+	font-weight:normal;
+	padding:0 5px;
+	color:#333;
+}
+#list .box .normal .li2{
+	float:left;
+}
+#list .box .normal .li2 dl{
+	float:left;
+	width:180px;
+	border-right:1px solid #ccc;
+}
+#list .box .normal .li2 dt{
+	float:left;
+	width:40px;
+	text-align:right;
+	color:#999;
+}
+#list .box .normal .li2 dd{
+	margin-left:45px;
+}
+#list .box .normal .li2 dd span{
+	color:#333;
+	padding:0 6px;
+}
+/* 详情 */
+#list .box .detail .li1,
+#list .box .detail .li2 dl{
+	border:none;
+}
+#list .box .detail .li2,
+#list .box .detail .li3{
+	clear:both;
+}
+#list .box .detail .li3 dl{
+}
+#list .box .detail .li2 dt,
+#list .box .detail .li3 dt{
+	float:left;
+	width:80px;
+	text-align:right;
+	color:#999;
+}
+#list .box .detail .li2 dd,
+#list .box .detail .li3 dd{
+	margin-left:85px;
+	color:#ccc;
+}
+#list .box .detail .li2 dd span,
+#list .box .detail .li3 dd span{
+	color:#333;
+	padding:0 6px;
+}
+
+
+#list .box .normal .li5{
+	float:left;
+	width:160px;
+	border-right:1px solid #ccc;
+	color:#999;
+	text-align:center;
+}
+#list .box .normal .li5.open{
+	color:#093;
+}
+#list .box .detail .li5{
+	float:right;
+	width:80px;
+	color:#999;
+	margin-right:60px;
+	border:none
+}
+#list .box .detail .li5 b{
+	font-weight:normal;
+	padding:0 10px;
+	color:#333;
+}
+#list .box .normal .more{
+	float:right;
+	margin-top:3px;
+	line-height:25px;
+	margin-right:20px;
+	position:relative;
+}
+#list .box .normal .more .selected.current{
+	background-color: #fff;
+	border-color: #CCC;
+	display:block;
+	border-style: solid;
+	border-width: 1px 1px 0px 1px;
+	-moz-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+	position: relative;
+	z-index:1;
+}
+#list .box .normal .more .selected a{
+	background: url(../../images/iconBtn.gif) no-repeat;
+	background-position: 32px -60px;
+	padding: 0 15px 0 5px;
+	display: block;
+	text-decoration: none;
+}
+#list .box .normal .more ul{
+	background-color: white;
+	border-color: #CCC;
+	border-style: solid;
+	border-width: 1px;
+	-moz-border-radius: 3px 0px 3px 3px;
+	border-radius: 3px 0px 3px 3px;
+	position: absolute;
+	right: 0px;
+	top: 25px;
+}
+#list .box .normal .more ul li{
+	padding:1px;
+}
+#list .box .normal .more ul li a{
+	padding: 0 0 0 6px;
+	width: 60px;
+	color: #666;
+	display: block;
+	line-height: 25px;
+}
+#list .box .normal .more ul li a:hover{
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+
+#listFooter{
+	padding:10px 5px;
+}
+
+

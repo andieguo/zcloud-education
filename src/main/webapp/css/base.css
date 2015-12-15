@@ -1,0 +1,149 @@
+/* CSS Document */
+
+/* 公用样式 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, pre, code, form, fieldset, legend, input, button, textarea, blockquote {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font: 12px/1.125 Arial, Helvetica, sans-serif;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#444;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+fieldset, img {
+	border: 0 none;
+}
+a {
+	color: #08c;
+	text-decoration: none;
+	cursor:pointer;
+}
+a:hover {
+	color: #08c;
+	text-decoration: underline;
+}
+.pointer {
+	cursor:pointer;
+}
+.default {
+	cursor:default !important;
+}
+em {
+	font-style: normal;
+	font-weight: normal;
+}
+del, ins {
+	text-decoration: none;
+}
+ul,ol {
+	list-style: none outside none;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+sup {
+	vertical-align: baseline;
+}
+sub {
+	vertical-align: baseline;
+}
+input, button, textarea, select, optgroup, option {
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+}
+textarea {
+	resize: none;
+}
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+	outline: 0 none;
+}
+label{
+	cursor:pointer;
+}
+.input {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.input input {
+	background-color:transparent;
+	border:none;
+}
+.checkbox {
+	vertical-align: -2px;
+	*vertical-align: 1px;
+	_vertical-align: 3px;
+	margin:0 3px 0 0;
+	height:13px;
+	width:13px;
+	cursor:pointer;
+}
+.none {
+	display:none;
+}
+.noneBorder{
+	border:none !important;
+}
+.noneBorderB{
+	border-bottom:none !important;
+}
+.noneBackground{
+	background-image:none !important;
+}
+/******clear float*******/
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	line-height:0;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix {
+	zoom:1;
+}
+.clear {
+	clear:both;
+}
+
+.relative{
+	position:relative;
+}
+.right{
+	float:right;
+}
+/* 溢出省略号 */
+.text_overflow{
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	overflow:hidden;
+}
+/* 强制换行 */
+.wordBreak{
+	word-break:break-all;
+	word-wrep:break-word;
+}
+/* 返回顶部 */
+.goto_top a{
+	background: url(../images/to_top.gif) no-repeat;
+	background-position:0 0;
+	display:block;
+	width:21px;
+	height:52px;
+	filter: Alpha(Opacity=70);
+	opacity:0.7;
+}
+.goto_top a:hover{
+	background-position:-21px 0;
+	filter: Alpha(Opacity=90);
+	opacity:0.9;
+}

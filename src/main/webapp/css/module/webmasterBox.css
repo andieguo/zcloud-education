@@ -1,0 +1,331 @@
+/* CSS Document */
+
+.webmasterBox {
+	font-size:14px;
+	line-height:26px;
+	margin-bottom:10px;
+}
+.boxBackground {
+	border:1px solid #ccc;
+	background-color:#e2e2e2;
+	margin:8px;
+	width:934px;
+}
+.scroll{
+	max-height:500px;
+	_height:500px;
+	overflow-y:auto;
+}
+.webmasterBox .title {
+	font-weight:bold;
+	border-bottom:1px solid #ccc;
+	padding-left:10px;
+	line-height:30px;
+	cursor:default;
+}
+.webmasterBox dl {
+	float:left;
+}
+.webmasterBox dt {
+	float:left;
+	width:120px;
+	text-align:right;
+	color:#999;
+}
+.webmasterBox dd {
+	float:left;
+	width:820px;
+}
+.webmasterBox .ddl {
+	float:left;
+	width:350px;
+}
+.webmasterBox .dd {
+	float:left;
+	width:200px;
+}
+.webmasterBox ul {
+	border-bottom:1px dotted #ccc;
+	padding-left:10px;
+}
+.webmasterBox ul li {
+	float:left;
+	width:90px;
+}
+.webmasterBox ul li.li2 {
+	width:490px;
+}
+.webmasterBox ul .systemState1 {
+	width:700px;
+}
+.webmasterBox ul .systemState2 {
+}
+.webmasterBox ul .systemState3 {
+	width:140px;
+}
+.webmasterBox ul .systemResult1 {
+	width:500px;
+}
+.webmasterBox ul .systemResult2 {
+	width:100px;
+}
+.webmasterBox ul .systemResult3 {
+	width:330px;
+}
+.webmasterBox .p {
+	padding:0 8px;
+}
+.webmasterBox ul .systemDaily1 {
+	width:500px;
+}
+.webmasterBox ul .systemDaily2 {
+	width:150px;
+}
+.webmasterBox ul .systemDaily3 {
+}
+.webmasterBox ul .systemDaily4 {
+	width:197px;
+}
+.webmasterBox ul .ctrl0 {
+	width:80px;
+	text-align:center;
+}
+.webmasterBox ul .ctrl1 {
+	width:150px;
+}
+.webmasterBox ul .ctrl2 {
+	width:707px;
+}
+.webmasterBox ul .ctrl2 span {
+	padding-right:10px;
+}
+.webmasterBox ul .ctrl2 span i {
+	font-style:normal;
+	color:#666;
+}
+.webmasterBox .submit {
+	padding:8px 0 0 0;
+}
+.webmasterBox .submit a {
+	display:block;
+	background: url(../../images/iconBtn.png) no-repeat 0 -110px;
+	width: 85px;
+	text-align:center;
+	height: 35px;
+	line-height:35px;
+	color:#fff;
+	font-weight:bold;
+	margin:0 auto;
+}
+.webmasterBox.sle {
+	line-height:28px;
+	margin-top:20px;
+	border-bottom:1px solid #ccc;
+	padding-bottom:10px;
+}
+.webmasterBox dd .select {
+	position:relative;
+	float:left;
+}
+.webmasterBox dd .select .selectbox {
+	width:150px;
+	height:26px;
+	line-height:26px;
+	padding:0 8px;
+	background: url(../../images/iconBtn.gif) no-repeat 150px -60px;
+	cursor:pointer;
+}
+.webmasterBox dd .select .selectbox-wrapper {
+	position:absolute;
+	top:26px;
+	left:-1px;
+	width:166px !important;
+	border:1px solid #ccc;
+	background-color:#fff;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.webmasterBox dd .select .selectbox-wrapper ul {
+	padding:0;
+	border:none;
+}
+.webmasterBox dd .select .selectbox-wrapper li {
+	float:none;
+	width:auto;
+	line-height:28px;
+	padding-left:10px;
+	cursor:pointer;
+}
+.webmasterBox dd .select .selectbox-wrapper li.current {
+	background-color:#08c;
+	color:#fff;
+}
+.webmasterBox ul .systemDownload1 {
+	width:400px;
+}
+.webmasterBox ul .systemDownload2 {
+	width:180px;
+}
+.webmasterBox ul .systemDownload3 {
+	width:160px;
+}
+.webmasterBox ul .systemDownload4 {
+	width:120px;
+}
+.webmasterBox ul .systemDownload5 {
+	width:80px;
+}
+.webmasterBox ul .systemDownload5 .download {
+	background: url(../../images/iconBtn.gif) no-repeat 26px -233px;
+	padding-right: 15px;
+	font-size: 12px;
+}
+.webmasterBox.sle dd span {
+	margin-right:10px;
+}
+.webmasterBox.sle dd span i {
+	font-style:normal;
+	color:#666;
+}
+.webmasterBox .loading, .webmasterBox .downloadP {
+	width:240px;
+	margin:0 auto;
+	border:1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	text-align:center;
+}
+.webmasterBox .loading {
+	background: url(../../images/soloading.gif) no-repeat 40px 0px;
+	padding-top:20px;
+	color:#393;
+}
+.webmasterBox .downloadP .download {
+	background: url(../../images/iconBtn.gif) no-repeat 58px -233px;
+	padding-right: 15px;
+}
+.webmasterBox .checkbox {
+	_margin-top:6px;
+}
+.filter {
+	padding:8px 0 10px 8px;
+}
+.filter .selectList {
+	float:left;
+	width:415px;
+	display:inline;
+}
+.filter .selectList h2 {
+	font-size:14px;
+	color:#333;
+	padding:8px 0;
+}
+.filter .selectList select {
+	width:415px;
+}
+.filter .btn {
+	float:left;
+	width:104px;
+	padding-top:90px;
+}
+.filter .btn .add,
+.filter .btn .del{
+	margin: 8px auto;
+	width: 85px;
+	height: 35px;
+	display: block;
+}
+.filter .btn .add input,
+.filter .btn .del input{
+	display: block;
+	background: url(../../images/iconBtn.png) no-repeat 0 -110px;
+	border:none;
+	width: 85px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	font-size:14px;
+	cursor:pointer;
+}
+
+.selectServe{
+	background: url(../../images/backgroundNavishadow.jpg) repeat-x top;
+	padding:50px 0px;
+}
+.selectServe .li{
+	float:left;
+	width:280px;
+	min-height:120px;
+	_height:120px;
+	padding-left:120px;
+	margin-left:50px;
+	display:inline;
+}
+.selectServe .li.centre{
+	background:url(../../images/serve1.gif) no-repeat 0 0;
+}
+.selectServe .li.other{
+	background:url(../../images/serve2.gif) no-repeat 0 0;
+}
+.selectServe .li a{
+	font-size:28px;
+	line-height:48px;
+	display:block;
+	font-family:"黑体","微软雅黑", Arial, Helvetica, sans-serif;
+}
+
+.selectServe .li p{
+	line-height:22px;
+}
+.pointList{
+	margin-bottom:20px;
+}
+.pointList .box{
+	border-bottom:1px dotted #ccc;
+	line-height:28px;
+}
+.pointList .box .dt{
+	float:left;
+	width:100px;
+	font-weight:bold;
+	text-align:right;
+}
+.pointList .box .dd{
+	margin-left:110px;
+}
+.pointList .footP{
+	padding-left:110px;
+	color:#999;
+	line-height:28px;
+}
+.pointList .footP .li{
+	display:inline;
+	padding:0 8px;
+}
+.pointList .box .dd span{
+	padding:2px 4px;
+	cursor:pointer;
+	margin:0 8px 0 0;
+	color:#08c;
+}
+.pointList .box .dd span.current{
+	background-color:#393;
+	color:#fff;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.pointList .box .dd span.turnoff.current{
+	background-color:#999;
+}
+.pointList .box .dd span.turnoff{
+	color:#ccc;
+	cursor:default;
+}
+
+
+
+
+
+

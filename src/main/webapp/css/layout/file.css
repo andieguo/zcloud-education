@@ -1,0 +1,46 @@
+/* CSS Document */
+
+/* 存档管理 */
+
+#listSearch {
+}
+#listSearch .fileNavi {
+	border-bottom:1px solid #ccc;
+	height:36px;
+	line-height:36px;
+}
+#listSearch .fileNavi .fileType,
+#listSearch .fileNavi .fileName{
+	float:left;
+}
+#listSearch .fileNavi .fileType a,
+#listSearch .fileNavi .fileName a {
+	background-image:url(../../images/boxNavi.gif);
+	background-repeat:no-repeat;
+	display:block;
+	width:200px;
+	text-align:center;
+	font-weight:bold;
+}
+#listSearch .fileNavi .fileType a{
+	background-position:right -162px;
+}
+#listSearch .fileNavi .fileType.current a {
+	background-position:right -42px !important;
+	color:#fff;
+}
+#listSearch .fileNavi .fileName a {
+}
+#listSearch .fileNavi .fileName.current a {
+	background-position:right -122px;
+	color:#fff;
+}
+#listSearch .fileNavi .new {
+	float:right;
+	margin-right:10px;
+	background-image: url(../../images/iconMenu.png);
+	background-repeat: no-repeat;
+	padding: 0 0 0 20px;
+	background-position: 0 -19px;
+	display: block;
+}

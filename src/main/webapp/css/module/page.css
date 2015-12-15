@@ -1,0 +1,77 @@
+/* CSS Document */
+
+/* 翻页样式 */
+.page {
+	text-align:right;
+	_height:1%;
+	float:right;
+}
+.page .btn_a,
+.page .btn_a span,
+.page .btn_submit,
+.page .btn_submit input {
+	background: url("../../images/btn.gif") no-repeat scroll transparent;
+	display: inline-block;
+	height: 24px;
+}
+.page .none {
+	display:none;
+}
+.page .btn_a,
+.page .btn_submit {
+	background-position: 0 -144px;
+	line-height: 24px;
+	margin: 0 8px;
+	padding: 0 0 0 2px;
+	width:auto !important;
+}
+.page .btn_a:hover {
+	text-decoration: none;
+}
+.page .btn_a span,
+.page .btn_submit input {
+	background-position: right -168px;
+	color: #73797C;
+	cursor: pointer;
+	text-align: center;
+	font-size:12px;
+	font-weight:normal;
+	min-width: 35px;
+	line-height: 23px;
+	padding: 0 10px 0 8px;
+ *line-height:20px;
+ *height:20px;
+ *padding: 4px 10px 0 8px;
+}
+
+.page a.p, .page a.current {
+	display: inline-block;
+	height: 21px;
+	line-height: 21px;
+	margin: 0 3px;
+	padding: 0 8px;
+	text-align: center;
+	vertical-align: middle;
+}
+.page a.p {
+	background-color:#ddd;
+}
+.page a.current {
+	background-color:#fff;
+}
+
+.page .toPage{
+	display:inline-block;
+}
+.page .toPage input{
+	height:22px;
+	line-height:22px;
+	width:35px;
+	padding:0 8px;
+}
+.page .btn_submit input{
+	background-color:transparent;
+	border:none;
+}
+
+

@@ -1,0 +1,176 @@
+/* CSS Document */
+
+/* 筛选条 */
+#sift{
+}
+* html .roll {
+	position:absolute;
+	left:expression(eval(document.documentElement.scrollLeft));
+	top:expression(eval(document.documentElement.scrollTop));
+}
+.roll {
+	right:auto !important;
+	top: 200px;
+	position: fixed !important;
+	_position:absolute !important;
+	z-index: 9998;
+}
+#sift .btnSift{
+	position:absolute;
+	right:0;
+	margin-left:915px;
+	z-index:100;
+}
+#sift .btnSift a{
+	background:url(../../images/iconBtn.png) 10px -264px no-repeat #08c;
+	color:#fff;
+	font-size:14px;
+	font-weight:bold;
+	display:block;
+	height:35px;
+	line-height:35px;
+	padding-left:35px;
+	width:0px;
+	-moz-border-radius:5px 0 0 5px;
+	border-radius:5px 0 0 5px;
+	Opacity:0.5;
+	filter: Alpha(Opacity=50);
+	overflow:hidden;
+}
+#sift .btnSift.current{
+	margin-left:870px;
+}
+#sift .btnSift.current a{
+	Opacity:1;
+	filter: Alpha(Opacity=100);
+	width:45px;
+	text-decoration: none;
+}
+
+/* 展开 */
+#sift .barSearch{
+	position:absolute;
+	right:0;
+	margin-left:375px;
+	z-index:100;
+	background:url(../../images/backgroundLayer.png);
+	padding:10px;
+	-moz-border-radius:5px 0 0 5px;
+	border-radius:5px 0 0 5px;
+	width:555px;
+}
+
+/* 关键字 */
+#sift .barSearch .keywords{
+	font-size:14px;
+	padding:20px 100px 10px;
+	line-height:22px;
+}
+
+/*  搜索条 */
+#sift .barSearch .box{
+	width:460px;
+	height:33px;
+	line-height:33px;
+	float:left;
+}
+
+
+#sift .barSearch .text{
+	float:left;
+	width:286px;
+}
+#sift .barSearch .text input{
+	height:33px;
+	_height:22px;
+	color:#999;
+	padding:0 0 0 10px;
+	_padding:9px 0 0 10px;
+	width:276px;
+	font-size:14px;
+}
+#sift .barSearch .btnArithmetic{
+	float:right;
+	width:102px;
+}
+#sift .barSearch .btnArithmetic a{
+	background:url(../../images/backgroundArithmetic.jpg) no-repeat 0 -33px;
+	display:block;
+	float: right;
+	width:33px;
+	height:33px;
+	border-left:1px solid #ccc;
+	text-align:center;
+	color:#999;
+}
+#sift .barSearch .btnArithmetic a.cur,
+#sift .barSearch .btnArithmetic a:hover{
+	background-position:0 0;
+	color:#666;
+	text-decoration:none;
+}
+#sift .barSearch .logic{
+	float:right;
+	border-left:1px solid #ccc;
+}
+
+#sift .barSearch .logic .selectbox{
+	background-image:url(../../images/iconBtn.gif);
+	background-repeat:no-repeat;
+	background-position:52px -56px;
+	padding:0px 10px 0 0;
+	height:33px;
+	_padding:10px 10px 0 0;
+	_height:22px;
+	width:60px;
+	text-align:center;
+	display:block;
+	color:#666;
+	cursor:pointer;
+}
+#sift .barSearch .logic .selectbox-wrapper{
+	border:1px solid #ccc;
+	background-color:#fff;
+	width:70px !important;
+	position:absolute;
+	display:block;
+}
+#sift .barSearch .logic .selectbox-wrapper li{
+	padding-left:10px;
+	cursor:pointer;
+}
+#sift .barSearch .logic .selectbox-wrapper li.current,
+#sift .barSearch .logic .selectbox-wrapper li.selected{
+	background-color:#08c;
+	color:#fff;
+}
+#sift .barSearch .logic .selectbox-wrapper li.current{
+	margin:0;
+}
+
+
+#sift .barSearch .btn{
+	background:url(../../images/iconBtn.png) no-repeat 0 -110px;
+	float:right;
+	width:85px;
+	height:35px;
+}
+#sift .barSearch .btn input{
+	background-color:transparent;
+	border:none;
+	width:85px;
+	height:35px;
+	padding-top:1px;
+	_padding-top:4px;
+	color:#fff;
+	font-weight:bold;
+	font-size:14px;
+	cursor:pointer;
+}
+
+
+
+
+
+
+

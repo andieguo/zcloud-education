@@ -1,0 +1,211 @@
+/* CSS Document */
+
+/* 002导航 */
+#navi002 {
+	background:url(../../images/navi002.png) no-repeat 0 0;
+	height:132px;
+	position:relative;
+}
+#navi002 #up, #navi002 #down {
+	background:url(../../images/upDownBtn.png);
+	width:16px;
+	height:100px;
+	position:absolute;
+	top:10px;
+	cursor:pointer;
+}
+#navi002 #up {
+	left:5px;
+	background-position:0 0;
+}
+#navi002 #down {
+	right:5px;
+	background-position:-84px 0;
+}
+#navi002 .box {
+	width:896px;
+	margin:0 auto;
+	padding-top:16px;
+}
+#navi002 .box li {
+	width:112px;
+	float:left;
+}
+#navi002 .box li a {
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+	display:block;
+	width:112px;
+	height:25px;
+	padding-top:75px;
+	margin:0 auto;
+	background:url(../../images/navi002.png) no-repeat;
+}
+#navi002 .box li a:hover {
+	text-decoration:none;
+}
+#navi002 .box li .recall {
+	background-position:-21px -280px;
+}
+#navi002 .box li .case {
+	background-position:-135px -280px;
+}
+#navi002 .box li .statistics {
+	background-position:-249px -280px;
+}
+#navi002 .box li .approve {
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+	display:block;
+	width:112px;
+	height:25px;
+	padding-top:75px;
+	margin:0 auto;
+	background:url(../../images/naviWebBank.png) no-repeat;
+	background-position:-362px -280px;
+}
+#navi002 .box li .https {
+	background-position:-362px -280px;
+}
+#navi002 .box li .file {
+	background-position:-476px -280px;
+}
+#navi002 .box li .compareForm {
+	background-position:-590px -280px;
+}
+#navi002 .box li .webmaster {
+	background-position:-703px -280px;
+}
+#navi002 .box li .diary {
+	background-position:-817px -280px;
+}
+#navi002 .box li.cur .recall, #navi002 .box li .recall:hover {
+	background-position:-21px -148px;
+}
+#navi002 .box li.cur .case, #navi002 .box li .case:hover {
+	background-position:-135px -148px;
+}
+#navi002 .box li.cur .statistics, #navi002 .box li .statistics:hover {
+	background-position:-249px -148px;
+}
+#navi002 .box li.cur .https, #navi002 .box li .https:hover {
+	background-position:-362px -148px;
+}
+#navi002 .box li.cur .approve, #navi002 .box li .approve:hover {
+	background-position:-362px -148px;
+}
+#navi002 .box li.cur .file, #navi002 .box li .file:hover {
+	background-position:-476px -148px;
+}
+#navi002 .box li.cur .compareForm, #navi002 .box li .compareForm:hover {
+	background-position:-590px -148px;
+}
+#navi002 .box li.cur .webmaster, #navi002 .box li .webmaster:hover {
+	background-position:-703px -148px;
+}
+#navi002 .box li.cur .diary, #navi002 .box li .diary:hover {
+	background-position:-817px -148px;
+}
+/* 子导航条 */
+
+.subNavi {
+	border-bottom:1px solid #ccc;
+	height:36px;
+	position:relative;
+}
+.subNavi li {
+	float:left;
+	font-size:14px;
+	margin-left:10px;
+	position:relative;
+	top:9px;
+	z-index:150;
+}
+.subNavi li .link a {
+	background: url(../../images/iconBtn.gif) no-repeat #e4f1f7;
+	background-position: 80px -58px;
+	padding:7px 25px 0 15px;
+}
+.subNavi li.ip .link a {
+	background-position: 105px -58px;
+}
+.subNavi li .box {
+	position:absolute;
+	top:27px;
+	left:0px;
+	width:96px;
+	border-color:#ccc;
+	border-style:solid;
+	border-width:0 1px 1px 1px;
+	background-color:#fff;
+}
+.subNavi li.ip .box {
+	width:122px;
+}
+.subNavi li .box li {
+	margin-left:0;
+	top:0;
+	float:none;
+}
+.subNavi li .box li a {
+	background:none;
+	border:none;
+	padding: inherit;
+	text-align:left;
+	height:28px;
+	line-height:28px;
+	-moz-border-radius:0;
+	border-radius:0;
+	padding-left:15px;
+	position:relative;
+}
+.subNavi li .box li a:hover {
+	background-color:#08c;
+	color:#fff;
+}
+.subNavi li.ip .box li a {
+	width:112px;
+	padding-left:10px;
+	position:relative;
+}
+.subNavi li a {
+	display:block;
+	text-align:center;
+	padding:7px 15px 0;
+	height:19px;
+	border:1px solid #ccc;
+	background-color:#e4f1f7;
+	-moz-border-radius:3px 3px 0 0;
+	border-radius:3px 3px 0 0;
+	color:#69c;
+	float:left;
+}
+.subNavi li a:hover {
+	text-decoration:none;
+}
+.subNavi li.current {
+	top:6px;
+}
+.subNavi li.current a {
+	padding-top:10px;
+	height:20px;
+	border-color: #ccc;
+	border-style: solid;
+	border-width:1px 1px 0 1px;
+	background-color:#fff;
+	color:#333;
+}
+.subNavi .new {
+	float:right;
+}
+.subNavi .new a {
+	background-image: url(../../images/iconMenu.png);
+	background-repeat: no-repeat;
+	padding: 0 0 0 20px;
+	background-position: 0 -19px;
+	display: block;
+	width: 50px;
+	line-height:36px;
+}

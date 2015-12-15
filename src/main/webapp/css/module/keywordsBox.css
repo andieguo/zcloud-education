@@ -1,0 +1,234 @@
+/* CSS Document */
+
+/* 搜素--关键字设置样式 */
+/* 关键字设置选择框 */
+#setKeywordsBox{
+	position:absolute;
+	right:-1px;
+	top:33px;
+	width:120px;
+}
+#setKeywordsBox li{
+	padding:1px;
+	line-height:26px;
+	position:relative;
+}
+#setKeywordsBox li a{
+	display:block;
+	padding:0 0 0 24px;
+}
+#setKeywordsBox li a:hover{
+	background:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+#setKeywordsBox li .icon{
+	background:url(../../images/iconSelect.png) no-repeat;
+	width:16px;
+	height:16px;
+	display:block;
+	position:absolute;
+	top:4px;
+	left:6px;
+	cursor:pointer;
+}
+#setKeywordsBox li .icon:hover{
+	background-position:-24px 0;
+}
+#setKeywordsBox li.current .icon{
+	background-position: 0 -32px;
+}
+#setKeywordsBox li.current .icon:hover{
+	background-position: -24px -32px;
+}
+
+/* 选择关键字 */
+#seletcKeywordsBox{
+	float:left;
+	width:330px;
+	height:32px;
+	background: url(../../images/iconBtn.png) no-repeat;
+	background-position: 310px -55px;
+	position:relative;
+}
+#seletcKeywordsBox input{
+	width:310px;
+	line-height:33px;
+	font-size:14px;
+	padding:0 10px;
+	cursor:pointer;
+}
+
+#seletcKeywordsBox  .selectbox-wrapper {
+	position:absolute;
+	left:-1px;
+	top:33px;
+	width:330px !important;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #ccc;
+	-moz-border-radius:0 0 3px 3px;
+	border-radius:0 0 3px 3px;
+}
+#seletcKeywordsBox  .selectbox-wrapper li {
+	margin:1px;
+	display:block;
+	color:#666;
+	height:32px;
+	line-height:32px;
+	padding:0 0 0 10px;
+	font-size:14px;
+	cursor:pointer;
+}
+#seletcKeywordsBox  .selectbox-wrapper li.current {
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+
+
+/* 案件选择层开始 */
+#seletcKeywordsForm{
+	position:absolute;
+	right:-1px;
+	top:33px;
+	width:469px;
+	border:1px solid #ccc;
+	background-color:#fff;
+}
+#seletcKeywordsForm .menu{
+	border-bottom:1px solid #ccc;
+}
+#seletcKeywordsForm .menu li{
+	float:left;
+	font-size:14px;
+}
+#seletcKeywordsForm .menu li a{
+	width:156px;
+	height:32px;
+	line-height:32px;
+	color:#666;
+	text-align:center;
+	display:block;
+	background: url(../../images/caseBoxNavi.gif) no-repeat;
+}
+#seletcKeywordsForm .menu li a:hover{
+	text-decoration:none;
+}
+#seletcKeywordsForm .menu .li1 a,
+#seletcKeywordsForm .menu .li21 a{
+	background-position:right -128px;
+}
+#seletcKeywordsForm .menu .li2 a,
+#seletcKeywordsForm .menu .li11 a{
+	background-position:right -64px;
+}
+#seletcKeywordsForm .menu .li3 a{
+	background-position:right 0;
+	width:157px;
+}
+#seletcKeywordsForm .menu .current a{
+	background-position:right -32px;
+	color:#fff;
+}
+#seletcKeywordsForm .menu .current3 a{
+	background-position:right -96px;
+	color:#fff;
+}
+
+#seletcKeywordsForm .list{
+	clear:both;
+}
+#seletcKeywordsForm .list ul{
+	max-height:300px;
+	_height:300px;
+	overflow-y: scroll;
+	overflow-x:auto;
+}
+#seletcKeywordsForm .list .li{
+	position:relative;
+	cursor:pointer;
+	line-height:30px;
+}
+#seletcKeywordsForm .list .li:hover{
+	background-color:#08c;
+	color:#fff;
+}
+#seletcKeywordsForm .list .li:hover a{
+	color:#fff;
+	text-decoration:none;
+}
+#seletcKeywordsForm .list .li .ico{
+	background:url(../../images/iconSelect.png) no-repeat;
+	width:16px;
+	height:16px;
+	display:block;
+	position:absolute;
+	top:8px;
+	left:8px;
+}
+#seletcKeywordsForm .list .li .ico:hover{
+	background-position:-24px 0;
+}
+#seletcKeywordsForm .list .li.current .ico{
+	background-position: 0 -32px;
+}
+#seletcKeywordsForm .list .li.current .ico:hover{
+	background-position: -24px -32px;
+}
+#seletcKeywordsForm .list .li .con{
+	float:left;
+	font-size:14px;
+	margin-left:30px;
+	width:330px;
+	white-space:nowrap;
+	overflow:hidden;
+	-o-text-overflow: ellipsis;    /* for Opera */
+	text-overflow:ellipsis;        /* for IE */
+}
+#seletcKeywordsForm .list .li .next{
+	float:left;
+}
+#seletcKeywordsForm .list .li .set{
+	float:right;
+	display:block;
+	height:30px;
+	width:40px;
+	position:relative;
+	background-image: url(../../images/iconMenu.png);
+	background-repeat: no-repeat;
+	background-position: 10px -51px;
+}
+#seletcKeywordsForm .list .li .set .setBox{
+	position:absolute;
+	right:0;
+	top:30px;
+	height:auto;
+	overflow:auto;
+	width:60px;
+}
+#seletcKeywordsForm .list .li .set .setBox li{
+	float:none;
+}
+#seletcKeywordsForm .list .li .set .setBox li a{
+	padding:0 10px;
+	display:block;
+	color:#333;
+	height:26px;
+	line-height:26px;
+}
+#seletcKeywordsForm .list .li .set .setBox li a:hover{
+	background-color:#08c;
+	color:#fff;
+}
+
+#seletcKeywordsForm .list .new{
+	padding:0 20px 0 30px;
+	border-top:1px solid #ccc;
+}
+#seletcKeywordsForm .list .new .close{
+	float:right;
+}
+
+
+
+

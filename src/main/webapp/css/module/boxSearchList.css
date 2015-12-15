@@ -1,0 +1,613 @@
+﻿/* CSS Document */
+
+/* 搜索样式 */
+#boxSearch{
+	background: url(../../images/backgroundNavishadow.jpg) repeat-x top;
+}
+/* 关键字 */
+#boxSearch .keywords{
+	font-size:14px;
+	padding:20px 100px 10px;
+	line-height:22px;
+	color:#999;
+}
+#boxSearch .keywords .words{
+	color:#444;
+}
+#boxSearch .keywords i{
+	font-style: normal;
+}
+
+/*  搜索条 */
+#boxSearch .barSearch{
+	width:750px;
+	margin:0  auto;
+}
+#boxSearch .barSearch.app {
+	width:550px;
+}
+#boxSearch .barSearch .box{
+	width:650px;
+	height:33px;
+	line-height:33px;
+	float:left;
+	position:relative;
+	z-index:10;
+}
+#boxSearch .barSearch.app .box {
+	width:450px;
+}
+/* 协议 */
+#boxSearch .barSearch .protocolbox{
+	width:180px;
+	border-right:1px solid #ccc;
+	float:left;
+	z-index:1000;
+}
+#boxSearch .barSearch .protocolbox .selected{
+	background:url(../../images/iconBtn.gif) no-repeat 160px -55px;
+	display:block;
+	height:33px;
+	font-size:14px;
+	font-weight:bold;
+	color:#333;
+	padding-left:10px;
+}
+#boxSearch .barSearch .protocolbox .selected:hover{
+	text-decoration:none;
+}
+#boxSearch .barSearch .protocolbox .protocol{
+	left:0;
+	right:auto;
+}
+.protocol .dd li .icon{
+	background:url(../../images/iconSelect.png) no-repeat;
+	width:16px;
+	height:16px;
+	display:block;
+	position:absolute;
+	top:4px;
+	left:2px;
+	cursor:pointer;
+}
+.protocol .dd li .icon:hover{
+	background-position:-24px 0;
+}
+.protocol .dd li.current .icon{
+	background-position: 0 -32px;
+}
+.protocol .dd li.current .icon:hover{
+	background-position: -24px -32px;
+}
+
+#boxSearch .barSearch .text{
+	float:left;
+	width:330px;
+}
+#boxSearch .barSearch .text input{
+	height:33px;
+	height:22px\9;
+	color:#999;
+	padding:0 0 0 10px;
+	padding:9px 0 0 10px\9;
+	width:320px;
+	font-size:14px;
+}
+#boxSearch .barSearch.app .text input {
+	width:440px;
+}
+#boxSearch .barSearch .way {
+	float:left;
+	border-right:1px solid #ccc;
+}
+#boxSearch .barSearch .way .tit {
+	float:left;
+	font-size:14px;
+	width:80px;
+	text-align:right;
+}
+#boxSearch .barSearch .way .selectbox {
+	background: url(../../images/iconBtn.gif) no-repeat 110px -55px;
+	display: block;
+	height: 33px;
+	line-height:33px;
+	width:130px;
+	font-size: 14px;
+	color: #333;
+	float:left;
+	cursor:pointer;
+}
+#boxSearch .barSearch .way .selectbox-wrapper {
+	width:130px !important;
+	background-color:#fff;
+	border:1px solid #ccc;
+	position:absolute;
+	left:79px;
+	top:33px;
+}
+#boxSearch .barSearch .way .selectbox-wrapper li {
+	height:28px;
+	line-height:28px;
+	font-size:14px;
+	padding-left:10px;
+	width:120px;
+	cursor: pointer;
+}
+#boxSearch .barSearch .way .selectbox-wrapper li.current {
+	background-color:#08c;
+	color:#fff;
+}
+#boxSearch .barSearch .btnArithmetic{
+	float:right;
+	width:68px;
+}
+#boxSearch .barSearch .btnArithmetic a{
+	background:url(../../images/backgroundArithmetic.jpg) no-repeat 0 -33px;
+	display:block;
+	float:left;
+	width:33px;
+	height:33px;
+	border-left:1px solid #ccc;
+	text-align:center;
+	color:#999;
+}
+#boxSearch .barSearch .btnArithmetic a.cur,
+#boxSearch .barSearch .btnArithmetic a:hover{
+	background-position:0 0;
+	color:#666;
+	text-decoration:none;
+}
+#boxSearch .barSearch .setKeywords{
+	float:right;
+	border-left:1px solid #ccc;
+}
+#boxSearch .barSearch .setKeywords a{
+	background-image:url(../../images/iconMenu.png);
+	background-repeat:no-repeat;
+	background-position:5px -51px;
+	padding:0 0 0 25px;
+	width:45px;
+	height:33px;
+	display:block;
+	color:#666;
+}
+#boxSearch .barSearch .setKeywords a:hover{
+	text-decoration:none;
+}
+
+#boxSearch .barSearch .btn{
+	background:url(../../images/iconBtn.png) no-repeat 0 -110px;
+	float:right;
+	width:85px;
+	height:35px;
+}
+#boxSearch .barSearch .btn input{
+	background-color:transparent;
+	border:none;
+	width:85px;
+	height:35px;
+	padding-top:1px;
+	padding-top:4px\9;
+	color:#fff;
+	font-weight:bold;
+	font-size:14px;
+	cursor:pointer;
+}
+
+
+/* 存档选项开始 */
+#boxSearch .barSearch .box .type{
+	border-right:1px solid #ccc;
+	width:240px;
+	float:left;
+}
+#boxSearch .barSearch .box .type .li1,
+#boxSearch .barSearch .box .type .li2{
+	float:left;
+	width:120px;
+}
+#boxSearch .barSearch .box .type .li1{
+	background-image:url(../../images/boxNavi.gif);
+	background-repeat:no-repeat;
+	background-position:right -83px;
+}
+#boxSearch .barSearch .box .type .li1 input,
+#boxSearch .barSearch .box .type .li2 input{
+	height:33px;
+	padding-left:10px;
+	line-height:33px;
+	width:110px;
+	font-size:14px;
+	cursor:pointer;
+	background: url(../../images/iconBtn.gif) no-repeat;
+	background-position: 100px -56px;
+}
+
+#boxSearch .barSearch .box .type .selectbox-wrapper{
+	border:1px solid #ccc;
+	position:absolute;
+	background-color:#fff;
+	top:33px;
+}
+#boxSearch .barSearch .box .type .selectbox-wrapper li{
+	padding-left:10px;
+	cursor:pointer;
+	font-size:14px;
+}
+#boxSearch .barSearch .box .type .selectbox-wrapper li.current{
+	background-color:#08c;
+	color:#fff;
+}
+/* 存档选项结束 */
+
+
+#boxSearch .barSearch .box .error,
+#selectSet .dd .error {
+	float:right;
+	width:130px;
+	line-height:26px;
+	color:#F93;
+	padding:0 4px 0 30px;
+	background:url(../../images/iconform.gif) no-repeat 2px -174px #e2e2e2;
+	border:1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	position: absolute;
+	left:500px;
+	z-index:100px;
+	*height:1%;
+}
+#boxSearch .barSearch .box .error{
+	float:left;
+	left:0;
+}
+#boxSearch .barSearch .box .error .arrow,
+#selectSet .dd .error .arrow{
+	height: 25px;
+	width: 10px;
+	overflow: hidden;
+	position: absolute;
+	left: -10px;
+}
+#boxSearch .barSearch .box .error .arrow{
+	height: 10px;
+	width: 25px;
+	left: 0px;
+	top:-10px;
+}
+
+#boxSearch .barSearch .box .error .arrow .arrline,
+#boxSearch .barSearch .box .error .arrow span,
+#selectSet .dd .error .arrow .arrline,
+#selectSet .dd .error .arrow span{
+	display: block;
+	font-family: "SimSun";
+	font-size: 21px;
+	height: 25px;
+	overflow: hidden;
+	color: #ccc;
+	font-style: normal;
+	font-weight: normal;
+}
+#boxSearch .barSearch .box .error .arrow .arrline,
+#boxSearch .barSearch .box .error .arrow span{
+	height: 10px;
+}
+#boxSearch .barSearch .box .error .arrow span,
+#selectSet .dd .error .arrow span{
+	margin:-22px 0 0 -4px;
+	color: #e2e2e2;
+}
+#boxSearch .barSearch .box .error .arrow span{
+	margin: -9px 0 0 0px;
+}
+
+
+/* 搜索选项 */
+#selectSet{
+}
+#selectSet .list{
+	line-height:28px;
+	padding:4px 0;
+	border-bottom:1px dotted #ccc;
+}
+#selectSet .dt{
+	float:left;
+	width:80px;
+	margin-right:20px;
+	text-align:right;
+}
+#selectSet .dd {
+	margin-left:80px;
+    *margin-left:0;
+	position:relative;
+}
+
+#selectSet .dd .toTime{
+	padding-top:7px;
+}
+#selectSet .dd span{
+	margin:0 10px;
+	padding:2px 5px;
+	padding:4px 5px 0\9;
+	line-height:16px;
+	display: inline-block;
+	cursor:pointer;
+}
+#selectSet .dd span.selected{
+	background-color:#393;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	color:#fff;
+}
+#selectSet .dd span.selected a{
+	color:#fff;
+}
+#selectSet .dd span.disabled{
+	background-color:#999;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	color:#ccc;
+	cursor:default;
+}
+
+#selectSet .dd .check {
+	float:left;
+	margin-right:10px;
+	position:relative;
+	cursor:pointer;
+}
+#selectSet .dd .check label,
+#selectSet .dd .check input {
+	cursor:pointer;
+}
+#selectSet .dd .check .checkAll {
+	display:block;
+	padding:6px 15px 0 5px;
+	height:22px;
+	width:48px;
+}
+#selectSet .dd .checkAll.more {
+	background: url(../../images/iconBtn.png) no-repeat;
+	background-position: 55px -60px;
+}
+#selectSet .dd .check .checkAll.current {
+	border-color:#ccc;
+	border-style: solid;
+	border-width:1px 1px 0 1px;
+	-moz-border-radius:3px 3px 0 0;
+	border-radius:3px 3px 0 0;
+	background-color:#fff;
+	position:relative;
+	z-index:1;
+	margin:-1px 9px 0;
+}
+#selectSet .dd .check .checkList {
+	position:absolute;
+	z-index:0;
+	top:27px;
+	left:9px;
+	background-color:#fff;
+	width:80px;
+	padding:0 5px;
+	border-color:#ccc;
+	border-style: solid;
+	border-width:1px;
+	-moz-border-radius: 0 0 3px 3px;
+	border-radius: 0 0 3px 3px;
+}
+#selectSet .dd .check .checkList li {
+	_height:22px;
+	_padding-top:6px;
+}
+
+
+/* 高级项 */
+#selectSet #super .dateTime,
+#selectSet #super .dateTime2{
+	float:left;
+	padding-left:0;
+}
+#selectSet #super .dateTime input,
+#selectSet #super .dateTime2 input{
+	height:28px;
+	line-height:28px;
+	padding:0 8px;
+	color:#333;
+}
+
+#selectSet #super .text,
+#selectSet #super .select{
+	float:left;
+}
+#selectSet #super .text input,
+#selectSet #super .select .selectbox,
+#selectSet #super .selectDaily input{
+	height:28px;
+	width:180px;
+	line-height:22px\9;
+	padding:0 8px;
+	color:#333;
+}
+#selectSet #super .text input{
+	padding:0 8px !important\9;
+}
+#selectSet #super .select{
+	background-image:url(../../images/iconBtn.gif);
+	background-repeat:no-repeat;
+	background-position: 78px -58px;
+	margin-left:10px;
+	padding:0;
+}
+#selectSet #super .textSmall{
+	background-position:170px -58px;
+	margin:0;
+}
+
+#selectSet #super .select .selectbox{
+	width:135px !important;
+	cursor:pointer;
+}
+#selectSet #super .textSmall .selectbox{
+	width:180px !important;
+}
+
+#selectSet #super .selectDaily input{
+	width:180px;
+	cursor:pointer;
+}
+#selectSet #super .selectDaily{
+	margin:0px;
+	padding:0px;
+	background:url(../../images/iconBtn.gif) no-repeat 175px -58px;
+}
+
+
+.select .selectbox-wrapper,
+.selectDaily .selectbox-wrapper {
+	position:absolute;
+	left:-1px;
+	top:26px;
+	width:135px !important;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.selectDaily .selectbox-wrapper{
+	width:196px !important;
+}
+#selectSet #super .textSmall .selectbox-wrapper{
+	width:196px !important;
+}
+.select .selectbox-wrapper li,
+.selectDaily .selectbox-wrapper li {
+	margin:1px;
+	display:block;
+	color:#333;
+	height:28px;
+	line-height:28px;
+	padding:0 0 0 8px;
+	font-size:14px;
+	cursor:pointer;
+}
+.selectDaily .selectbox-wrapper li{
+	font-size:12px;
+	height:26px;
+	line-height:26px;
+}
+.select .selectbox-wrapper li.current,
+.selectDaily .selectbox-wrapper li.current {
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+
+
+#selectSet #super .add{
+	background:url(../../images/iconform.gif) 5px -24px no-repeat;
+	width:25px;
+	height:25px;
+	display:block;
+	float:left;
+	margin-left:10px;
+	cursor:pointer;
+}
+
+#showfile{
+	background:url(../../images/statusBtn.gif) 30px 0 no-repeat;
+	height:28px;
+}
+#status{
+	margin-left:180px;
+	display:block;
+	width:96px;
+	height:25px;
+	line-height:25px;
+	text-align:center;
+	color:#666;
+	cursor:pointer;
+	color:#69c;
+}
+
+
+
+#selectSet #super .box{
+	height:28px;
+	line-height:28px;
+	float:left;
+	width:450px;
+}
+#selectSet #super .text{
+	margin:0;
+	padding:0;
+	float:left;
+	width:310px;
+}
+#selectSet #super .text input{
+	height:28px;
+	height:25px\9;
+	_height:21px;
+	color:#999;
+	width:300px;
+}
+#selectSet #super .btnArithmetic{
+	margin:0;
+	padding:0;
+	float:right;
+}
+#selectSet #super .btnArithmetic a{
+	background:url(../../images/backgroundArithmetic.jpg) no-repeat 0 -33px;
+	display:block;
+	float:left;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	border-left:1px solid #ccc;
+	text-align:center;
+	color:#999;
+}
+#selectSet #super .btnArithmetic a.cur,
+#selectSet #super .btnArithmetic a:hover{
+	background-position:0 0;
+	color:#666;
+	text-decoration:none;
+}
+#selectSet #super .setKeywords{
+	margin:0;
+	padding:0;
+	float:right;
+	border-left:1px solid #ccc;
+}
+#selectSet #super .setKeywords a{
+	background-image:url(../../images/iconMenu.png);
+	background-repeat:no-repeat;
+	background-position:5px -53px;
+	padding:0 0 0 25px;
+	width:45px;
+	height:28px;
+	line-height:28px;
+	font-size:12px;
+	display:block;
+	color:#666;
+}
+#selectSet #super .setKeywords a:hover{
+	text-decoration:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

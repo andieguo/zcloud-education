@@ -1,0 +1,269 @@
+/* CSS Document */
+
+/* 案件搜索条开始 */
+#boxSearch .barSearch{
+}
+#boxSearch .barSearch .text{
+	width:468px !important;
+	background: url(../../images/iconBtn.gif) no-repeat;
+	background-position: 450px -55px;
+}
+#boxSearch .barSearch .text input{
+	width:458px !important;
+	cursor:pointer;
+}
+
+#boxSearch .barSearch .box{
+	z-index:1;
+}
+
+
+/* 案件统计搜索条 */
+#boxSearch .barSearch.stat {
+	width:625px !important;
+	margin:50px auto 80px;
+}
+#boxSearch .barSearch.stat .box{
+	width:530px !important;
+	margin-top:2px;
+}
+#boxSearch .barSearch.stat .box dl{
+}
+#boxSearch .barSearch.stat .box .dt{
+	float:left;
+	width:100px;
+	text-align:right;
+}
+#boxSearch .barSearch.stat .box .dd{
+	float:left;
+}
+#boxSearch .barSearch.stat .box .dd .dateTime,
+#boxSearch .barSearch.stat .box .dd .dateTime2,
+#boxSearch .barSearch.stat .box .dd .toTime{
+	float:left;
+}
+#boxSearch .barSearch.stat .box .dd .dateTime input,
+#boxSearch .barSearch.stat .box .dd .dateTime2 input{
+	height:31px;
+	line-height:31px;
+	background-position: 173px 9px;
+}
+/* 案件统计搜索条 */
+
+/* 案件选择层开始 */
+#caseBox{
+	position:absolute;
+	right:-1px;
+	top:33px;
+	width:469px;
+	border:1px solid #ccc;
+	background-color:#fff;
+}
+#caseBox .menu{
+	border-bottom:1px solid #ccc;
+}
+#caseBox .menu li{
+	float:left;
+	font-size:14px;
+}
+#caseBox .menu li a{
+	width:156px;
+	height:32px;
+	line-height:32px;
+	color:#666;
+	text-align:center;
+	display:block;
+	background: url(../../images/caseBoxNavi.gif) no-repeat;
+}
+#caseBox .menu li a:hover{
+	text-decoration:none;
+}
+
+#caseBox .menu .li1 a,
+#caseBox .menu .li2 a{
+	background-position:right -64px;
+}
+#caseBox .menu .li3 a{
+	background-position:right 0;
+	width:157px;
+}
+#caseBox .menu .up a{
+	background-position:right -128px;
+}
+#caseBox .menu .current a{
+	background-position:right -32px;
+	color:#fff;
+}
+#caseBox .menu .li3.current a{
+	background-position:right -96px;
+	color:#fff;
+}
+
+#caseBox .list{
+	clear:both;
+}
+#caseBox .list ul{
+	height:300px;
+	overflow-y: scroll;
+	overflow-x:auto;
+}
+#caseBox .list .li{
+	position:relative;
+	cursor:pointer;
+	line-height:30px;
+}
+#caseBox .list .li.cur{
+	background-color:#08c;
+}
+#caseBox .list .li.cur a{
+	color:#fff;
+	text-decoration:none;
+}
+#caseBox .list .li .ico{
+	background:url(../../images/iconSelect.png) no-repeat;
+	width:16px;
+	height:16px;
+	display:block;
+	position:absolute;
+	top:8px;
+	left:8px;
+}
+#caseBox .list .li .ico:hover{
+	background-position:-24px 0;
+}
+#caseBox .list .li.current .ico{
+	background-position: 0 -32px;
+}
+#caseBox .list .li.current .ico:hover{
+	background-position: -24px -32px;
+}
+#caseBox .list .li .con{
+	float:left;
+	margin-left:30px;
+	width:350px;
+	white-space:nowrap;
+	overflow:hidden;
+	-o-text-overflow: ellipsis;    /* for Opera */
+	text-overflow:ellipsis;        /* for IE */
+}
+#caseBox .list .li.cur .con{
+	color:#fff;
+}
+#caseBox .list .li .next{
+	float:left;
+}
+#caseBox .list .li .set{
+	float:right;
+	display:block;
+	height:30px;
+	width:40px;
+	position:relative;
+	background-image: url(../../images/iconMenu.png);
+	background-repeat: no-repeat;
+	background-position: 10px -51px;
+}
+#caseBox .list .li .set .setBox{
+	position:absolute;
+	right:0;
+	top:30px;
+	height:auto;
+	overflow:auto;
+	width:60px;
+}
+#caseBox .list .li .set .setBox li{
+	float:none;
+}
+#caseBox .list .li .set .setBox li a{
+	padding:0 10px;
+	display:block;
+	color:#333;
+	height:26px;
+	line-height:26px;
+}
+#caseBox .list .li .set .setBox li a:hover{
+	background-color:#08c;
+	color:#fff;
+}
+
+
+#caseBox .list .li .edit{
+	float:right;
+	display:block;
+	height:30px;
+	padding-right:30px;
+	position:relative;
+	background-image: url(../../images/iconMenu.png);
+	background-repeat: no-repeat;
+	background-position: 30px -51px;
+}
+
+#caseBox .list .new{
+	padding:0 30px;
+	border-top:1px solid #ccc;
+}
+
+
+
+#selectSet #normal .box{
+	width:470px;
+	height:28px;
+	line-height:28px;
+	float:left;
+}
+#selectSet #normal .text{
+	float:left;
+	width:310px;
+}
+#selectSet #normal .text input{
+	height:28px;
+	_height:21px;
+	color:#999;
+	padding:0 0 0 10px;
+	_padding:7px 0 0 10px;
+	width:300px !important;
+	font-size:14px;
+}
+#selectSet #normal .btnArithmetic{
+	float:right;
+}
+#selectSet #normal .btnArithmetic a{
+	background:url(../../images/backgroundArithmetic.jpg) no-repeat 0 -33px;
+	display:block;
+	float:left;
+	width:28px;
+	height:28px;
+	border-left:1px solid #ccc;
+	text-align:center;
+	color:#999;
+}
+#selectSet #normal .btnArithmetic a.cur,
+#selectSet #normal .btnArithmetic a:hover{
+	background-position:0 0;
+	color:#666;
+	text-decoration:none;
+}
+#selectSet #normal .setKeywords{
+	float:right;
+	border-left:1px solid #ccc;
+}
+#selectSet #normal .setKeywords a{
+	background-image:url(../../images/iconMenu.png);
+	background-repeat:no-repeat;
+	background-position:5px -53px;
+	padding:0 0 0 25px;
+	width:45px;
+	height:28px;
+	font-size:12px;
+	display:block;
+	color:#666;
+}
+#selectSet #normal .setKeywords a:hover{
+	text-decoration:none;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+/* CSS Document */
+
+
+#selectSet .list dd .text .file_uploader {
+	position:absolute;
+	left:0;
+	top:0;
+	width:285px;
+	padding:0;
+	cursor:pointer;
+	filter: Alpha(Opacity=0);
+	opacity:0;
+}
+
+#selectSet .list dd .submitBtn,
+#selectSet .list dd .resetBtn{
+	margin-right:15px;
+	float:left;
+	width:75px;
+	height:30px;
+	background:url(../images/iconBtn.png) no-repeat;
+	background-position:0 -401px;
+	padding:0 !important;
+}
+#selectSet .list dd .resetBtn{
+	background-position:0 -467px;
+}
+#selectSet .list dd .submitBtn input,
+#selectSet .list dd .resetBtn input{
+	border:none;
+	background-color:transparent;
+	cursor:pointer;
+	width:75px;
+	height:30px;
+	line-height:30px;
+	text-align: center;
+	font-weight:bold;
+	color:#fff;
+}
+#selectSet .list dd .resetBtn input{
+	color:#333;
+}
+#selectSet .list dd .text .file_btn{
+	display:block;
+	color:#333;
+	padding:0 8px;
+	line-height:28px;
+	border-left:1px solid #ccc;
+	float: left;
+}
+#selectSet .list dd .text .text_box{
+	float:left;
+}
+#selectSet .list dd .text a:hover{
+	text-decoration:none;
+}
+#selectSet .list dd .text .file_uploader {
+	position:absolute;
+	left:0;
+	top:0;
+	height:28px !important;
+	width:245px !important;
+	padding:0 !important;
+	cursor:pointer;
+	filter: Alpha(Opacity=0);
+	opacity:0;
+}
+#selectSet .list dd .text .file_uploader {
+}
+
+#selectSet .list dd .textarea {
+	float:left;
+}
+#selectSet .list dd .textarea textarea {
+	border:none;
+	background-color:transparent;
+	width:387px;
+	height:56px;
+	line-height:28px;
+	padding:0 8px;
+}
+#selectSet .list dd .textLong input {
+	width:387px !important;
+}
+#selectSet .foot{
+	border-top:1px solid #ccc;
+	padding:10px 0 0 200px;
+}
+#selectSet .foot .submit,
+#selectSet .foot .reset{
+	background-image:url(../images/iconBtn.png);
+	background-repeat:no-repeat;
+	background-position:0 -401px;
+	width:75px;
+	height:30px;
+	display:block;
+	float:left;
+	margin:0 8px 0 0;
+}
+#selectSet .foot .reset{
+	background-position:0 -467px;
+}
+#selectSet .foot .submit input,
+#selectSet .foot .reset input{
+	width:75px;
+	height:30px;
+	border:none;
+	background-color:transparent;
+	cursor:pointer;
+	color:#fff;
+}
+#selectSet .foot .reset input{
+	color:#666;
+}
+
+
+
+
+
+
+
+
+
+
+

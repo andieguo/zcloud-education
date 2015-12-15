@@ -1,0 +1,749 @@
+/* CSS Document */
+
+/* 案件创建 */
+#boxSearch{
+	background: url(../../images/backgroundNavishadow.jpg) repeat-x top;
+}
+#boxSearch .title{
+	border-bottom:1px solid #ccc;
+	height:36px;
+	line-height:36px;
+	padding-left:20px;
+	font-size:14px;
+}
+#boxSearch .title h2{
+	font-weight:bold;
+}
+
+#caseCreate {
+	background-color:#fff;
+}
+#caseCreate #caseBox {
+	position:static;
+	margin:20px auto 0;
+	width:850px;
+}
+#caseCreate #caseBox .menu {
+	border:none;
+}
+#caseCreate #caseBox .menu li a {
+	width:283px;
+}
+#caseCreate #caseBox .menu .li3 a {
+	width:284px;
+}
+/* 对话框 */
+#caseCreate .list {
+	border-bottom:1px dotted #ccc;
+	width:850px;
+	margin:20px auto;
+	font-size:14px;
+}
+#caseCreate .list .box {
+	line-height:32px;
+	clear:both;
+	padding:10px 0;
+}
+#caseCreate .list .box dt {
+	float:left;
+	width:200px;
+	text-align:right;
+	color:#999;
+}
+#caseCreate .list .box dt p{
+	font-weight:normal;
+}
+#caseCreate .list .box dt b{
+	color:#F30;
+	font-size:18px;
+	margin-right:8px;
+	vertical-align:-5px;
+}
+#caseCreate .list .box dd {
+	position:relative;
+	width:650px;
+	float:left;
+}
+#caseCreate .list .box dd .tip{
+	color:#F90;
+}
+
+
+#caseCreate .list .box dd .error {
+	float:right;
+	width:130px;
+	line-height:26px;
+	color:#F93;
+	padding:0 4px 0 30px;
+	background:url(../../images/iconform.gif) no-repeat 2px -174px #e2e2e2;
+	border:1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	position: absolute;
+	left:240px;
+	z-index:100px;
+	*height:1%;
+	top:0px;
+}
+#caseCreate .list .box dd .error .arrow{
+	height: 25px;
+	width: 10px;
+	overflow: hidden;
+	position: absolute;
+	left: -10px;
+}
+
+#caseCreate .list .box dd .error .arrow .arrline,
+#caseCreate .list .box dd .error .arrow span{
+	display: block;
+	font-family: "SimSun";
+	font-size: 21px;
+	height: 25px;
+	overflow: hidden;
+	color: #ccc;
+	font-style: normal;
+	font-weight: normal;
+}
+#caseCreate .list .box dd .error .arrow span{
+	margin: -25px 0 0 1px;
+	color: #e2e2e2;
+}
+
+#caseCreate .list .box dd .text {
+	display: block;
+	float:left;
+	margin-right:10px;
+}
+#caseCreate .list .box dd .text input {
+	padding:0 8px;
+	line-height:28px \9;
+	height:28px;
+	width:220px;
+	background-position:215px 7px;
+}
+#caseCreate .list .box dd .textArea {
+	display: inline-block;
+	line-height:28px;
+	width:648px;
+	height:84px;
+	padding:0;
+}
+#caseCreate .list .box dd .textArea textarea {
+	line-height:28px;
+	width:632px;
+	height:84px;
+	padding:0 8px;
+	border:none;
+	background-color:transparent;
+}
+#caseCreate .list .box dd .textArea .li {
+	display:block;
+	float:left;
+}
+#caseCreate .list .box dd .textArea .li .a {
+	background: url(../../images/iconform.gif) 3px -327px no-repeat;
+	display:block;
+	width:20px;
+	height:28px;
+	float:left;
+}
+#caseCreate .list .box dd .addList {
+	position:absolute;
+	right:0;
+	top:0;
+	background:#e2e2e2;
+	border:1px solid #ccc;
+	-moz-border-radius:0 3px 3px 3px;
+	border-radius:0 3px 3px 3px;
+}
+#caseCreate .list .box dd .addList ul{
+	max-height:240px;
+	_height:240px;
+	width:auto;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+#caseCreate .list .box dd .addList .addBtn {
+	position:absolute;
+	left:-16px;
+	top:-1px;
+	cursor:pointer;
+	width:15px;
+	height:84px;
+	background:url(../../images/iconform.gif) 4px -222px no-repeat #e2e2e2;
+	border-color:#ccc;
+	border-style: solid;
+	border-width:1px 0 1px 1px;
+	-moz-border-radius:3px 0 0 3px;
+	border-radius:3px 0 0 3px;
+}
+#caseCreate .list .box dd .addList li {
+	border:1px solid #e2e2e2;
+}
+#caseCreate .list .box dd .addList li a {
+	line-height:24px;
+	height:24px;
+	margin:0;
+	white-space:nowrap;
+	padding:0 20px 0 10px;
+	display:block;
+	_float:left;
+}
+#caseCreate .list .box dd .addList li a:hover {
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+#caseCreate .list .box dd .li {
+	padding:0 10px 0 0;
+}
+#caseCreate .list .box dd .li .checkbox {
+	_margin-top:7px;
+}
+#caseCreate .list .box dd .subBtn {
+	background:url(../../images/iconBtn.gif) no-repeat 0 -401px;
+	display: inline;
+	width:76px;
+	height:30px;
+	float:left;
+	margin-left:10px;
+}
+#caseCreate .list .box dd .subBtn input {
+	background-color:transparent;
+	width:76px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	border:none;
+	color:#fff;
+	cursor:pointer;
+}
+#caseCreate .layer {
+	margin:0 50px;
+}
+#caseCreate .layer .target {
+	float:left;
+}
+#caseCreate .layer .target h2,
+#caseCreate .layer .clue h2 {
+	font-weight:bold;
+	line-height:28px;
+}
+#caseCreate .layer .target .menu li a {
+	display:block;
+	border-left:5px solid #fff;
+	height:28px;
+	line-height:28px;
+	padding-left:8px;
+	color:#666;
+	width:152px;
+	white-space:nowrap;
+	overflow:hidden;
+	-o-text-overflow: ellipsis;    /* for Opera */
+	text-overflow:ellipsis;        /* for IE */
+}
+#caseCreate .layer .target .menu li.current a {
+	border-left:5px solid #393;
+	color:#393;
+}
+#caseCreate .layer .target .menu li a:hover {
+	background-color:#ddd;
+	text-decoration:none;
+}
+#caseCreate .layer .clue {
+	float:left;
+	width:640px;
+	margin-left:20px;
+	display:inline;
+}
+#caseCreate .layer .clue .clueList {
+}
+#caseCreate .layer .clue .clueList .cluebox {
+	border-bottom:1px dotted #ccc;
+	line-height:24px;
+}
+#caseCreate .layer .clue .clueList .cluebox .box1 {
+	float:left;
+	width:240px;
+}
+#caseCreate .layer .clue .clueList .cluebox .box1 h2 {
+	float:left;
+	font-weight:normal;
+}
+#caseCreate .layer .clue .clueList .cluebox .box1 span {
+	float:left;
+	padding:0 8px;
+	color:#999;
+}
+#caseCreate .layer .clue .clueList .cluebox .box1 span b {
+	font-weight:normal;
+	color:#333;
+	padding:0 5px;
+}
+#caseCreate .layer .clue .clueList .cluebox .box2 {
+	float: left;
+	width:120px;
+}
+#caseCreate .layer .clue .clueList .cluebox .box2 dt {
+	float:left;
+	color:#999;
+}
+#caseCreate .layer .clue .clueList .cluebox .box2 dd {
+	float:left;
+}
+#caseCreate .layer .clue .clueList .cluebox .box3 {
+	float: right;
+	position:relative;
+	z-index:1;
+}
+#caseCreate .layer .clue .clueList .cluebox .box3 h3 a {
+	background: url(../../images/iconBtn.png) no-repeat;
+	background-position: 50px -64px;
+	padding:4px 18px 4px 6px;
+}
+#caseCreate .layer .clue .clueList .cluebox .box3 h3 a:hover{
+	background-color:#08c;
+	color:#fff;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	text-decoration:none;
+}
+#caseCreate .layer .clue .clueList .cluebox .box4 {
+	clear:both;
+}
+#caseCreate .layer .clue .clueList .cluebox .box4 dl {
+}
+#caseCreate .layer .clue .clueList .cluebox .box4 dt {
+	float:left;
+	width:38px;
+	text-align:right;
+	color:#999;
+}
+#caseCreate .layer .clue .clueList .cluebox .box4 dd {
+	float:left;
+	width:600px;
+}
+#caseCreate .layer .clue .clueList .cluebox .box5 {
+	float:right;
+	color:#999;
+	margin:0 20px;
+}
+#caseCreate .layer .clue .clueList .cluebox .box6 {
+	float:right;
+	position:relative;
+}
+#caseCreate .layer .clue .clueList .cluebox .box6 .more {
+	margin:0;
+}
+#caseCreate .layer .clue .clueList .cluebox .box6 .more.current {
+	background-color: white;
+	border-color: #CCC;
+	display: block;
+	border-style: solid;
+	border-width: 1px 1px 0px 1px;
+	-moz-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+	position: relative;
+	margin: -1px -1px 0;
+	z-index: 1;
+}
+#caseCreate .layer .clue .clueList .cluebox .box6 .more a {
+	background: url(../../images/iconBtn.png) no-repeat;
+	background-position: 32px -60px;
+	padding: 0 15px 0 5px;
+	line-height:24px;
+	display: block;
+	text-decoration: none;
+}
+#caseCreate .layer .clue .clueList .cluebox .box6 ul {
+	background-color: white;
+	border-color: #CCC;
+	border-style: solid;
+	border-width: 1px;
+	-moz-border-radius: 3px 0px 3px 3px;
+	border-radius: 3px 0px 3px 3px;
+	position: absolute;
+	right: -1px;
+	top: 23px;
+}
+#caseCreate .layer .clue .clueList .cluebox .box6 ul li a {
+	padding: 0 0 0 6px;
+	width: 60px;
+	color: #666;
+	display: block;
+	line-height: 25px;
+}
+#caseCreate .layer .clue .clueList .cluebox .box6 ul li a:hover {
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+#showfile {
+	background:url(../../images/statusBtn.gif) 30px 0 no-repeat;
+	height:28px;
+	margin-left:71px;
+}
+#showfile #status {
+	margin-left:180px;
+	display:block;
+	width:96px;
+	height:25px;
+	line-height:25px;
+	text-align:center;
+	color:#666;
+	cursor:pointer;
+}
+.submitBtn {
+	padding:10px 0 20px 200px;
+}
+.submitBtn .btn1,
+.submitBtn .btn2 {
+	display: inline;
+	background-image:url(../../images/iconBtn.gif);
+	background-repeat:no-repeat;
+	background-position:0 0;
+	width: 102px;
+	height: 42px;
+	float:left;
+	margin-right:10px;
+}
+.submitBtn .btn2{
+	background-position:0 -800px;
+}
+.submitBtn .btn1 input,
+.submitBtn .btn2 input,
+.submitBtn .btn2 a{
+	background-color: transparent;
+	color: #fff;
+	display:block;
+	text-align:center;
+	border: none;
+	width: 102px;
+	height: 42px;
+	line-height: 42px;
+	font-size: 14px;
+	font-weight:bold;
+	cursor:pointer;
+}
+.submitBtn .btn2 a:hover{
+	text-decoration:none;
+}
+.submitBtn .succeed{
+	font-size:14px;
+	color:#393;
+	line-height:42px;
+	padding:0 0 0 20px;
+}
+/* 目标 */
+
+
+#caseCreate .caseTitle {
+	font-size:14px;
+	font-weight:bold;
+	margin:20px auto 0;
+	padding-left:10px;
+	width:840px;
+}
+.target {
+	margin:20px auto;
+	width:850px;
+}
+.clue #title .addBtn,
+.target #title .addBtn,
+.list #title .back{
+	float:right;
+	font-size:12px;
+}
+.target .box {
+	border-bottom:1px dotted #ccc;
+	line-height:28px;
+	padding:4px 0;
+}
+.target .scroll{
+	height:370px;
+	overflow-y:auto;
+}
+.target .boxHead {
+	border-bottom:1px solid #ccc;
+}
+.target .box .li1, .target .box .li2 {
+	float:left;
+	display:block;
+	width:330px;
+	font-size:14px;
+}
+.target .box .li1 {
+	padding-left:25px;
+	position:relative;
+}
+.target .box .li1 b{
+	color:#F30;
+	font-size:18px;
+	margin-right:8px;
+	vertical-align:-5px;
+}
+.target .box .li1 .checkbox {
+	position:absolute;
+	left:4px;
+	top:7px;
+}
+.target .box li .text,
+.target .box li .select,
+#caseCreate .list .box dd .select {
+	display:block;
+	float:left;
+	margin-top:2px;
+}
+.target .box li .text input,
+.target .box li .select input,
+#caseCreate .list .box dd .select input {
+	width:220px;
+	line-height:26px;
+	height:24px;
+	padding:0 8px;
+}
+.target .box li .select input,
+#caseCreate .list .box dd .select input {
+	width:80px;
+}
+.select {
+	background-position: 5px -128px;
+	z-index:1;
+	position:relative;
+}
+.selectbox,
+.principal .selectbox {
+	background:url(../../images/iconBtn.gif) no-repeat;
+	background-position: 80px -60px;
+	cursor:pointer;
+}
+.principal .selectbox {
+	background-position:218px -58px !important;
+}
+.select .selectbox-wrapper,
+.principal .selectbox-wrapper {
+	position:absolute;
+	left:0px;
+	top:24px;
+	width:95px !important;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.principal .selectbox-wrapper {
+	left:-1px;
+	top:28px;
+	width:236px !important;
+}
+.principal .selectbox-wrapper ul{
+	max-height:300px;
+	_height:300px;
+	overflow-y:auto;
+}
+.select .selectbox-wrapper li,
+.principal .selectbox-wrapper li {
+	margin:1px;
+	display:block;
+	color:#666;
+	height:26px;
+	line-height:26px;
+	padding:0 0 0 8px;
+	font-size:14px;
+	cursor:pointer;
+}
+.select .selectbox-wrapper li.current,
+.principal .selectbox-wrapper li.current {
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+.target .box .set {
+	width:110px;
+	float:right;
+	color:#ccc;
+}
+/* 线索 */
+
+.clue {
+	width:850px;
+	margin:20px auto;
+	line-height:24px;
+	font-size:12px;
+}
+.clue .h2 {
+	font-weight:bold;
+	border-bottom:1px solid #ccc;
+	padding-left:10px;
+}
+.clue .clueList {
+	height:343px;
+	overflow-y:auto;
+}
+.clue .clueList .cluebox {
+	border-bottom:1px dotted #ccc;
+	line-height:24px;
+}
+.clue .clueList .cluebox .box1 {
+	float:left;
+	width:240px;
+}
+.clue .clueList .cluebox .box1 h2 {
+	float:left;
+	font-weight:normal;
+}
+.clue .clueList .cluebox .box1 span {
+	float:left;
+	padding:0 8px;
+	color:#999;
+}
+.clue .clueList .cluebox .box1 span b {
+	font-weight:normal;
+	color:#333;
+	padding:0 5px;
+}
+.clue .clueList .cluebox .box2 {
+	float: left;
+	width:120px;
+}
+.clue .clueList .cluebox .box2 dt {
+	float:left;
+	color:#999;
+}
+.clue .clueList .cluebox .box2 dd {
+	float:left;
+}
+.clue .clueList .cluebox .box3 {
+	float: right;
+	position:relative;
+	z-index:1;
+}
+.clue .clueList .cluebox .box3 h3 a {
+	background: url(../../images/iconBtn.gif) no-repeat;
+	background-position: 56px -356px;
+	_background-position: 56px -358px;
+	padding:4px 18px 4px 6px;
+}
+.clue .clueList .cluebox .box3 h3 a:hover{
+	background-color:#08c;
+	color:#fff;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	text-decoration:none;
+}
+.clue .clueList .cluebox .box4 {
+	clear:both;
+}
+.clue .clueList .cluebox .box4 dl {
+}
+.clue .clueList .cluebox .box4 dt {
+	float:left;
+	width:38px;
+	text-align:right;
+	color:#999;
+}
+.clue .clueList .cluebox .box4 dd {
+	float:left;
+	width:810px;
+}
+.clue .clueList .cluebox .box5 {
+	float:right;
+	color:#999;
+	margin:0 20px;
+}
+.clue .clueList .cluebox .box6 {
+	float:right;
+	position:relative;
+	z-index:1;
+}
+.clue .clueList .cluebox .box6 .more {
+	margin:0;
+}
+.clue .clueList .cluebox .box6 .more.current {
+	background-color: #fff;
+	border-color: #CCC;
+	display: block;
+	border-style: solid;
+	border-width: 1px 1px 0px 1px;
+	-moz-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+	position: relative;
+	margin: -1px -1px 0;
+	_margin:0;
+	z-index: 1;
+}
+.clue .clueList .cluebox .box6 .more a {
+	background: url(../../images/iconBtn.png) no-repeat;
+	background-position: 32px -355px;
+	_background-position: 32px -356px;
+	padding: 0 15px 0 5px;
+	line-height:24px;
+	display: block;
+	text-decoration: none;
+}
+.clue .clueList .cluebox .box6 ul {
+	background-color: white;
+	border-color: #CCC;
+	border-style: solid;
+	border-width: 1px;
+	-moz-border-radius: 3px 0px 3px 3px;
+	border-radius: 3px 0px 3px 3px;
+	position: absolute;
+	right: -1px;
+	_right: 0px;
+	top: 23px;
+	_top: 24px;
+}
+.clue .clueList .cluebox .box6 ul li a {
+	padding: 0 0 0 6px;
+	width: 60px;
+	color: #666;
+	display: block;
+	line-height: 25px;
+}
+.clue .clueList .cluebox .box6 ul li a:hover {
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+/* 创建案件选择协议 */
+#caseCreate .list .box dd .protocolbox {
+}
+#caseCreate .list .box dd .protocolbox .protocolSel {
+	background:url(../../images/iconBtn.gif) no-repeat;
+	background-position: 75px -59px;
+	cursor:pointer;
+	padding:0 25px 0 12px;
+	line-height:28px;
+	height:28px;
+	display:block;
+	float:left;
+	width:auto;
+}
+#caseCreate .list .box dd .protocolbox .protocol {
+	right:auto;
+	left:0;
+	_left:-95px;
+	top:28px;
+}
+#caseCreate .list .box dd .protocolbox .protocol .setCheckbox {
+	border-bottom:1px solid #ccc;
+	padding:0 8px;
+	height:28px;
+	line-height:28px;
+}
+#caseCreate .list .box dd .protocolbox .protocol .setCheckbox span {
+	float:right;
+	margin:0 6px 0 0;
+	_margin:6px 6px 0 0;
+	cursor:pointer;
+}
+#caseCreate .list .box dd .protocolbox .protocol .setCheckbox span label{
+	cursor:pointer;
+}
+#caseCreate .list .box dd .protocolbox .protocol .dd li .check {
+	position: absolute;
+	top: 7px;
+	left: 2px;
+	cursor: pointer;
+}

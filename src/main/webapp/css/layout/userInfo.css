@@ -1,0 +1,361 @@
+/* CSS Document */
+
+.userInfo{
+	margin:10px 50px;
+	font-size:14px;
+	clear:both;
+}
+.userInfo .userTitle{
+	border-bottom:1px solid #ccc;
+	line-height:32px;
+}
+.userInfo .userTitle h2{
+	float:left;
+	font-weight:bold;
+}
+.userInfo .userTitle span{
+	float:right;
+	font-size:12px;
+}
+
+.userInfo .userList{
+	padding:20px 0;
+}
+.userInfo .userList dl{
+	line-height:32px;
+	clear:both;
+	padding:10px 0;
+}
+.userInfo .userList dt{
+	float:left;
+	width:200px;
+	text-align:right;
+	color:#666;
+}
+.userInfo .password dt{
+	width:260px;
+}
+.userInfo .userList dt b{
+	color: #F30;
+	font-size: 18px;
+	margin-right: 8px;
+	vertical-align: -5px;
+}
+.userInfo .userList dd{
+	float:left;
+	position:relative;
+}
+.userInfo .password dd{
+}
+
+.userInfo .userList dd .text{
+	display: block;
+	float:left;
+}
+.userInfo .userList dd .text input{
+	padding:0 8px;
+	line-height:28px \9;
+	height:28px;
+	width:220px;
+	color:#ccc;
+}
+.userInfo .userList dd .text input.textInput{
+	color:#333;
+}
+.userInfo .userList dd .tip {
+	 color: #F90;
+	 padding-left:8px;
+}
+.userInfo .userList dd .iconRight {
+	background:url(../../images/iconRight.gif) no-repeat 0 0;
+	width:25px;
+	height:25px;
+	float:left;
+	margin-left:10px;
+}
+
+.userInfo .userList dd .error {
+	width:130px;
+	line-height:26px;
+	color:#F93;
+	padding:0 4px 0 30px;
+	background:url(../../images/iconform.gif) no-repeat 2px -174px #e2e2e2;
+	border:1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	position: absolute;
+	left:240px;
+	z-index:100px;
+	*height:1%;
+	top:0px;
+}
+.userInfo .userList dd .error .arrow{
+	height: 25px;
+	width: 10px;
+	overflow: hidden;
+	position: absolute;
+	left: -10px;
+}
+
+.userInfo .userList dd .error .arrow .arrline,
+.userInfo .userList dd .error .arrow span{
+	display: block;
+	font-family: "SimSun";
+	font-size: 21px;
+	height: 25px;
+	overflow: hidden;
+	color: #ccc;
+	font-style: normal;
+	font-weight: normal;
+}
+.userInfo .userList dd .error .arrow span{
+	margin: -25px 0 0 1px;
+	color: #e2e2e2;
+}
+
+.userInfo .userList dd .textArea{
+	display: inline-block;
+}
+.userInfo .userList dd .textArea textarea{
+	padding:0 8px;
+	line-height:28px;
+	width:480px;
+	height:84px;
+	border:none;
+	background-color:transparent;
+	color:#ccc;
+}
+.userInfo .userList dd .textArea textarea.textInput{
+	color:#333;
+}
+.userInfo .userList dd .select{
+	background-image:url(../../images/iconBtn.png);
+	background-repeat:no-repeat;
+	background-position: 220px -58px;
+	position:relative;
+}
+.userInfo .userList dd .select .selectbox{
+	cursor:pointer;
+	color:#333;
+}
+.userInfo .userList dd .selectbox-wrapper{
+	position:absolute;
+	top:28px;
+	left:0;
+	background:#FFFFFF;
+	border: 1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	width:235px !important;
+}
+.userInfo .userList dd .selectbox-wrapper li{
+	cursor:pointer;
+	padding-left:10px;
+	color:#444;
+}
+.userInfo .userList dd .selectbox-wrapper li.current{
+	background-color:#08c;
+	color:#fff;
+}
+
+
+.userInfo .userLimits{
+	padding:20px 0;
+}
+.userInfo .userLimits .seletebox,
+.userInfo .userTitle .seletebox{
+	float:right;
+	font-size:12px;
+	color:#666;
+	margin-top:8px;
+}
+.userInfo .userLimits .seletebox label,
+.userInfo .userTitle .seletebox label{
+	float:left;
+}
+.userInfo .userTitle .seletebox{
+	margin:0;
+}
+.userInfo .userLimits .seletebox label,
+.userInfo .userTitle .seletebox label{
+	margin-right:10px;
+}
+.userInfo .userLimits .userLimitsMenu{
+	float:left;
+	width:175px;
+	position:relative;
+	_left:1px;
+}
+.userInfo .userLimits label{
+	cursor:pointer;
+	display:block;
+}
+.userInfo .userLimits .userLimitsMenu li{
+	float:left;
+	width:175px;
+}
+.userInfo .userLimits .userLimitsMenu li input{
+	margin-top:8px;
+}
+.userInfo .userLimits .userLimitsMenu li a{
+	display:block;
+	width:167px;
+	height:28px;
+	line-height:28px;
+	padding-left:8px;
+	color:#666;
+	white-space:nowrap;
+	overflow:hidden;
+	-o-text-overflow: ellipsis;    /* for Opera */
+	text-overflow:ellipsis;        /* for IE */
+}
+.userInfo .userLimits .userLimitsMenu li.current a{
+	color:#08c;
+	border-color:#08c;
+	border-style:solid;
+	border-width:1px 0 1px 1px;
+	background-color:#fff;
+}
+.userInfo .userLimits .userLimitsMenu li a:hover{
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+
+.userInfo .userLimits .userLimitsList{
+	float:left;
+	width:650px;
+	min-height:336px;
+	_height:336px;
+	border:1px solid #08c;
+	padding:0 10px;
+}
+.userInfo .userLimits .userLimitsList .li{
+	margin:10px 0 0 0;
+}
+.userInfo .userLimits .userLimitsList .li .classLi li{
+	font-weight:bold;
+	color:#333;
+}
+.userInfo .userLimits .userLimitsList .li .seletcList{
+	float:right;
+	font-size:12px;
+}
+.userInfo .userLimits .userLimitsList .li .seletcList a{
+	background-image:url(../../images/iconTerm.gif);
+	background-repeat:no-repeat;
+	display:block;
+	width:50px;
+	height:20px;
+	line-height:20px;
+	float:left;
+	margin-top:4px;
+	color:#999;
+}
+.userInfo .userLimits .userLimitsList .li .seletcList .class{
+	background-position:28px 4px;
+}
+.userInfo .userLimits .userLimitsList .li .seletcList .detail{
+	background-position:28px -14px;
+}
+.userInfo .userLimits .userLimitsList .li .seletcList .class.current,
+.userInfo .userLimits .userLimitsList .li .seletcList .detail.current{
+	color:#08c;
+}
+.userInfo .userLimits .userLimitsList .li .seletcList .class.current{
+	background-position:28px -32px;
+}
+.userInfo .userLimits .userLimitsList .li .seletcList .detail.current{
+	background-position:28px -50px;
+}
+.userInfo .userLimits .userLimitsList .li .subBox{
+	border-bottom:1px dotted #ccc;
+}
+.userInfo .userLimits .userLimitsList .li h2{
+	line-height:28px;
+	font-weight:bold;
+	padding-left:10px;
+	background-color:#ddd;
+}
+.userInfo .userLimits .userLimitsList .li ul{
+}
+.userInfo .userLimits .userLimitsList .li ul li{
+	float:left;
+	width:156px;
+	line-height:24px;
+	height:24px;
+	color:#666;
+	padding-left:4px;
+}
+.userInfo .userLimits .userLimitsList .li ul li.hover{
+	background-color:#08c;
+	color:#fff;
+}
+.userInfo .userLimits .userLimitsList .li ul li input{
+	margin-top:7px;
+}
+
+.userInfo .userLimits .userLimitsList .li .subTitle{
+	font-size:12px;
+	float:left;
+	width:160px;
+	line-height:24px;
+	padding-left:10px;
+}
+.userInfo .userLimits .userLimitsList .li .subTitle h3{
+	font-weight:bold;
+	color:#333;
+}
+.userInfo .userLimits .userLimitsList .li .subTitle .seletebox{
+	float:left;
+	margin:0;
+}
+.userInfo .userLimits .userLimitsList .li .subList{
+	float:left;
+	width:480px;
+}
+
+
+
+
+
+
+.submitBtn{
+	clear:both;
+	padding:10px 0 20px 400px;
+}
+.submitBtn span,
+.submitBtn span.back{
+	display:block;
+	width:85px;
+	float:left;
+	margin-right:8px;
+}
+.submitBtn span input{
+	background-image:url(../../images/iconBtn.png);
+	background-position:0 -110px;
+	background-repeat:no-repeat;
+	background-color:transparent;
+	border:none;
+	height:35px;
+	width:85px;
+	color:#fff;
+	font-weight:bold;
+	font-size:14px;
+	cursor:pointer;
+}
+.submitBtn span.back input{
+	background-image:url(../../images/iconBtn.gif);
+	background-repeat:no-repeat;
+	background-position:0 -871px;
+	color:#333;
+}
+
+
+
+
+
+
+
+
+

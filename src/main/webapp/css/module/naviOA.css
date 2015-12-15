@@ -1,0 +1,103 @@
+/* CSS Document */
+
+/* OA导航 */
+#naviOA {
+	background:url(../../images/naviOA.png) no-repeat 0 0;
+	height:132px;
+	position:relative;
+}
+#naviOA .box {
+	width:896px;
+	margin:0 auto;
+	padding-top:16px;
+}
+#naviOA .box li {
+	width:112px;
+	float:left;
+}
+#naviOA .box li a {
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+	display:block;
+	width:112px;
+	height:25px;
+	padding-top:75px;
+	margin:0 auto;
+	background:url(../../images/naviOA.png) no-repeat;
+}
+#naviOA .box li a:hover {
+	text-decoration:none;
+}
+#naviOA .box li .msg {
+	background-position:-21px -280px;
+}
+#naviOA .box li .report {
+	background-position:-135px -280px;
+}
+#naviOA .box li .sendFile {
+	background-position:-249px -280px;
+}
+#naviOA .box li .netDisk {
+	background-position:-362px -280px;
+}
+
+#naviOA .box li.cur .msg,
+#naviOA .box li .msg:hover {
+	background-position:-21px -148px;
+}
+#naviOA .box li.cur .report,
+#naviOA .box li .report:hover {
+	background-position:-135px -148px;
+}
+#naviOA .box li.cur .sendFile,
+#naviOA .box li .sendFile:hover {
+	background-position:-249px -148px;
+}
+#naviOA .box li.cur .netDisk,
+#naviOA .box li .netDisk:hover {
+	background-position:-362px -148px;
+}
+
+/* 子导航条 */
+
+.subNavi {
+	border-bottom:1px solid #ccc;
+	height:36px;
+	position:relative;
+}
+.subNavi li {
+	float:left;
+	font-size:14px;
+	margin-left:10px;
+	position:relative;
+	top:9px;
+	z-index:150;
+}
+.subNavi li a {
+	display:block;
+	text-align:center;
+	padding:7px 15px 0;
+	height:19px;
+	border:1px solid #ccc;
+	background-color:#e4f1f7;
+	-moz-border-radius:3px 3px 0 0;
+	border-radius:3px 3px 0 0;
+	color:#69c;
+}
+.subNavi li a:hover {
+	text-decoration:none;
+}
+.subNavi li.current {
+	top:6px;
+}
+.subNavi li.current a {
+	padding-top:10px;
+	height:20px;
+	border-color: #ccc;
+	border-style: solid;
+	border-width:1px 1px 0 1px;
+	background-color:#fff;
+	color:#333;
+}
+

@@ -1,0 +1,118 @@
+/* CSS Document */
+
+/* 运算 */
+#count {
+}
+#count .roll {
+	position:absolute;
+	right:0;
+}
+#count .btnNext a {
+	background:url(../../images/iconBtn.gif) no-repeat 12px -671px #08c;
+	color:#fff;
+	font-size: 14px;
+	font-weight: bold;
+	display: block;
+	height: 35px;
+	line-height: 35px;
+	padding-left: 35px;
+	width: 0px;
+	-moz-border-radius: 5px 0 0 5px;
+	border-radius: 5px 0 0 5px;
+	Opacity: 0.5;
+	filter: Alpha(Opacity=50);
+	overflow: hidden;
+}
+#count .btnNext.current a {
+	Opacity: 1;
+	filter: Alpha(Opacity=100);
+	width: 45px;
+	text-decoration: none;
+}
+
+#count .box{
+	border:1px solid #ccc;
+	-moz-border-radius: 5px 0 0 5px;
+	border-radius: 5px 0 0 5px;
+	background-color:#e2e2e2;
+	
+	width:360px;
+	padding:0 10px;
+}
+#count .box .title{
+	border-bottom:1px dotted #ccc;
+	line-height:32px;
+}
+#count .box .title h2{
+	font-weight:bold;
+	cursor: move;
+}
+#count .box .title a{
+	float:right;
+}
+
+#count .box .con{
+	padding:8px 0;
+	background-color:#
+}
+#count .box .con dl{
+	line-height:24px;
+	padding-bottom:8px;
+}
+#count .box .con dt{
+	float:left;
+	text-align:right;
+	width:80px;
+}
+#count .box .con dd{
+	float:left;
+}
+#count .box .con dd .text{
+	display:inline-block;
+}
+#count .box .con dd .text input{
+	padding:0 8px;
+	height:22px;
+	line-height:22px;
+	width:240px;
+}
+
+#count .box .foot{
+	border-top:1px dotted #ccc;
+	padding:8px 0 8px 80px;
+}
+#count .box .foot a{
+	background-image:url(../../images/count.gif);
+	background-repeat:no-repeat;
+	width:50px;
+	float:left;
+	display:block;
+	margin-right:10px;
+	padding-top:35px;
+	text-align:center;
+}
+#count .box .foot .btn1{
+	background-position:1px 0;
+}
+#count .box .foot .btn2{
+	background-position:1px -74px;
+}
+#count .box .foot .btn3{
+	background-position:1px -148px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

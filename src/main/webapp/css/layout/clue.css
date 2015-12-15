@@ -1,0 +1,100 @@
+/* CSS Document */
+
+/* 线索 */
+.clue .title{
+	height:32px;
+	line-height:32px;
+	padding:0 20px;
+	border-bottom:1px solid #ccc;
+}
+.clue .title h2{
+	font-size:14px;
+	font-weight:bold;
+	color:#333;
+}
+.clue .title .back{
+	float:right;
+	font-size:12px;
+}
+.construct{
+	border-bottom:1px solid #999;
+}
+.construct a{
+	background:url(../../images/iconBtn.png) 0 -110px no-repeat;
+	display:block;
+	height:35px;
+	line-height:35px;
+	width:85px;
+	float:right;
+	color:#fff;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+	margin:5px 20px;
+}
+.list{
+}
+.list li{
+	height:32px;
+	line-height:32px;
+	border-bottom:1px dotted #ccc;
+}
+.list li.h{
+	border-bottom:1px solid #ccc;
+	text-align:center;
+	font-weight:bold;
+}
+.list li span{
+	display:block;
+	float:left;
+	height:32px;
+}
+.list li .t1{
+	width:50px;
+	text-align:center;
+}
+.list li .t1 input{
+	margin-top:8px;
+}
+.list li .t2{
+	width:90px;
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	padding:0 4px;
+}
+.list li .t3{
+	width:341px;
+	padding:0 4px;
+	border-right:1px solid #ccc;
+}
+.list li .t4{
+	width:391px;
+	padding:0 4px;
+	border-right:1px solid #ccc;
+}
+.list li .t5{
+	width:47px;
+	text-align:center;
+}
+
+
+
+
+
+
+
+
+
+#listFooter{
+	padding:10px 5px;
+}
+#listFooter #menuListfooter{
+	float:left;
+	margin-top:6px;
+}
+#listFooter #menuListfooter li{
+	border-right:1px solid #ccc;
+	float:left;
+	padding:0 10px;
+	position:relative;
+}

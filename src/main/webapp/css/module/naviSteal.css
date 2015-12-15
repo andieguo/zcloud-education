@@ -1,0 +1,80 @@
+/* CSS Document */
+
+/* 临侦密取导航 */
+#naviSteal {
+	background:url(../../images/naviSteal.png) no-repeat 0 0;
+	height:132px;
+	position:relative;
+}
+#naviSteal .box {
+	width:896px;
+	margin:0 auto;
+	padding-top:16px;
+}
+#naviSteal .box li {
+	width:112px;
+	float:left;
+}
+#naviSteal .box li a {
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+	display:block;
+	width:112px;
+	height:25px;
+	padding-top:75px;
+	margin:0 auto;
+	background:url(../../images/naviSteal.png) no-repeat;
+}
+#naviSteal .box li a:hover {
+	text-decoration:none;
+}
+#naviSteal .box li .interception {
+	background-position:-21px -280px;
+}
+#naviSteal .box li .steal {
+	background-position:-135px -280px;
+}
+#naviSteal .box li .telephoneRecord {
+	background-position:-249px -280px;
+}
+#naviSteal .box li .messageAlert {
+	background-position:-362px -280px;
+}
+#naviSteal .box li .blockingUp {
+	background-position:-476px -280px;
+}
+#naviSteal .box li .webmaster {
+	background-position:-590px -280px;
+}
+#naviSteal .box li .systemSet {
+	background-position:-703px -280px;
+}
+#naviSteal .box li .log {
+	background-position:-817px -280px;
+}
+#naviSteal .box li.cur .interception, #naviSteal .box li .interception:hover {
+	background-position:-21px -148px;
+}
+#naviSteal .box li.cur .steal, #naviSteal .box li .steal:hover {
+	background-position:-135px -148px;
+}
+#naviSteal .box li.cur .telephoneRecord, #naviSteal .box li .telephoneRecord:hover {
+	background-position:-249px -148px;
+}
+#naviSteal .box li.cur .messageAlert, #naviSteal .box li .messageAlert:hover {
+	background-position:-362px -148px;
+}
+#naviSteal .box li.cur .blockingUp, #naviSteal .box li .blockingUp:hover {
+	background-position:-476px -148px;
+}
+#naviSteal .box li.cur .webmaster, #naviSteal .box li .webmaster:hover {
+	background-position:-590px -148px;
+}
+#naviSteal .box li.cur .systemSet, #naviSteal .box li .systemSet:hover {
+	background-position:-703px -148px;
+}
+#naviSteal .box li.cur .log, #naviSteal .box li .log:hover {
+	background-position:-817px -148px;
+}
+

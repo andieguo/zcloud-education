@@ -1,0 +1,349 @@
+/* CSS Document */
+
+/* 对话框样式 */
+.dialog{
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:10000;
+}
+.backgroundDialog{
+	background: url(../../images/background.png) #666;
+	position:absolute;
+	opacity:0.5;
+	filter: Alpha(Opacity=50);
+}
+.dialogLayer{
+	background:url(../../images/backgroundLayer.png);
+	padding:5px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	z-index:10001;
+	position:absolute;
+	top:200px;
+}
+.dialogBox{
+	background:#fff;
+	border: 1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	margin:0 auto;
+	font-size:14px;
+}
+.dialogBox .title{
+	border-bottom:1px solid #ccc;
+	cursor:move;
+	line-height:32px;
+	padding:0 10px;
+}
+.dialogBox .title h1{
+	font-weight:bold;
+	font-size:14px;
+	float:left;
+}
+.dialogBox .title .close{
+	float:right;
+	cursor:pointer;
+	font-size:12px;
+	color:#08c;
+}
+
+
+/* 切换标签 */
+.tagNavi{
+	border-bottom:1px solid #ccc;
+	height:36px;
+	position:relative;
+}
+.tagNavi li{
+	float:left;
+	font-size:14px;
+	margin-left:10px;
+	position:relative;
+	top:9px;
+}
+.tagNavi li a{
+	display:block;
+	width:100px;
+	text-align:center;
+	padding-top:7px;
+	height:19px;
+	border:1px solid #ccc;
+	background-color:#e4f1f7;
+	-moz-border-radius:3px 3px 0 0;
+	border-radius:3px 3px 0 0;
+	color:#69c;
+}
+.tagNavi li a:hover{
+	text-decoration:none;
+}
+.tagNavi li.current{
+	top:6px;
+}
+.tagNavi li.current a{
+	padding-top:10px;
+	height:20px;
+	border-color: #ccc;
+	border-style: solid;
+	border-width:1px 1px 0 1px;
+	background-color:#fff;
+	color:#333;
+}
+
+/* 回溯添加线索 */
+.dialogBox.addClue {
+	width:560px;
+}
+.dialogBox.caseCreate{
+	width:950px !important;
+}
+.dialogBox.addClue .box,
+.dialogBox.delBox .box {
+	line-height:32px;
+	clear:both;
+	padding:10px 0;
+}
+.dialogBox.delBox .box{
+	border-top:1px dotted #ccc;
+}
+.dialogBox.addClue .box dt,
+.dialogBox.delBox .box dt {
+	float:left;
+	width:120px !important;
+	text-align:right;
+	color:#999;
+}
+.dialogBox.delBox .box dt{
+	width:80px;
+}
+.dialogBox.addClue .box dd,
+.dialogBox.delBox .box dd {
+	margin-left:120px;
+	_margin-left:0;
+}
+
+.dialogBox.addClue .box dd .error {
+	float:right;
+	width:130px;
+	line-height:26px;
+	color:#F93;
+	padding:0 4px 0 30px;
+	background:url(../../images/iconform.gif) no-repeat 2px -174px #e2e2e2;
+	border:1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	position: absolute;
+	left:390px;
+	z-index:100px;
+	*height:1%;
+	top:0px;
+}
+.dialogBox.addClue .box dd .error .arrow{
+	height: 25px;
+	width: 10px;
+	overflow: hidden;
+	position: absolute;
+	left: -10px;
+}
+
+.dialogBox.addClue .box dd .error .arrow .arrline,
+.dialogBox.addClue .box dd .error .arrow span{
+	display: block;
+	font-family: "SimSun";
+	font-size: 21px;
+	height: 25px;
+	overflow: hidden;
+	color: #ccc;
+	font-style: normal;
+	font-weight: normal;
+}
+.dialogBox.addClue .box dd .error .arrow span{
+	margin: -25px 0 0 1px;
+	color: #e2e2e2;
+}
+
+.dialogBox.addClue .box dd .text{
+	display: block;
+	float:left;
+}
+.dialogBox.addClue .box dd .text input {
+	padding:0 8px;
+	line-height:28px \9;
+	height:28px;
+	width:220px;
+}
+.dialogBox.addClue .box dd .textArea {
+	display: inline-block;
+	padding:0 8px;
+	line-height:28px;
+	width:360px;
+	height:56px;
+}
+.dialogBox.addClue .box dd .textArea textarea{
+	line-height:28px;
+	width:360px;
+	height:56px;
+	border:none;
+}
+.dialogBox.addClue .box dd .text .file_btn{
+	display:block;
+	color:#333;
+	padding:0 8px;
+	line-height:28px;
+	border-left:1px solid #ccc;
+	float: right;
+}
+.dialogBox.addClue .box dd .text a:hover{
+	text-decoration:none;
+}
+.dialogBox.addClue .box dd .text .file_uploader {
+	position:absolute;
+	left:0;
+	top:0;
+	width:285px;
+	padding:0;
+	cursor:pointer;
+	filter: Alpha(Opacity=0);
+	opacity:0;
+}
+
+.dialogBox.addClue .box dd .submitBtn,
+.dialogBox.addClue .box dd .resetBtn,
+.dialogBox.delBox .box dd .submitBtn,
+.dialogBox.delBox .box dd .resetBtn{
+	margin-right:15px;
+	float:left;
+	width:75px;
+	height:30px;
+	background:url(../../images/iconBtn.png) no-repeat;
+	background-position:0 -401px;
+	padding:0 !important;
+}
+.dialogBox.addClue .box dd .resetBtn,
+.dialogBox.delBox .box dd .resetBtn{
+	background-position:0 -467px;
+}
+.dialogBox.addClue .box dd .submitBtn input,
+.dialogBox.addClue .box dd .resetBtn input,
+.dialogBox.delBox .box dd .submitBtn input,
+.dialogBox.delBox .box dd .resetBtn input{
+	border:none;
+	background-color:transparent;
+	cursor:pointer;
+	width:75px;
+	height:30px;
+	line-height:30px;
+	text-align: center;
+	font-weight:bold;
+	color:#fff;
+}
+.dialogBox.addClue .box dd .resetBtn input,
+.dialogBox.delBox .box dd .resetBtn input{
+	color:#333;
+}
+.dialogBox.addClue .selectbox {
+	border:none;
+	background-image:url(../../images/iconBtn.gif);
+	background-position:218px -58px;
+	background-repeat:no-repeat;
+	background-color:transparent;
+	cursor:pointer;
+	width:220px;
+	height:28px;
+	line-height:28px;
+	padding:0 8px;
+}
+.dialogBox.addClue .selectbox-wrapper {
+	position:absolute;
+	left:0px;
+	top:28px;
+	width:236px !important;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.dialogBox.addClue .selectbox-wrapper li {
+	margin:1px;
+	display:block;
+	color:#666;
+	height:28px;
+	line-height:28px;
+	padding:0 0 0 8px;
+	font-size:14px;
+	cursor:pointer;
+}
+.dialogBox.addClue .selectbox-wrapper li.current {
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+
+/* 删除层 */
+.dialogBox.delBox{
+	width:320px;
+}
+.dialogBox.delBox .p{
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	padding:20px 0;
+}
+
+
+/* 协议 */
+.dialogBox .protocolSel {
+	display:block;
+	width:80px;
+	line-height: 26px;
+	height: 24px;
+	padding: 0 8px;
+	background: url(../../images/iconBtn.png) 80px -60px no-repeat;
+	cursor: pointer;
+}
+.dialogBox .protocolbox {
+	z-index:50;
+}
+.dialogBox .setCheckbox {
+	border-bottom:1px solid #ccc;
+	_height:20px;
+	_padding-top:6px;
+}
+.dialogBox .setCheckbox span {
+	float:right;
+	margin:0 10px 0 0;
+}
+.dialogBox .protocol {
+	top:25px !important;
+	left:0 !important;
+	right:auto !important;
+	font-size:12px;
+}
+
+.dialogBox .check {
+	position:absolute;
+	top:8px;
+	left:4px;
+}
+.dialogBox .save {
+	display:block;
+	width:85px;
+	margin-right:10px;
+	float:left;
+	background:url(../../images/iconBtn.png) no-repeat 0 -110px;
+}
+.dialogBox .save input {
+	background-color:transparent;
+	border:none;
+	height:35px;
+	width:85px;
+	color:#fff;
+	font-weight:bold;
+	font-size:14px;
+	cursor:pointer;
+}
+
+.dialogBox .dateTime input,
+.dialogBox .dateTime2 input{
+	background-position: 218px 7px !important;
+}

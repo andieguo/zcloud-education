@@ -1,0 +1,12 @@
+/* CSS Document */
+
+/* 调用样式表单 */
+@import url("../base.css");
+@import url("../layout/recallSearch.css");
+@import url("../module/header.css");
+@import url("../module/title.css");
+@import url("../module/pageSkin.css");
+@import url("../module/navi002.css");
+@import url("../module/statisticsSearch.css");
+@import url("../module/listSearch.css");
+@import url("../module/page.css");

@@ -1,0 +1,102 @@
+/* CSS Document */
+
+/* 登录页面样式 */
+#wrapper {
+	background: url(../../images/backgroundLogin.jpg) #0e3e86 no-repeat center top;
+}
+#login {
+	background: url(../../images/backgroundLoginbox.png) no-repeat center top;
+	width:368px;
+	height:300px;
+	margin:160px auto 0;
+	padding-top:140px;
+}
+.loginSuper{
+	background-image: url(../../images/backgroundSuperLoginbox.png) !important;
+}
+.text input,
+.password input,
+.select .selectbox {
+	padding:0 0 0 30px;
+	width:250px;
+	height:36px;
+	line-height:36px \9;
+	font-size:14px;
+	color:#999;
+}
+.textInput{
+	color:#333 !important;
+}
+.text, .password, .select {
+	background: url(../../images/iconLogin.gif) no-repeat #fff;
+	width:280px;
+	margin:0 auto;
+}
+.error{
+	width:280px;
+	margin:0 auto;
+	line-height:26px;
+	height:26px;
+	color:#3a5999;
+	text-align: right;
+}
+.text {
+	background-position: 5px 9px;
+}
+.password {
+	background-position: 5px -59px;
+}
+.select {
+	background-position: 5px -128px;
+	z-index:1;
+}
+.selectbox {
+	background:url(../../images/iconBtn.png) 260px -54px no-repeat;
+	cursor:pointer;
+}
+.select .selectbox-wrapper {
+	position:absolute;
+	left:0px;
+	top:36px;
+	width:280px !important;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #ccc;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.select .selectbox-wrapper li {
+	margin:1px;
+	display:block;
+	color:#666;
+	height:32px;
+	line-height:32px;
+	padding:0 0 0 30px;
+	font-size:14px;
+	cursor:pointer;
+}
+.select .selectbox-wrapper li.current {
+	background-color:#08c;
+	color:#fff;
+	text-decoration:none;
+}
+
+.submit {
+	background:url(../../images/iconBtn.png) 0 0 no-repeat;
+	width:102px;
+	height:42px;
+	margin:35px auto 0;
+}
+
+.loginSuper .submit{
+	margin:25px auto 0;
+}
+.submit input {
+	background-color:transparent;
+	color:#fff;
+	border:none;
+	width:102px;
+	height:42px;
+	line-height:42px;
+	font-size:14px;
+	font-weight:bold;
+}

@@ -1,0 +1,89 @@
+/* CSS Document */
+
+/* 网络综合资源库导航 */
+#naviWebBank{
+	background:url(../../images/naviWebBank.png) no-repeat 0 0;
+	height:132px;
+}
+#naviWebBank .box{
+	width:896px;
+	margin:0 auto;
+	padding-top:16px;
+}
+#naviWebBank .box li{
+	width:112px;
+	float:left;
+}
+#naviWebBank .box li a{
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+	_position:relative;
+	display:block;
+	width:112px;
+	height:25px;
+	padding-top:75px;
+	margin:0 auto;
+	background:url(../../images/naviWebBank.png) no-repeat;
+}
+#naviWebBank .box li a:hover{
+	text-decoration:none;
+}
+
+#naviWebBank .box li .virtualIdentity{
+	background-position:-21px -280px;
+}
+#naviWebBank .box li .contact{
+	background-position:-135px -280px;
+}
+#naviWebBank .box li .password{
+	background-position:-249px -280px;
+}
+#naviWebBank .box li .approve{
+	background-position:-362px -280px;
+}
+#naviWebBank .box li .regInfo{
+	background-position:-476px -280px;
+}
+#naviWebBank .box li .MACAddress{
+	background-position:-590px -280px;
+}
+#naviWebBank .box li .webmaster{
+	background-position:-703px -280px;
+}
+#naviWebBank .box li .diary{
+	background-position:-817px -280px;
+}
+
+#naviWebBank .box li.cur .virtualIdentity,
+#naviWebBank .box li .virtualIdentity:hover{
+	background-position:-21px -148px;
+}
+#naviWebBank .box li.cur .contact,
+#naviWebBank .box li .contact:hover{
+	background-position:-135px -148px;
+}
+#naviWebBank .box li.cur .password,
+#naviWebBank .box li .password:hover{
+	background-position:-249px -148px;
+}
+#naviWebBank .box li.cur .approve,
+#naviWebBank .box li .approve:hover{
+	background-position:-362px -148px;
+}
+#naviWebBank .box li.cur .regInfo,
+#naviWebBank .box li .regInfo:hover{
+	background-position:-476px -148px;
+}
+#naviWebBank .box li.cur .MACAddress,
+#naviWebBank .box li .MACAddress:hover{
+	background-position:-590px -148px;
+}
+#naviWebBank .box li.cur .webmaster,
+#naviWebBank .box li .webmaster:hover{
+	background-position:-703px -148px;
+}
+#naviWebBank .box li.cur .diary,
+#naviWebBank .box li .diary:hover{
+	background-position:-817px -148px;
+}
