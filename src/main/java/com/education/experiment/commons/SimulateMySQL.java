@@ -13,18 +13,15 @@ import java.util.Map;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-
 public class SimulateMySQL {
 	private static SimulateMySQL instance;
 	private Map<String, UserBean> users = new HashMap<String, UserBean>();
-	private final File file = new File(SimulateMySQL.class.getResource("/")
-			.getPath() + "mysql.db");
+	private final File file = new File(SimulateMySQL.class.getResource("/").getPath() + "mysql.db");
 
 	private SimulateMySQL() {
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new InputStreamReader(new FileInputStream(
-					file), "UTF-8"));
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] split = line.split("\\|");
@@ -68,8 +65,7 @@ public class SimulateMySQL {
 	public synchronized void writeIntoMySQL(UserBean ub) {
 		BufferedWriter bw = null;
 		try {
-			bw = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(file, true), "UTF-8"));
+			bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), "UTF-8"));
 			String content = "\n" + ub.getUserId() + "|";
 			content += ub.getUserPassWd() + "|";
 			content += ub.getUserName() + "|";

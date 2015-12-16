@@ -42,21 +42,17 @@ public class WeixinParsingServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	public WeixinParsingServlet() {
 		super();
 	}
 
 	/*
-	 * Map任务,主要执行的操作是从数据库中读取微信任务信息，然后从分析条件文件里读取信息，把这些分析数据准备信息先读取到内存当中,
-	 * 然后开始逐行读取数据文件信息，并开始分析。
+	 * Map任务,主要执行的操作是从数据库中读取微信任务信息，然后从分析条件文件里读取信息，把这些分析数据准备信息先读取到内存当中, 然后开始逐行读取数据文件信息，并开始分析。
 	 */
-	public static class WeixinMapper extends
-			Mapper<LongWritable, Text, Text, Text> {
-		private static final SimpleDateFormat sdf = new SimpleDateFormat(
-				"yyyy-MM-dd HH:mm:ss");
+	public static class WeixinMapper extends Mapper<LongWritable, Text, Text, Text> {
+		private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		private static final byte[] lock = new byte[0];
 		private static Map<String, WeixinParsingBean> parsingMap = null;
 		private static Map<String, WeixinUserBean> weixinuserMap = null;
@@ -75,16 +71,13 @@ public class WeixinParsingServlet extends HttpServlet {
 					try {
 						// 开始读取分析数据文件
 						fs = FileSystem.get(context.getConfiguration());
-						FileStatus[] uploadparsing = fs
-								.listStatus(new Path(
-										"/tomcat/experiment/weixincloud/uploadparsing"));
+						FileStatus[] uploadparsing = fs.listStatus(new Path("/tomcat/experiment/weixincloud/uploadparsing"));
 						for (FileStatus ele : uploadparsing) {
 							FSDataInputStream fsdis = fs.open(ele.getPath());
-							String fileName = ele.getPath().getName()
-									.split("\\.")[0];
-							BufferedReader br = new BufferedReader(
-									new InputStreamReader(fsdis, "UTF-8"));
+							String fileName = ele.getPath().getName().split("\\.")[0];
+							BufferedReader br = new BufferedReader(new InputStreamReader(fsdis, "UTF-8"));
 							String line = null;
+							// 以下数据为上传的分析条件数据
 							// timePoint:2013-03-05 13:57:40 durationTime:56
 							// gender:男男
 							// isFriend:否 ageSpan:22至22 vocation:null
@@ -95,18 +88,11 @@ public class WeixinParsingServlet extends HttpServlet {
 									String[] original = line.split("\t");
 									if (original.length == 8) {
 										if (!original[0].contains("null")) {
-											wpb.setTimePoint(sdf
-													.parse(original[0]
-															.substring(original[0]
-																	.indexOf(":") + 1))
-													.getTime());
+											wpb.setTimePoint(sdf.parse(original[0].substring(original[0].indexOf(":") + 1)).getTime());
 										}
 
-										if (!original[1].split(":")[1]
-												.equals("null")) {
-											wpb.setDurationTime(Integer
-													.parseInt(original[1]
-															.split(":")[1]));
+										if (!original[1].split(":")[1].equals("null")) {
+											wpb.setDurationTime(Integer.parseInt(original[1].split(":")[1]));
 										}
 
 										String gender = original[2].split(":")[1];
@@ -124,13 +110,10 @@ public class WeixinParsingServlet extends HttpServlet {
 											}
 										}
 
-										if (!original[3].split(":")[1]
-												.equals("null")) {
-											if (original[3].split(":")[1]
-													.equals("是")) {
+										if (!original[3].split(":")[1].equals("null")) {
+											if (original[3].split(":")[1].equals("是")) {
 												wpb.setFriend("true");
-											} else if (original[3].split(":")[1]
-													.equals("否")) {
+											} else if (original[3].split(":")[1].equals("否")) {
 												wpb.setFriend("false");
 											} else {
 												wpb.setFriend("ALL");
@@ -139,28 +122,18 @@ public class WeixinParsingServlet extends HttpServlet {
 
 										String ageSpan = original[4].split(":")[1];
 										if (!ageSpan.equals("null")) {
-											wpb.setMinAge(Integer
-													.parseInt(ageSpan
-															.split("至")[0]));
-											wpb.setMaxAge(Integer
-													.parseInt(ageSpan
-															.split("至")[1]));
+											wpb.setMinAge(Integer.parseInt(ageSpan.split("至")[0]));
+											wpb.setMaxAge(Integer.parseInt(ageSpan.split("至")[1]));
 										}
 
-										if (!"null".equals(original[5]
-												.split(":")[1])) {
-											wpb.setVocations(original[5]
-													.split(":")[1]);
+										if (!"null".equals(original[5].split(":")[1])) {
+											wpb.setVocations(original[5].split(":")[1]);
 										}
-										if (!"null".equals(original[6]
-												.split(":")[1])) {
-											wpb.setCommunicationPlace(original[6]
-													.split(":")[1].split(","));
+										if (!"null".equals(original[6].split(":")[1])) {
+											wpb.setCommunicationPlace(original[6].split(":")[1].split(","));
 										}
-										if (!"null".equals(original[7]
-												.split(":")[1])) {
-											wpb.setKeywords(original[7]
-													.split(":")[1].split(","));
+										if (!"null".equals(original[7].split(":")[1])) {
+											wpb.setKeywords(original[7].split(":")[1].split(","));
 										}
 									}
 									parsingMap.put(fileName, wpb);
@@ -170,12 +143,10 @@ public class WeixinParsingServlet extends HttpServlet {
 							}
 							fsdis.close();
 						}
-						// 读取数据库的微信任务信息
-						Path path = new Path(
-								"/tomcat/experiment/weixincloud/tmp/DERBY.db");
+						// 读取数据库的微信用户信息
+						Path path = new Path("/tomcat/experiment/weixincloud/tmp/weixin_info.mysql");
 						FSDataInputStream fsdis = fs.open(path);
-						BufferedReader br = new BufferedReader(
-								new InputStreamReader(fsdis, "UTF-8"));
+						BufferedReader br = new BufferedReader(new InputStreamReader(fsdis, "UTF-8"));
 						String line = null;
 						while ((line = br.readLine()) != null) {
 							String[] array = line.split("\t");
@@ -203,8 +174,7 @@ public class WeixinParsingServlet extends HttpServlet {
 		}
 
 		// 数据文件里的每一个行数据都会经过该方法的处理,这里主要分析了每条数据是不是符合用户定义的分析条件,如果符合则把该数据发给reduce任务
-		public void map(LongWritable key, Text value, Context context)
-				throws IOException, InterruptedException {
+		public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 			// {10001,10084} \t 2013-02-16 19:22:46 \t 2013-02-16 21:32:45 \t
 			// 北京市十六中学
 			// 　\t 办好了？
@@ -214,27 +184,22 @@ public class WeixinParsingServlet extends HttpServlet {
 					// 开始对每行数据进行逐条分析，看是不是满足用户定义的条件信息
 					long beginTime = sdf.parse(array[1]).getTime();
 					long endTime = sdf.parse(array[2]).getTime();
-					String[] ids = array[0].substring(
-							array[0].indexOf("{") + 1, array[0].indexOf("}"))
-							.split(",");
+					String[] ids = array[0].substring(array[0].indexOf("{") + 1, array[0].indexOf("}")).split(",");
 					if (ids.length == 2) {
-						for (Map.Entry<String, WeixinParsingBean> me : parsingMap
-								.entrySet()) {
+						for (Map.Entry<String, WeixinParsingBean> me : parsingMap.entrySet()) {
 							if (me.getValue().getTimePoint() != 0L) {
 								if (beginTime < me.getValue().getTimePoint()) {
 									continue;
 								}
 							}
 							if (me.getValue().getDurationTime() != 0) {
-								if (endTime - beginTime < 1000L * me.getValue()
-										.getDurationTime() * 60) {
+								if (endTime - beginTime < 1000L * me.getValue().getDurationTime() * 60) {
 									continue;
 								}
 							}
 							if (me.getValue().getCommunicationPlace() != null) {
 								boolean pass = false;
-								for (String ele : me.getValue()
-										.getCommunicationPlace()) {
+								for (String ele : me.getValue().getCommunicationPlace()) {
 									if (ele.trim().equals(array[3].trim())) {
 										pass = true;
 										break;
@@ -258,80 +223,52 @@ public class WeixinParsingServlet extends HttpServlet {
 							}
 							if (!(me.getValue().getGender().equals("ALL"))) {
 								if (me.getValue().getGender().equals("00")) {
-									if (!(weixinuserMap.get(ids[0]).getSex()
-											.equals("女"))) {
+									if (!(weixinuserMap.get(ids[0]).getSex().equals("女"))) {
 										continue;
 									}
-									if (!(weixinuserMap.get(ids[1]).getSex()
-											.equals("女"))) {
+									if (!(weixinuserMap.get(ids[1]).getSex().equals("女"))) {
 										continue;
 									}
-								} else if (me.getValue().getGender()
-										.equals("11")) {
-									if (!(weixinuserMap.get(ids[0]).getSex()
-											.equals("男"))) {
+								} else if (me.getValue().getGender().equals("11")) {
+									if (!(weixinuserMap.get(ids[0]).getSex().equals("男"))) {
 										continue;
 									}
-									if (!(weixinuserMap.get(ids[1]).getSex()
-											.equals("男"))) {
+									if (!(weixinuserMap.get(ids[1]).getSex().equals("男"))) {
 										continue;
 									}
-								} else if (me.getValue().getGender()
-										.equals("01")) {
-									if (weixinuserMap
-											.get(ids[0])
-											.getSex()
-											.equals(weixinuserMap.get(ids[1])
-													.getSex())) {
+								} else if (me.getValue().getGender().equals("01")) {
+									if (weixinuserMap.get(ids[0]).getSex().equals(weixinuserMap.get(ids[1]).getSex())) {
 										continue;
 									}
 								}
 							}
 							if (!(me.getValue().getFriend().equals("ALL"))) {
 								if (me.getValue().getFriend().equals("true")) {
-									if (!(weixinuserMap.get(ids[0])
-											.getFriends().contains(ids[1]))) {
+									if (!(weixinuserMap.get(ids[0]).getFriends().contains(ids[1]))) {
 										continue;
 									}
-									if (!(weixinuserMap.get(ids[1])
-											.getFriends().contains(ids[0]))) {
+									if (!(weixinuserMap.get(ids[1]).getFriends().contains(ids[0]))) {
 										continue;
 									}
-								} else if (me.getValue().getFriend()
-										.equals("false")) {
-									if (weixinuserMap.get(ids[0]).getFriends()
-											.contains(ids[1])
-											&& weixinuserMap.get(ids[1])
-													.getFriends()
-													.contains(ids[0])) {
+								} else if (me.getValue().getFriend().equals("false")) {
+									if (weixinuserMap.get(ids[0]).getFriends().contains(ids[1]) && weixinuserMap.get(ids[1]).getFriends().contains(ids[0])) {
 										continue;
 									}
 								}
 							}
-							if (me.getValue().getMinAge() > 0
-									&& me.getValue().getMaxAge() > 0) {
-								if (weixinuserMap.get(ids[0]).getAge() < me
-										.getValue().getMinAge()
-										|| weixinuserMap.get(ids[0]).getAge() > me
-												.getValue().getMaxAge()) {
+							if (me.getValue().getMinAge() > 0 && me.getValue().getMaxAge() > 0) {
+								if (weixinuserMap.get(ids[0]).getAge() < me.getValue().getMinAge() || weixinuserMap.get(ids[0]).getAge() > me.getValue().getMaxAge()) {
 									continue;
 								}
-								if (weixinuserMap.get(ids[1]).getAge() < me
-										.getValue().getMinAge()
-										|| weixinuserMap.get(ids[1]).getAge() > me
-												.getValue().getMaxAge()) {
+								if (weixinuserMap.get(ids[1]).getAge() < me.getValue().getMinAge() || weixinuserMap.get(ids[1]).getAge() > me.getValue().getMaxAge()) {
 									continue;
 								}
 							}
 							if (me.getValue().getVocations() != null) {
-								if (!(me.getValue().getVocations()
-										.contains(weixinuserMap.get(ids[0])
-												.getVocation()))) {
+								if (!(me.getValue().getVocations().contains(weixinuserMap.get(ids[0]).getVocation()))) {
 									continue;
 								}
-								if (!(me.getValue().getVocations()
-										.contains(weixinuserMap.get(ids[1])
-												.getVocation()))) {
+								if (!(me.getValue().getVocations().contains(weixinuserMap.get(ids[1]).getVocation()))) {
 									continue;
 								}
 							}
@@ -350,12 +287,10 @@ public class WeixinParsingServlet extends HttpServlet {
 	}
 
 	/*
-	 * reduce任务，主要用来收集map任务过程中产生的符合条件的结果信息，然后对这些结果进行用户归并，并把这些结果信息写入到 // *
-	 * hadoop的HDFS文件系统当中。
+	 * reduce任务，主要用来收集map任务过程中产生的符合条件的结果信息，然后对这些结果进行用户归并，并把这些结果信息写入到 // * hadoop的HDFS文件系统当中。
 	 */
 	public static class WeixinReducer extends Reducer<Text, Text, Text, Text> {
-		public void reduce(Text key, Iterable<Text> values, Context context)
-				throws IOException, InterruptedException {
+		public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
 			String content = "";
 			// 遍历对结果进行归并
 			for (Text value : values) {
@@ -364,8 +299,7 @@ public class WeixinParsingServlet extends HttpServlet {
 			// context.write(new Text(title), new Text(content));
 			// 把结果写入到HDFS中
 			FileSystem hdfs = FileSystem.get(context.getConfiguration());
-			Path path = new Path("/tomcat/experiment/weixincloud/results/"
-					+ key.toString() + ".result");
+			Path path = new Path("/tomcat/experiment/weixincloud/results/" + key.toString() + ".result");
 			if (hdfs.exists(path)) {
 				hdfs.delete(path, true);
 			}
@@ -377,16 +311,13 @@ public class WeixinParsingServlet extends HttpServlet {
 	}
 
 	/*
-	 * 处理用户提交的分析微信数据的云计算请求，客户端提交任务后，服务端负责生成job信息，然后把这个job信息传递给hadoop集群，
-	 * 让hadoop集群开始执行分析任务.
+	 * 处理用户提交的分析微信数据的云计算请求，客户端提交任务后，服务端负责生成job信息，然后把这个job信息传递给hadoop集群， 让hadoop集群开始执行分析任务.
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else if (ub.getUserId().equals("admin")) {
 			generateUserFile();
 			FileSystem fs = FileSystem.get(conf);
@@ -414,14 +345,11 @@ public class WeixinParsingServlet extends HttpServlet {
 			try {
 				// 提交job到hadoop集群，并让集群开始执行该job.
 				job.submit();
-				request.getRequestDispatcher("/mrlink.jsp").forward(request,
-						response);
+				request.getRequestDispatcher("/mrlink.jsp").forward(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				request.getRequestDispatcher(
-						"/error.jsp?result=任务作业提交失败,请查看集群是否正常运行.").forward(
-						request, response);
+				request.getRequestDispatcher("/error.jsp?result=任务作业提交失败,请查看集群是否正常运行.").forward(request, response);
 			}
 		}
 	}
@@ -449,7 +377,7 @@ public class WeixinParsingServlet extends HttpServlet {
 			rs.close();
 			conn.close();
 			FileSystem hdfs = FileSystem.get(conf);
-			Path path = new Path("/tomcat/experiment/weixincloud/tmp/DERBY.db");
+			Path path = new Path("/tomcat/experiment/weixincloud/tmp/weixin_info.mysql");
 			if (hdfs.exists(path)) {
 				hdfs.delete(path, true);
 			}
@@ -461,7 +389,8 @@ public class WeixinParsingServlet extends HttpServlet {
 		}
 	}
 
-	public static void main(String[] args) throws ParseException {
+	public static void parse() throws Exception {
+		// 构造解析Map
 		Map<String, WeixinParsingBean> parsingMap = new HashMap<String, WeixinParsingBean>();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		WeixinParsingBean wpb = new WeixinParsingBean();
@@ -475,6 +404,7 @@ public class WeixinParsingServlet extends HttpServlet {
 		wpb.setTimePoint(sdf.parse("2013-03-01 11:18:35").getTime());
 		wpb.setVocations("无业,军人,体育");
 		parsingMap.put("xiaoshang", wpb);
+		// 构造用户数据MAP
 		Map<String, WeixinUserBean> weixinuserMap = new HashMap<String, WeixinUserBean>();
 		WeixinUserBean wub = new WeixinUserBean();
 		wub.setAge(25);
@@ -492,24 +422,22 @@ public class WeixinParsingServlet extends HttpServlet {
 		wub.setSex("男");
 		wub.setVocation("无业");
 		weixinuserMap.put("10071", wub);
+		//
 		String value = "{10001,10071}	2013-03-01 11:18:35	2013-03-01 12:46:20	北京市建欣园	　　“你好像不止一次这么问了吧？”男人绕起她一束长发，“既然心有怀疑，就该求证才是，他为什么会变成这样，你不想知道吗？";
 		String[] array = value.toString().split("\t");
 		if (array.length == 5) {
 			try {
 				long beginTime = sdf.parse(array[1]).getTime();
 				long endTime = sdf.parse(array[2]).getTime();
-				String[] ids = array[0].substring(array[0].indexOf("{") + 1,
-						array[0].indexOf("}")).split(",");
-				for (Map.Entry<String, WeixinParsingBean> me : parsingMap
-						.entrySet()) {
+				String[] ids = array[0].substring(array[0].indexOf("{") + 1, array[0].indexOf("}")).split(",");
+				for (Map.Entry<String, WeixinParsingBean> me : parsingMap.entrySet()) {
 					if (me.getValue().getTimePoint() != 0L) {
 						if (beginTime < me.getValue().getTimePoint()) {
 							continue;
 						}
 					}
 					if (me.getValue().getDurationTime() != 0) {
-						if (endTime - beginTime < 1000L * me.getValue()
-								.getDurationTime() * 60) {
+						if (endTime - beginTime < 1000L * me.getValue().getDurationTime() * 60) {
 							continue;
 						}
 					}
@@ -542,77 +470,52 @@ public class WeixinParsingServlet extends HttpServlet {
 					} else {
 						if (!(me.getValue().getGender().equals("ALL"))) {
 							if (me.getValue().getGender().equals("00")) {
-								if (!(weixinuserMap.get(ids[0]).getSex()
-										.equals("女"))) {
+								if (!(weixinuserMap.get(ids[0]).getSex().equals("女"))) {
 									continue;
 								}
-								if (!(weixinuserMap.get(ids[1]).getSex()
-										.equals("女"))) {
+								if (!(weixinuserMap.get(ids[1]).getSex().equals("女"))) {
 									continue;
 								}
 							} else if (me.getValue().getGender().equals("11")) {
-								if (!(weixinuserMap.get(ids[0]).getSex()
-										.equals("男"))) {
+								if (!(weixinuserMap.get(ids[0]).getSex().equals("男"))) {
 									continue;
 								}
-								if (!(weixinuserMap.get(ids[1]).getSex()
-										.equals("男"))) {
+								if (!(weixinuserMap.get(ids[1]).getSex().equals("男"))) {
 									continue;
 								}
 							} else if (me.getValue().getGender().equals("01")) {
-								if (weixinuserMap
-										.get(ids[0])
-										.getSex()
-										.equals(weixinuserMap.get(ids[1])
-												.getSex())) {
+								if (weixinuserMap.get(ids[0]).getSex().equals(weixinuserMap.get(ids[1]).getSex())) {
 									continue;
 								}
 							}
 						}
 						if (!(me.getValue().getFriend().equals("ALL"))) {
 							if (me.getValue().getFriend().equals("true")) {
-								if (!(weixinuserMap.get(ids[0]).getFriends()
-										.contains(ids[1]))) {
+								if (!(weixinuserMap.get(ids[0]).getFriends().contains(ids[1]))) {
 									continue;
 								}
-								if (!(weixinuserMap.get(ids[1]).getFriends()
-										.contains(ids[0]))) {
+								if (!(weixinuserMap.get(ids[1]).getFriends().contains(ids[0]))) {
 									continue;
 								}
-							} else if (me.getValue().getFriend()
-									.equals("false")) {
-								if (weixinuserMap.get(ids[0]).getFriends()
-										.contains(ids[1])
-										&& weixinuserMap.get(ids[1])
-												.getFriends().contains(ids[0])) {
+							} else if (me.getValue().getFriend().equals("false")) {
+								if (weixinuserMap.get(ids[0]).getFriends().contains(ids[1]) && weixinuserMap.get(ids[1]).getFriends().contains(ids[0])) {
 									continue;
 								}
 							}
 						}
-						if (me.getValue().getMinAge() > 0
-								&& me.getValue().getMaxAge() > 0) {
-							if (weixinuserMap.get(ids[0]).getAge() < me
-									.getValue().getMinAge()
-									|| weixinuserMap.get(ids[0]).getAge() > me
-											.getValue().getMaxAge()) {
+						if (me.getValue().getMinAge() > 0 && me.getValue().getMaxAge() > 0) {
+							if (weixinuserMap.get(ids[0]).getAge() < me.getValue().getMinAge() || weixinuserMap.get(ids[0]).getAge() > me.getValue().getMaxAge()) {
 								continue;
 							}
-							if (weixinuserMap.get(ids[1]).getAge() < me
-									.getValue().getMinAge()
-									|| weixinuserMap.get(ids[1]).getAge() > me
-											.getValue().getMaxAge()) {
+							if (weixinuserMap.get(ids[1]).getAge() < me.getValue().getMinAge() || weixinuserMap.get(ids[1]).getAge() > me.getValue().getMaxAge()) {
 								continue;
 							}
 						}
 						if (me.getValue().getVocations() != null) {
-							if (!(me.getValue().getVocations()
-									.contains(weixinuserMap.get(ids[0])
-											.getVocation()))) {
+							if (!(me.getValue().getVocations().contains(weixinuserMap.get(ids[0]).getVocation()))) {
 								continue;
 							}
-							if (!(me.getValue().getVocations()
-									.contains(weixinuserMap.get(ids[1])
-											.getVocation()))) {
+							if (!(me.getValue().getVocations().contains(weixinuserMap.get(ids[1]).getVocation()))) {
 								continue;
 							}
 						}
@@ -623,5 +526,9 @@ public class WeixinParsingServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public static void main(String[] args) throws ParseException {
+		generateUserFile();
 	}
 }

@@ -31,25 +31,22 @@ public class DownloadWeixinServlet extends HttpServlet {
 	/*
 	 * 处理用户提交的下载微信示例数据文件请求，服务端会从指定目录里下载该文件到tomcat的临时文件夹下，然后再传输给客户端该文件.
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 找到用户所选定的文件
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			File f = new File("/hadoop/tomcat/temp/weixindata.txt");
 			String dst = "/tomcat/experiment/sampledata/weixindata.txt";
-			// 开始从hadoop的HDFS上读取示例文件
+			// 开始从hadoop的HDFS上读取示例文件--并存储到本地的临时文件中
 			FileSystem fs = FileSystem.get(conf);
 			InputStream hadopin = null;
 			OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
 			Path hdfsPath = new Path(dst);
 			if (!fs.exists(hdfsPath)) {
-				request.getRequestDispatcher("/error.jsp?result=下载资源不存在!")
-						.forward(request, response);
+				request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
 			} else {
 				try {
 					hadopin = fs.open(hdfsPath);
@@ -64,9 +61,7 @@ public class DownloadWeixinServlet extends HttpServlet {
 				if (f.exists()) {
 					// 设置应答的相应消息头
 					response.setContentType("application/x-msdownload");
-					String str = "attachment;filename="
-							+ java.net.URLEncoder.encode("weixindata.txt",
-									"utf-8");
+					String str = "attachment;filename=" + java.net.URLEncoder.encode("weixindata.txt", "utf-8");
 					response.setHeader("Content-Disposition", str);
 					// 创建一 个输入流对象和指定的文件相关联
 					FileInputStream in = new FileInputStream(f);
@@ -82,8 +77,7 @@ public class DownloadWeixinServlet extends HttpServlet {
 					in.close();
 					out.close();
 				} else {
-					request.getRequestDispatcher("/error.jsp?result=下载资源不存在!")
-							.forward(request, response);
+					request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
 				}
 			}
 		}

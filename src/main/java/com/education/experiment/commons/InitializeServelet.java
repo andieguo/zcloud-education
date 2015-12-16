@@ -28,8 +28,7 @@ public class InitializeServelet extends HttpServlet {
 			// 建立显示的连接
 			conn.connect();
 			// BufferedReader输入流来读取URL的相应
-			in = new BufferedReader(
-					new InputStreamReader(conn.getInputStream()));
+			in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line;
 			String result = "";
 			while ((line = in.readLine()) != null) {

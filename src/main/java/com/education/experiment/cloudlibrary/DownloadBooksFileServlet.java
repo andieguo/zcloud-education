@@ -28,31 +28,24 @@ public class DownloadBooksFileServlet extends HttpServlet {
 	/**
 	 * 处理用户提交的下载课本的请求，服务端接受到该请求后，然后从HDFS上读取课本文件，先写入到tomcat的临时文件夹下，然后再回传给客户端.
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			// 获取客户端要下载的课本信息,根据课本信息从HDFS上读取指定的课本文件
-			String name = new String(request.getParameter("name").getBytes(
-					"ISO-8859-1"), "UTF-8");
-			String author = new String(request.getParameter("author").getBytes(
-					"ISO-8859-1"), "UTF-8");
+			String name = new String(request.getParameter("name").getBytes("ISO-8859-1"), "UTF-8");
+			String author = new String(request.getParameter("author").getBytes("ISO-8859-1"), "UTF-8");
 			File f = new File("/hadoop/tomcat/temp/" + name);
-			Path dst = new Path("/tomcat/experiment/librarycloud/books/"
-					+ author + "/" + name + ".book");
+			Path dst = new Path("/tomcat/experiment/librarycloud/books/" + author + "/" + name + ".book");
 			// 开始从HDFS读取课本文件
 			FileSystem fs = FileSystem.get(conf);
 			if (!fs.exists(dst)) {
-				request.getRequestDispatcher("/error.jsp?result=下载资源不存在!")
-						.forward(request, response);
+				request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
 			} else {
 				InputStream hadopin = null;
-				OutputStream bos = new BufferedOutputStream(
-						new FileOutputStream(f));
+				OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
 				try {
 					hadopin = fs.open(dst);
 					IOUtils.copyBytes(hadopin, bos, 4096, true);
@@ -66,8 +59,7 @@ public class DownloadBooksFileServlet extends HttpServlet {
 				if (f.exists()) {
 					// 设置应答的相应消息头
 					response.setContentType("application/x-msdownload");
-					String str = "attachment;filename="
-							+ java.net.URLEncoder.encode(realname, "utf-8");
+					String str = "attachment;filename=" + java.net.URLEncoder.encode(realname, "utf-8");
 					response.setHeader("Content-Disposition", str);
 					// 创建一 个输入流对象和指定的文件相关联
 					FileInputStream in = new FileInputStream(f);
@@ -83,8 +75,7 @@ public class DownloadBooksFileServlet extends HttpServlet {
 					in.close();
 					out.close();
 				} else {
-					request.getRequestDispatcher("/error.jsp?result=下载资源不存在!")
-							.forward(request, response);
+					request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
 				}
 			}
 		}

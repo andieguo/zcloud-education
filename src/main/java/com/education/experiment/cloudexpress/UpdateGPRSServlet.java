@@ -20,8 +20,7 @@ import com.education.experiment.commons.UserBean;
 public class UpdateGPRSServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	// private static final SimpleDateFormat sdf = new SimpleDateFormat(
 	// "yyyy-MM-dd HH:mm:ss");
@@ -33,8 +32,7 @@ public class UpdateGPRSServlet extends HttpServlet {
 	/**
 	 * 更新用户提交的GPRS信息操作，服务端接受客户端提交的GPRS信息，然后把这些信息更新到HDFS上，用于后期的数据处理
 	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置request编码，主要是为了处理普通输入框中的中文问题
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
@@ -43,7 +41,7 @@ public class UpdateGPRSServlet extends HttpServlet {
 			String result = null;
 			float longitude = 0.0f;
 			float latitude = 0.0f;
-			//获取客户端提交的GPRS信息
+			// 获取客户端提交的GPRS信息
 			try {
 				longitude = Float.parseFloat(request.getParameter("longitude"));
 				latitude = Float.parseFloat(request.getParameter("latitude"));
@@ -52,44 +50,36 @@ public class UpdateGPRSServlet extends HttpServlet {
 				result = "通信时长格式错误";
 			}
 			if (result != null) {
-				request.getRequestDispatcher(
-						"/error.jsp?result=" + result + "!").forward(request,
-						response);
+				request.getRequestDispatcher("/error.jsp?result=" + result + "!").forward(request, response);
 			} else {
-				//更新GPRS信息到HDFS上
+				// 更新GPRS信息到HDFS上
 				FileSystem hdfs = FileSystem.get(conf);
-				Path path = new Path(
-						"/tomcat/experiment/expresscloud/courier/courier.txt");
+				Path path = new Path("/tomcat/experiment/expresscloud/courier/courier.txt");
 				if (hdfs.exists(path)) {
 					FSDataInputStream fsdis = hdfs.open(path);
-					BufferedReader br = new BufferedReader(
-							new InputStreamReader(fsdis, "UTF-8"));
+					BufferedReader br = new BufferedReader(new InputStreamReader(fsdis, "UTF-8"));
 					String line = null;
 					StringBuffer sb = new StringBuffer();
 					boolean sign = false;
 					while ((line = br.readLine()) != null) {
 						String[] array = line.split("\t");
 						if (!sign && array[0].equals(ub.getUserId())) {
-							sb.append(array[0] + "\t" + longitude + ","
-									+ latitude + "\n");
+							sb.append(array[0] + "\t" + longitude + "," + latitude + "\n");
 							sign = true;
 						} else {
 							sb.append(line + "\n");
 						}
 					}
 					if (!sign) {
-						sb.append(ub.getUserId() + "\t" + longitude + ","
-								+ latitude + "\n");
+						sb.append(ub.getUserId() + "\t" + longitude + "," + latitude + "\n");
 					}
 					fsdis.close();
 					hdfs.delete(path, true);
 					FSDataOutputStream hdfsOut = hdfs.create(path);
-					hdfsOut.write(sb.toString().getBytes(
-							request.getCharacterEncoding()));
+					hdfsOut.write(sb.toString().getBytes(request.getCharacterEncoding()));
 					hdfsOut.close();
 				} else {
-					String line = ub.getUserId() + "\t" + longitude + ","
-							+ latitude + "\n";
+					String line = ub.getUserId() + "\t" + longitude + "," + latitude + "\n";
 					FSDataOutputStream hdfsOut = hdfs.create(path);
 					hdfsOut.write(line.getBytes(request.getCharacterEncoding()));
 					hdfsOut.close();
@@ -101,8 +91,7 @@ public class UpdateGPRSServlet extends HttpServlet {
 				}
 			}
 		} else {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
 }

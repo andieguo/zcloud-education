@@ -23,26 +23,21 @@ public class DeleteFileServlet extends HttpServlet {
 	/**
 	 * 处理用户提交的删除文件的请求,用户提交一个文件名给该方法，然后系统从HDFS上删除该名称的文件
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 找到用户所选定的文件
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			// 获取用户提交的文件名
-			String uuidname = new String(request.getParameter("filename")
-					.getBytes("ISO-8859-1"), "UTF-8");
-			String dst = "/tomcat/users/" + ub.getUserId() + "/files/"
-					+ uuidname;
+			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
+			String dst = "/tomcat/users/" + ub.getUserId() + "/files/" + uuidname;
 			// 开始删除文件
 			FileSystem fs = FileSystem.get(conf);
 			Path hdfsPath = new Path(dst);
 			if (!fs.exists(hdfsPath)) {
-				request.getRequestDispatcher("/error.jsp?result=刪除资源不存在!")
-						.forward(request, response);
+				request.getRequestDispatcher("/error.jsp?result=刪除资源不存在!").forward(request, response);
 			} else {
 				FileStatus stat = fs.getFileStatus(hdfsPath);
 				ub.setCloudSize(ub.getCloudSize() + stat.getLen());

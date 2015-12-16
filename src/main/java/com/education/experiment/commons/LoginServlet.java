@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 public class LoginServlet extends HttpServlet {
 	/**
 	 * 
@@ -24,16 +23,14 @@ public class LoginServlet extends HttpServlet {
 		super();
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String loginId = new String(request.getParameter("loginId").getBytes("ISO-8859-1"), Charset.defaultCharset());
 		String loginPwd = request.getParameter("loginPwd");
 		PrintWriter out = response.getWriter();
 		Connection conn;
 		try {
 			conn = BaseDao.getConnection();
-			PreparedStatement ps = conn
-					.prepareStatement("select * from USER_INFO WHERE ID = ? AND PASSWD = ?");
+			PreparedStatement ps = conn.prepareStatement("select * from USER_INFO WHERE ID = ? AND PASSWD = ?");
 			ps.setString(1, loginId);
 			ps.setString(2, loginPwd);
 			ResultSet rs = ps.executeQuery();

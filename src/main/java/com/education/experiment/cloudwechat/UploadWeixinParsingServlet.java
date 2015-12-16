@@ -16,8 +16,7 @@ import com.education.experiment.commons.UserBean;
 public class UploadWeixinParsingServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	public UploadWeixinParsingServlet() {
 		super();
@@ -26,8 +25,7 @@ public class UploadWeixinParsingServlet extends HttpServlet {
 	/**
 	 * 处理用户提交的分析条件信息，用户提交的条件表单给服务端，服务端会校验这些信息，校验通过的话，会以文件的信息把这些信息写入到HDFS当中去
 	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置request编码，主要是为了处理普通输入框中的中文问题
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
@@ -99,21 +97,15 @@ public class UploadWeixinParsingServlet extends HttpServlet {
 			}
 			// 开始往hadoop的HDFS上写入分析条件的文件
 			FileSystem hdfs = FileSystem.get(conf);
-			Path path = new Path(
-					"/tomcat/experiment/weixincloud/uploadparsing/"
-							+ ub.getUserId() + ".pars");
+			Path path = new Path("/tomcat/experiment/weixincloud/uploadparsing/" + ub.getUserId() + ".pars");
 			if (result != null) {
-				request.getRequestDispatcher(
-						"/error.jsp?result=" + result + "!").forward(request,
-						response);
+				request.getRequestDispatcher("/error.jsp?result=" + result + "!").forward(request, response);
 			} else {
 				if (hdfs.exists(path)) {
-					request.getRequestDispatcher("/error.jsp?result=上传的文件已存在!")
-							.forward(request, response);
+					request.getRequestDispatcher("/error.jsp?result=上传的文件已存在!").forward(request, response);
 				} else {
 					FSDataOutputStream hdfsOut = hdfs.create(path);
-					hdfsOut.write(sb.toString().getBytes(
-							request.getCharacterEncoding()));
+					hdfsOut.write(sb.toString().getBytes(request.getCharacterEncoding()));
 					hdfsOut.close();
 					// 写入完成
 					if (ub.getUserId().equals("admin")) {
@@ -124,8 +116,7 @@ public class UploadWeixinParsingServlet extends HttpServlet {
 				}
 			}
 		} else {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
 }

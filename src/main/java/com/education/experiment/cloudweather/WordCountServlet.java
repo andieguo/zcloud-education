@@ -20,15 +20,13 @@ import com.education.experiment.commons.HadoopConfiguration;
 
 public class WordCountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	public WordCountServlet() {
 		super();
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置request编码，主要是为了处理普通输入框中的中文问题
 		String[] args = new String[5];
 		request.setCharacterEncoding("UTF-8");
@@ -56,14 +54,11 @@ public class WordCountServlet extends HttpServlet {
 		// /tomcat/filter/patterns.txt
 		try {
 			ToolRunner.run(conf, new WordCount(), args);
-			request.getRequestDispatcher("/unlimit.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/unlimit.jsp").forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			request.getRequestDispatcher(
-					"/error.jsp?result=任务执行失败,请查看集群是否正常运行." + e.getMessage())
-					.forward(request, response);
+			request.getRequestDispatcher("/error.jsp?result=任务执行失败,请查看集群是否正常运行." + e.getMessage()).forward(request, response);
 		}
 	}
 }

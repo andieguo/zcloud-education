@@ -21,26 +21,21 @@ public class DeleteWeixinServlet extends HttpServlet {
 	/**
 	 * 处理用户提交的删除微信数据的请求，服务会根据用户提交的数据文件名称，然后从HDFS上的指定目录下删除该文件
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			// 获取到用户提交的文件名称
-			String uuidname = new String(request.getParameter("filename")
-					.getBytes("ISO-8859-1"), "UTF-8");
-			String dst = "/tomcat/experiment/weixincloud/uploaddata/"
-					+ uuidname;
+			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
+			String dst = "/tomcat/experiment/weixincloud/uploaddata/" + uuidname;
 			// 开始从HDFS上删除文件
 			FileSystem fs = FileSystem.get(conf);
 			Path hdfsPath = new Path(dst);
 			if (!fs.exists(hdfsPath)) {
-				request.getRequestDispatcher("/error.jsp?result=刪除资源不存在!")
-						.forward(request, response);
+				request.getRequestDispatcher("/error.jsp?result=刪除资源不存在!").forward(request, response);
 			} else {
 				fs.delete(hdfsPath, true);
 				// 删除文件结束.

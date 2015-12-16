@@ -20,8 +20,7 @@ import com.education.experiment.commons.UserBean;
 
 public class PreviewExpressResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	public PreviewExpressResultServlet() {
 	}
@@ -29,23 +28,19 @@ public class PreviewExpressResultServlet extends HttpServlet {
 	/**
 	 * 处理用户提交的查看自己的快递信息的请求，服务端接受到该请求后，会根据用户的ID信息去hdfs上读取相应的文件， 最后把文件的内容返回给客户端.
 	 * */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// request.setCharacterEncoding(Charset.defaultCharset().toString());
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			// 开始读取属于客户的快递信息文件
 			FileSystem fs = FileSystem.get(conf);
-			Path path = new Path("/tomcat/experiment/expresscloud/results/"
-					+ ub.getUserId());
+			Path path = new Path("/tomcat/experiment/expresscloud/results/" + ub.getUserId());
 			if (!fs.exists(path)) {
 				request.setAttribute("result", null);
-				request.getRequestDispatcher("/expressresult.jsp").forward(
-						request, response);
+				request.getRequestDispatcher("/expressresult.jsp").forward(request, response);
 			} else {
 				FileStatus[] files = fs.listStatus(path);
 				if (files.length > 0) {
@@ -55,21 +50,16 @@ public class PreviewExpressResultServlet extends HttpServlet {
 							fs.delete(file.getPath(), false);
 						}
 						if (ub.getUserId().equals("admin")) {
-							request.getRequestDispatcher(
-									"/unlimit.jsp?result=提取成功!").forward(
-									request, response);
+							request.getRequestDispatcher("/unlimit.jsp?result=提取成功!").forward(request, response);
 						} else {
-							request.getRequestDispatcher(
-									"/limited.jsp?result=提取成功!").forward(
-									request, response);
+							request.getRequestDispatcher("/limited.jsp?result=提取成功!").forward(request, response);
 						}
 					} else {
 						List<String> list = new ArrayList<String>();
 						for (FileStatus file : files) {
 							request.setAttribute("result", "");
 							FSDataInputStream fsdis = fs.open(file.getPath());
-							BufferedReader br = new BufferedReader(
-									new InputStreamReader(fsdis, "UTF-8"));
+							BufferedReader br = new BufferedReader(new InputStreamReader(fsdis, "UTF-8"));
 							String line = null;
 							while ((line = br.readLine()) != null) {
 								list.add(line);
@@ -79,13 +69,11 @@ public class PreviewExpressResultServlet extends HttpServlet {
 						}
 						// 读取快递文件结束，然后把快递信息封装到一个对象里返回给客户端
 						request.setAttribute("list", list);
-						request.getRequestDispatcher("/expressresult.jsp")
-								.forward(request, response);
+						request.getRequestDispatcher("/expressresult.jsp").forward(request, response);
 					}
 				} else {
 					request.setAttribute("result", null);
-					request.getRequestDispatcher("/expressresult.jsp").forward(
-							request, response);
+					request.getRequestDispatcher("/expressresult.jsp").forward(request, response);
 				}
 			}
 			// 2012-12

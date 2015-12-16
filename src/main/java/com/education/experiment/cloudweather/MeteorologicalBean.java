@@ -6,12 +6,10 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.WritableComparable;
 
-public class MeteorologicalBean implements
-		WritableComparable<MeteorologicalBean> {
+public class MeteorologicalBean implements WritableComparable<MeteorologicalBean> {
 	@Override
 	public String toString() {
-		return "MeteorologicalBean [maxTemp=" + maxTemp + ", minTemp="
-				+ minTemp + ", humidity=" + humidity + ", WSP=" + WSP + "]";
+		return "MeteorologicalBean [maxTemp=" + maxTemp + ", minTemp=" + minTemp + ", humidity=" + humidity + ", WSP=" + WSP + "]";
 	}
 
 	private float maxTemp;

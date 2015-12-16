@@ -58,17 +58,14 @@ public class UserBean {
 
 	@Override
 	public String toString() {
-		return "UserBean [userId=" + userId + ", userPassWd=" + userPassWd
-				+ ", userName=" + userName + ", phoneNumber=" + phoneNumber
-				+ ", remark=" + remark + ", cloudSize=" + cloudSize + "]";
+		return "UserBean [userId=" + userId + ", userPassWd=" + userPassWd + ", userName=" + userName + ", phoneNumber=" + phoneNumber + ", remark=" + remark + ", cloudSize=" + cloudSize + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((userName == null) ? 0 : userName.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
 

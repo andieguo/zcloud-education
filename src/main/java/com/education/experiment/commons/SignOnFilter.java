@@ -19,18 +19,15 @@ public class SignOnFilter implements Filter {
 		// TODO Auto-generated method stub
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		HttpServletRequest hreq = (HttpServletRequest) request;
 		HttpServletResponse hres = (HttpServletResponse) response;
 		HttpSession session = hreq.getSession();
 		if (session.getAttribute("user") == null) {
-			if (hreq.getRequestURI().equals(
-					hreq.getContextPath() + "/login.jsp")) {
+			if (hreq.getRequestURI().equals(hreq.getContextPath() + "/login.jsp")) {
 				chain.doFilter(request, response);
-			} else if (hreq.getRequestURI().equals(
-					hreq.getContextPath() + "/registerUser.jsp")) {
+			} else if (hreq.getRequestURI().equals(hreq.getContextPath() + "/registerUser.jsp")) {
 				chain.doFilter(request, response);
 			} else {
 				hres.sendRedirect(hreq.getContextPath() + "/login.jsp");

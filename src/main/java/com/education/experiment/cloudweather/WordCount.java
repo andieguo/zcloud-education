@@ -12,8 +12,7 @@ import org.apache.hadoop.util.*;
 
 public class WordCount extends Configured implements Tool {
 
-	public static class Map extends MapReduceBase implements
-			Mapper<LongWritable, Text, Text, IntWritable> {
+	public static class Map extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
 
 		static enum Counters {
 			INPUT_WORDS
@@ -36,9 +35,7 @@ public class WordCount extends Configured implements Tool {
 				try {
 					patternsFiles = DistributedCache.getLocalCacheFiles(job);
 				} catch (IOException ioe) {
-					System.err
-							.println("Caught exception while getting cached files: "
-									+ StringUtils.stringifyException(ioe));
+					System.err.println("Caught exception while getting cached files: " + StringUtils.stringifyException(ioe));
 				}
 				for (Path patternsFile : patternsFiles) {
 					parseSkipFile(patternsFile);
@@ -48,26 +45,18 @@ public class WordCount extends Configured implements Tool {
 
 		private void parseSkipFile(Path patternsFile) {
 			try {
-				BufferedReader fis = new BufferedReader(new FileReader(
-						patternsFile.toString()));
+				BufferedReader fis = new BufferedReader(new FileReader(patternsFile.toString()));
 				String pattern = null;
 				while ((pattern = fis.readLine()) != null) {
 					patternsToSkip.add(pattern);
 				}
 			} catch (IOException ioe) {
-				System.err
-						.println("Caught exception while parsing the cached file '"
-								+ patternsFile
-								+ "' : "
-								+ StringUtils.stringifyException(ioe));
+				System.err.println("Caught exception while parsing the cached file '" + patternsFile + "' : " + StringUtils.stringifyException(ioe));
 			}
 		}
 
-		public void map(LongWritable key, Text value,
-				OutputCollector<Text, IntWritable> output, Reporter reporter)
-				throws IOException {
-			String line = (caseSensitive) ? value.toString() : value.toString()
-					.toLowerCase();
+		public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
+			String line = (caseSensitive) ? value.toString() : value.toString().toLowerCase();
 
 			for (String pattern : patternsToSkip) {
 				line = line.replaceAll(pattern, "");
@@ -81,17 +70,13 @@ public class WordCount extends Configured implements Tool {
 			}
 
 			if ((++numRecords % 100) == 0) {
-				reporter.setStatus("Finished processing " + numRecords
-						+ " records " + "from the input file: " + inputFile);
+				reporter.setStatus("Finished processing " + numRecords + " records " + "from the input file: " + inputFile);
 			}
 		}
 	}
 
-	public static class Reduce extends MapReduceBase implements
-			Reducer<Text, IntWritable, Text, IntWritable> {
-		public void reduce(Text key, Iterator<IntWritable> values,
-				OutputCollector<Text, IntWritable> output, Reporter reporter)
-				throws IOException {
+	public static class Reduce extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
+		public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
 			int sum = 0;
 			while (values.hasNext()) {
 				sum += values.next().get();
@@ -117,8 +102,7 @@ public class WordCount extends Configured implements Tool {
 		List<String> other_args = new ArrayList<String>();
 		for (int i = 0; i < args.length; ++i) {
 			if ("-skip".equals(args[i])) {
-				DistributedCache
-						.addCacheFile(new Path(args[++i]).toUri(), conf);
+				DistributedCache.addCacheFile(new Path(args[++i]).toUri(), conf);
 				conf.setBoolean("wordcount.skip.patterns", true);
 			} else {
 				other_args.add(args[i]);

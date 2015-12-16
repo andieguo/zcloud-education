@@ -24,8 +24,7 @@ public class PreviewAllWeixinUserServlet extends HttpServlet {
 	/*
 	 * 处理用户提交的浏览所有微信用户信息的请求,服务端会读取数据信息，然后把这些信息返回给客户端
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// request.setCharacterEncoding(Charset.defaultCharset().toString());
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub != null) {
@@ -48,8 +47,7 @@ public class PreviewAllWeixinUserServlet extends HttpServlet {
 					wub.setVocation(rs.getString(5));
 					wub.setFriends(rs.getString(6));
 					if (wub.getFriends().length() > 70) {
-						wub.setSplitfriends(wub.getFriends().substring(0, 70)
-								+ "....");
+						wub.setSplitfriends(wub.getFriends().substring(0, 70) + "....");
 					} else {
 						wub.setSplitfriends(wub.getFriends());
 					}
@@ -60,17 +58,13 @@ public class PreviewAllWeixinUserServlet extends HttpServlet {
 				rs.close();
 				conn.close();
 				// 读取数据信息完成，然后返回给客户端
-				request.getRequestDispatcher("/weixinalluser.jsp").forward(
-						request, response);
+				request.getRequestDispatcher("/weixinalluser.jsp").forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-				request.getRequestDispatcher(
-						"/error.jsp?result=查询数据出现异常,请联系管理员!").forward(request,
-						response);
+				request.getRequestDispatcher("/error.jsp?result=查询数据出现异常,请联系管理员!").forward(request, response);
 			}
 		} else {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
 }

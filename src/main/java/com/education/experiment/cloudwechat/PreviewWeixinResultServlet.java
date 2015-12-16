@@ -20,8 +20,7 @@ import com.education.experiment.commons.UserBean;
 
 public class PreviewWeixinResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	public PreviewWeixinResultServlet() {
 	}
@@ -29,32 +28,25 @@ public class PreviewWeixinResultServlet extends HttpServlet {
 	/*
 	 * 处理用户提交的浏览微信分析结果文件的请求，服务端接受到请求以后，从HDF S读取MapReduce产生的结果数据文件，然后把信息返回给客户端
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// request.setCharacterEncoding(Charset.defaultCharset().toString());
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			// 开始读取HDFS上的结果数据文件
 			FileSystem fs = FileSystem.get(conf);
-			Path _success = new Path(
-					"/tomcat/experiment/weathercloud/results/_SUCCESS");
+			Path _success = new Path("/tomcat/experiment/weathercloud/results/_SUCCESS");
 			if (!fs.exists(_success)) {
 				request.setAttribute("result", null);
-				request.getRequestDispatcher("/weixinresult.jsp").forward(
-						request, response);
+				request.getRequestDispatcher("/weixinresult.jsp").forward(request, response);
 			} else {
 				request.setAttribute("result", "");
-				Path reduceRusult = new Path(
-						"/tomcat/experiment/weixincloud/results/"
-								+ ub.getUserId() + ".result");
+				Path reduceRusult = new Path("/tomcat/experiment/weixincloud/results/" + ub.getUserId() + ".result");
 				if (fs.exists(reduceRusult)) {
 					FSDataInputStream fsdis = fs.open(reduceRusult);
-					BufferedReader br = new BufferedReader(
-							new InputStreamReader(fsdis, "UTF-8"));
+					BufferedReader br = new BufferedReader(new InputStreamReader(fsdis, "UTF-8"));
 					String line = null;
 					// {10094,10099} 2013-03-05 10:11:24 2013-03-05 12:42:40
 					// 北京市西八家房
@@ -78,8 +70,7 @@ public class PreviewWeixinResultServlet extends HttpServlet {
 				} else {
 					request.setAttribute("result", null);
 				}
-				request.getRequestDispatcher("/weixinresult.jsp").forward(
-						request, response);
+				request.getRequestDispatcher("/weixinresult.jsp").forward(request, response);
 			}
 			// 2012-12
 			// AVG{Temp(max:21.760002℃/min:13.001612℃);Humidity(51.97549%);WSP(21.388714m/s)}

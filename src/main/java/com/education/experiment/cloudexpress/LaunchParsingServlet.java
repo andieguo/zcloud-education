@@ -22,30 +22,24 @@ public class LaunchParsingServlet extends HttpServlet {
 	}
 
 	// 处理用户提交的启动和停止请求，服务端会根据用户的请求对Hadoop集群进行相应的指令操作
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else if (ub.getUserId().equals("admin")) {
 			String sign = request.getParameter("sign");
 			if (sign.equals("1")) {
 				if (ept != null && ept.isAlive()) {
-					request.getRequestDispatcher("/error.jsp?result=分析任务已经启动!")
-							.forward(request, response);
+					request.getRequestDispatcher("/error.jsp?result=分析任务已经启动!").forward(request, response);
 				} else {
 					ept = new ExpressParsingThread();
 					ept.start();
-					request.getRequestDispatcher(
-							"/mrlink.jsp?result=已经成功发送启动命令").forward(request,
-							response);
+					request.getRequestDispatcher("/mrlink.jsp?result=已经成功发送启动命令").forward(request, response);
 				}
 			} else {
 				ept.termination();
-				request.getRequestDispatcher("/mrlink.jsp?result=已经成功发送终止命令")
-						.forward(request, response);
+				request.getRequestDispatcher("/mrlink.jsp?result=已经成功发送终止命令").forward(request, response);
 			}
 		}
 	}

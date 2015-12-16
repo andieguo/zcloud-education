@@ -47,8 +47,7 @@ public class RetrievalBooksServlet extends HttpServlet {
 	/*
 	 * 处理客户端查询课本的请求，服务端接收到该请求后，然后读取本地的索引文件，把查询到的结果返回给客户端.
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// request.setCharacterEncoding(Charset.defaultCharset().toString());
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
@@ -58,24 +57,18 @@ public class RetrievalBooksServlet extends HttpServlet {
 			pageNumber = Integer.parseInt(pageNumberStr);
 		}
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			if (!index.exists()) {
 				request.setAttribute("result", null);
-				request.getRequestDispatcher("/error.jsp?result=索引文件不存在!")
-						.forward(request, response);
+				request.getRequestDispatcher("/error.jsp?result=索引文件不存在!").forward(request, response);
 			} else {
 				// 获取客户端的查询对象
 				Book book = new Book();
-				book.setName(new String(request.getParameter("name").getBytes(
-						"iso-8859-1"), "UTF-8"));
-				book.setAuthor(new String(request.getParameter("author")
-						.getBytes("iso-8859-1"), "UTF-8"));
-				book.setPublishDate(new String(request.getParameter(
-						"publishdate").getBytes("iso-8859-1"), "UTF-8"));
-				book.setSection(new String(request.getParameter("section")
-						.getBytes("iso-8859-1"), "UTF-8"));
+				book.setName(new String(request.getParameter("name").getBytes("iso-8859-1"), "UTF-8"));
+				book.setAuthor(new String(request.getParameter("author").getBytes("iso-8859-1"), "UTF-8"));
+				book.setPublishDate(new String(request.getParameter("publishdate").getBytes("iso-8859-1"), "UTF-8"));
+				book.setSection(new String(request.getParameter("section").getBytes("iso-8859-1"), "UTF-8"));
 				request.setAttribute("book", book);
 				List<Book> list = null;
 				try {
@@ -87,14 +80,11 @@ public class RetrievalBooksServlet extends HttpServlet {
 					} else {
 						request.setAttribute("result", null);
 					}
-					request.getRequestDispatcher("/retrievalbooks.jsp")
-							.forward(request, response);
+					request.getRequestDispatcher("/retrievalbooks.jsp").forward(request, response);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-					request.getRequestDispatcher(
-							"/error.jsp?result=检索索引出现异常信息.").forward(request,
-							response);
+					request.getRequestDispatcher("/error.jsp?result=检索索引出现异常信息.").forward(request, response);
 				}
 			}
 			// 2012-12
@@ -103,8 +93,7 @@ public class RetrievalBooksServlet extends HttpServlet {
 	}
 
 	// 查询索引文件的方法，从索引文件里读取index文件，然后根据客户端提交的条件进行查询，把符合结果的数据返回
-	private List<Book> retrievalBooks(HttpServletRequest request, Book quote,
-			int pageNumber) throws Exception {
+	private List<Book> retrievalBooks(HttpServletRequest request, Book quote, int pageNumber) throws Exception {
 		List<String> list = new ArrayList<String>();
 		String keywords = "";
 		if (quote.getName() != null && !"".equals(quote.getName())) {
@@ -115,8 +104,7 @@ public class RetrievalBooksServlet extends HttpServlet {
 			list.add("author");
 			keywords += quote.getAuthor() + ",";
 		}
-		if (quote.getPublishDate() != null
-				&& !"".equals(quote.getPublishDate())) {
+		if (quote.getPublishDate() != null && !"".equals(quote.getPublishDate())) {
 			list.add("publishdate");
 			keywords += quote.getPublishDate() + ",";
 		}
@@ -131,8 +119,7 @@ public class RetrievalBooksServlet extends HttpServlet {
 		for (int index = 0; index < flags.length; index++) {
 			flags[index] = BooleanClause.Occur.MUST;
 		}
-		Query query = MultiFieldQueryParser.parse(Version.LUCENE_36,
-				keywordArray, fieldArray, flags, analyzer);
+		Query query = MultiFieldQueryParser.parse(Version.LUCENE_36, keywordArray, fieldArray, flags, analyzer);
 		bQuery.add(query, BooleanClause.Occur.MUST);
 
 		// 获取访问索引的接口,进行搜索
@@ -162,8 +149,7 @@ public class RetrievalBooksServlet extends HttpServlet {
 		ScoreDoc[] scoreDocs = tds.scoreDocs; // 搜索的结果列表
 		System.out.println(scoreDocs.length);
 		// 创建高亮器,使搜索的关键词突出显示
-		Formatter formatter = new SimpleHTMLFormatter("<font color='red'>",
-				"</font>");
+		Formatter formatter = new SimpleHTMLFormatter("<font color='red'>", "</font>");
 		Scorer fragmentScore = new QueryScorer(bQuery);
 		Highlighter highlighter = new Highlighter(formatter, fragmentScore);
 
@@ -177,32 +163,28 @@ public class RetrievalBooksServlet extends HttpServlet {
 			Document document = indexSearcher.doc(docID);
 			Book book = new Book();
 			String name = document.get("name");
-			String highlighterName = highlighter.getBestFragment(analyzer,
-					"name", name);
+			String highlighterName = highlighter.getBestFragment(analyzer, "name", name);
 			if (highlighterName == null) {
 				highlighterName = name;
 			}
 			book.setName(highlighterName);
 
 			String author = document.get("author");
-			String highlighterAuthor = highlighter.getBestFragment(analyzer,
-					"author", author);
+			String highlighterAuthor = highlighter.getBestFragment(analyzer, "author", author);
 			if (highlighterAuthor == null) {
 				highlighterAuthor = author;
 			}
 			book.setAuthor(highlighterAuthor);
 
 			String publishdate = document.get("publishdate");
-			String highlighterPublishdate = highlighter.getBestFragment(
-					analyzer, "publishdate", publishdate);
+			String highlighterPublishdate = highlighter.getBestFragment(analyzer, "publishdate", publishdate);
 			if (highlighterPublishdate == null) {
 				highlighterPublishdate = publishdate;
 			}
 			book.setPublishDate(highlighterPublishdate);
 
 			String section = document.get("sections");
-			String highlighterSections = highlighter.getBestFragment(analyzer,
-					"sections", section);
+			String highlighterSections = highlighter.getBestFragment(analyzer, "sections", section);
 
 			if (highlighterSections == null) {
 				if (section.length() > 150) {

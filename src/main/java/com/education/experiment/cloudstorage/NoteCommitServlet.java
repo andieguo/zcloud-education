@@ -29,19 +29,18 @@ public class NoteCommitServlet extends HttpServlet {
 	/*
 	 * 处理用户提交的日记信息，把用户填写的日志信息写入hadoop的HDFS文件系统当中去，一个日记写入一个文件
 	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		// 获取用户提交的信息
 		String noteName = request.getParameter("noteTitle");
 		String content = request.getParameter("noteCountent");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
-		System.out.println("content:"+content);
-		System.out.println("noteName:"+noteName);
+		System.out.println("content:" + content);
+		System.out.println("noteName:" + noteName);
 		FileSystem fs = FileSystem.get(conf);
 		if (ub != null) {
-			Path path = new Path("/tomcat/users/" + ub.getUserId() + "/notes/"+ noteName + ".note");
-			System.out.println("path:"+path);
+			Path path = new Path("/tomcat/users/" + ub.getUserId() + "/notes/" + noteName + ".note");
+			System.out.println("path:" + path);
 			if (fs.exists(path)) {
 				request.getRequestDispatcher("/error.jsp?result=文件已经存在!").forward(request, response);
 			} else {
@@ -61,10 +60,10 @@ public class NoteCommitServlet extends HttpServlet {
 				}
 			}
 		} else {
-			request.getRequestDispatcher("/login.jsp").forward(request,response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
-	
+
 	public static void main(String[] args) throws UnsupportedEncodingException, IOException {
 		Path path = new Path("/tomcat/users/admin/notes/hello.note");
 		Configuration conf = HadoopConfiguration.getConfiguration();

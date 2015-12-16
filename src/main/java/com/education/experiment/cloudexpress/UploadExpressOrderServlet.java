@@ -24,18 +24,15 @@ public class UploadExpressOrderServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
-	private static final SimpleDateFormat sdf = new SimpleDateFormat(
-			"yyyy-MM-dd HH:mm:ss");
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public UploadExpressOrderServlet() {
 		super();
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置request编码，主要是为了处理普通输入框中的中文问题
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
@@ -52,9 +49,7 @@ public class UploadExpressOrderServlet extends HttpServlet {
 				result = "经纬度数据格式错误";
 			}
 			if (result != null) {
-				request.getRequestDispatcher(
-						"/error.jsp?result=" + result + "!").forward(request,
-						response);
+				request.getRequestDispatcher("/error.jsp?result=" + result + "!").forward(request, response);
 			} else {
 				StringBuffer sb = new StringBuffer();
 				Date current = new Date();
@@ -73,16 +68,12 @@ public class UploadExpressOrderServlet extends HttpServlet {
 					sb.append("备注:null");
 				}
 				FileSystem hdfs = FileSystem.get(conf);
-				Path path = new Path(
-						"/tomcat/experiment/expresscloud/uploaddata/"
-								+ current.getTime() + ".txt");
+				Path path = new Path("/tomcat/experiment/expresscloud/uploaddata/" + current.getTime() + ".txt");
 				if (hdfs.exists(path)) {
-					request.getRequestDispatcher("/error.jsp?result=上传的文件已存在!")
-							.forward(request, response);
+					request.getRequestDispatcher("/error.jsp?result=上传的文件已存在!").forward(request, response);
 				} else {
 					FSDataOutputStream hdfsOut = hdfs.create(path);
-					hdfsOut.write(sb.toString().getBytes(
-							request.getCharacterEncoding()));
+					hdfsOut.write(sb.toString().getBytes(request.getCharacterEncoding()));
 					hdfsOut.close();
 					if (ub.getUserId().equals("admin")) {
 						response.sendRedirect("unlimit.jsp");
@@ -92,8 +83,7 @@ public class UploadExpressOrderServlet extends HttpServlet {
 				}
 			}
 		} else {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
 }

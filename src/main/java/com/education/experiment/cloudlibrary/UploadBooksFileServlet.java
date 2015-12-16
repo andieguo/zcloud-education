@@ -32,19 +32,16 @@ import com.education.experiment.commons.UserBean;
 public class UploadBooksFileServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	public UploadBooksFileServlet() {
 		super();
 	}
 
 	/**
-	 * 处理用户提交的上传书本的请求，服务端根据客户提交的书本名称，作者，出版日期等，然后把这些以文件的形式写入到HDFS中，
-	 * 写入完成后，并开始对书本建立索引。
+	 * 处理用户提交的上传书本的请求，服务端根据客户提交的书本名称，作者，出版日期等，然后把这些以文件的形式写入到HDFS中， 写入完成后，并开始对书本建立索引。
 	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置request编码，主要是为了处理普通输入框中的中文问题
 		request.setCharacterEncoding("utf-8");
 		// 这里对request进行封装，RequestContext提供了对request多个访问方法
@@ -52,8 +49,7 @@ public class UploadBooksFileServlet extends HttpServlet {
 		// 判断表单是否是Multipart类型的。这里可以直接对request进行判断，不过已经以前的用法了
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			// 定义一个书本的对象，接受客户端发送的书本信息
 			Book book = new Book();
@@ -82,48 +78,29 @@ public class UploadBooksFileServlet extends HttpServlet {
 					// 如果是普通字段
 					if (fileItem.isFormField()) {
 						if (fileItem.getFieldName().equals("name")) {
-							book.setName(new String(fileItem.getString()
-									.getBytes("iso8859-1"), "utf-8"));
+							book.setName(new String(fileItem.getString().getBytes("iso8859-1"), "utf-8"));
 						} else if (fileItem.getFieldName().equals("author")) {
-							book.setAuthor(new String(fileItem.getString()
-									.getBytes("iso8859-1"), "utf-8"));
-						} else if (fileItem.getFieldName()
-								.equals("publishdate")) {
-							book.setPublishDate(new String(fileItem.getString()
-									.getBytes("iso8859-1"), "utf-8"));
+							book.setAuthor(new String(fileItem.getString().getBytes("iso8859-1"), "utf-8"));
+						} else if (fileItem.getFieldName().equals("publishdate")) {
+							book.setPublishDate(new String(fileItem.getString().getBytes("iso8859-1"), "utf-8"));
 						}
 					} else {
-						if (book.getName() == null || "".equals(book.getName())
-								|| book.getAuthor() == null
-								|| "".equals(book.getAuthor())) {
-							request.getRequestDispatcher(
-									"/error.jsp?result=作者或用户名不能为空!").forward(
-									request, response);
+						if (book.getName() == null || "".equals(book.getName()) || book.getAuthor() == null || "".equals(book.getAuthor())) {
+							request.getRequestDispatcher("/error.jsp?result=作者或用户名不能为空!").forward(request, response);
 						} else {
-							System.out.println(fileItem.getFieldName() + "   "
-									+ fileItem.getName() + "   "
-									+ fileItem.isInMemory() + "    "
-									+ fileItem.getContentType() + "   "
-									+ fileItem.getSize());
+							System.out.println(fileItem.getFieldName() + "   " + fileItem.getName() + "   " + fileItem.isInMemory() + "    " + fileItem.getContentType() + "   " + fileItem.getSize());
 							// 保存文件，其实就是把缓存里的数据写到目标路径HDFS下
-							if (fileItem.getName() != null
-									&& fileItem.getSize() != 0) {
+							if (fileItem.getName() != null && fileItem.getSize() != 0) {
 								// File fullFile = new File(fileItem.getName());
-								String[] array = fileItem.getName().split(
-										"\\\\");
-								File newFile = new File("/hadoop/tomcat/"
-										+ array[array.length - 1]);
+								String[] array = fileItem.getName().split("\\\\");
+								File newFile = new File("/hadoop/tomcat/" + array[array.length - 1]);
 								try {
 									fileItem.write(newFile);
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
-								String dst = "/tomcat/experiment/librarycloud/books/"
-										+ book.getAuthor()
-										+ "/"
-										+ book.getName() + ".book";
-								InputStream in = new BufferedInputStream(
-										new FileInputStream(newFile));
+								String dst = "/tomcat/experiment/librarycloud/books/" + book.getAuthor() + "/" + book.getName() + ".book";
+								InputStream in = new BufferedInputStream(new FileInputStream(newFile));
 								// 开始往HDFS上写入书本文件信息
 								FileSystem fs = FileSystem.get(conf);
 								Path path = new Path(dst);
@@ -131,19 +108,16 @@ public class UploadBooksFileServlet extends HttpServlet {
 									if (newFile.exists()) {
 										newFile.delete();
 									}
-									request.getRequestDispatcher(
-											"/error.jsp?result=上传的文件已存在!")
-											.forward(request, response);
+									request.getRequestDispatcher("/error.jsp?result=上传的文件已存在!").forward(request, response);
 								} else {
-									OutputStream out = fs.create(path,
-											new Progressable() {
-												public void progress() {
-													// TODO Auto-generated
-													// method
-													// stub
-													System.out.println("*");
-												}
-											});
+									OutputStream out = fs.create(path, new Progressable() {
+										public void progress() {
+											// TODO Auto-generated
+											// method
+											// stub
+											System.out.println("*");
+										}
+									});
 									IOUtils.copyBytes(in, out, 4096, true);
 									IOUtils.closeStream(in);
 									IOUtils.closeStream(out);
@@ -153,16 +127,11 @@ public class UploadBooksFileServlet extends HttpServlet {
 									}
 									try {
 										new BooksIndexMRThread(book).start();
-										request.getRequestDispatcher(
-												"/mrlink.jsp?result=索引作业已成功提交,请等待后台操作,稍后查询!")
-												.forward(request, response);
+										request.getRequestDispatcher("/mrlink.jsp?result=索引作业已成功提交,请等待后台操作,稍后查询!").forward(request, response);
 									} catch (Exception e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
-										request.getRequestDispatcher(
-												"/error.jsp?result=执行索引JOB出现异常信息!"
-														+ e.getMessage())
-												.forward(request, response);
+										request.getRequestDispatcher("/error.jsp?result=执行索引JOB出现异常信息!" + e.getMessage()).forward(request, response);
 									}
 								}
 							} else {

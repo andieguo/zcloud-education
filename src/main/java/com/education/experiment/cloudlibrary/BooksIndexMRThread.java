@@ -37,12 +37,10 @@ import org.apache.lucene.util.Version;
 public class BooksIndexMRThread extends Thread {
 
 	/**
-	 * 该类为一个线程类，每一个用户提交一个课本文件后，系统会为其分配一个线程；该线程执行的主要任务是向Hadoop集群提交一个建立索引文件的任务，
-	 * hadoop接受到该任务时会开始对文件进行分词，把把分词结果写入到索引文件里
+	 * 该类为一个线程类，每一个用户提交一个课本文件后，系统会为其分配一个线程；该线程执行的主要任务是向Hadoop集群提交一个建立索引文件的任务， hadoop接受到该任务时会开始对文件进行分词，把把分词结果写入到索引文件里
 	 */
 	private static final byte[] lock = new byte[0];
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 	private Book book = null;
 
 	public BooksIndexMRThread(Book book) {
@@ -65,8 +63,7 @@ public class BooksIndexMRThread extends Thread {
 		}
 	}
 
-	public static class BooksMapper extends
-			Mapper<LongWritable, Text, NullWritable, NullWritable> {
+	public static class BooksMapper extends Mapper<LongWritable, Text, NullWritable, NullWritable> {
 		private static final Analyzer analyzer = new MaxWordAnalyzer();
 		private IndexWriterConfig iwc = null;
 		private RAMDirectory ramDir = null;
@@ -94,21 +91,16 @@ public class BooksIndexMRThread extends Thread {
 		}
 
 		// 对map分配到的任务文件进行读取操作，没读取一个都要进行分词，然后把分词结果写入到内存但中，当内存满足到一定程度，刷新到磁盘上
-		public void map(LongWritable key, Text value, Context context)
-				throws IOException, InterruptedException {
+		public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 			sb.append(value.toString());
 			context.getCounter(Counters.ROWS).increment(1);
 			if (context.getCounter(Counters.ROWS).getValue() % 100 == 0) {
 				if (sb.toString() != null && !"".equals(sb.toString())) {
 					Document doc = new Document();
-					doc.add(new Field("name", context.getConfiguration().get(
-							"bookname"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("author", context.getConfiguration().get(
-							"bookauthor"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("publishdate", context.getConfiguration()
-							.get("publishdate"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("sections", sb.toString(), Store.YES,
-							Index.ANALYZED));
+					doc.add(new Field("name", context.getConfiguration().get("bookname"), Store.YES, Index.ANALYZED));
+					doc.add(new Field("author", context.getConfiguration().get("bookauthor"), Store.YES, Index.ANALYZED));
+					doc.add(new Field("publishdate", context.getConfiguration().get("publishdate"), Store.YES, Index.ANALYZED));
+					doc.add(new Field("sections", sb.toString(), Store.YES, Index.ANALYZED));
 					writer.addDocument(doc);
 					sb = new StringBuffer();
 				}
@@ -122,14 +114,10 @@ public class BooksIndexMRThread extends Thread {
 			try {
 				if (sb.toString() != null) {
 					Document doc = new Document();
-					doc.add(new Field("name", context.getConfiguration().get(
-							"bookname"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("author", context.getConfiguration().get(
-							"bookauthor"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("publishdate", context.getConfiguration()
-							.get("publishdate"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("sections", sb.toString(), Store.YES,
-							Index.ANALYZED));
+					doc.add(new Field("name", context.getConfiguration().get("bookname"), Store.YES, Index.ANALYZED));
+					doc.add(new Field("author", context.getConfiguration().get("bookauthor"), Store.YES, Index.ANALYZED));
+					doc.add(new Field("publishdate", context.getConfiguration().get("publishdate"), Store.YES, Index.ANALYZED));
+					doc.add(new Field("sections", sb.toString(), Store.YES, Index.ANALYZED));
 					writer.addDocument(doc);
 				}
 				writer.close();
@@ -145,30 +133,25 @@ public class BooksIndexMRThread extends Thread {
 			// 开始读取本地的磁盘索引文件目录，然后通过文件流的方式把这些文件回写到HDFS上。
 			String outStr = "/hadoop/booksindex/" + timeMillis;
 			File indexDir = new File(outStr);
-			IndexWriterConfig fsIndexWriterConfig = new IndexWriterConfig(
-					Version.LUCENE_36, analyzer);
+			IndexWriterConfig fsIndexWriterConfig = new IndexWriterConfig(Version.LUCENE_36, analyzer);
 			fsIndexWriterConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			fsIndexWriterConfig.setRAMBufferSizeMB(128.0);
 			fsIndexWriterConfig.setMaxBufferedDocs(1000);
 			Directory directory;
 			try {
 				directory = FSDirectory.open(indexDir);
-				IndexWriter fsIndexWriter = new IndexWriter(directory,
-						fsIndexWriterConfig);
+				IndexWriter fsIndexWriter = new IndexWriter(directory, fsIndexWriterConfig);
 				// 把内存中的索引库写到文件系统中
 				fsIndexWriter.addIndexes(ramDir);
 				fsIndexWriter.close();
 
 				FileSystem hdfs = FileSystem.get(context.getConfiguration());
-				FileSystem local = FileSystem.getLocal(context
-						.getConfiguration());
+				FileSystem local = FileSystem.getLocal(context.getConfiguration());
 				Path inPath = new Path(outStr);
-				String hdfsPath = "/tomcat/experiment/librarycloud/indexes/"
-						+ timeMillis + "-lock" + "/";
+				String hdfsPath = "/tomcat/experiment/librarycloud/indexes/" + timeMillis + "-lock" + "/";
 				FileStatus[] inputFiles = local.listStatus(inPath);
 				for (FileStatus ele : inputFiles) {
-					FSDataOutputStream fsdos = hdfs.create(new Path(hdfsPath
-							+ ele.getPath().getName()));
+					FSDataOutputStream fsdos = hdfs.create(new Path(hdfsPath + ele.getPath().getName()));
 					FSDataInputStream fsdis = local.open(ele.getPath());
 					byte[] buffer = new byte[256];
 					int readByte = 0;
@@ -179,9 +162,7 @@ public class BooksIndexMRThread extends Thread {
 					fsdos.close();
 				}
 				local.delete(inPath, true);
-				hdfs.rename(new Path(hdfsPath), new Path(
-						"/tomcat/experiment/librarycloud/indexes/" + timeMillis
-								+ "/"));
+				hdfs.rename(new Path(hdfsPath), new Path("/tomcat/experiment/librarycloud/indexes/" + timeMillis + "/"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -190,16 +171,14 @@ public class BooksIndexMRThread extends Thread {
 	}
 
 	// 配置job相关信息，然后提交给Hadoop集群，让其开始执行该job
-	private void index(Book book) throws IOException, InterruptedException,
-			ClassNotFoundException {
+	private void index(Book book) throws IOException, InterruptedException, ClassNotFoundException {
 		conf.set("bookname", book.getName());
 		conf.set("bookauthor", book.getAuthor());
 		conf.set("publishdate", book.getPublishDate());
 		// 开始配置job信息
 		Job job = new Job(conf, "Indexing Book Data");
 		job.setJarByClass(BooksIndexMRThread.class);
-		String perfix = "/tomcat/experiment/librarycloud/books/"
-				+ book.getAuthor() + "/" + book.getName();
+		String perfix = "/tomcat/experiment/librarycloud/books/" + book.getAuthor() + "/" + book.getName();
 		Path in = new Path(perfix + ".book");
 		Path out = new Path(perfix + "-result");
 		FileInputFormat.setInputPaths(job, in);
@@ -230,9 +209,7 @@ public class BooksIndexMRThread extends Thread {
 					FileStatus[] indexList = hdfs.listStatus(fs.getPath());
 					for (FileStatus ele : indexList) {
 						FSDataInputStream fsdis = hdfs.open(ele.getPath());
-						FSDataOutputStream fsdos = local.create(new Path(
-								"/hadoop/indexes/tmp/" + fs.getPath().getName()
-										+ "/" + ele.getPath().getName()));
+						FSDataOutputStream fsdos = local.create(new Path("/hadoop/indexes/tmp/" + fs.getPath().getName() + "/" + ele.getPath().getName()));
 						byte[] buffer = new byte[256];
 						int readByte = 0;
 						while ((readByte = fsdis.read(buffer)) > 0) {
@@ -246,18 +223,15 @@ public class BooksIndexMRThread extends Thread {
 			}
 			File indexDir = new File("/hadoop/indexes/tmp");
 			Analyzer analyzer = new MaxWordAnalyzer();
-			IndexWriterConfig fsIndexWriterConfig = new IndexWriterConfig(
-					Version.LUCENE_36, analyzer);
+			IndexWriterConfig fsIndexWriterConfig = new IndexWriterConfig(Version.LUCENE_36, analyzer);
 			fsIndexWriterConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			fsIndexWriterConfig.setRAMBufferSizeMB(128.0);
 			fsIndexWriterConfig.setMaxBufferedDocs(1000);
-			Directory directory = FSDirectory.open(new File(
-					"/hadoop/indexes/index"));
+			Directory directory = FSDirectory.open(new File("/hadoop/indexes/index"));
 			File[] arrayFile = indexDir.listFiles();
 			for (File file : arrayFile) {
 				if (file.isDirectory()) {
-					IndexWriter fsIndexWriter = new IndexWriter(directory,
-							fsIndexWriterConfig);
+					IndexWriter fsIndexWriter = new IndexWriter(directory, fsIndexWriterConfig);
 					// 把内存中的索引库写到文件系统中
 					Directory tmp = FSDirectory.open(file);
 					fsIndexWriter.addIndexes(tmp);

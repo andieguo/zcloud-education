@@ -9,9 +9,7 @@ public class WeixinResultBean {
 
 	@Override
 	public String toString() {
-		return "WeixinResultBean [linkman=" + linkman + ", begintime="
-				+ begintime + ", endtime=" + endtime + ", place=" + place
-				+ ", linkcontent=" + linkcontent + "]";
+		return "WeixinResultBean [linkman=" + linkman + ", begintime=" + begintime + ", endtime=" + endtime + ", place=" + place + ", linkcontent=" + linkcontent + "]";
 	}
 
 	public String getLinkman() {

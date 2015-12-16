@@ -28,16 +28,14 @@ public class PreviewWeatherDataServlet extends HttpServlet {
 
 	public void init() throws ServletException {
 		if (slaveone == null) {
-			slaveone = (String) this.getServletContext().getAttribute(
-					"slaveone");
+			slaveone = (String) this.getServletContext().getAttribute("slaveone");
 		}
 	}
 
 	/*
 	 * 处理用户提交的浏览天气数据文件的请求，服务端把HDFS上的文件信息字符串返回给客户端
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// request.setCharacterEncoding(Charset.defaultCharset().toString());
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		fileCount = 0;
@@ -51,12 +49,11 @@ public class PreviewWeatherDataServlet extends HttpServlet {
 					request.setAttribute("result", convert(result));
 				}
 			} else {
-				String dir = new String(request.getParameter("dir").getBytes(
-						"ISO-8859-1"), "UTF-8");
+				String dir = new String(request.getParameter("dir").getBytes("ISO-8859-1"), "UTF-8");
 				// System.out.println(Charset.defaultCharset());
-				//开始从hadoop的HDFS上读取文件信息
+				// 开始从hadoop的HDFS上读取文件信息
 				String result = getHadoopContent(dir);
-				//读取文件信息结束
+				// 读取文件信息结束
 				if (result.equals("")) {
 					request.setAttribute("result", "无数据文件可浏览!");
 				} else {
@@ -64,34 +61,28 @@ public class PreviewWeatherDataServlet extends HttpServlet {
 				}
 			}
 			request.setAttribute("datacount", fileCount);
-			request.getRequestDispatcher("/viewweather.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/viewweather.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}
 
-	//该方法负责从HDFS上读取文件信息，该方法为私有，不对外提供
+	// 该方法负责从HDFS上读取文件信息，该方法为私有，不对外提供
 	private String getHadoopContent(String dir) {
 		BufferedReader in = null;
 		try {
-			String url = "http://" + slaveone
-					+ ":50075/browseDirectory.jsp?namenodeInfoPort=50070&dir="
-					+ URLEncoder.encode(dir, "UTF-8");
+			String url = "http://" + slaveone + ":50075/browseDirectory.jsp?namenodeInfoPort=50070&dir=" + URLEncoder.encode(dir, "UTF-8");
 			URL urls = new URL(url);
 			URLConnection conn = urls.openConnection();
 			conn.connect();
-			in = new BufferedReader(
-					new InputStreamReader(conn.getInputStream()));
+			in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line = null;
 			String result = "";
 			while ((line = in.readLine()) != null) {
 				result += line;
 				result += System.getProperty("line.separator");
 			}
-			result = new String(result.getBytes(Charset.defaultCharset()),
-					"UTF-8");
+			result = new String(result.getBytes(Charset.defaultCharset()), "UTF-8");
 			Pattern pattern = Pattern.compile("<textarea[\\s\\S]*?</textarea>");
 			Matcher matcher = pattern.matcher(result);
 			if (matcher.find()) {
@@ -126,8 +117,7 @@ public class PreviewWeatherDataServlet extends HttpServlet {
 			String[] split = href.split("\\?");
 			String url = "previewweatherdata?sign=1&" + split[1].split("&")[0];
 			int index = content.indexOf(href);
-			content = content.substring(0, index) + url
-					+ content.substring(index + href.length());
+			content = content.substring(0, index) + url + content.substring(index + href.length());
 		}
 		return content;
 	}

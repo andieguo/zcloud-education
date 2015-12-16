@@ -5,12 +5,8 @@ import java.util.Arrays;
 public class WeixinParsingBean {
 	@Override
 	public String toString() {
-		return "WeixinParsingBean [timePoint=" + timePoint + ", durationTime="
-				+ durationTime + ", gender=" + gender + ", friend=" + friend
-				+ ", maxAge=" + maxAge + ", minAge=" + minAge + ", vocations="
-				+ vocations + ", communicationPlace="
-				+ Arrays.toString(communicationPlace) + ", keywords="
-				+ Arrays.toString(keywords) + "]";
+		return "WeixinParsingBean [timePoint=" + timePoint + ", durationTime=" + durationTime + ", gender=" + gender + ", friend=" + friend + ", maxAge=" + maxAge + ", minAge=" + minAge
+				+ ", vocations=" + vocations + ", communicationPlace=" + Arrays.toString(communicationPlace) + ", keywords=" + Arrays.toString(keywords) + "]";
 	}
 
 	public String getVocations() {

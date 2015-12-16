@@ -3,9 +3,7 @@ package com.education.experiment.cloudwechat;
 public class WeixinUserBean {
 	@Override
 	public String toString() {
-		return "WeixinUserBean [id=" + id + ", name=" + name + ", age=" + age
-				+ ", sex=" + sex + ", vocation=" + vocation + ", friends="
-				+ friends + ", splitfriends=" + splitfriends + "]";
+		return "WeixinUserBean [id=" + id + ", name=" + name + ", age=" + age + ", sex=" + sex + ", vocation=" + vocation + ", friends=" + friends + ", splitfriends=" + splitfriends + "]";
 	}
 
 	private int id;

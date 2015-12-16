@@ -35,19 +35,16 @@ public class UploadWeixinServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	public UploadWeixinServlet() {
 		super();
 	}
 
 	/*
-	 * 处理用户提交的上传微信示例文件的请求，该方法会把用户提交的示例文件首先写入到tomcat的临时文件夹下，
-	 * 写完之后会把临时文件夹下的文件写入到HDFS文件当中去.
+	 * 处理用户提交的上传微信示例文件的请求，该方法会把用户提交的示例文件首先写入到tomcat的临时文件夹下， 写完之后会把临时文件夹下的文件写入到HDFS文件当中去.
 	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置request编码，主要是为了处理普通输入框中的中文问题
 		request.setCharacterEncoding("utf-8");
 		// 这里对request进行封装，RequestContext提供了对request多个访问方法
@@ -55,8 +52,7 @@ public class UploadWeixinServlet extends HttpServlet {
 		// 判断表单是否是Multipart类型的。这里可以直接对request进行判断，不过已经以前的用法了
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			if (FileUpload.isMultipartContent(requestContext)) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -82,29 +78,20 @@ public class UploadWeixinServlet extends HttpServlet {
 					FileItem fileItem = (FileItem) it.next();
 					// 如果是普通字段
 					if (fileItem.isFormField()) {
-						System.out.println(fileItem.getFieldName()
-								+ "   "
-								+ fileItem.getName()
-								+ "   "
-								+ new String(fileItem.getString().getBytes(
-										"iso8859-1"), "gbk"));
+						System.out.println(fileItem.getFieldName() + "   " + fileItem.getName() + "   " + new String(fileItem.getString().getBytes("iso8859-1"), "gbk"));
 					} else {
 						// 保存文件，其实就是把缓存里的数据写到目标路径下
-						if (fileItem.getName() != null
-								&& fileItem.getSize() != 0) {
+						if (fileItem.getName() != null && fileItem.getSize() != 0) {
 							// File fullFile = new File(fileItem.getName());
 							String[] array = fileItem.getName().split("\\\\");
-							File newFile = new File("/hadoop/tomcat/"
-									+ array[array.length - 1]);
+							File newFile = new File("/hadoop/tomcat/" + array[array.length - 1]);
 							try {
 								fileItem.write(newFile);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-							String dst = "/tomcat/experiment/weixincloud/uploaddata/"
-									+ newFile.getName();
-							InputStream in = new BufferedInputStream(
-									new FileInputStream(newFile));
+							String dst = "/tomcat/experiment/weixincloud/uploaddata/" + newFile.getName();
+							InputStream in = new BufferedInputStream(new FileInputStream(newFile));
 							// 开始把临时文件夹下的文件写入到HDFS当中
 							FileSystem fs = FileSystem.get(conf);
 							Path path = new Path(dst);
@@ -112,18 +99,15 @@ public class UploadWeixinServlet extends HttpServlet {
 								if (newFile.exists()) {
 									newFile.delete();
 								}
-								request.getRequestDispatcher(
-										"/error.jsp?result=上传的文件已存在!").forward(
-										request, response);
+								request.getRequestDispatcher("/error.jsp?result=上传的文件已存在!").forward(request, response);
 							} else {
-								OutputStream out = fs.create(path,
-										new Progressable() {
-											public void progress() {
-												// TODO Auto-generated method
-												// stub
-												System.out.println("*");
-											}
-										});
+								OutputStream out = fs.create(path, new Progressable() {
+									public void progress() {
+										// TODO Auto-generated method
+										// stub
+										System.out.println("*");
+									}
+								});
 								IOUtils.copyBytes(in, out, 4096, true);
 								IOUtils.closeStream(in);
 								IOUtils.closeStream(out);
@@ -133,11 +117,9 @@ public class UploadWeixinServlet extends HttpServlet {
 									newFile.delete();
 								}
 								if (ub.getUserId().equals("admin")) {
-									request.getRequestDispatcher("/unlimit.jsp")
-											.forward(request, response);
+									request.getRequestDispatcher("/unlimit.jsp").forward(request, response);
 								} else {
-									request.getRequestDispatcher("/limited.jsp")
-											.forward(request, response);
+									request.getRequestDispatcher("/limited.jsp").forward(request, response);
 								}
 							}
 						} else {

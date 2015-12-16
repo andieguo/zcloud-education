@@ -26,17 +26,14 @@ public class DownloadExpressServlet extends HttpServlet {
 	private static final Configuration conf = new Configuration();
 
 	/**
-	 * 处理用户提交的下载快递示例文件请求，服务端接收到请求后，会从HDFS上的指定目录下读取快递示例数据文件,
-	 * 然后在tomcat的临时文件夹下生一个示例的数据文件
+	 * 处理用户提交的下载快递示例文件请求，服务端接收到请求后，会从HDFS上的指定目录下读取快递示例数据文件, 然后在tomcat的临时文件夹下生一个示例的数据文件
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 找到用户所选定的文件
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			File f = new File("/hadoop/tomcat/temp/expressdata.txt");
 			String dst = "/tomcat/experiment/sampledata/expressdata.txt";
@@ -46,8 +43,7 @@ public class DownloadExpressServlet extends HttpServlet {
 			OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
 			Path hdfsPath = new Path(dst);
 			if (!fs.exists(hdfsPath)) {
-				request.getRequestDispatcher("/error.jsp?result=下载资源不存在!")
-						.forward(request, response);
+				request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
 			} else {
 				try {
 					hadopin = fs.open(hdfsPath);
@@ -60,9 +56,7 @@ public class DownloadExpressServlet extends HttpServlet {
 				if (f.exists()) {
 					// 设置应答的相应消息头
 					response.setContentType("application/x-msdownload");
-					String str = "attachment;filename="
-							+ java.net.URLEncoder.encode("expressdata.txt",
-									"utf-8");
+					String str = "attachment;filename=" + java.net.URLEncoder.encode("expressdata.txt", "utf-8");
 					response.setHeader("Content-Disposition", str);
 					// 创建一 个输入流对象和指定的文件相关联
 					FileInputStream in = new FileInputStream(f);
@@ -78,8 +72,7 @@ public class DownloadExpressServlet extends HttpServlet {
 					in.close();
 					out.close();
 				} else {
-					request.getRequestDispatcher("/error.jsp?result=下载资源不存在!")
-							.forward(request, response);
+					request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
 				}
 			}
 		}

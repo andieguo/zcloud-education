@@ -33,19 +33,16 @@ import com.education.experiment.commons.UserBean;
 public class UploadExpressFileServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	public UploadExpressFileServlet() {
 		super();
 	}
 
 	/**
-	 * 处理客户端提交的上传快递数据文件的请求，客户端从本地读取数据示例文件，通过数据流的方式跟服务端产生通信
-	 * 服务端接受到请求后，会读取该数据流，然后把数据流以文件的形式写入tomcat的临时目录下
+	 * 处理客户端提交的上传快递数据文件的请求，客户端从本地读取数据示例文件，通过数据流的方式跟服务端产生通信 服务端接受到请求后，会读取该数据流，然后把数据流以文件的形式写入tomcat的临时目录下
 	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置request编码，主要是为了处理普通输入框中的中文问题
 		request.setCharacterEncoding("utf-8");
 		// 这里对request进行封装，RequestContext提供了对request多个访问方法
@@ -53,8 +50,7 @@ public class UploadExpressFileServlet extends HttpServlet {
 		// 判断表单是否是Multipart类型的。这里可以直接对request进行判断，不过已经以前的用法了
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			if (FileUpload.isMultipartContent(requestContext)) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -80,28 +76,19 @@ public class UploadExpressFileServlet extends HttpServlet {
 					FileItem fileItem = (FileItem) it.next();
 					// 如果是普通字段
 					if (fileItem.isFormField()) {
-						System.out.println(fileItem.getFieldName()
-								+ "   "
-								+ fileItem.getName()
-								+ "   "
-								+ new String(fileItem.getString().getBytes(
-										"iso8859-1"), "gbk"));
+						System.out.println(fileItem.getFieldName() + "   " + fileItem.getName() + "   " + new String(fileItem.getString().getBytes("iso8859-1"), "gbk"));
 					} else {
 						// 保存文件，其实就是把缓存里的数据写到tomcat的临时目录下
-						if (fileItem.getName() != null
-								&& fileItem.getSize() != 0) {
+						if (fileItem.getName() != null && fileItem.getSize() != 0) {
 							String[] array = fileItem.getName().split("\\\\");
-							File newFile = new File("/hadoop/tomcat/"
-									+ array[array.length - 1]);
+							File newFile = new File("/hadoop/tomcat/" + array[array.length - 1]);
 							try {
 								fileItem.write(newFile);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-							String dst = "/tomcat/experiment/expresscloud/uploaddata/"
-									+ newFile.getName();
-							InputStream in = new BufferedInputStream(
-									new FileInputStream(newFile));
+							String dst = "/tomcat/experiment/expresscloud/uploaddata/" + newFile.getName();
+							InputStream in = new BufferedInputStream(new FileInputStream(newFile));
 							// 开始从tomcat的临时目录下读取数据文件，然后往HDFS上写入
 							FileSystem fs = FileSystem.get(conf);
 							Path path = new Path(dst);
@@ -109,18 +96,15 @@ public class UploadExpressFileServlet extends HttpServlet {
 								if (newFile.exists()) {
 									newFile.delete();
 								}
-								request.getRequestDispatcher(
-										"/error.jsp?result=上传的文件已存在!").forward(
-										request, response);
+								request.getRequestDispatcher("/error.jsp?result=上传的文件已存在!").forward(request, response);
 							} else {
-								OutputStream out = fs.create(path,
-										new Progressable() {
-											public void progress() {
-												// TODO Auto-generated method
-												// stub
-												System.out.println("*");
-											}
-										});
+								OutputStream out = fs.create(path, new Progressable() {
+									public void progress() {
+										// TODO Auto-generated method
+										// stub
+										System.out.println("*");
+									}
+								});
 								IOUtils.copyBytes(in, out, 4096, true);
 								IOUtils.closeStream(in);
 								IOUtils.closeStream(out);
@@ -128,11 +112,9 @@ public class UploadExpressFileServlet extends HttpServlet {
 									newFile.delete();
 								}
 								if (ub.getUserId().equals("admin")) {
-									request.getRequestDispatcher("/unlimit.jsp")
-											.forward(request, response);
+									request.getRequestDispatcher("/unlimit.jsp").forward(request, response);
 								} else {
-									request.getRequestDispatcher("/limited.jsp")
-											.forward(request, response);
+									request.getRequestDispatcher("/limited.jsp").forward(request, response);
 								}
 							}
 						} else {

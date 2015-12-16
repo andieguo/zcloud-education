@@ -21,26 +21,21 @@ public class DeleteParsingServlet extends HttpServlet {
 	/**
 	 * 处理用户提交的删除分析条件的请求,服务端会根据客户端提交的文件名称，到HDFS上的指定文件目录下删除该文件
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 找到用户所选定的文件
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			// 获取用户要删除的文件名称
-			String userid = new String(request.getParameter("userid").getBytes(
-					"ISO-8859-1"), "UTF-8");
-			String dst = "/tomcat/experiment/weixincloud/uploadparsing/"
-					+ userid + ".pars";
+			String userid = new String(request.getParameter("userid").getBytes("ISO-8859-1"), "UTF-8");
+			String dst = "/tomcat/experiment/weixincloud/uploadparsing/" + userid + ".pars";
 			// 开始删除文件，获取HDFS链接
 			FileSystem fs = FileSystem.get(conf);
 			Path hdfsPath = new Path(dst);
 			if (!fs.exists(hdfsPath)) {
-				request.getRequestDispatcher("/error.jsp?result=刪除资源不存在!")
-						.forward(request, response);
+				request.getRequestDispatcher("/error.jsp?result=刪除资源不存在!").forward(request, response);
 			} else {
 				fs.delete(hdfsPath, true);
 				// 删除文件结束

@@ -28,8 +28,7 @@ public class WeatherParsingServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = HadoopConfiguration
-			.getConfiguration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	public WeatherParsingServlet() {
 		super();
@@ -38,45 +37,29 @@ public class WeatherParsingServlet extends HttpServlet {
 	/*
 	 * Map任务，用于从HDFS上读取天气数据文件，然后分析这些数据文件，每一条数据代表一日的天气信息， 然后把这些数据文件传输给Reduce任务
 	 */
-	public static class MeteorologicalMapper extends
-			Mapper<LongWritable, Text, Text, MeteorologicalBean> {
+	public static class MeteorologicalMapper extends Mapper<LongWritable, Text, Text, MeteorologicalBean> {
 		public static enum Counters {
 			ROWS
 		}
 
 		// 读取一行数据后，该方法就开始处理
-		public void map(LongWritable key, Text value, Context context)
-				throws IOException, InterruptedException {
+		public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 			String[] array = value.toString().split("\t");
 			if (array.length == 2) {
 				String[] metes = array[1].split(";");
 				if (metes.length == 3) {
 					try {
-						String[] temps = metes[0].substring(
-								metes[0].indexOf("(") + 1,
-								metes[0].indexOf(")")).split("/");
+						String[] temps = metes[0].substring(metes[0].indexOf("(") + 1, metes[0].indexOf(")")).split("/");
 						MeteorologicalBean mb = new MeteorologicalBean();
 						if (temps.length == 2) {
-							mb.setMaxTemp(Float.parseFloat(temps[0].substring(
-									temps[0].indexOf("max:") + "max:".length(),
-									temps[0].indexOf("℃"))));
-							mb.setMinTemp(Float.parseFloat(temps[1].substring(
-									temps[1].indexOf("min:") + "min:".length(),
-									temps[1].indexOf("℃"))));
+							mb.setMaxTemp(Float.parseFloat(temps[0].substring(temps[0].indexOf("max:") + "max:".length(), temps[0].indexOf("℃"))));
+							mb.setMinTemp(Float.parseFloat(temps[1].substring(temps[1].indexOf("min:") + "min:".length(), temps[1].indexOf("℃"))));
 						}
-						String humidity = metes[1].substring(
-								metes[1].indexOf("(") + 1,
-								metes[1].indexOf(")"));
-						mb.setHumidity(Float.parseFloat(humidity.substring(0,
-								humidity.indexOf("%"))));
-						String WSP = metes[2].substring(
-								metes[2].indexOf("(") + 1,
-								metes[2].indexOf(")"));
-						mb.setWSP(Float.parseFloat(WSP.substring(0,
-								WSP.indexOf("m/s"))));
-						context.write(
-								new Text(array[0].substring(0,
-										array[0].lastIndexOf("-"))), mb);
+						String humidity = metes[1].substring(metes[1].indexOf("(") + 1, metes[1].indexOf(")"));
+						mb.setHumidity(Float.parseFloat(humidity.substring(0, humidity.indexOf("%"))));
+						String WSP = metes[2].substring(metes[2].indexOf("(") + 1, metes[2].indexOf(")"));
+						mb.setWSP(Float.parseFloat(WSP.substring(0, WSP.indexOf("m/s"))));
+						context.write(new Text(array[0].substring(0, array[0].lastIndexOf("-"))), mb);
 						context.getCounter(Counters.ROWS).increment(1);
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -89,10 +72,8 @@ public class WeatherParsingServlet extends HttpServlet {
 	/*
 	 * Reduce任务类,该类用户处理Map任务提交过来的每日天气数据信息，然后把这些信息相加并平均，最后把结果写入HDFS文件当中去.
 	 */
-	public static class MeteorologicalReducer extends
-			Reducer<Text, MeteorologicalBean, Text, Text> {
-		public void reduce(Text key, Iterable<MeteorologicalBean> values,
-				Context context) throws IOException, InterruptedException {
+	public static class MeteorologicalReducer extends Reducer<Text, MeteorologicalBean, Text, Text> {
+		public void reduce(Text key, Iterable<MeteorologicalBean> values, Context context) throws IOException, InterruptedException {
 			int count = 0;
 			float maxTempTotal = 0.0f;
 			float minTempTotal = 0.0f;
@@ -105,23 +86,18 @@ public class WeatherParsingServlet extends HttpServlet {
 				humidityTotal += mb.getHumidity();
 				WSPTotal += mb.getWSP();
 			}
-			context.write(key, new Text("AVG{Temp(max:" + maxTempTotal / count
-					+ "℃/min:" + minTempTotal / count + "℃);Humidity("
-					+ humidityTotal / count + "%);WSP(" + WSPTotal / count
-					+ "m/s)}"));
+			context.write(key, new Text("AVG{Temp(max:" + maxTempTotal / count + "℃/min:" + minTempTotal / count + "℃);Humidity(" + humidityTotal / count + "%);WSP(" + WSPTotal / count + "m/s)}"));
 		}
 	}
 
 	/*
 	 * 处理用户提交的天气数据云计算分析，用户提交了分析的命令以后，该方法会想hadoop集群提交一个Map/Reduce任务， 用于执行天气分析的任务
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else if (ub.getUserId().equals("admin")) {
 			FileSystem fs = FileSystem.get(conf);
 			Path out = new Path("/tomcat/experiment/weathercloud/results");
@@ -148,14 +124,11 @@ public class WeatherParsingServlet extends HttpServlet {
 			try {
 				// 提交job给hadoop集群，然后hadoop集群开始执行.
 				job.submit();
-				request.getRequestDispatcher("/mrlink.jsp").forward(request,
-						response);
+				request.getRequestDispatcher("/mrlink.jsp").forward(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				request.getRequestDispatcher(
-						"/error.jsp?result=任务作业提交失败,请查看集群是否正常运行.").forward(
-						request, response);
+				request.getRequestDispatcher("/error.jsp?result=任务作业提交失败,请查看集群是否正常运行.").forward(request, response);
 			}
 		}
 	}
