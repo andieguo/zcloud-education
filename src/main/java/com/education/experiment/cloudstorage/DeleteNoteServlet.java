@@ -1,6 +1,7 @@
 package com.education.experiment.cloudstorage;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,7 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
-import com.education.experiment.commons.DerbyUtilCase;
+import com.education.experiment.commons.BaseDao;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -51,7 +52,7 @@ public class DeleteNoteServlet extends HttpServlet {
 				ub.setCloudSize(ub.getCloudSize() + stat.getLen());
 				fs.delete(hdfsPath, true);//删除结束
 				//更新用户的sesion信息
-				DerbyUtilCase.updateUserStatus(ub);
+				BaseDao.updateUserStatus(ub);
 				if (ub.getUserId().equals("admin")) {
 					response.sendRedirect("unlimit.jsp");
 				} else {

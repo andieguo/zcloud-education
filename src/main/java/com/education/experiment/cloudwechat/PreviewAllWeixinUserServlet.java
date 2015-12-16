@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.education.experiment.commons.DerbyUtilCase;
+import com.education.experiment.commons.BaseDao;
 import com.education.experiment.commons.UserBean;
 
 public class PreviewAllWeixinUserServlet extends HttpServlet {
@@ -31,7 +31,7 @@ public class PreviewAllWeixinUserServlet extends HttpServlet {
 		if (ub != null) {
 			try {
 				// 开始连接数据库
-				Connection conn = DerbyUtilCase.getDerbyConnection();
+				Connection conn = BaseDao.getConnection();
 				Statement st = conn.createStatement();
 				ResultSet rs = st.executeQuery("select * from WEIXIN_INFO");// 读取插入的数据
 				List<WeixinUserBean> list = new ArrayList<WeixinUserBean>();

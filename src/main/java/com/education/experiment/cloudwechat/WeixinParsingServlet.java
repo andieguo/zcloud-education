@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FSDataOutputStream;
@@ -22,7 +23,7 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
-import com.education.experiment.commons.DerbyUtilCase;
+import com.education.experiment.commons.BaseDao;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -427,7 +428,7 @@ public class WeixinParsingServlet extends HttpServlet {
 
 	private static void generateUserFile() {
 		try {
-			Connection conn = DerbyUtilCase.getDerbyConnection();
+			Connection conn = BaseDao.getConnection();
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery("select * from WEIXIN_INFO");
 			StringBuffer sb = new StringBuffer();
