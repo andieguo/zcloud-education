@@ -284,4 +284,12 @@
 		<servlet-name>retrievalbooks</servlet-name>
 		<url-pattern>/retrievalbooks</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>fileSystemServlet</servlet-name>
+		<servlet-class>com.education.experiment.commons.FileSystemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>fileSystemServlet</servlet-name>
+		<url-pattern>/filesystem</url-pattern>
+	</servlet-mapping>
 </web-app>

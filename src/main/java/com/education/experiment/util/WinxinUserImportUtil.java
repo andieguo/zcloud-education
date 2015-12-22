@@ -1,4 +1,4 @@
-package com.education.experiment.commons;
+package com.education.experiment.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
+import com.education.experiment.commons.BaseDao;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 

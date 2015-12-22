@@ -18,8 +18,8 @@ import com.education.experiment.cloudzhiyun.Main;
 import com.education.experiment.cloudzhiyun.MinMaxPMMapper;
 import com.education.experiment.cloudzhiyun.MinMaxPMReduce;
 import com.education.experiment.commons.HadoopConfiguration;
-import com.education.experiment.commons.HadoopUtil;
 import com.education.experiment.commons.UserBean;
+import com.education.experiment.util.HadoopUtil;
 
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Job;
