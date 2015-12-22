@@ -1,6 +1,7 @@
 package com.education.experiment.cloudstorage;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,12 +31,14 @@ public class DeleteNoteServlet extends HttpServlet {
 		// 找到用户所选定的文件
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
+		PrintWriter out = response.getWriter();
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
+			System.out.println("uuidname:"+uuidname);
 			// 获取用户提交的文件名
-			String dst = "/tomcat/users/" + ub.getUserId() + "/notes/" + uuidname + ".note";
+			String dst = "/tomcat/users/" + ub.getUserId() + "/notes/" + uuidname;
 			// 开始删除文件
 			FileSystem fs = FileSystem.get(conf);
 			Path hdfsPath = new Path(dst);
@@ -44,15 +47,21 @@ public class DeleteNoteServlet extends HttpServlet {
 			} else {
 				FileStatus stat = fs.getFileStatus(hdfsPath);
 				ub.setCloudSize(ub.getCloudSize() + stat.getLen());
-				fs.delete(hdfsPath, true);// 删除结束
-				// 更新用户的sesion信息
-				BaseDao.updateUserStatus(ub);
-				if (ub.getUserId().equals("admin")) {
-					response.sendRedirect("unlimit.jsp");
-				} else {
-					response.sendRedirect("limited.jsp");
+				boolean status = fs.delete(hdfsPath, true);
+				if(status){
+					// 删除文件结束
+					// 更新用户的sesion信息
+					int result = BaseDao.updateUserStatus(ub);
+					if(result > 0){
+						out.write("true");
+					}else{
+						out.write("false");
+					}
+				}else{
+					out.write("false");
 				}
 			}
 		}
+		if(out != null) out.close();
 	}
 }

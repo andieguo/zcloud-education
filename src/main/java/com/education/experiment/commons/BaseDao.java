@@ -155,19 +155,21 @@ public class BaseDao {
 
 	}
 
-	public static void updateUserStatus(UserBean ub) {
+	public static int updateUserStatus(UserBean ub) {
+		int result = 0;
 		try {
 			Connection conn = BaseDao.getConnection();
 			PreparedStatement ps = conn.prepareStatement("UPDATE USER_INFO SET CLOUDSIZE = ? WHERE ID = ?");
 			ps.setLong(1, ub.getCloudSize());
 			ps.setString(2, ub.getUserId());
-			ps.executeUpdate();
+			result = ps.executeUpdate();
 			ps.close();
 			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return result;
 	}
 
 	public static void main(String[] args) {

@@ -1,6 +1,7 @@
 package com.education.experiment.cloudstorage;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +28,7 @@ public class DeleteFileServlet extends HttpServlet {
 		// 找到用户所选定的文件
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
+		PrintWriter out = response.getWriter();
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
@@ -41,16 +43,21 @@ public class DeleteFileServlet extends HttpServlet {
 			} else {
 				FileStatus stat = fs.getFileStatus(hdfsPath);
 				ub.setCloudSize(ub.getCloudSize() + stat.getLen());
-				fs.delete(hdfsPath, true);
-				// 删除文件结束
-				// 更新用户的sesion信息
-				BaseDao.updateUserStatus(ub);
-				if (ub.getUserId().equals("admin")) {
-					response.sendRedirect("unlimit.jsp");
-				} else {
-					response.sendRedirect("limited.jsp");
+				boolean status = fs.delete(hdfsPath, true);
+				if(status){
+					// 删除文件结束
+					// 更新用户的sesion信息
+					int result = BaseDao.updateUserStatus(ub);
+					if(result > 0){
+						out.write("true");
+					}else{
+						out.write("false");
+					}
+				}else{
+					out.write("false");
 				}
 			}
 		}
+		if(out != null) out.close();
 	}
 }
