@@ -1,0 +1,187 @@
+.module-history-list {
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+  display: block;
+  padding-left: 10px; }
+  .module-history-list .history-list-dir {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    display: block; }
+  .module-history-list .history-list-tips {
+    position: absolute;
+    right: 20px;
+    top: 0; }
+
+.list-view-header {
+  position: relative;
+  z-index: 3;
+  height: 43px;
+  background: #f7f7f7; }
+  .list-view-header .list-cols {
+    background: #f7f7f7;
+    border-radius: 2px;
+    border: 1px solid #d2d2d2;
+    color: #888;
+    height: 41px;
+    line-height: 41px;
+    overflow: hidden; }
+    .list-view-header .list-cols .col {
+      float: left;
+      border-left: 1px solid #fff;
+      border-right: 1px solid #e5e5e5;
+      border-bottom: 0;
+      cursor: pointer;
+      text-indent: 10px; }
+      .list-view-header .list-cols .col .g-button {
+        float: right;
+        margin: 7px 5px 0 5px;
+        display: inline-block;
+        padding-left: 15px;
+        background: url(../images/btn_2d148f3.png) no-repeat 0 -144px;
+        vertical-align: top;
+        white-space: nowrap;
+        outline: 0;
+        font-size: 12px;
+        font-weight: 400;
+        color: #666;
+        height: 28px;
+        line-height: 28px;
+        text-decoration: none;
+        position: relative; }
+        .list-view-header .list-cols .col .g-button .g-button-right {
+          position: relative;
+          right: -1px;
+          display: block;
+          text-align: center;
+          padding-right: 15px;
+          height: 28px;
+          line-height: 26px;
+          background: url(../images/btn_2d148f3.png) no-repeat right -144px;
+          cursor: pointer; }
+          .list-view-header .list-cols .col .g-button .g-button-right .icon-download-gray {
+            background: url(../images/sys-icon_9b5f22d.png) no-repeat -60px 0; }
+            .list-view-header .list-cols .col .g-button .g-button-right .icon-download-gray:hover {
+              background: url(../images/sys-icon_9b5f22d.png) no-repeat -120px 0; }
+          .list-view-header .list-cols .col .g-button .g-button-right .icon-delete {
+            background: url(../images/sys-icon_9b5f22d.png) no-repeat -210px 0; }
+            .list-view-header .list-cols .col .g-button .g-button-right .icon-delete:hover {
+              background: url(../images/sys-icon_9b5f22d.png) no-repeat -270px 0; }
+        .list-view-header .list-cols .col .g-button .icon {
+          display: inline-block;
+          margin-right: 4px;
+          vertical-align: middle;
+          height: 24px;
+          width: 20px; }
+        .list-view-header .list-cols .col .g-button .text {
+          display: inline-block;
+          vertical-align: middle; }
+    .list-view-header .list-cols .first-col {
+      padding-right: 10px;
+      border-left: 0;
+      text-indent: 0; }
+      .list-view-header .list-cols .first-col .check {
+        margin: 13px 11px;
+        width: 14px;
+        height: 14px;
+        position: relative;
+        vertical-align: middle; }
+    .list-view-header .list-cols .last-col {
+      border-right: 0; }
+
+.list-view-container {
+  height: 468px;
+  overflow: scroll;
+  overflow-x: auto; }
+  .list-view-container .list-view-item {
+    position: relative;
+    height: 38px;
+    line-height: 38px;
+    border-bottom: 1px solid #ebebeb;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: #FFF; }
+    .list-view-container .list-view-item .checkbox {
+      margin: 13px 12px;
+      width: 14px;
+      height: 14px;
+      position: absolute;
+      z-index: 1; }
+    .list-view-container .list-view-item .fileicon {
+      cursor: default;
+      display: block;
+      height: 16px;
+      width: 16px;
+      position: absolute;
+      left: 37px;
+      top: 11px;
+      background-image: url(../images/listIcon_82b617a.png);
+      background-position: -120px 0; }
+    .list-view-container .list-view-item .file-name {
+      position: relative;
+      float: left;
+      width: 60%; }
+      .list-view-container .list-view-item .file-name .text {
+        position: relative;
+        text-indent: 60px;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden; }
+      .list-view-container .list-view-item .file-name .operate {
+        position: absolute;
+        margin-right: 20px;
+        height: 100%;
+        right: 0;
+        top: 0;
+        z-index: 2; }
+        .list-view-container .list-view-item .file-name .operate .icon {
+          display: inline-block;
+          margin-right: 4px;
+          vertical-align: middle;
+          height: 24px;
+          width: 20px; }
+        .list-view-container .list-view-item .file-name .operate .icon-download-blue {
+          background: url(../images/sys-icon_9b5f22d.png) no-repeat -60px 0; }
+          .list-view-container .list-view-item .file-name .operate .icon-download-blue:hover {
+            background: url(../images/sys-icon_9b5f22d.png) no-repeat -120px 0; }
+        .list-view-container .list-view-item .file-name .operate .icon-delete-blue {
+          background: url(../images/sys-icon_9b5f22d.png) no-repeat -210px 0; }
+          .list-view-container .list-view-item .file-name .operate .icon-delete-blue:hover {
+            background: url(../images/sys-icon_9b5f22d.png) no-repeat -270px 0; }
+    .list-view-container .list-view-item .file-size {
+      text-indent: 10px;
+      width: 16%;
+      height: 100%;
+      float: left;
+      text-indent: 10px; }
+    .list-view-container .list-view-item .ctime {
+      width: 22%;
+      height: 100%;
+      float: left;
+      text-indent: 10px; }
+
+.doc-header {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #ccc;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
+  .doc-header .doc-header-title {
+    display: block;
+    color: #333;
+    padding: 0 8px;
+    line-height: 28px;
+    border-right: 1px solid #ccc;
+    float: left; }
+  .doc-header .doc-header-body {
+    height: 26px;
+    width: 180px;
+    padding: 0 8px;
+    color: #333;
+    border: 0; }
+
+/*# sourceMappingURL=new-style.css.map */

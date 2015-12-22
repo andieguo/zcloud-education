@@ -493,7 +493,7 @@ a:hover .aside-gprs, a:active .aside-gprs {
 #header-shaw {
   background: url("../images/bg.png") repeat scroll center 0px #F7F7F7;
   position: relative;
-  padding:30px;
+  padding-left:10px;
   z-index: 2;
   height:483px;
 }
