@@ -35,7 +35,10 @@ public class DownloadWeatherServlet extends HttpServlet {
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
-			File f = new File("/hadoop/tomcat/temp/weatherdata.txt");
+			File temp = new File(System.getProperty("user.home") + File.separator + "temp");
+			if (!temp.exists())
+				temp.mkdir();
+			File f = new File(temp.getPath()+File.separator+"weatherdata.txt");
 			String dst = "/tomcat/experiment/sampledata/weatherdata.txt";
 			// 开始下载数据示例文件
 			FileSystem fs = FileSystem.get(conf);

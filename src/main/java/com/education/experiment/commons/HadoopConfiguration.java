@@ -7,6 +7,7 @@ public class HadoopConfiguration {
 
 	public static synchronized Configuration getConfiguration() {
 		conf.set("fs.default.name", "hdfs://192.168.100.141:9000");
+		conf.set("mapred.job.tracker", "http://192.168.100.141:9001");
 		return conf;
 	}
 }

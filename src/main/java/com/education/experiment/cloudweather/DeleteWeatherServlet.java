@@ -11,12 +11,13 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
+import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
 public class DeleteWeatherServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = new Configuration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	/**
 	 * 处理用户的删除天气文件的请求，用户提交一个删除的文件名，服务端会根据该文件名从HDFS上删除该文件

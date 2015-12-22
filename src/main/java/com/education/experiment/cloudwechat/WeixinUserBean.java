@@ -69,4 +69,19 @@ public class WeixinUserBean {
 	public String getSplitfriends() {
 		return splitfriends;
 	}
+	
+	public WeixinUserBean() {
+		super();
+	}
+
+	public WeixinUserBean(int id, String name, int age, String sex, String vocation, String friends) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+		this.vocation = vocation;
+		this.friends = friends;
+	}
+	
 }
