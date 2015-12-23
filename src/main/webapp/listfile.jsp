@@ -7,7 +7,7 @@
 <%
 	UserBean ub = (UserBean) request.getSession().getAttribute("user");
 %>
-<title>云</title>
+<title>云文件列表</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />

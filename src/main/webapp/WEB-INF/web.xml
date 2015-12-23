@@ -165,6 +165,14 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>loginout</servlet-name>
+		<servlet-class>com.education.experiment.commons.LoginOutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loginout</servlet-name>
+		<url-pattern>/loginout</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>registeruser</servlet-name>
 		<servlet-class>com.education.experiment.commons.RegisterUserServlet</servlet-class>
 	</servlet>

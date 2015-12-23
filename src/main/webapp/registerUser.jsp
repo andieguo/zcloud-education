@@ -1,14 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
-
+<%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -41,9 +32,9 @@
 		});
 	});
 </script>
-		<!--头部导航下拉菜单效果-->
-		<script type="text/javascript">
-		 function isRightSize(num)
+<!--头部导航下拉菜单效果-->
+<script type="text/javascript">
+	function isRightSize(num)
 	{
 		if(isNaN(num)){
 			return false;
@@ -56,65 +47,47 @@
 			return false;
 		}
 	}
-	$(document)
-			.ready(
-					function() {
-						$("#btnSave")
-								.click(
-										function() {
-											var userId = $(
-													"input:text[name='tbUserId']")
-													.val();
-											var phone = $(
-													"input:text[name='tbIDCard']")
-													.val();
-											var userName = $(
-													"input:text[name='tbUserName']")
-													.val();
-											var pwd = $(
-													"input:password[name='tbPwd']")
-													.val();
-											var rePwd = $(
-													"input:password[name='tbRePwd']")
-													.val();
-											var cloudsize = $(
-													"input:text[name='tbCloudSize']")
-													.val();
-											var remark = $("#tbRemark").val();
-											if (pwd != rePwd) {
-												alert("重复密码错误!");
-											} else if (userId == ""
-													|| userName == ""
-													|| pwd == "" || rePwd == ""||cloudsize=="") {
-												alert("信息不完整!");
-											}
-											else if (!isRightSize(cloudsize)) {
-												alert("申请空间大小格式不正确！");
-												$("input:text[name='tbCloudSize']")
-														.focus();
-											} else {
-												var url = "/education/registerUser?";
-												url += "userId=" + userId;
-												url += "&pwd=" + pwd;
-												url += "&userName=" + userName;
-												url += "&phone=" + phone;
-												url += "&remark=" + remark;
-												url += "&cloudSize=" + cloudsize;
-												$
-														.post(
-																url,
-																function(data) {
-																	if (data == "error") {
-																		alert("注册失败!");
-																	} else if (data == "usererror") {
-																		alert("用户ID重复,注册失败!");
-																	} else {
-																		alert("注册成功!");
-																	}
-																});
-											}
-										});
-					});
+	$(document).ready(function() {
+			$("#btnSave").click(
+				function() {
+					var userId = $("input:text[name='tbUserId']").val();
+					var phone = $("input:text[name='tbIDCard']").val();
+					var userName = $("input:text[name='tbUserName']").val();
+					var pwd = $("input:password[name='tbPwd']").val();
+					var rePwd = $("input:password[name='tbRePwd']").val();
+					var cloudsize = $("input:text[name='tbCloudSize']").val();
+					var remark = $("#tbRemark").val();
+					if (pwd != rePwd) {
+						alert("重复密码错误!");
+					} else if (userId == ""
+							|| userName == ""
+							|| pwd == "" || rePwd == ""||cloudsize=="") {
+						alert("信息不完整!");
+					}
+					else if (!isRightSize(cloudsize)) {
+						alert("申请空间大小格式不正确！");
+						$("input:text[name='tbCloudSize']")
+								.focus();
+					} else {
+						var url = "<%=basePath%>/registerUser?";
+						url += "userId=" + userId;
+						url += "&pwd=" + pwd;
+						url += "&userName=" + userName;
+						url += "&phone=" + phone;
+						url += "&remark=" + remark;
+						url += "&cloudSize=" + cloudsize;
+						$.post(url,function(data) {
+							if (data == "error") {
+								alert("注册失败!");
+							} else if (data == "usererror") {
+								alert("用户ID重复,注册失败!");
+							} else {
+								alert("注册成功!");
+							}
+						});
+					}
+				});
+		});
 </script>
 	</head>
 

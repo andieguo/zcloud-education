@@ -7,7 +7,7 @@
 	UserBean ub = (UserBean) request.getSession().getAttribute("user");
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>云</title>
+<title>云日记列表</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
@@ -29,8 +29,9 @@
 	</div>
 	<ul xmlns="http://www.w3.org/1999/xhtml" class="b-list-1 options fMainBlue top_menu">
 		<li style="_width:90px;max-width:116px" class="b-list-item list-li haspulldown">
-		<a title="ae12580" target="_blank" href="#"><%=ub.getUserId()%>,欢迎您!</a>
+		<font color="red"><%=ub.getUserId()%>,欢迎您!</font>
 		</li>
+		<li class="b-list-item list-li"><a href="loginout" class="b-no-ln">退出</a></li>
 	</ul>
 </div>
 <div class="clearfix1 wrap">
