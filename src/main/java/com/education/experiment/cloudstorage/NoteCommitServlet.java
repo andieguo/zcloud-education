@@ -55,11 +55,7 @@ public class NoteCommitServlet extends HttpServlet {
 				// 更新用户的sesion信息。
 				ub.setCloudSize(ub.getCloudSize() - stat.getLen());
 				BaseDao.updateUserStatus(ub);
-				if (ub.getUserId().equals("admin")) {
-					response.sendRedirect("unlimit.jsp");
-				} else {
-					response.sendRedirect("limited.jsp");
-				}
+				request.getRequestDispatcher("/listnote.jsp").forward(request, response);
 			}
 		} else {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
