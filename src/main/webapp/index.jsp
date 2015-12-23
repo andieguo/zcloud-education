@@ -30,7 +30,7 @@ background:#f7f7f7;
 		<br /><br />
 		<ul>
 			<li>
-			<a target="_blank" href="privatestoragecloud.jsp" hidefocus="true" class="inote">个人私有存储</a>
+			<a target="_blank" href="uploadnote.jsp" hidefocus="true" class="inote">个人私有存储</a>
 			</li>
 			<li>
 			<a target="_blank" href="uploadbooks.jsp" hidefocus="true" class="icontacts">图书馆图书管理</a>
@@ -48,7 +48,7 @@ background:#f7f7f7;
 </div>
 <div class="footer">
 <p>
-	版权所有© 2013 北京斑步志伟科技公司
+	版权所有© 2013 中智讯（武汉）科技有限公司
 </p>
 </div>
 </body>

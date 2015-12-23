@@ -1,12 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+<%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -81,13 +74,13 @@ function printFileSystem(parentDir,data){
 	 console.log(filename);
 	  $.ajax({//调用JQuery提供的Ajax方法 
 			type : "GET",
-			url : "deletenote",
+			url : "deletefile",
 			data : {filename:filename},
 			//dataType : "json",
 			success : function(data){//回调函数 
 				console.log('data：',data);
 				if (data == "true") {
-					getFileSystem('DIRECTORY','/tomcat/users/admin/notes');
+					getFileSystem('DIRECTORY','/tomcat/users/admin/files');
 				}else{
 					alert("删除失败！");
 				}
@@ -107,7 +100,7 @@ function printFileSystem(parentDir,data){
  }
 
 $(function(){
-     getFileSystem('DIRECTORY','/tomcat/users/admin/notes');
+     getFileSystem('DIRECTORY','/tomcat/users/admin/files');
 	});
 	
 </script>
@@ -167,23 +160,8 @@ $(function(){
 			</div>
 		</div>
 	</div>
-	<div class="aside main" style="width: 210px; float:left;">
-		<div style="height: 533px;" class="b-view genere jfk-scrollbar" id="genere">
-			<div class="minheight-forfooter">
-				<ul class="b-list-3" id="aside-menu">
-				<li class="b-list-item"><a href="privatestoragecloud.jsp" class="sprite2 b-no-ln" hidefocus="true" id="tab-home" unselectable="on"><span class="text1"><span class="img-ico aside-disk"></span>新建云日记</span></a></li>
-				<li class="b-list-item"><a href="deletenote.jsp" class="sprite2 b-no-ln" hidefocus="true" id="tab-recyle" unselectable="on"><span class="text1"><span class="img-ico aside-recycle"></span>云日记删除</span></a></li>
-				<li class="b-list-item separator-1"></li>
-				<li class="b-list-item"><a href="uploadfile.jsp" class="type-a-oth type-a-app" hidefocus="true"><span class="text1"><span class="img-ico aside-mapp"></span>云文件上传</span></a></li>
-				<li class="b-list-item"><a href="previewuser.jsp" class="sprite2 on" hidefocus="true" id="tab-share" unselectable="on"><span class="text1"><span class="img-ico aside-share"></span>云文件预览</span></a></li>
-				</ul>			
-			</div>
-		</div>
-	</div>
+	<%@ include file="/share/storage-left.jsp"%>
 </div>
-</div>
-<div class="banquan">
-	版权所有&copy; 2013斑步志伟科技公司
-</div>
+<%@ include file="/share/foot.jsp"%>
 </body>
 </html>
