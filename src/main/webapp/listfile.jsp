@@ -1,9 +1,12 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,com.education.experiment.commons.UserBean" pageEncoding="UTF-8"%>
 <%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<%
+	UserBean ub = (UserBean) request.getSession().getAttribute("user");
+%>
 <title>云</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
@@ -11,97 +14,12 @@
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
 <link href="css/new-style.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery-1.8.0.js"></script>
+<script src="js/common/filelist.js"></script>
 <script type="text/javascript">
 
-function getFileSystem(type,parentDir){
-	  $("#parentDirText").val(parentDir);//改变文本框的值:
-	  if(type == 'FILE'){
-		 $.ajax({//调用JQuery提供的Ajax方法 
-			type : "GET",
-			url : "filesystem",
-			data : {command:'OPEN',parentDir:parentDir},
-			dataType : "text",
-			success : function(data){//回调函数 
-				console.log('data：',data);
-				$("#tab_filesystem").html("<textarea style='margin: 0px; height: 206px; width: 760px;'>"+data+"</textarea>");
-			},
-			error : function() {
-				alert("系统出现问题");
-			}
-		});
-	  }else if(type == 'DIRECTORY'){
-		 $.ajax({//调用JQuery提供的Ajax方法 
-			type : "GET",
-			url : "filesystem",
-			data : {command:'LISTSTATUS',parentDir:parentDir},
-			dataType : "json",
-			success : function(data){//回调函数 
-				console.log('data：',data);
-				printFileSystem(parentDir,data.FileStatuses.FileStatus);
-			},
-			error : function() {
-				alert("系统出现问题");
-			}
-		});
-	  }
-	  
-}
-
-function printFileSystem(parentDir,data){
-	   $("#tab_filesystem").html("");
-	   for (var i=0; i<data.length; i++) {
-	      var tr1 = "<dd class='list-view-item'>"; 
-			tr1 += "<input class='checkbox' type='checkbox' />";
-			tr1 += "<span class='fileicon'></span>";
-				tr1 += "<div class='file-name' style='width:62%'>";
-					tr1 += "<div class='text'>";
-						tr1 += "<a onClick=getFileSystem($(this).parent().next().html(),$('#parentDirText').val()+$(this).html()+'/') title='"+data[i].pathSuffix+"'>"+data[i].pathSuffix+"</a>";
-					tr1 += "</div>";
-					tr1 += "<div class='operate'>";
-						tr1 += "<a class='icon icon-download-blue' href='downloadfile?filename=sensors.xml' title='下载'></a>";
-						tr1 += "<a class='icon icon-delete-blue' onClick=deletefile('"+data[i].pathSuffix+"') title='删除'></a>";
-					tr1 += "</div>";
-				tr1 += "</div>";
-				tr1 += "<div class='file-size' style='width:16%'>"+data[i].blockSize+"</div>";
-				tr1 += "<div class='ctime' style='width:22%'>"+data[i].modificationTime+"</div>";
-			tr1 += "</dd>";
-       $("#tab_filesystem").append(tr1);                          
-	}   
- }
- 
- function deletefile(filename){
-	 alert("确定要删除么？");
-	 console.log(filename);
-	  $.ajax({//调用JQuery提供的Ajax方法 
-			type : "GET",
-			url : "deletefile",
-			data : {filename:filename},
-			//dataType : "json",
-			success : function(data){//回调函数 
-				console.log('data：',data);
-				if (data == "true") {
-					getFileSystem('DIRECTORY','/tomcat/users/admin/files');
-				}else{
-					alert("删除失败！");
-				}
-			},
-			error : function() {
-				alert("系统出现问题");
-			}
-		});
- }
- 
- function goToParentDir(){
-	   var parentDir = $('#parentDirText').val();// eg. /user/hadoop/zcloud/
-	   parentDir = parentDir.substring(0,parentDir.length-1); // eg. /user/hadoop/zcloud
-	   var dir = parentDir.substring(0,parentDir.lastIndexOf('/')+1);// eg. /user/hadoop/
-	   //console.log("dir:"+dir);
-	   getFileSystem('DIRECTORY',dir);
- }
-
 $(function(){
-     getFileSystem('DIRECTORY','/tomcat/users/admin/files');
-	});
+     getFileSystem('<%=ub.getUserId()%>','files');
+});
 	
 </script>
 </head>
@@ -112,9 +30,8 @@ $(function(){
 	</div>
 	<ul xmlns="http://www.w3.org/1999/xhtml" class="b-list-1 options fMainBlue top_menu">
 		<li style="_width:90px;max-width:116px" class="b-list-item list-li haspulldown">
-		<span class="top-username"><a title="ae12580" target="_blank" href="http://passport.baidu.com/center">ae12580</a></span>
+		<a title="ae12580" target="_blank" href="#"><%=ub.getUserId()%>,欢迎您!</a>
 		</li>
-		<li class="b-list-item list-li"><a target="_blank" href="http://pan.baidu.com/download" class="b-no-ln">客户端下载</a></li>
 	</ul>
 </div>
 <div class="clearfix1 wrap">
@@ -123,7 +40,7 @@ $(function(){
 			<div id="header-shaw" style="background-color: #fff;height: 542px;">
 				<div class="module-history-list">
 					<span class="history-list-dir">全部文件</span>
-					<span class="history-list-tips">已全部加载，共14个</span>
+					<span class="history-list-tips" id="filecount"></span>
 				</div>
 				<div class="list-view-header">
 					<ul class="list-cols">

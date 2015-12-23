@@ -9,6 +9,7 @@
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+<link href="css/new-style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="hd-main" style="min-width:1000px;">
@@ -21,39 +22,32 @@
 		<div class="fns">
 			<div id="header-shaw">
 			<form action="notecommit" method="post">
-					<div id="selectSet">
-						<!--默认选项开始-->
-						<div id="normal">
-							<dl class="list clearfix">
-								<dt class="dt">
-									日&nbsp;记&nbsp;标&nbsp;题：
-								</dt>
-								<dd class="dd">
-									<span class="input text"><input name="noteTitle"
-											type="text" value="" /> </span>
-								</dd>
-							</dl>
-							<dl class="list clearfix">
-								<dt class="dt">
-									日&nbsp;记&nbsp;内&nbsp;容：
-								</dt>
-								<dd>
-									<span><textarea name="noteCountent" id="noteCountent"
-											style="width: 560px; height: 250px;" cols="" rows=""></textarea>
-									</span>
-								</dd>
-							</dl>
-						</div>
-						<!--默认选项结束-->
-						<br/>
-						<div class="foot" style="margin-top:5px;">
-							<span class="submit"><input name="" type="submit"
-									id="btnSave" value="上 传" /> </span>
-							<span class="reset"><input name="" type="reset"
-									value="重 置" /> </span>
-						</div>
-					</div>
-				</form>
+				<div class="doc-header">
+					<span class="doc-header-title">日记标题</span>
+					<input class="doc-header-body" type="text" id="noteTitle"  name="noteTitle"/>
+				</div>
+				<div class="eidtor">
+					<script type="text/javascript" src="js/Eidtor/nicEdit.js"></script>
+				    <script type="text/javascript">
+				      //<![CDATA[
+				      bkLib.onDomLoaded(function() {
+				        new nicEditor({iconsPath : 'images/nicEditorIcons.gif'}).panelInstance('noteCountent');
+				      });
+				      //]]>
+				    </script>
+				    <textarea name="noteCountent" id="noteCountent" style="width: 100%; height: 400px;">
+				    	日记内容
+				    </textarea>
+				</div>
+				<div class="submit-reset">
+					<span class="submit">
+						<input name="" type="submit" value="上 传" />
+					</span>
+					<span class="reset">
+						<input name="" id="btnCancel" type="reset" value="重 置" />
+					</span>
+				</div>
+			</form>
 			</div>
 		</div>
 	</div>

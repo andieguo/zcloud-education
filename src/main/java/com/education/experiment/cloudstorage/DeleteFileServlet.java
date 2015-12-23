@@ -28,13 +28,15 @@ public class DeleteFileServlet extends HttpServlet {
 		// 找到用户所选定的文件
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
+		String command = request.getParameter("command");
+		System.out.println("command:" + command);
 		PrintWriter out = response.getWriter();
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			// 获取用户提交的文件名
 			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
-			String dst = "/tomcat/users/" + ub.getUserId() + "/files/" + uuidname;
+			String dst = "/tomcat/users/" + ub.getUserId() + "/"+command+ "/" + uuidname;
 			// 开始删除文件
 			FileSystem fs = FileSystem.get(conf);
 			Path hdfsPath = new Path(dst);

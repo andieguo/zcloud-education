@@ -35,6 +35,8 @@ public class DownloadFileServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 找到用户所选定的文件
 		request.setCharacterEncoding("utf-8");
+		String command = request.getParameter("command");
+		System.out.println("command:" + command);
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
@@ -46,7 +48,7 @@ public class DownloadFileServlet extends HttpServlet {
 			if (!temp.exists())
 				temp.mkdir();
 			File f = new File(temp.getPath() + File.separator + uuidname);// 创建临时文件，读取HDFS上的文件存储在本地临时文件中，再文件f的内容返回给response
-			String dst = "/tomcat/users/" + ub.getUserId() + "/files/" + uuidname;
+			String dst = "/tomcat/users/" + ub.getUserId() + "/"+command+ "/" + uuidname;
 			// 开始从HDFS上读取文件
 			FileSystem fs = FileSystem.get(conf);
 			InputStream hadopin = null;
@@ -59,33 +61,33 @@ public class DownloadFileServlet extends HttpServlet {
 				try {
 					hadopin = fs.open(hdfsPath);
 					IOUtils.copyBytes(hadopin, bos, 4096, true);
+					// 读取文件结束,将文件f的内容返回给response
+					// String realname = uuidname.substring(uuidname.indexOf("_") + 1);
+					// 开始给客户端传送文件。
+					if (f.exists()) {
+						// 设置应答的相应消息头
+						response.setContentType("application/x-msdownload");
+						String str = "attachment;filename=" + java.net.URLEncoder.encode(uuidname, "utf-8");
+						response.setHeader("Content-Disposition", str);
+						// 创建一 个输入流对象和指定的文件相关联
+						FileInputStream in = new FileInputStream(f);
+						// 从response对象中获取到输出流对象
+						OutputStream out = response.getOutputStream();
+						// 从输入流对象中读数据写入到输出流对象中
+						byte[] buff = new byte[1024 * 1024];
+						int len = 0;
+						while ((len = in.read(buff)) > 0) {
+							out.write(buff, 0, len);
+						}
+						f.delete();
+						in.close();
+						out.close();
+					} else {
+						request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
+					}
 				} finally {
 					IOUtils.closeStream(hadopin);
 					bos.close();
-				}
-				// 读取文件结束,将文件f的内容返回给response
-				// String realname = uuidname.substring(uuidname.indexOf("_") + 1);
-				// 开始给客户端传送文件。
-				if (f.exists()) {
-					// 设置应答的相应消息头
-					response.setContentType("application/x-msdownload");
-					String str = "attachment;filename=" + java.net.URLEncoder.encode(uuidname, "utf-8");
-					response.setHeader("Content-Disposition", str);
-					// 创建一 个输入流对象和指定的文件相关联
-					FileInputStream in = new FileInputStream(f);
-					// 从response对象中获取到输出流对象
-					OutputStream out = response.getOutputStream();
-					// 从输入流对象中读数据写入到输出流对象中
-					byte[] buff = new byte[1024 * 1024];
-					int len = 0;
-					while ((len = in.read(buff)) > 0) {
-						out.write(buff, 0, len);
-					}
-					f.delete();
-					in.close();
-					out.close();
-				} else {
-					request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
 				}
 			}
 		}

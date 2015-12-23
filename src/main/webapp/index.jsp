@@ -30,7 +30,7 @@ background:#f7f7f7;
 		<br /><br />
 		<ul>
 			<li>
-			<a target="_blank" href="uploadnote.jsp" hidefocus="true" class="inote">个人私有存储</a>
+			<a target="_blank" href="listnote.jsp" hidefocus="true" class="inote">个人私有存储</a>
 			</li>
 			<li>
 			<a target="_blank" href="uploadbooks.jsp" hidefocus="true" class="icontacts">图书馆图书管理</a>

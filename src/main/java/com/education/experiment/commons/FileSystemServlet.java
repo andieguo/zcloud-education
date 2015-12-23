@@ -19,6 +19,7 @@ public class FileSystemServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 5009026145243904234L;
 	private Logger logger =  Logger.getLogger(FileSystemServlet.class);
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -47,7 +48,12 @@ public class FileSystemServlet extends HttpServlet {
 				logger.info("url:"+url);
 			}
 			String resultJSON = Rest.doRest("GET",url,null);
+			//这句话的意思，是让浏览器用utf8来解析返回的数据  
+			response.setHeader("Content-type", "text/html;charset=UTF-8");  
+			//这句话的意思，是告诉servlet用UTF-8转码，而不是用默认的ISO8859  
+			response.setCharacterEncoding("UTF-8");//response输出，按照utf-8输出。
 			PrintWriter out = response.getWriter();
+			System.out.println(resultJSON);
 			out.println(resultJSON);// 向客户端输出JSONObject字符串
 			out.flush();
 			out.close();
@@ -57,9 +63,9 @@ public class FileSystemServlet extends HttpServlet {
 	}
 	
 	public static void main(String[] args) {
-		String url2 = "http://192.168.100.141:50070/webhdfs/v1/user/hadoop/zcloud/1155223953/00_12_4B_00_02_63_3E_B5_A0?op=LISTSTATUS";
 		try {
-			String resultJSON = Rest.doRest("GET",url2,null);
+			String url2 = "http://192.168.100.141:50070/webhdfs/v1/tomcat/users/admin/notes?op=LISTSTATUS";
+			String resultJSON = Rest.doRest("GET",url2,null);//输出的是中文
 			System.out.println(resultJSON);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -1,3 +1,4 @@
+/* previewuser */
 .module-history-list {
   position: relative;
   height: 30px;
@@ -162,10 +163,13 @@
       float: left;
       text-indent: 10px; }
 
+/* uploadfile */
 .doc-header {
   position: relative;
   float: left;
-  margin-right: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  width: 98%;
   background: none repeat scroll 0 0 #FFFFFF;
   border: 1px solid #ccc;
   -moz-border-radius: 3px;
@@ -179,9 +183,36 @@
     float: left; }
   .doc-header .doc-header-body {
     height: 26px;
-    width: 180px;
+    width: 92%;
     padding: 0 8px;
     color: #333;
     border: 0; }
+
+.eidtor {
+  width: 98%; }
+
+.submit-reset {
+  margin-top: 10px; }
+  .submit-reset .submit, .submit-reset .reset {
+    margin-top: 10px;
+    background-image: url(../images/iconBtn.png);
+    background-repeat: no-repeat;
+    background-position: 0 -401px;
+    width: 75px;
+    height: 30px;
+    display: block;
+    float: left;
+    margin: 0 8px 0 0; }
+    .submit-reset .submit input, .submit-reset .reset input {
+      width: 75px;
+      height: 30px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      color: #fff; }
+  .submit-reset .reset {
+    background-position: 0 -467px; }
+    .submit-reset .reset input {
+      color: #666; }
 
 /*# sourceMappingURL=new-style.css.map */

@@ -39,14 +39,16 @@ public class NoteCommitServlet extends HttpServlet {
 		System.out.println("noteName:" + noteName);
 		FileSystem fs = FileSystem.get(conf);
 		if (ub != null) {
-			Path path = new Path("/tomcat/users/" + ub.getUserId() + "/notes/" + noteName + ".note");
+			Path path = new Path("/tomcat/users/" + ub.getUserId() + "/notes/" + noteName + ".html");
 			System.out.println("path:" + path);
 			if (fs.exists(path)) {
 				request.getRequestDispatcher("/error.jsp?result=文件已经存在!").forward(request, response);
 			} else {
 				// 开始往hdfs上上传文件
 				FSDataOutputStream hdfsOut = fs.create(path);
-				hdfsOut.write(content.getBytes(request.getCharacterEncoding()));
+				StringBuffer buffer = new StringBuffer("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>");
+				buffer.append(noteName).append("</title></head><body><h1>").append(noteName).append("</h1>").append(content).append("</body></html>");
+				hdfsOut.write(buffer.toString().getBytes(request.getCharacterEncoding()));
 				hdfsOut.close();
 				// 上传结束
 				FileStatus stat = fs.getFileStatus(path);

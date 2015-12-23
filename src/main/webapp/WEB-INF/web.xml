@@ -213,14 +213,6 @@
 		<url-pattern>/deleteparsing</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>deletenote</servlet-name>
-		<servlet-class>com.education.experiment.cloudstorage.DeleteNoteServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>deletenote</servlet-name>
-		<url-pattern>/deletenote</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>previewuser</servlet-name>
 		<servlet-class>com.education.experiment.cloudstorage.PreviewUserPropertyServlet</servlet-class>
 	</servlet>
