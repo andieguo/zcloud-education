@@ -15,6 +15,7 @@
 <link href="css/new-style.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery-1.8.0.js"></script>
 <script src="js/common/filelist.js"></script>
+<script src="js/common/checkbox.js"></script>
 <script type="text/javascript">
 
 $(function(){
@@ -45,7 +46,7 @@ $(function(){
 				<div class="list-view-header">
 					<ul class="list-cols">
 						<li class="col first-col" style="width: 60%;">
-							<input class="check" type="checkbox" />
+							<input class="check" name="chkAll" id="chkAll" onClick="ChkAllClick('keyIds','chkAll')" type="checkbox"/>
 							<span class="text">文件名</span>
 							<span class="order-icon"></span>
 							<a class="g-button" href="#">

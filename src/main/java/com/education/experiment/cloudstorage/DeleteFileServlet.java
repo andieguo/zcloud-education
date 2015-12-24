@@ -29,35 +29,38 @@ public class DeleteFileServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		String command = request.getParameter("command");
-		System.out.println("command:" + command);
 		PrintWriter out = response.getWriter();
+		int count = 0;
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			// 获取用户提交的文件名
-			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
-			String dst = "/tomcat/users/" + ub.getUserId() + "/"+command+ "/" + uuidname;
-			// 开始删除文件
-			FileSystem fs = FileSystem.get(conf);
-			Path hdfsPath = new Path(dst);
-			if (!fs.exists(hdfsPath)) {
-				request.getRequestDispatcher("/error.jsp?result=刪除资源不存在!").forward(request, response);
-			} else {
-				FileStatus stat = fs.getFileStatus(hdfsPath);
-				ub.setCloudSize(ub.getCloudSize() + stat.getLen());
-				boolean status = fs.delete(hdfsPath, true);
-				if(status){
-					// 删除文件结束
-					// 更新用户的sesion信息
-					int result = BaseDao.updateUserStatus(ub);
-					if(result > 0){
-						out.write("true");
-					}else{
-						out.write("false");
+			String uuidnames[] = request.getParameterValues("filename");
+			for(String uuid : uuidnames){
+				String uuidname = new String(uuid.getBytes("ISO-8859-1"), "UTF-8");
+				String dst = "/tomcat/users/" + ub.getUserId() + "/"+command+ "/" + uuidname;
+				// 开始删除文件
+				FileSystem fs = FileSystem.get(conf);
+				Path hdfsPath = new Path(dst);
+				if (!fs.exists(hdfsPath)) {
+					request.getRequestDispatcher("/error.jsp?result=刪除资源不存在!").forward(request, response);
+				} else {
+					FileStatus stat = fs.getFileStatus(hdfsPath);
+					ub.setCloudSize(ub.getCloudSize() + stat.getLen());
+					boolean status = fs.delete(hdfsPath, true);
+					if(status){
+						// 删除文件结束
+						// 更新用户的sesion信息
+						int result = BaseDao.updateUserStatus(ub);
+						count += result;
 					}
-				}else{
-					out.write("false");
 				}
+			}
+			
+			if(uuidnames.length == count){
+				out.write("true");
+			}else{
+				out.write("false");
 			}
 		}
 		if(out != null) out.close();

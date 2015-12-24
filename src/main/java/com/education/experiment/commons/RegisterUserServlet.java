@@ -49,14 +49,18 @@ public class RegisterUserServlet extends HttpServlet {
 			ps.setLong(4, ub.getCloudSize());
 			ps.setString(5, ub.getPhoneNumber());
 			ps.setString(6, ub.getRemark());
-			ps.executeUpdate();
+			int result = ps.executeUpdate();
+			if(result > 0){
+				out.print("success");//注册成功
+			}else{
+				out.print("usererror");//用户ID重复,注册失败!
+			}
 			ps.close();
 			conn.close();
-			out.print("SUCCESS");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			out.print("usererror");
+			out.print("error");//注册成功!
 		}
 		out.close();
 		// 处理结束

@@ -15,7 +15,7 @@
 <link href="css/new-style.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery-1.8.0.js"></script>
 <script src="js/common/filelist.js"></script>
-
+<script src="js/common/checkbox.js"></script>
 <script type="text/javascript">
 	$(function() {
 		getFileSystem('<%=ub.getUserId()%>','notes');
@@ -38,6 +38,7 @@
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
 			<div id="header-shaw" style="background-color: #fff;height: 542px;">
+			<form action="downloadfile" method="post">
 				<div class="module-history-list">
 					<span class="history-list-dir">全部文件</span>
 					<span class="history-list-tips" id="filecount"></span>
@@ -45,7 +46,7 @@
 				<div class="list-view-header">
 					<ul class="list-cols">
 						<li class="col first-col" style="width: 60%;">
-							<input class="check" type="checkbox" />
+							<input class="check" name="chkAll" id="chkAll" onClick="ChkAllClick('keyIds','chkAll')" type="checkbox"/>
 							<span class="text">文件名</span>
 							<span class="order-icon"></span>
 							<a class="g-button" href="#">
@@ -56,7 +57,7 @@
 							</a>
 							<a class="g-button" href="#">
 								<span class="g-button-right">
-									<em class="icon icon-delete" title="删除"></em>
+									<em class="icon icon-delete" title="删除" onClick="deleteAllAction('<%=ub.getUserId()%>','notes')"></em>
 									<span class="text">删除</span>
 								</span>
 							</a>
@@ -74,6 +75,7 @@
 				<div id="tab_filesystem" class="list-view-container">
 					
 				</div>
+			</form>
 			</div>
 		</div>
 	</div>

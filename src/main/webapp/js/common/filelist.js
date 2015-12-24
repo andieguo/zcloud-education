@@ -20,7 +20,7 @@
 		   $("#filecount").html("已全部加载，共"+data.length+"个");
 		   for (var i=0; i<data.length; i++) {
 		      var tr1 = "<dd class='list-view-item'>"; 
-				tr1 += "<input class='checkbox' type='checkbox' />";
+				tr1 += "<input class='checkbox' name='keyIds' type='checkbox' value='"+data[i].pathSuffix+"' onclick=ChkSonClick('keyIds','chkAll') />";
 				tr1 += "<span class='fileicon'></span>";
 					tr1 += "<div class='file-name' style='width:62%'>";
 						tr1 += "<div class='text'>";
@@ -76,6 +76,7 @@
 		$.ajax({//调用JQuery提供的Ajax方法 
 			type : "GET",
 			url : "deletefile",
+			traditional: true,
 			data : {
 				filename : filename,
 				command : command
@@ -94,3 +95,15 @@
 			}
 		});
 	}
+	
+	function deleteAllAction(user,command){
+		var filenames = [];
+		$("input[name='keyIds']").each(function () {
+			if(this.checked){
+				filenames.push(this.value);
+			}
+		});
+		deletefile(user,command,filenames);
+	}
+	
+	
