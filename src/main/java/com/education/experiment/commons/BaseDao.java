@@ -9,6 +9,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
+import com.education.experiment.util.PropertiesUtil;
 
 /**
  * 处理JDBC基本的操作
@@ -26,10 +29,11 @@ public class BaseDao {
 	private static String PASSWORD = null;
 
 	static {
-		DRIVER = "com.mysql.jdbc.Driver";// PropertiesHelper.getProperty("DRIVER");
-		URL = "jdbc:mysql://localhost:3306/db_education?useUnicode=true&amp;characterEncoding=utf-8";// PropertiesHelper.getProperty("URL");
-		USER = "root";// PropertiesHelper.getProperty("USER");
-		PASSWORD = "root";// PropertiesHelper.getProperty("PASSWORD");
+		Properties properties = PropertiesUtil.loadFromInputStream(BaseDao.class.getClassLoader().getResourceAsStream("/config.properties"));
+		DRIVER =  properties.getProperty("jdbc.driver");
+		URL = properties.getProperty("jdbc.url");
+		USER =  properties.getProperty("jdbc.user");
+		PASSWORD =  properties.getProperty("jdbc.password");
 	}
 
 	/**
