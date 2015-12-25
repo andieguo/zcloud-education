@@ -27,7 +27,7 @@
 							tr1 += "<a href='#' title='"+data[i].pathSuffix+"'>"+data[i].pathSuffix+"</a>";
 						tr1 += "</div>";
 						tr1 += "<div class='operate'>";
-						tr1 += "<a class='icon icon-download-blue' href='downloadfile?command="+command+"&filename="+data[i].pathSuffix+"'title='下载'></a>";
+						tr1 += "<a class='icon icon-download-blue' onClick=downloadfile('"+command+"','"+data[i].pathSuffix+"') title='下载'></a>";
 						tr1 += "<a class='icon icon-delete-blue' onClick=deletefile('"+user+"','"+command+"','"+data[i].pathSuffix+"') title='删除'></a>";						
 						tr1 += "</div>";
 					tr1 += "</div>";
@@ -110,7 +110,35 @@
 		}else{
 			deletefile(user,command,filenames);
 		};
-		
+	}
+	
+	function downloadfile(command,filename) {
+		console.log(filename);
+		$.ajax({//调用JQuery提供的Ajax方法 
+			type : "GET",
+			url : "downloadfile",
+			traditional: true,
+			data : {
+				filename : filename,
+				command : command
+			}
+		});
+	}
+	
+	function downloadAllAction(command){
+		var value=0;
+		var filenames = [];
+		$("input[name='keyIds']").each(function () {
+			if(this.checked){
+				value=1;
+				filenames.push(this.value);
+			}
+		});
+		if(!value){
+			alert("请选择删除项！");
+		}else{
+			downloadfile(command,filenames);
+		};
 	}
 	
 	

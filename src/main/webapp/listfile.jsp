@@ -51,7 +51,7 @@ $(function(){
 							<span class="order-icon"></span>
 							<a class="g-button" href="#">
 								<span class="g-button-right">
-									<em class="icon icon-download-gray" title="下载"></em>
+									<em class="icon icon-download-gray" title="下载" onClick="downloadAllAction('files')"></em>
 									<span class="text">下载</span>
 								</span>
 							</a>
