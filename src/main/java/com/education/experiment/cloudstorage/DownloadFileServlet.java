@@ -2,7 +2,6 @@ package com.education.experiment.cloudstorage;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,8 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +44,7 @@ public class DownloadFileServlet extends HttpServlet {
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		InputStream hadopin = null;
 		OutputStream bos =null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 		List<File> fileList = new ArrayList<File>();
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
@@ -79,11 +76,10 @@ public class DownloadFileServlet extends HttpServlet {
 				}
 				// 读取文件结束,将文件f的内容返回给response,开始给客户端传送文件。
 				response.setContentType("application/x-msdownload");
-				String str = "attachment;filename=hello.zip";
+				String zipFileName = simpleDateFormat.format(new Date())+".zip";
 				//设置content-disposition响应头控制浏览器以下载的形式打开文件
-				response.setHeader("Content-Disposition", str);
+				response.setHeader("Content-Disposition", "attachment;filename=" + zipFileName);
 				// 从输入流对象中读数据写入到输出流对象中
-				FileUtil.zipUtil(fileList, new FileOutputStream(new File("C:\\Users\\andieguo\\temp\\hello.zip")));
 				FileUtil.zipUtil(fileList, response.getOutputStream());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

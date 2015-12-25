@@ -112,32 +112,26 @@
 		};
 	}
 	
+	
 	function downloadfile(command,filename) {
-		console.log(filename);
-		$.ajax({//调用JQuery提供的Ajax方法 
-			type : "GET",
-			url : "downloadfile",
-			traditional: true,
-			data : {
-				filename : filename,
-				command : command
-			}
-		});
+
 	}
 	
+	//模拟表单提交
 	function downloadAllAction(command){
+		var form = document.forms[0];
+		form.action="downloadfile";
+		form.method= "get"; 
 		var value=0;
-		var filenames = [];
 		$("input[name='keyIds']").each(function () {
 			if(this.checked){
 				value=1;
-				filenames.push(this.value);
 			}
 		});
 		if(!value){
 			alert("请选择删除项！");
 		}else{
-			downloadfile(command,filenames);
+			form.submit();
 		};
 	}
 	

@@ -39,6 +39,7 @@ $(function(){
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
 			<div id="header-shaw" style="background-color: #fff;height: 542px;">
+			<form action="downloadfile" method="get">
 				<div class="module-history-list">
 					<span class="history-list-dir">全部文件</span>
 					<span class="history-list-tips" id="filecount"></span>
@@ -75,6 +76,7 @@ $(function(){
 				<div id="tab_filesystem" class="list-view-container">
 					
 				</div>
+			</form>
 			</div>
 		</div>
 	</div>

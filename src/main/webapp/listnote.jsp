@@ -38,7 +38,7 @@
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
 			<div id="header-shaw" style="background-color: #fff;height: 542px;">
-			<form action="downloadfile" method="post">
+			<form action="downloadnote" method="get">
 				<div class="module-history-list">
 					<span class="history-list-dir">全部文件</span>
 					<span class="history-list-tips" id="filecount"></span>
