@@ -97,13 +97,20 @@
 	}
 	
 	function deleteAllAction(user,command){
+		var value=0;
 		var filenames = [];
 		$("input[name='keyIds']").each(function () {
 			if(this.checked){
+				value=1;
 				filenames.push(this.value);
 			}
 		});
-		deletefile(user,command,filenames);
+		if(!value){
+			alert("请选择删除项！");
+		}else{
+			deletefile(user,command,filenames);
+		};
+		
 	}
 	
 	

@@ -57,7 +57,7 @@ $(function(){
 							</a>
 							<a class="g-button" href="#">
 								<span class="g-button-right">
-									<em class="icon icon-delete" title="删除"></em>
+									<em class="icon icon-delete" title="删除" onClick="deleteAllAction('<%=ub.getUserId()%>','files')"></em>
 									<span class="text">删除</span>
 								</span>
 							</a>
