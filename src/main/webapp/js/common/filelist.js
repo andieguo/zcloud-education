@@ -27,7 +27,7 @@
 							tr1 += "<a href='#' title='"+data[i].pathSuffix+"'>"+data[i].pathSuffix+"</a>";
 						tr1 += "</div>";
 						tr1 += "<div class='operate'>";
-						tr1 += "<a class='icon icon-download-blue' onClick=downloadfile('"+command+"','"+data[i].pathSuffix+"') title='下载'></a>";
+						tr1 += "<a class='icon icon-download-blue' href='downloadfile?command="+command+"&filename="+data[i].pathSuffix+"' title='下载'></a>";
 						tr1 += "<a class='icon icon-delete-blue' onClick=deletefile('"+user+"','"+command+"','"+data[i].pathSuffix+"') title='删除'></a>";						
 						tr1 += "</div>";
 					tr1 += "</div>";
@@ -36,7 +36,7 @@
 				tr1 += "</dd>";
 	       $("#tab_filesystem").append(tr1);                          
 		}   
-	 }
+	}
 
 	function formatsize(size){
 		if(size > 1024){
@@ -69,7 +69,7 @@
 				+ add0(mm) + ':' + add0(s);
 	}
 
-	//单个文件下载
+	//单个文件删除
 	function deletefile(user,command,filename) {
 		alert("确定要删除么？");
 		console.log(filename);
@@ -111,15 +111,6 @@
 		}else{
 			deletefile(user,command,filenames);
 		};
-	}
-	
-	//单个文件下载
-	function downloadfile(command,filename) {
-		var form = document.forms[0];
-		form.action="downloadfile";
-		form.method= "get"; 
-		document.getElementById("command").value = command;
-		form.submit();
 	}
 	
 	//批量下载

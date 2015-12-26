@@ -39,6 +39,7 @@
 		<div class="fns">
 			<div id="header-shaw" style="background-color: #fff;height: 542px;">
 			<form action="downloadnote" method="get">
+				<input id="command" name="command" type="hidden" value="">
 				<div class="module-history-list">
 					<span class="history-list-dir">全部文件</span>
 					<span class="history-list-tips" id="filecount"></span>
