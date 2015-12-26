@@ -24,7 +24,7 @@
 				tr1 += "<span class='fileicon'></span>";
 					tr1 += "<div class='file-name' style='width:62%'>";
 						tr1 += "<div class='text'>";
-							tr1 += "<a href='#' title='"+data[i].pathSuffix+"'>"+data[i].pathSuffix+"</a>";
+							tr1 += "<a href='detailfile?command="+command+"&filename="+data[i].pathSuffix+"' title='"+data[i].pathSuffix+"'>"+data[i].pathSuffix+"</a>";
 						tr1 += "</div>";
 						tr1 += "<div class='operate'>";
 						tr1 += "<a class='icon icon-download-blue' href='downloadfile?command="+command+"&filename="+data[i].pathSuffix+"' title='下载'></a>";

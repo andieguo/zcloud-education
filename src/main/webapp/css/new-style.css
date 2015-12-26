@@ -215,4 +215,20 @@
     .submit-reset .reset input {
       color: #666; }
 
+/* details */
+.details {
+  overflow: scroll;
+  overflow-x: auto; }
+  .details h1 {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    border-left: 6px solid #58595B;
+    font-size: 1.8em;
+    font-weight: bold; }
+    .details h1 span {
+      margin-left: 20px;
+      font-size: 0.6em;
+      font-weight: 100; }
+
 /*# sourceMappingURL=new-style.css.map */

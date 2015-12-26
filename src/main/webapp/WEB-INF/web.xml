@@ -84,13 +84,21 @@
 		<servlet-name>downloadfile</servlet-name>
 		<url-pattern>/downloadfile</url-pattern>
 	</servlet-mapping>
-		<servlet>
+	<servlet>
 		<servlet-name>downloadmutilfile</servlet-name>
 		<servlet-class>com.education.experiment.cloudstorage.DownloadMutilFileServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>downloadmutilfile</servlet-name>
 		<url-pattern>/downloadmutilfile</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>detailfile</servlet-name>
+		<servlet-class>com.education.experiment.cloudstorage.DetailFileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>detailfile</servlet-name>
+		<url-pattern>/detailfile</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>updategprs</servlet-name>
