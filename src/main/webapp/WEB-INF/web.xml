@@ -84,6 +84,14 @@
 		<servlet-name>downloadfile</servlet-name>
 		<url-pattern>/downloadfile</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>downloadmutilfile</servlet-name>
+		<servlet-class>com.education.experiment.cloudstorage.DownloadMutilFileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>downloadmutilfile</servlet-name>
+		<url-pattern>/downloadmutilfile</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>updategprs</servlet-name>
 		<servlet-class>com.education.experiment.cloudexpress.UpdateGPRSServlet</servlet-class>

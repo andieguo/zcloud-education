@@ -20,7 +20,7 @@
 		   $("#filecount").html("已全部加载，共"+data.length+"个");
 		   for (var i=0; i<data.length; i++) {
 		      var tr1 = "<dd class='list-view-item'>"; 
-				tr1 += "<input class='checkbox' name='keyIds' type='checkbox' value='"+data[i].pathSuffix+"' onclick=ChkSonClick('keyIds','chkAll') />";
+				tr1 += "<input class='checkbox' name='filename' type='checkbox' value='"+data[i].pathSuffix+"' onclick=ChkSonClick('filename','chkAll') />";
 				tr1 += "<span class='fileicon'></span>";
 					tr1 += "<div class='file-name' style='width:62%'>";
 						tr1 += "<div class='text'>";
@@ -58,7 +58,6 @@
 	}
 	
 	function formatdate(timestap) {
-		//shijianchuo是整数，否则要parseInt转换
 		var time = new Date(timestap);
 		var y = time.getFullYear();
 		var m = time.getMonth() + 1;
@@ -70,6 +69,7 @@
 				+ add0(mm) + ':' + add0(s);
 	}
 
+	//单个文件下载
 	function deletefile(user,command,filename) {
 		alert("确定要删除么？");
 		console.log(filename);
@@ -96,10 +96,11 @@
 		});
 	}
 	
+	//批量删除
 	function deleteAllAction(user,command){
 		var value=0;
 		var filenames = [];
-		$("input[name='keyIds']").each(function () {
+		$("input[name='filename']").each(function () {
 			if(this.checked){
 				value=1;
 				filenames.push(this.value);
@@ -112,18 +113,23 @@
 		};
 	}
 	
-	
+	//单个文件下载
 	function downloadfile(command,filename) {
-
-	}
-	
-	//模拟表单提交
-	function downloadAllAction(command){
 		var form = document.forms[0];
 		form.action="downloadfile";
 		form.method= "get"; 
+		document.getElementById("command").value = command;
+		form.submit();
+	}
+	
+	//批量下载
+	function downloadAllAction(command){
+		var form = document.forms[0];
+		form.action="downloadmutilfile";
+		form.method= "get"; 
+		document.getElementById("command").value = command;
 		var value=0;
-		$("input[name='keyIds']").each(function () {
+		$("input[name='filename']").each(function () {
 			if(this.checked){
 				value=1;
 			}
