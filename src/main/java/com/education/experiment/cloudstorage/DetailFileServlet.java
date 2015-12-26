@@ -21,6 +21,7 @@ import org.apache.hadoop.io.IOUtils;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.NoteBean;
 import com.education.experiment.commons.UserBean;
+import com.education.experiment.util.FileUtil;
 import com.education.experiment.util.HtmlParseUtil;
 
 public class DetailFileServlet extends HttpServlet {
@@ -66,9 +67,15 @@ public class DetailFileServlet extends HttpServlet {
 					if (f.exists()) {
 						// 创建一 个输入流对象和指定的文件相关联
 						FileInputStream input = new FileInputStream(f);
-						NoteBean noteBean = HtmlParseUtil.parse(input);
-						request.setAttribute("noteBean", noteBean);
-						request.getRequestDispatcher("/detailfile.jsp").forward(request, response);
+						if(command.equals("notes")){
+							NoteBean noteBean = HtmlParseUtil.parse(input);
+							request.setAttribute("noteBean", noteBean);
+							request.getRequestDispatcher("/detailnote.jsp").forward(request, response);
+						}else{
+							String content = FileUtil.readInputStream(input);
+							request.setAttribute("content", content);
+							request.getRequestDispatcher("/detailfile.jsp").forward(request, response);
+						}
 					} else {
 						request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
 					}
