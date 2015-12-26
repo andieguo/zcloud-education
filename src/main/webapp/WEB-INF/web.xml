@@ -125,6 +125,22 @@
 		<url-pattern>/downloadweather</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>downloadmutilweather</servlet-name>
+		<servlet-class>com.education.experiment.cloudweather.DownloadMutilWeatherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>downloadmutilweather</servlet-name>
+		<url-pattern>/downloadmutilweather</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>detailweather</servlet-name>
+		<servlet-class>com.education.experiment.cloudweather.DetailWeatherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>detailweather</servlet-name>
+		<url-pattern>/detailweather</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>downloadweixin</servlet-name>
 		<servlet-class>com.education.experiment.cloudwechat.DownloadWeixinServlet</servlet-class>
 	</servlet>
