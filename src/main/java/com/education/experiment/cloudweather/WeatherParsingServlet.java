@@ -1,5 +1,6 @@
 package com.education.experiment.cloudweather;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -105,6 +106,8 @@ public class WeatherParsingServlet extends HttpServlet {
 				fs.delete(out, true);
 			}
 			// 开始生成处理天气数据的Map/Reduce任务job信息，然后提交给hadoop集群开始执行.
+			String jarpath = System.getProperty("user.home") + File.separator + "temp"+File.separator+"education.jar";
+			conf.set("mapred.jar", jarpath);
 			Job job = new Job(conf, "Parsing Meteorological Data");
 			job.setJarByClass(WeatherParsingServlet.class);
 			Path in = new Path("/tomcat/experiment/weathercloud/uploaddata");

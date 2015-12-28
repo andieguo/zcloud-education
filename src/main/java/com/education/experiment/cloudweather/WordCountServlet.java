@@ -25,12 +25,27 @@ public class WordCountServlet extends HttpServlet {
 	public WordCountServlet() {
 		super();
 	}
+	
+	
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(req, resp);
+	}
+
+
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 设置request编码，主要是为了处理普通输入框中的中文问题
 		String[] args = new String[5];
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		args[1] = "/tomcat/wordcount/input";
+		args[2] = "/tomcat/wordcount/output";
+		args[3] = "-skip";
+		args[4] = "/tomcat/wordcount/filter/patterns.txt";
+		args[0] = "-Dwordcount.case.sensitive=false";
 
 		// 这里对request进行封装，RequestContext提供了对request多个访问方法
 		RequestContext requestContext = new ServletRequestContext(request);
@@ -44,11 +59,7 @@ public class WordCountServlet extends HttpServlet {
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			// 设置上传文件大小的上限，-1表示无上限
 			upload.setSizeMax(1024 * 1024 * 1024);
-			args[1] = "/tomcat/wordcount/input";
-			args[2] = "/tomcat/wordcount/output";
-			args[3] = "-skip";
-			args[4] = "/tomcat/wordcount/filter/patterns.txt";
-			args[0] = "-Dwordcount.case.sensitive=false";
+			
 		}
 		// -Dwordcount.case.sensitive=false /tomcat/input /tomcat/output -skip
 		// /tomcat/filter/patterns.txt

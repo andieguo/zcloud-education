@@ -158,11 +158,19 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>wordcount</servlet-name>
-		<servlet-class>com.education.experiment.cloudstorage.WordCountServlet</servlet-class>
+		<servlet-class>com.education.experiment.cloudweather.WordCountServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>wordcount</servlet-name>
 		<url-pattern>/wordcount</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>cloudzhiyun</servlet-name>
+		<servlet-class>com.education.experiment.cloudzhiyun.ZhiyunParsingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cloudzhiyun</servlet-name>
+		<url-pattern>/cloudzhiyun</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>weatherparsing</servlet-name>

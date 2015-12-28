@@ -87,6 +87,8 @@ public class WordCount extends Configured implements Tool {
 
 	public int run(String[] args) throws Exception {
 		JobConf conf = new JobConf(getConf(), WordCount.class);
+		String jarpath = System.getProperty("user.home") + File.separator + "temp"+File.separator+"education.jar";
+		conf.set("mapred.jar", jarpath);
 		conf.setJobName("wordcount");
 
 		conf.setOutputKeyClass(Text.class);

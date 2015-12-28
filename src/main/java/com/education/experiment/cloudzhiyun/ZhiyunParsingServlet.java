@@ -1,5 +1,6 @@
 package com.education.experiment.cloudzhiyun;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -48,14 +49,14 @@ public class ZhiyunParsingServlet extends HttpServlet {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else if (ub.getUserId().equals("admin")) {
 			FileSystem fs = FileSystem.get(conf);
-			Path in = new Path("/tomcat/experiment/weathercloud/uploaddata");
-			Path out = new Path("/tomcat/experiment/weathercloud/results");
+			Path in = new Path("/tomcat/experiment/zhiyuncloud/uploaddata");
+			Path out = new Path("/tomcat/experiment/zhiyuncloud/results");
 			if (fs.exists(out)) {
 				fs.delete(out, true);
 			}
 			String path = ZhiyunParsingServlet.class.getClassLoader().getResource("").toString();
-			String jarpath = path.substring(0, path.indexOf("classes")) + "lib/education-weather-1.0-SNAPSHOT.jar";
 			String jsonpath = path.substring(0, path.indexOf("classes")) + "lib/json-20140107.jar";
+			String jarpath = System.getProperty("user.home") + File.separator + "temp"+File.separator+"education.jar";
 			HadoopUtil.addJarToDistributedCache(jsonpath, conf);
 			conf.set("mapred.jar", jarpath);
 			conf.set("type", type);
