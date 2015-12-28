@@ -9,4 +9,6 @@ buildNumber.properties
 .settings/
 .project
 .classpath
-.log
+*.log
+*.scss
+*.css.map
