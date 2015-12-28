@@ -1,158 +1,139 @@
-<%@ page language="java" import="java.util.*" import="com.education.experiment.cloudweather.MonthBean"
-	import="com.education.experiment.commons.UserBean" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+<%@ page language="java" import="java.util.*"
+	import="com.education.experiment.cloudweather.MonthBean" pageEncoding="UTF-8"%>
+<%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>云服务平台</title>
-		<link href="css/base.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/header.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/title.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/pageSkin.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/navi002.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/reportOA.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/boxSearch.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="js/jquery-1.8.0.js"></script>
-		<script type="text/javascript">
-	$(function() {
-		var chart;
-		$(document).ready(
-				function() {
-				<%if(((String) request.getAttribute("result"))!=null){%>
-					chart = new Highcharts.Chart({
-						chart : {
-							renderTo : 'container',
-							type : 'spline'
-						},
-						title : {
-							text : '气象数据统计'
-						},
-						subtitle : {
-							text : '2012-2013年'
-						},
-						xAxis : {
-							type : 'datetime',
-							dateTimeLabelFormats : { // don't display the dummy year
-								month : '%Y年%b',
-								year : '%b'
-							}
-						},
-						yAxis : {
-							title : {
-								text : '单位：摄氏度,百分比,米每秒'
-							},
-							min : -20
-						},
-						tooltip : {
-							formatter : function() {
-								return '<b>'
-										+ this.series.name
-										+ '</b><br/>'
-										+ Highcharts.dateFormat('%Y年%b',
-												this.x) + ': ' + this.y ;
-							}
-						},
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>气象数据列表</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
+<link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+<link href="css/new-style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.0.js"></script>
+<script src="js/common/weatherlist.js"></script>
+<script src="js/common/checkbox.js"></script>
+<script type="text/javascript">
+$(function() {
+	var chart;
+	$(document).ready(function() {
+	<%if(((String) request.getAttribute("result"))!=null){%>
+		chart = new Highcharts.Chart({
+			chart : {
+				renderTo : 'container',
+				type : 'spline'
+			},
+			title : {
+				text : '气象数据统计'
+			},
+			subtitle : {
+				text : '2012-2013年'
+			},
+			xAxis : {
+				type : 'datetime',
+				dateTimeLabelFormats : { // don't display the dummy year
+					month : '%Y年%b',
+					year : '%b'
+				}
+			},
+			yAxis : {
+				title : {
+					text : '单位：摄氏度,百分比,米每秒'
+				},
+				min : -20
+			},
+			tooltip : {
+				formatter : function() {
+					return '<b>'
+							+ this.series.name
+							+ '</b><br/>'
+							+ Highcharts.dateFormat('%Y年%b',
+									this.x) + ': ' + this.y ;
+				}
+			},
 
-						series : [
-								{
-									name : 'Meteorological：MinTemp(℃)',
-									// Define the data points. All series have a dummy year
-									// of 2007/71 in order to be compared on the same x axis. Note
-									// that in JavaScript, months start at 0 for January, 1 for February etc.
-									data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getMinTemp()%> ],
-											[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getMinTemp()%> ],
-											[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getMinTemp()%> ],
-											[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getMinTemp()%> ],
-											[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getMinTemp()%> ],
-											[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getMinTemp()%> ],
-											[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getMinTemp()%> ],
-											[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getMinTemp()%> ],
-											[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getMinTemp()%> ],
-											[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getMinTemp()%> ],
-											[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getMinTemp()%> ],
-											[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getMinTemp()%> ] ]
-								},
-								{
-									name : 'Meteorological:MaxTemp(℃)',
-									// Define the data points. All series have a dummy year
-									// of 2007/71 in order to be compared on the same x axis. Note
-									// that in JavaScript, months start at 0 for January, 1 for February etc.
-									data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getMaxTemp()%> ],
-											[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getMaxTemp()%> ],
-											[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getMaxTemp()%> ],
-											[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getMaxTemp()%> ],
-											[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getMaxTemp()%> ],
-											[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getMaxTemp()%> ],
-											[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getMaxTemp()%> ],
-											[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getMaxTemp()%> ],
-											[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getMaxTemp()%> ],
-											[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getMaxTemp()%> ],
-											[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getMaxTemp()%> ],
-											[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getMaxTemp()%> ] ]
-								},
-								{
-									name : 'Meteorological：Humidity(%)',
-									data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getHumidity()%> ],
-											[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getHumidity()%> ],
-											[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getHumidity()%> ],
-											[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getHumidity()%> ],
-											[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getHumidity()%> ],
-											[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getHumidity()%> ],
-											[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getHumidity()%> ],
-											[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getHumidity()%> ],
-											[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getHumidity()%> ],
-											[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getHumidity()%> ],
-											[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getHumidity()%> ],
-											[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getHumidity()%> ] ]
-								},
-								{
-									name : 'Meteorological：WSP(m/s)',
-									data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getWSP()%> ],
-											[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getWSP()%> ],
-											[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getWSP()%> ],
-											[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getWSP()%> ],
-											[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getWSP()%> ],
-											[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getWSP()%> ],
-											[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getWSP()%> ],
-											[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getWSP()%> ],
-											[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getWSP()%> ],
-											[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getWSP()%> ],
-											[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getWSP()%> ],
-											[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getWSP()%> ] ]
-								} ]
-					});
-				});
-		<%}%>
+			series : [
+					{
+						name : 'Meteorological：MinTemp(℃)',
+						// Define the data points. All series have a dummy year
+						// of 2007/71 in order to be compared on the same x axis. Note
+						// that in JavaScript, months start at 0 for January, 1 for February etc.
+						data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getMinTemp()%> ],
+								[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getMinTemp()%> ],
+								[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getMinTemp()%> ],
+								[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getMinTemp()%> ],
+								[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getMinTemp()%> ],
+								[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getMinTemp()%> ],
+								[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getMinTemp()%> ],
+								[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getMinTemp()%> ],
+								[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getMinTemp()%> ],
+								[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getMinTemp()%> ],
+								[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getMinTemp()%> ],
+								[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getMinTemp()%> ] ]
+					},
+					{
+						name : 'Meteorological:MaxTemp(℃)',
+						// Define the data points. All series have a dummy year
+						// of 2007/71 in order to be compared on the same x axis. Note
+						// that in JavaScript, months start at 0 for January, 1 for February etc.
+						data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getMaxTemp()%> ],
+								[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getMaxTemp()%> ],
+								[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getMaxTemp()%> ],
+								[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getMaxTemp()%> ],
+								[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getMaxTemp()%> ],
+								[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getMaxTemp()%> ],
+								[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getMaxTemp()%> ],
+								[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getMaxTemp()%> ],
+								[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getMaxTemp()%> ],
+								[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getMaxTemp()%> ],
+								[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getMaxTemp()%> ],
+								[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getMaxTemp()%> ] ]
+					},
+					{
+						name : 'Meteorological：Humidity(%)',
+						data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getHumidity()%> ],
+								[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getHumidity()%> ],
+								[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getHumidity()%> ],
+								[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getHumidity()%> ],
+								[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getHumidity()%> ],
+								[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getHumidity()%> ],
+								[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getHumidity()%> ],
+								[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getHumidity()%> ],
+								[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getHumidity()%> ],
+								[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getHumidity()%> ],
+								[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getHumidity()%> ],
+								[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getHumidity()%> ] ]
+					},
+					{
+						name : 'Meteorological：WSP(m/s)',
+						data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getWSP()%> ],
+								[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getWSP()%> ],
+								[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getWSP()%> ],
+								[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getWSP()%> ],
+								[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getWSP()%> ],
+								[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getWSP()%> ],
+								[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getWSP()%> ],
+								[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getWSP()%> ],
+								[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getWSP()%> ],
+								[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getWSP()%> ],
+								[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getWSP()%> ],
+								[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getWSP()%> ] ]
+					} ]
+		});
 	});
+	<%}%>
+});
 </script>
-		<!--ie6png图片透明补丁-->
-		<!--[if IE 6]>
-    <script type="text/javascript" src="js/DD_belatedPNG.js"></script>
-    <script type="text/javascript">
-        DD_belatedPNG.fix('#header,.cur,.btn,.iconUser,.iconDepartment,.iconIdea,.iconKey,.iconQuit,.iconSet,.iconAbout,.iconTool,.recall,.case,.approve,.statistics,.https,.file,.compareForm,.webmaster,.diary,#up,#down,.setKeywords a,.icon,.select,.iconMore,.barSearch'); //放置css选择器
-    </script>
-    <script type="text/javascript">
-        //防止抖动
-        // <![CDATA[
-        if ((window.navigator.appName.toUpperCase().indexOf("MICROSOFT") >= 0) && (document.execCommand)) try {
-            document.execCommand("BackgroundImageCache", false, true);
-        }
-        catch(e) {}
-        // ]]>
-    </script>
-<![endif]-->
-		<!--ie6png图片透明补丁-->
-	</head>
-
-	<body id="wrapper">
+</head>
+<body>
+<div class="hd-main" style="min-width:1000px;">
+	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
+		<img src="images/qixiang.png" /><span class="logo">气象数据分析系统</span>
+	</div>
+</div>
+<div class="clearfix1 wrap">
+	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<script src="js/highcharts.js"></script>
 		<!--主体开始-->
 		<div id="content" class="clearfix">
@@ -162,34 +143,6 @@
 				</h1>
 			</div>
 
-			<!--列表开始-->
-			<div id="boxSearch">
-				<div class="subNavi">
-					<ul>
-						<li>
-							<a href='downloadweather.jsp'>示例文件下载</a>
-						</li>
-						<li>
-							<a href='uploadweather.jsp'>气象数据上传</a>
-						</li>
-						<%
-							UserBean user = (UserBean) session.getAttribute("user");
-							if (user.getUserId().equals("admin")) {
-						%>
-						<li>
-							<a href='deleteweather.jsp'>气象数据删除</a>
-						</li>
-						<li>
-							<a href='previewweatherdata?sign=0'>气象数据云计算</a>
-						</li>
-						<%
-							}
-						%>
-						<li class="current">
-							<a href='previewweatherresult'>气象结果查看</a>
-						</li>
-					</ul>
-				</div>
 				<div id="selectSet">
 					<%
 						String result = (String) request.getAttribute("result");
@@ -228,6 +181,10 @@
 				</div>
 			</div>
 		</div>
-		<div id="footer"></div>
-	</body>
+	</div>
+	<%@ include file="/share/weather-left.jsp"%>
+</div>
+</div>
+<%@ include file="/share/foot.jsp"%>
+</body>
 </html>

@@ -127,7 +127,7 @@ public class WeatherParsingServlet extends HttpServlet {
 			try {
 				// 提交job给hadoop集群，然后hadoop集群开始执行.
 				job.submit();
-				request.getRequestDispatcher("/mrlink.jsp").forward(request, response);
+				request.getRequestDispatcher("/launchweather.jsp").forward(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

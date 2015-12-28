@@ -324,12 +324,20 @@
 		<servlet-name>retrievalbooks</servlet-name>
 		<url-pattern>/retrievalbooks</url-pattern>
 	</servlet-mapping>
-		<servlet>
+	<servlet>
 		<servlet-name>fileSystemServlet</servlet-name>
 		<servlet-class>com.education.experiment.commons.FileSystemServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>fileSystemServlet</servlet-name>
 		<url-pattern>/filesystem</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>jobtracker</servlet-name>
+		<servlet-class>com.education.experiment.commons.JobTrackerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jobtracker</servlet-name>
+		<url-pattern>/jobtracker</url-pattern>
 	</servlet-mapping>
 </web-app>

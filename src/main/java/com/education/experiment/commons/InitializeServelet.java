@@ -2,21 +2,40 @@ package com.education.experiment.commons;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.util.Properties;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.mapred.JobClient;
+
 import com.education.experiment.util.JarUtil;
+import com.education.experiment.util.PropertiesUtil;
 
 public class InitializeServelet extends HttpServlet {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private JobClient jobClient;
+	private Properties properties;
+	private Configuration conf;
+	private ServletContext servletContext;
 
 	public void init() throws ServletException {
-		//将/zcloud-education/WEB-INF/classes下的class打包到用户家目录temp下，提交job时需要这个jar文件
+		properties = PropertiesUtil.loadFromInputStream(this.getClass().getResourceAsStream("/config.properties"));
+		String hostname = properties.getProperty("fs.default.name.hostname");//192.168.100.141
+		String jobPort = properties.getProperty("mapred.job.tracker.port");//9001
+		conf = HadoopConfiguration.getConfiguration();
+		servletContext = getServletContext();
 		try {
+			//获取jobClient
+			jobClient = new JobClient(new InetSocketAddress(hostname,Integer.valueOf(jobPort)), conf);
+			servletContext.setAttribute("jobClient", jobClient);
+			//将/zcloud-education/WEB-INF/classes下的class打包到用户家目录temp下，提交job时需要这个jar文件
 			String javaClassPath = InitializeServelet.class.getClassLoader().getResource("").toString();
 			javaClassPath = javaClassPath.substring(javaClassPath.indexOf("/")+1);
 			File temp = new File(System.getProperty("user.home") + File.separator + "temp");
