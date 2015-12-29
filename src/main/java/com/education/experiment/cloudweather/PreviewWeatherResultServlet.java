@@ -90,9 +90,9 @@ public class PreviewWeatherResultServlet extends HttpServlet {
 									e.printStackTrace();
 								}
 							}
-							Calendar calendar = Calendar.getInstance();
+							Calendar calendar = Calendar.getInstance(java.util.Locale.CHINA);
 							String[] d = array[0].split("-");
-							calendar.set(Integer.valueOf(d[0]), Integer.valueOf(d[1]), 1);
+							calendar.set(Integer.valueOf(d[0]), Integer.valueOf(d[1])-1, 1);
 							maps.put(calendar.getTimeInMillis(), monBean);
 						}
 					}
