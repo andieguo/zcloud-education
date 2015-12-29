@@ -3,6 +3,8 @@ package com.education.experiment.cloudweather;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -14,10 +16,12 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.json.JSONObject;
 
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
-import com.google.common.collect.Multiset.Entry;
 
 public class PreviewWeatherResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,7 +37,12 @@ public class PreviewWeatherResultServlet extends HttpServlet {
 		// request.setCharacterEncoding(Charset.defaultCharset().toString());
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
-		Map<String,MonthBean> maps = new TreeMap<String,MonthBean>();
+		Map<Long,MonthBean> maps = new TreeMap<Long,MonthBean>();
+		JSONObject resultJSON = new JSONObject();
+		JSONArray mintempSeries = new JSONArray();
+		JSONArray humiditySeries = new JSONArray();
+		JSONArray maxtempSeries = new JSONArray();
+		JSONArray wspSeries = new JSONArray();
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
@@ -50,10 +59,7 @@ public class PreviewWeatherResultServlet extends HttpServlet {
 					BufferedReader br = new BufferedReader(new InputStreamReader(fsdis, "UTF-8"));
 					String line = null;
 					int count = 0;
-					float maxTempTotal = 0.0f;
-					float minTempTotal = 0.0f;
-					float humidityTotal = 0.0f;
-					float WSPTotal = 0.0f;
+					float maxTempTotal = 0.0f,minTempTotal = 0.0f, humidityTotal = 0.0f, WSPTotal = 0.0f;
 					// 2012-01	AVG{Temp(max:21.754515℃/min:12.678706℃);Humidity(46.5716%);WSP(19.337095m/s)}
 					// 开始汇总读取到的每一行数据文件，主要总的操作是把所有结果信息汇总，然后返回给客户端.
 					while ((line = br.readLine()) != null) {
@@ -66,40 +72,81 @@ public class PreviewWeatherResultServlet extends HttpServlet {
 								try {
 									String[] temps = metes[0].substring(metes[0].indexOf("(") + 1, metes[0].indexOf(")")).split("/");
 									if (temps.length == 2) {
-										monBean.setMaxTemp(Float.parseFloat(temps[0].substring(temps[0].indexOf("max:") + "max:".length(), temps[0].indexOf("℃"))));
+										double maxtemp = Double.parseDouble(temps[0].substring(temps[0].indexOf("max:") + "max:".length(), temps[0].indexOf("℃")));
+										monBean.setMaxTemp(decimal(maxtemp));
 										maxTempTotal += monBean.getMaxTemp();
-										monBean.setMinTemp(Float.parseFloat(temps[1].substring(temps[1].indexOf("min:") + "min:".length(), temps[1].indexOf("℃"))));
+										double mintemp = Double.parseDouble(temps[1].substring(temps[1].indexOf("min:") + "min:".length(), temps[1].indexOf("℃")));
+										monBean.setMinTemp(decimal(mintemp));
 										minTempTotal += monBean.getMinTemp();
 									}
 									String humidity = metes[1].substring(metes[1].indexOf("(") + 1, metes[1].indexOf(")"));
-									monBean.setHumidity(Float.parseFloat(humidity.substring(0, humidity.indexOf("%"))));
+									monBean.setHumidity(decimal(Double.parseDouble(humidity.substring(0, humidity.indexOf("%")))));
 									humidityTotal += monBean.getHumidity();
 									String WSP = metes[2].substring(metes[2].indexOf("(") + 1, metes[2].indexOf(")"));
-									monBean.setWSP(Float.parseFloat(WSP.substring(0, WSP.indexOf("m/s"))));
+									monBean.setWSP(decimal(Double.parseDouble(WSP.substring(0, WSP.indexOf("m/s")))));
 									WSPTotal += monBean.getWSP();
 									count++;
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
 							}
-							System.out.println(array[0]);
-							maps.put(array[0], monBean);
+							Calendar calendar = Calendar.getInstance();
+							String[] d = array[0].split("-");
+							calendar.set(Integer.valueOf(d[0]), Integer.valueOf(d[1]), 1);
+							maps.put(calendar.getTimeInMillis(), monBean);
 						}
 					}
-					request.setAttribute("result", maps);
-					
-					// 读取结果文件完成
-					// 2012-12 AVG{Temp(max:21.760002℃/min:13.001612℃);Humidity(51.97549%);WSP(21.388714m/s)}
-					request.setAttribute("maxTemp", maxTempTotal / count);
-					request.setAttribute("minTemp", minTempTotal / count);
-					request.setAttribute("humidity", humidityTotal / count);
-					request.setAttribute("WSP", WSPTotal / count);
-					request.getRequestDispatcher("/weatherresult.jsp").forward(request, response);
+					try {
+						for(Long key : maps.keySet()){
+							JSONArray mintemp = new JSONArray();
+							JSONArray maxtemp = new JSONArray();
+							JSONArray wsp = new JSONArray();
+							JSONArray humidity = new JSONArray();
+							MonthBean monBean = maps.get(key);
+							mintemp.put(key);mintemp.put(monBean.getMinTemp());
+							maxtemp.put(key);maxtemp.put(monBean.getMaxTemp());
+							humidity.put(key);humidity.put(monBean.getHumidity());
+							wsp.put(key);wsp.put(monBean.getWSP());
+							mintempSeries.put(mintemp);
+							maxtempSeries.put(maxtemp);
+							humiditySeries.put(humidity);
+							wspSeries.put(wsp);
+						}
+						resultJSON.put("mintempSeries", mintempSeries);
+						resultJSON.put("maxtempSeries", maxtempSeries);
+						resultJSON.put("wspSeries", wspSeries);
+						resultJSON.put("humiditySeries", humiditySeries);
+						resultJSON.put("maxTemp", decimal(maxTempTotal / count));
+						resultJSON.put("minTemp", decimal(minTempTotal / count));
+						resultJSON.put("humidity",decimal( humidityTotal / count));
+						resultJSON.put("WSP", decimal(WSPTotal / count));
+						//返回JSON格式数据
+						response.setCharacterEncoding("utf-8");
+						response.setContentType("application/x-json");
+						PrintWriter writer = response.getWriter();
+						writer.write(resultJSON.toString());
+						writer.flush();
+						writer.close();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				} else {
-					request.setAttribute("result", null);
+					
 				}
 
 			}
 		}
+	}
+	
+	public static double decimal(double num){
+		return (double)(Math.round(num*100))/100;
+	}
+	
+	public static void main(String[] args) {
+		JSONObject jsonObject = new JSONObject();
+		double num = 26.149999618530273;
+		jsonObject.put("key", decimal(num));
+		System.out.println(jsonObject.get("key"));
 	}
 }

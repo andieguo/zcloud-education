@@ -22,10 +22,11 @@ public class WeatherDataGenUtil {
 			for(int year=startyear;year<=endyear;year++){
 				//生成文件夹
 				File temp = new File(System.getProperty("user.home") + File.separator + "temp");
-				if (!temp.exists())
-					temp.mkdir();
+				if (!temp.exists()) temp.mkdir();
+				File weather = new File(temp+File.separator+"weather");
+				if (!weather.exists()) weather.mkdir();
 				//默认为UTF-8格式
-				BufferedWriter writer = new BufferedWriter(new FileWriter(new File(temp + File.separator + "weatherdata-" + year+".txt"), false));//覆盖
+				BufferedWriter writer = new BufferedWriter(new FileWriter(new File(weather + File.separator + "weatherdata-" + year+".txt"), false));//覆盖
 				//生成日期
 				Calendar calendar = Calendar.getInstance();
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -57,6 +58,6 @@ public class WeatherDataGenUtil {
 	}
 
 	public static void main(String[] args) {
-		genWeatherDate(2011,2013);
+		genWeatherDate(2009,2015);
 	}
 }

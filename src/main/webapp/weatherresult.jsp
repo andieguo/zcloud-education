@@ -14,93 +14,31 @@
 <script src="js/jquery-1.8.0.js"></script>
 <script src="js/common/weatherlist.js"></script>
 <script src="js/common/checkbox.js"></script>
+<script type="text/javascript" src="js/highcharts.js"></script>
+<script src="js/common/chart.js"></script>
 <script type="text/javascript">
-$(function() {
-	var chart;
-	$(document).ready(function() {
-	<%
-		Map<String,MonthBean> maps = (Map<String,MonthBean>)request.getAttribute("result");
-		if( maps != null){
-	%>
-		var mintempSeries = '[';
-		var maxtempSeries = '[';
-		var humiditySeries = '[';
-		var wspSeries = '[';
-		<%
-			for(String key : maps.keySet()){
-				MonthBean monthBean = maps.get(key);%>
-				mintempSeries += '['+key+','+ <%= monthBean.getMinTemp() %>+'],';
-				maxtempSeries += '['+key+','+ <%= monthBean.getMaxTemp() %>+'],';
-				humiditySeries += '['+key+','+ <%= monthBean.getHumidity() %>+'],';
-				wspSeries += '['+key+','+ <%= monthBean.getWSP() %>+'],';
-		<%	
+$(function() {//页面加载时调用该方法
+	$.ajax({//调用JQuery提供的Ajax方法 
+		type : "GET",
+		url : "previewweatherresult",
+		data : {startyear:'2010',endyear:'2012'},
+		dataType : "json",
+		success : function(data){//回调函数 
+			console.log('data：',data);
+			var mintempSeries= JSON.parse(data.mintempSeries);
+			var maxtempSeries= JSON.parse(data.maxtempSeries);
+			var humiditySeries= JSON.parse(data.humiditySeries);
+			var wspSeries= JSON.parse(data.wspSeries);
+			$("#maxTempText").text(data.maxTemp);
+			$("#minTempText").text(data.minTemp);
+			$("#humidityText").text(data.humidity);
+			$("#wspText").text(data.WSP);
+			drawChart(mintempSeries,maxtempSeries,humiditySeries,wspSeries);
+		},
+		error : function() {
+			alert("系统出现问题");
 		}
-		%>
-		mintempSeries = mintempSeries.substring(0, mintempSeries.length);
-		mintempSeries += ']';
-		maxtempSeries = maxtempSeries.substring(0, maxtempSeries.length);
-		maxtempSeries += ']';
-		wspSeries = wspSeries.substring(0, wspSeries.length);
-		wspSeries += ']';
-		humiditySeries = humiditySeries.substring(0, humiditySeries.length);
-		humiditySeries += ']';
-		wspSeries = wspSeries.substring(0, wspSeries.length);
-		wspSeries += ']';
-		
-		chart = new Highcharts.Chart({
-			chart : {
-				renderTo : 'container',
-				type : 'spline'
-			},
-			title : {
-				text : '气象数据统计'
-			},
-			subtitle : {
-				text : '2012-2013年'
-			},
-			xAxis : {
-				type : 'datetime',
-				dateTimeLabelFormats : { // don't display the dummy year
-					month : '%Y年%b',
-					year : '%b'
-				}
-			},
-			yAxis : {
-				title : {
-					text : '单位：摄氏度,百分比,米每秒'
-				},
-				min : -20
-			},
-			tooltip : {
-				formatter : function() {
-					return '<b>'
-							+ this.series.name
-							+ '</b><br/>'
-							+ Highcharts.dateFormat('%Y年%b',
-									this.x) + ': ' + this.y ;
-				}
-			},
-
-			series : [
-					{
-						name : 'Meteorological：MinTemp(℃)',
-						data : mintempSeries
-					},
-					{
-						name : 'Meteorological:MaxTemp(℃)',
-						data : maxtempSeries
-					},
-					{
-						name : 'Meteorological：Humidity(%)',
-						data : humiditySeries
-					},
-					{
-						name : 'Meteorological：WSP(m/s)',
-						data : wspSeries
-					} ]
-		});
 	});
-	<%}%>
 });
 </script>
 </head>
@@ -112,7 +50,7 @@ $(function() {
 </div>
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
-		<script src="js/highcharts.js"></script>
+
 		<!--主体开始-->
 		<div id="content" class="clearfix">
 			<div id="title">
@@ -122,40 +60,23 @@ $(function() {
 			</div>
 
 				<div id="selectSet">
-					<%
-						String result = (String) request.getAttribute("result");
-						if (result != null) {
-						float maxTemp = (Float) request.getAttribute("maxTemp");
-						float minTemp = (Float) request.getAttribute("minTemp");
-						float humidity = (Float) request.getAttribute("humidity");
-						float WSP = (Float) request.getAttribute("WSP");
-					%>
 					<dl class="list clearfix">
 						<span>全年气象数据平均值：</span>
-						<span class="input text">最高温度：<%=maxTemp%>℃</span>
+						最高温度：<span class="input text" id="maxTempText"></span>℃
 						<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<span class="input text"></>最低温度：<%=minTemp%>℃</span>
+						最低温度：<span class="input text" id="minTempText"></span>℃
 						<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<span class="input text">湿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度：<%=minTemp%>%</span>
+						湿度：<span class="input text" id="humidityText"></span>%
 						<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<span class="input text">风&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;速：<%=minTemp%>m/s</span>
+						风速：<span class="input text" id="wspText"></span>m/s
 					</dl>
 					<br />
-					<div id="container"
-						style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-					<%
-						} else {
-					%>
-					当前无气象数据结果可供浏览，可能分析数据任务正在执行当中。
-					<br>
-						<br>
-							<br>
-							<%
-								}
-							%>
+					<div id="container01"
+						style="min-width: 400px; height: 400px; margin: 0 auto">
+					</div>
 				</div>
 			</div>
 		</div>

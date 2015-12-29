@@ -46,7 +46,7 @@ public class WeatherParsingServlet extends HttpServlet {
 		// 读取一行数据后，该方法就开始处理
 		// 2011-01-01 Temp(max:33.106℃/min:17.822℃);Humidity(99.196%);WSP(28.319m/s)
 		public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-			String[] array = value.toString().split("\t");
+			String[] array = value.toString().split(" ");
 			if (array.length == 2) {
 				String[] metes = array[1].split(";");
 				if (metes.length == 3) {
@@ -133,6 +133,31 @@ public class WeatherParsingServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				request.getRequestDispatcher("/error.jsp?result=任务作业提交失败,请查看集群是否正常运行.").forward(request, response);
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		String[] array = "2011-01-01 Temp(max:33.106℃/min:17.822℃);Humidity(99.196%);WSP(28.319m/s)".split(" ");
+		if (array.length == 2) {
+			String[] metes = array[1].split(";");
+			if (metes.length == 3) {
+				try {
+					String[] temps = metes[0].substring(metes[0].indexOf("(") + 1, metes[0].indexOf(")")).split("/");
+					MeteorologicalBean mb = new MeteorologicalBean();
+					if (temps.length == 2) {
+						mb.setMaxTemp(Float.parseFloat(temps[0].substring(temps[0].indexOf("max:") + "max:".length(), temps[0].indexOf("℃"))));
+						mb.setMinTemp(Float.parseFloat(temps[1].substring(temps[1].indexOf("min:") + "min:".length(), temps[1].indexOf("℃"))));
+					}
+					String humidity = metes[1].substring(metes[1].indexOf("(") + 1, metes[1].indexOf(")"));
+					mb.setHumidity(Float.parseFloat(humidity.substring(0, humidity.indexOf("%"))));
+					String WSP = metes[2].substring(metes[2].indexOf("(") + 1, metes[2].indexOf(")"));
+					mb.setWSP(Float.parseFloat(WSP.substring(0, WSP.indexOf("m/s"))));
+					System.out.println("key:"+array[0].substring(0, array[0].lastIndexOf("-")));//[2011-01,mb]
+					System.out.println("value:"+mb.toString());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

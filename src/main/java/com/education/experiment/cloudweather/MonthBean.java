@@ -1,40 +1,40 @@
 package com.education.experiment.cloudweather;
 
 public class MonthBean {
-	private float minTemp;
-	private float maxTemp;
-	private float humidity;
-	private float WSP;
+	private double minTemp;
+	private double maxTemp;
+	private double humidity;
+	private double WSP;
 
-	public float getMinTemp() {
+	public double getMinTemp() {
 		return minTemp;
 	}
 
-	public float getMaxTemp() {
+	public double getMaxTemp() {
 		return maxTemp;
 	}
 
-	public float getHumidity() {
+	public double getHumidity() {
 		return humidity;
 	}
 
-	public float getWSP() {
+	public double getWSP() {
 		return WSP;
 	}
 
-	public void setMinTemp(float minTemp) {
+	public void setMinTemp(double minTemp) {
 		this.minTemp = minTemp;
 	}
 
-	public void setMaxTemp(float maxTemp) {
+	public void setMaxTemp(double maxTemp) {
 		this.maxTemp = maxTemp;
 	}
 
-	public void setHumidity(float humidity) {
+	public void setHumidity(double humidity) {
 		this.humidity = humidity;
 	}
 
-	public void setWSP(float wSP) {
+	public void setWSP(double wSP) {
 		WSP = wSP;
 	}
 }
