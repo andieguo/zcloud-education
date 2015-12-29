@@ -17,7 +17,7 @@ public class WeatherDataGenUtil {
 	// 3、温度随机值范围：Temp（max:-10.0-37.0）(min:-10.0-37.0) max > min 保留3位小数
 	// 4、湿度随机值范围：Humidity(0.00%-100.00%) 保留3位小数
 	// 5、风速随机值范围：WSP(0.00m/s-50.00m/s) 保留3为小数
-	public static void generateDate(int startyear,int endyear) {
+	public static void genWeatherDate(int startyear,int endyear) {
 		try {
 			for(int year=startyear;year<=endyear;year++){
 				//生成文件夹
@@ -57,6 +57,6 @@ public class WeatherDataGenUtil {
 	}
 
 	public static void main(String[] args) {
-		generateDate(2011,2013);
+		genWeatherDate(2011,2013);
 	}
 }

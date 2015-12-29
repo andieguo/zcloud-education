@@ -3,6 +3,8 @@ package com.education.experiment.cloudweather;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,7 @@ import org.apache.hadoop.fs.Path;
 
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
+import com.google.common.collect.Multiset.Entry;
 
 public class PreviewWeatherResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,6 +33,7 @@ public class PreviewWeatherResultServlet extends HttpServlet {
 		// request.setCharacterEncoding(Charset.defaultCharset().toString());
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
+		Map<String,MonthBean> maps = new TreeMap<String,MonthBean>();
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
@@ -40,7 +44,6 @@ public class PreviewWeatherResultServlet extends HttpServlet {
 				request.setAttribute("result", null);
 				request.getRequestDispatcher("/weatherresult.jsp").forward(request, response);
 			} else {
-				request.setAttribute("result", "");
 				Path reduceRusult = new Path("/tomcat/experiment/weathercloud/results/part-r-00000");
 				if (fs.exists(reduceRusult)) {
 					FSDataInputStream fsdis = fs.open(reduceRusult);
@@ -51,8 +54,7 @@ public class PreviewWeatherResultServlet extends HttpServlet {
 					float minTempTotal = 0.0f;
 					float humidityTotal = 0.0f;
 					float WSPTotal = 0.0f;
-					// 2012-01
-					// AVG{Temp(max:21.754515℃/min:12.678706℃);Humidity(46.5716%);WSP(19.337095m/s)}
+					// 2012-01	AVG{Temp(max:21.754515℃/min:12.678706℃);Humidity(46.5716%);WSP(19.337095m/s)}
 					// 开始汇总读取到的每一行数据文件，主要总的操作是把所有结果信息汇总，然后返回给客户端.
 					while ((line = br.readLine()) != null) {
 						String[] array = line.split("\t");
@@ -80,13 +82,14 @@ public class PreviewWeatherResultServlet extends HttpServlet {
 									e.printStackTrace();
 								}
 							}
-							System.out.println(array[0].split("-")[1]);
-							request.setAttribute(array[0].split("-")[1], monBean);
+							System.out.println(array[0]);
+							maps.put(array[0], monBean);
 						}
 					}
+					request.setAttribute("result", maps);
+					
 					// 读取结果文件完成
-					// 2012-12
-					// AVG{Temp(max:21.760002℃/min:13.001612℃);Humidity(51.97549%);WSP(21.388714m/s)}
+					// 2012-12 AVG{Temp(max:21.760002℃/min:13.001612℃);Humidity(51.97549%);WSP(21.388714m/s)}
 					request.setAttribute("maxTemp", maxTempTotal / count);
 					request.setAttribute("minTemp", minTempTotal / count);
 					request.setAttribute("humidity", humidityTotal / count);

@@ -42,8 +42,9 @@ public class WeatherParsingServlet extends HttpServlet {
 		public static enum Counters {
 			ROWS
 		}
-
+		// 按月统计
 		// 读取一行数据后，该方法就开始处理
+		// 2011-01-01 Temp(max:33.106℃/min:17.822℃);Humidity(99.196%);WSP(28.319m/s)
 		public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 			String[] array = value.toString().split("\t");
 			if (array.length == 2) {
@@ -60,7 +61,7 @@ public class WeatherParsingServlet extends HttpServlet {
 						mb.setHumidity(Float.parseFloat(humidity.substring(0, humidity.indexOf("%"))));
 						String WSP = metes[2].substring(metes[2].indexOf("(") + 1, metes[2].indexOf(")"));
 						mb.setWSP(Float.parseFloat(WSP.substring(0, WSP.indexOf("m/s"))));
-						context.write(new Text(array[0].substring(0, array[0].lastIndexOf("-"))), mb);
+						context.write(new Text(array[0].substring(0, array[0].lastIndexOf("-"))), mb);//[2011-01,mb]
 						context.getCounter(Counters.ROWS).increment(1);
 					} catch (Exception e) {
 						e.printStackTrace();

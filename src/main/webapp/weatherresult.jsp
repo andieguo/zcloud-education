@@ -18,7 +18,35 @@
 $(function() {
 	var chart;
 	$(document).ready(function() {
-	<%if(((String) request.getAttribute("result"))!=null){%>
+	<%
+		Map<String,MonthBean> maps = (Map<String,MonthBean>)request.getAttribute("result");
+		if( maps != null){
+	%>
+		var mintempSeries = '[';
+		var maxtempSeries = '[';
+		var humiditySeries = '[';
+		var wspSeries = '[';
+		<%
+			for(String key : maps.keySet()){
+				MonthBean monthBean = maps.get(key);%>
+				mintempSeries += '['+key+','+ <%= monthBean.getMinTemp() %>+'],';
+				maxtempSeries += '['+key+','+ <%= monthBean.getMaxTemp() %>+'],';
+				humiditySeries += '['+key+','+ <%= monthBean.getHumidity() %>+'],';
+				wspSeries += '['+key+','+ <%= monthBean.getWSP() %>+'],';
+		<%	
+		}
+		%>
+		mintempSeries = mintempSeries.substring(0, mintempSeries.length);
+		mintempSeries += ']';
+		maxtempSeries = maxtempSeries.substring(0, maxtempSeries.length);
+		maxtempSeries += ']';
+		wspSeries = wspSeries.substring(0, wspSeries.length);
+		wspSeries += ']';
+		humiditySeries = humiditySeries.substring(0, humiditySeries.length);
+		humiditySeries += ']';
+		wspSeries = wspSeries.substring(0, wspSeries.length);
+		wspSeries += ']';
+		
 		chart = new Highcharts.Chart({
 			chart : {
 				renderTo : 'container',
@@ -56,69 +84,19 @@ $(function() {
 			series : [
 					{
 						name : 'Meteorological：MinTemp(℃)',
-						// Define the data points. All series have a dummy year
-						// of 2007/71 in order to be compared on the same x axis. Note
-						// that in JavaScript, months start at 0 for January, 1 for February etc.
-						data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getMinTemp()%> ],
-								[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getMinTemp()%> ],
-								[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getMinTemp()%> ],
-								[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getMinTemp()%> ],
-								[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getMinTemp()%> ],
-								[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getMinTemp()%> ],
-								[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getMinTemp()%> ],
-								[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getMinTemp()%> ],
-								[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getMinTemp()%> ],
-								[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getMinTemp()%> ],
-								[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getMinTemp()%> ],
-								[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getMinTemp()%> ] ]
+						data : mintempSeries
 					},
 					{
 						name : 'Meteorological:MaxTemp(℃)',
-						// Define the data points. All series have a dummy year
-						// of 2007/71 in order to be compared on the same x axis. Note
-						// that in JavaScript, months start at 0 for January, 1 for February etc.
-						data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getMaxTemp()%> ],
-								[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getMaxTemp()%> ],
-								[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getMaxTemp()%> ],
-								[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getMaxTemp()%> ],
-								[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getMaxTemp()%> ],
-								[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getMaxTemp()%> ],
-								[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getMaxTemp()%> ],
-								[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getMaxTemp()%> ],
-								[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getMaxTemp()%> ],
-								[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getMaxTemp()%> ],
-								[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getMaxTemp()%> ],
-								[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getMaxTemp()%> ] ]
+						data : maxtempSeries
 					},
 					{
 						name : 'Meteorological：Humidity(%)',
-						data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getHumidity()%> ],
-								[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getHumidity()%> ],
-								[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getHumidity()%> ],
-								[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getHumidity()%> ],
-								[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getHumidity()%> ],
-								[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getHumidity()%> ],
-								[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getHumidity()%> ],
-								[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getHumidity()%> ],
-								[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getHumidity()%> ],
-								[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getHumidity()%> ],
-								[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getHumidity()%> ],
-								[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getHumidity()%> ] ]
+						data : humiditySeries
 					},
 					{
 						name : 'Meteorological：WSP(m/s)',
-						data : [ [ Date.UTC(2012, 1), <%=((MonthBean) request.getAttribute("01")).getWSP()%> ],
-								[ Date.UTC(2012, 2), <%=((MonthBean) request.getAttribute("02")).getWSP()%> ],
-								[ Date.UTC(2012, 3), <%=((MonthBean) request.getAttribute("03")).getWSP()%> ],
-								[ Date.UTC(2012, 4), <%=((MonthBean) request.getAttribute("04")).getWSP()%> ],
-								[ Date.UTC(2012, 5), <%=((MonthBean) request.getAttribute("05")).getWSP()%> ],
-								[ Date.UTC(2012, 6), <%=((MonthBean) request.getAttribute("06")).getWSP()%> ],
-								[ Date.UTC(2012, 7), <%=((MonthBean) request.getAttribute("07")).getWSP()%> ],
-								[ Date.UTC(2012, 8), <%=((MonthBean) request.getAttribute("08")).getWSP()%> ],
-								[ Date.UTC(2012, 9), <%=((MonthBean) request.getAttribute("09")).getWSP()%> ],
-								[ Date.UTC(2012, 10), <%=((MonthBean) request.getAttribute("10")).getWSP()%> ],
-								[ Date.UTC(2012, 11), <%=((MonthBean) request.getAttribute("11")).getWSP()%> ],
-								[ Date.UTC(2012, 12), <%=((MonthBean) request.getAttribute("12")).getWSP()%> ] ]
+						data : wspSeries
 					} ]
 		});
 	});
