@@ -22,9 +22,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.NullOutputFormat;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.Field.Index;
 import org.apache.lucene.document.Field.Store;
+import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -37,7 +36,7 @@ import org.apache.lucene.util.Version;
 public class BooksIndexMRThread extends Thread {
 
 	/**
-	 * 该类为一个线程类，每一个用户提交一个课本文件后，系统会为其分配一个线程；该线程执行的主要任务是向Hadoop集群提交一个建立索引文件的任务， hadoop接受到该任务时会开始对文件进行分词，把把分词结果写入到索引文件里
+	 * 该类为一个线程类，每一个用户提交一个课本文件后，系统会为其分配一个线程；该线程执行的主要任务是向Hadoop集群提交一个建立索引文件的任务， hadoop接受到该任务时会开始对文件进行分词，把分词结果写入到索引文件里
 	 */
 	private static final byte[] lock = new byte[0];
 	private static final Configuration conf = HadoopConfiguration.getConfiguration();
@@ -77,7 +76,7 @@ public class BooksIndexMRThread extends Thread {
 		// 每一个map任务执行开始前的准备工作,这里主要是生成了建立索引的对象,并对其进行初始化配置
 		protected void setup(Context context) {
 			sb = new StringBuffer();
-			iwc = new IndexWriterConfig(Version.LUCENE_36, analyzer);
+			iwc = new IndexWriterConfig(Version.LUCENE_42, analyzer);
 			iwc.setOpenMode(OpenMode.CREATE);
 			iwc.setRAMBufferSizeMB(128.0);
 			iwc.setMaxBufferedDocs(1000);
@@ -90,34 +89,33 @@ public class BooksIndexMRThread extends Thread {
 			}
 		}
 
-		// 对map分配到的任务文件进行读取操作，没读取一个都要进行分词，然后把分词结果写入到内存但中，当内存满足到一定程度，刷新到磁盘上
+		// 对map分配到的任务文件进行读取操作，每读取一个都要进行分词，然后把分词结果写入到内存当中，当内存满足到一定程度，刷新到磁盘上
 		public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 			sb.append(value.toString());
 			context.getCounter(Counters.ROWS).increment(1);
 			if (context.getCounter(Counters.ROWS).getValue() % 100 == 0) {
 				if (sb.toString() != null && !"".equals(sb.toString())) {
 					Document doc = new Document();
-					doc.add(new Field("name", context.getConfiguration().get("bookname"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("author", context.getConfiguration().get("bookauthor"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("publishdate", context.getConfiguration().get("publishdate"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("sections", sb.toString(), Store.YES, Index.ANALYZED));
+					doc.add(new TextField("name", context.getConfiguration().get("bookname"), Store.YES));
+					doc.add(new TextField("author", context.getConfiguration().get("bookauthor"), Store.YES));
+					doc.add(new TextField("publishdate", context.getConfiguration().get("publishdate"), Store.YES));
+					doc.add(new TextField("sections", sb.toString(), Store.YES));
 					writer.addDocument(doc);
 					sb = new StringBuffer();
 				}
 			}
 		}
 
-		// 每一个任务执行完成后的清理工作、
+		// 每一个任务执行完成后的清理工作
 		// map任务完成的索引数据块会以文件夹的目录存在于本地磁盘上，在map任务结束时会把这些索引数据块写回到HDFS上，最后让Master服务器来进行最后的合并工作
-
 		protected void cleanup(Context context) {
 			try {
 				if (sb.toString() != null) {
 					Document doc = new Document();
-					doc.add(new Field("name", context.getConfiguration().get("bookname"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("author", context.getConfiguration().get("bookauthor"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("publishdate", context.getConfiguration().get("publishdate"), Store.YES, Index.ANALYZED));
-					doc.add(new Field("sections", sb.toString(), Store.YES, Index.ANALYZED));
+					doc.add(new TextField("name", context.getConfiguration().get("bookname"), Store.YES));
+					doc.add(new TextField("author", context.getConfiguration().get("bookauthor"), Store.YES));
+					doc.add(new TextField("publishdate", context.getConfiguration().get("publishdate"), Store.YES));
+					doc.add(new TextField("sections", sb.toString(), Store.YES));
 					writer.addDocument(doc);
 				}
 				writer.close();
@@ -133,7 +131,7 @@ public class BooksIndexMRThread extends Thread {
 			// 开始读取本地的磁盘索引文件目录，然后通过文件流的方式把这些文件回写到HDFS上。
 			String outStr = "/hadoop/booksindex/" + timeMillis;
 			File indexDir = new File(outStr);
-			IndexWriterConfig fsIndexWriterConfig = new IndexWriterConfig(Version.LUCENE_36, analyzer);
+			IndexWriterConfig fsIndexWriterConfig = new IndexWriterConfig(Version.LUCENE_42, analyzer);
 			fsIndexWriterConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			fsIndexWriterConfig.setRAMBufferSizeMB(128.0);
 			fsIndexWriterConfig.setMaxBufferedDocs(1000);
@@ -181,8 +179,8 @@ public class BooksIndexMRThread extends Thread {
 		String perfix = "/tomcat/experiment/librarycloud/books/" + book.getAuthor() + "/" + book.getName();
 		Path in = new Path(perfix + ".book");
 		Path out = new Path(perfix + "-result");
-		FileInputFormat.setInputPaths(job, in);
-		FileOutputFormat.setOutputPath(job, out);
+		FileInputFormat.setInputPaths(job, in);//输入
+		FileOutputFormat.setOutputPath(job, out);//输出
 
 		job.setMapperClass(BooksMapper.class);
 		// job.setReducerClass(null);
@@ -209,7 +207,7 @@ public class BooksIndexMRThread extends Thread {
 					FileStatus[] indexList = hdfs.listStatus(fs.getPath());
 					for (FileStatus ele : indexList) {
 						FSDataInputStream fsdis = hdfs.open(ele.getPath());
-						FSDataOutputStream fsdos = local.create(new Path("/hadoop/indexes/tmp/" + fs.getPath().getName() + "/" + ele.getPath().getName()));
+						FSDataOutputStream fsdos = local.create(new Path(System.getProperty("user.home") + File.separator + "temp" + File.separator + fs.getPath().getName() + File.separator + ele.getPath().getName()));
 						byte[] buffer = new byte[256];
 						int readByte = 0;
 						while ((readByte = fsdis.read(buffer)) > 0) {
@@ -221,13 +219,13 @@ public class BooksIndexMRThread extends Thread {
 					hdfs.delete(fs.getPath(), true);
 				}
 			}
-			File indexDir = new File("/hadoop/indexes/tmp");
+			File indexDir = new File(System.getProperty("user.home") + File.separator + "temp");
 			Analyzer analyzer = new MaxWordAnalyzer();
-			IndexWriterConfig fsIndexWriterConfig = new IndexWriterConfig(Version.LUCENE_36, analyzer);
+			IndexWriterConfig fsIndexWriterConfig = new IndexWriterConfig(Version.LUCENE_42, analyzer);
 			fsIndexWriterConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			fsIndexWriterConfig.setRAMBufferSizeMB(128.0);
 			fsIndexWriterConfig.setMaxBufferedDocs(1000);
-			Directory directory = FSDirectory.open(new File("/hadoop/indexes/index"));
+			Directory directory = FSDirectory.open(new File(System.getProperty("user.home") + File.separator + "temp" ));
 			File[] arrayFile = indexDir.listFiles();
 			for (File file : arrayFile) {
 				if (file.isDirectory()) {

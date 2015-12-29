@@ -9,10 +9,12 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.fileupload.FileUploadException;
@@ -56,15 +58,14 @@ public class UploadBooksFileServlet extends HttpServlet {
 			if (FileUpload.isMultipartContent(requestContext)) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				// 设置文件的缓存路径,首先把文件写入到tomcat的临时文件夹下
-				File temp = new File("/hadoop/tomcat/temp/");
-				if (!temp.exists()) {
+				File temp = new File(System.getProperty("user.home") + File.separator + "temp");
+				if (!temp.exists())
 					temp.mkdir();
-				}
 				factory.setRepository(temp);
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				// 设置上传文件大小的上限，-1表示无上限
 				upload.setSizeMax(1024 * 1024 * 1024);
-				List<?> items = new ArrayList();
+				List<FileItem> items = new ArrayList<FileItem>();
 				try {
 					// 上传文件，并解析出所有的表单字段，包括普通字段和文件字段
 					items = upload.parseRequest(request);
@@ -113,8 +114,6 @@ public class UploadBooksFileServlet extends HttpServlet {
 									OutputStream out = fs.create(path, new Progressable() {
 										public void progress() {
 											// TODO Auto-generated
-											// method
-											// stub
 											System.out.println("*");
 										}
 									});

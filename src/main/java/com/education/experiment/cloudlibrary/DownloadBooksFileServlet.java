@@ -37,7 +37,9 @@ public class DownloadBooksFileServlet extends HttpServlet {
 			// 获取客户端要下载的课本信息,根据课本信息从HDFS上读取指定的课本文件
 			String name = new String(request.getParameter("name").getBytes("ISO-8859-1"), "UTF-8");
 			String author = new String(request.getParameter("author").getBytes("ISO-8859-1"), "UTF-8");
-			File f = new File("/hadoop/tomcat/temp/" + name);
+			File temp = new File(System.getProperty("user.home") + File.separator + "temp");
+			if (!temp.exists()) temp.mkdir();
+			File f = new File(temp + File.separator + name);
 			Path dst = new Path("/tomcat/experiment/librarycloud/books/" + author + "/" + name + ".book");
 			// 开始从HDFS读取课本文件
 			FileSystem fs = FileSystem.get(conf);

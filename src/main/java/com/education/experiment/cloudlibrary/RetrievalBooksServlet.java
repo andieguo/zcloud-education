@@ -2,7 +2,6 @@ package com.education.experiment.cloudlibrary;
 
 import java.io.File;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.queryParser.MultiFieldQueryParser;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
@@ -87,8 +87,6 @@ public class RetrievalBooksServlet extends HttpServlet {
 					request.getRequestDispatcher("/error.jsp?result=检索索引出现异常信息.").forward(request, response);
 				}
 			}
-			// 2012-12
-			// AVG{Temp(max:21.760002℃/min:13.001612℃);Humidity(51.97549%);WSP(21.388714m/s)}
 		}
 	}
 
@@ -119,12 +117,12 @@ public class RetrievalBooksServlet extends HttpServlet {
 		for (int index = 0; index < flags.length; index++) {
 			flags[index] = BooleanClause.Occur.MUST;
 		}
-		Query query = MultiFieldQueryParser.parse(Version.LUCENE_36, keywordArray, fieldArray, flags, analyzer);
+		Query query = MultiFieldQueryParser.parse(Version.LUCENE_42, keywordArray, fieldArray, flags, analyzer);
 		bQuery.add(query, BooleanClause.Occur.MUST);
 
 		// 获取访问索引的接口,进行搜索
 		Directory directory = FSDirectory.open(index);
-		IndexReader indexReader = IndexReader.open(directory);
+	    IndexReader indexReader = DirectoryReader.open(directory);
 		IndexSearcher indexSearcher = new IndexSearcher(indexReader);
 
 		int pageSize = 10;
@@ -198,7 +196,6 @@ public class RetrievalBooksServlet extends HttpServlet {
 			books.add(book);
 		}
 		indexReader.close();
-		indexSearcher.close();
 		return books;
 	}
 }
