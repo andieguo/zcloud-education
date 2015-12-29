@@ -1,4 +1,4 @@
-package com.education.experiment.util;
+package com.education.experiment.data;
 
 import java.io.BufferedReader;
 import java.io.File;
