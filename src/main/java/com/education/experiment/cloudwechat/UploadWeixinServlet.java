@@ -115,11 +115,7 @@ public class UploadWeixinServlet extends HttpServlet {
 								if (newFile.exists()) {
 									newFile.delete();
 								}
-								if (ub.getUserId().equals("admin")) {
-									request.getRequestDispatcher("/unlimit.jsp").forward(request, response);
-								} else {
-									request.getRequestDispatcher("/limited.jsp").forward(request, response);
-								}
+								response.sendRedirect("listweixin.jsp");
 							}
 						} else {
 							System.out.println("path is null.");

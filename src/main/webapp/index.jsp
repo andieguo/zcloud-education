@@ -42,7 +42,7 @@ background:#f7f7f7;
 			<a target="_blank" href="downloadexpress.jsp" hidefocus="true" class="ipan">智能EMS速递云</a>
 			</li>
 			<li>
-			<a target="_blank" href="downloadweixin.jsp" hidefocus="true" class="imsg">微信关系分析</a>
+			<a target="_blank" href="listweixin.jsp" hidefocus="true" class="imsg">微信关系分析</a>
 		</ul>
 	</div>
 </div>

@@ -1,7 +1,6 @@
 package com.education.experiment.cloudweather;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +27,6 @@ public class DeleteWeatherServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
-		PrintWriter out = response.getWriter();
 		int count = 0;
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
@@ -61,6 +59,5 @@ public class DeleteWeatherServlet extends HttpServlet {
 				request.getRequestDispatcher("/error.jsp?result=刪除资源失败!").forward(request, response);
 			}
 		}
-		if(out != null) out.close();
 	}
 }

@@ -20,7 +20,7 @@ import org.apache.hadoop.io.IOUtils;
 
 import com.education.experiment.commons.UserBean;
 
-public class DownloadWeixinServlet extends HttpServlet {
+public class DownloadParsingServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -45,7 +45,7 @@ public class DownloadWeixinServlet extends HttpServlet {
 			if (!temp.exists())
 				temp.mkdir();
 			File f = new File(temp.getPath() + File.separator + uuidname);
-			String dst = "/tomcat/experiment/weixincloud/uploaddata/" + uuidname;
+			String dst = "/tomcat/experiment/weixincloud/uploadparsing/" + uuidname;
 			// 开始从hadoop的HDFS上读取示例文件--并存储到本地的临时文件中
 			FileSystem fs = FileSystem.get(conf);
 			InputStream hadopin = null;

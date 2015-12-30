@@ -108,11 +108,7 @@ public class UploadWeixinParsingServlet extends HttpServlet {
 					hdfsOut.write(sb.toString().getBytes(request.getCharacterEncoding()));
 					hdfsOut.close();
 					// 写入完成
-					if (ub.getUserId().equals("admin")) {
-						response.sendRedirect("unlimit.jsp");
-					} else {
-						response.sendRedirect("limited.jsp");
-					}
+					response.sendRedirect("listparsing.jsp");
 				}
 			}
 		} else {

@@ -5,20 +5,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>云</title>
+<title>模拟数据列表</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
 <link href="css/new-style.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery-1.8.0.js"></script>
-<script src="js/common/weixinlist.js"></script>
+<script src="js/common/drawtable.js"></script>
 <script src="js/common/checkbox.js"></script>
 <script type="text/javascript">
 
+var drawWeixinTable;
+
 $(function(){
-     getFileSystem();
+	var homeDir = "/tomcat/experiment/weixincloud/uploaddata";
+	drawWeixinTable = drawTable(homeDir,"weixin");
+	drawWeixinTable.getFileSystem();
 });
+	
 	
 </script>
 </head>
@@ -45,13 +50,13 @@ $(function(){
 							<span class="order-icon"></span>
 							<a class="g-button" href="#">
 								<span class="g-button-right">
-									<em class="icon icon-download-gray" title="下载" onClick="downloadAllAction()"></em>
+									<em class="icon icon-download-gray" title="下载" onClick="drawWeixinTable.downloadAllAction()"></em>
 									<span class="text">下载</span>
 								</span>
 							</a>
 							<a class="g-button" href="#">
 								<span class="g-button-right">
-									<em class="icon icon-delete" title="删除" onClick="deleteAllAction()"></em>
+									<em class="icon icon-delete" title="删除" onClick="drawWeixinTable.deleteAllAction()"></em>
 									<span class="text">删除</span>
 								</span>
 							</a>

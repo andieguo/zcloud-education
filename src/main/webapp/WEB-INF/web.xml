@@ -18,7 +18,7 @@
 		<url-pattern>*.jsp</url-pattern>
 	</filter-mapping>
 	<welcome-file-list>
-		<welcome-file>login.jsp</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>upload</servlet-name>
@@ -147,6 +147,30 @@
 	<servlet-mapping>
 		<servlet-name>downloadweixin</servlet-name>
 		<url-pattern>/downloadweixin</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>downloadmutilweixin</servlet-name>
+		<servlet-class>com.education.experiment.cloudwechat.DownloadMutilWeixinServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>downloadmutilweixin</servlet-name>
+		<url-pattern>/downloadmutilweixin</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>downloadparsing</servlet-name>
+		<servlet-class>com.education.experiment.cloudwechat.DownloadParsingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>downloadparsing</servlet-name>
+		<url-pattern>/downloadparsing</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>downloadmutilparsing</servlet-name>
+		<servlet-class>com.education.experiment.cloudwechat.DownloadMutilParsingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>downloadmutilparsing</servlet-name>
+		<url-pattern>/downloadmutilparsing</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>downloadexpress</servlet-name>
