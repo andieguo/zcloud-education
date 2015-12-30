@@ -55,7 +55,7 @@ public class UploadFileServlet extends HttpServlet {
 		RequestContext requestContext = new ServletRequestContext(request);
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			response.sendRedirect("login.jsp");
 		} else {
 			if (FileUpload.isMultipartContent(requestContext)) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -122,7 +122,7 @@ public class UploadFileServlet extends HttpServlet {
 								if (newFile.exists()) {
 									newFile.delete();
 								}
-								request.getRequestDispatcher("/listfile.jsp").forward(request, response);
+								response.sendRedirect("listfile.jsp");
 							}
 						} else {
 							System.out.println("path is null.");

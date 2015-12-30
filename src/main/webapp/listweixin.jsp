@@ -4,32 +4,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>气象数据列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>云</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
 <link href="css/new-style.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery-1.8.0.js"></script>
+<script src="js/common/weixinlist.js"></script>
 <script src="js/common/checkbox.js"></script>
-<script src="js/common/drawtable.js"></script>
 <script type="text/javascript">
 
-var drawWeatherTable;
-
 $(function(){
-	var homeDir = "/tomcat/experiment/weathercloud/uploaddata";
-    drawWeatherTable = drawTable(homeDir,"weather");
-    drawWeatherTable.getFileSystem();
+     getFileSystem();
 });
-
+	
 </script>
 </head>
 <body>
 <div class="hd-main" style="min-width:1000px;">
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
-		<img src="images/qixiang.png" /><span class="logo">气象数据分析系统</span>
+		<img src="images/weixin.png" /><span class="logo">微信关系分析系统</span>
 	</div>
 </div>
 <div class="clearfix1 wrap">
@@ -49,13 +45,13 @@ $(function(){
 							<span class="order-icon"></span>
 							<a class="g-button" href="#">
 								<span class="g-button-right">
-									<em class="icon icon-download-gray" title="下载" onClick="drawWeatherTable.downloadAllAction()"></em>
+									<em class="icon icon-download-gray" title="下载" onClick="downloadAllAction()"></em>
 									<span class="text">下载</span>
 								</span>
 							</a>
 							<a class="g-button" href="#">
 								<span class="g-button-right">
-									<em class="icon icon-delete" title="删除" onClick="drawWeatherTable.deleteAllAction()"></em>
+									<em class="icon icon-delete" title="删除" onClick="deleteAllAction()"></em>
 									<span class="text">删除</span>
 								</span>
 							</a>
@@ -77,7 +73,7 @@ $(function(){
 			</div>
 		</div>
 	</div>
-	<%@ include file="/share/weather-left.jsp"%>
+	<%@ include file="/share/weixin-left.jsp"%>
 </div>
 </div>
 <%@ include file="/share/foot.jsp"%>

@@ -134,7 +134,7 @@ public class PreviewWeatherResultServlet extends HttpServlet {
 				request.getRequestDispatcher("/error.jsp?result=天气云计算结果不存在!").forward(request, response);
 			}
 		} else {// 用户未登录
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			response.sendRedirect("login.jsp");
 		}
 	}
 

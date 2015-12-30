@@ -57,15 +57,14 @@ public class UploadWeixinServlet extends HttpServlet {
 			if (FileUpload.isMultipartContent(requestContext)) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				// 设置文件的缓存路径
-				File temp = new File("/hadoop/tomcat/temp/");
-				if (!temp.exists()) {
+				File temp = new File(System.getProperty("user.home") + File.separator + "temp");
+				if (!temp.exists())
 					temp.mkdir();
-				}
 				factory.setRepository(temp);
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				// 设置上传文件大小的上限，-1表示无上限
 				upload.setSizeMax(1024 * 1024 * 1024);
-				List<?> items = new ArrayList();
+				List<FileItem> items = new ArrayList<FileItem>();
 				try {
 					// 上传文件，并解析出所有的表单字段，包括普通字段和文件字段
 					items = upload.parseRequest(request);
@@ -84,7 +83,7 @@ public class UploadWeixinServlet extends HttpServlet {
 						if (fileItem.getName() != null && fileItem.getSize() != 0) {
 							// File fullFile = new File(fileItem.getName());
 							String[] array = fileItem.getName().split("\\\\");
-							File newFile = new File("/hadoop/tomcat/" + array[array.length - 1]);
+							File newFile = new File(temp.getPath() + File.separator + array[array.length - 1]);
 							try {
 								fileItem.write(newFile);
 							} catch (Exception e) {

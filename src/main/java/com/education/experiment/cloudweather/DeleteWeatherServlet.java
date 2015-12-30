@@ -56,9 +56,9 @@ public class DeleteWeatherServlet extends HttpServlet {
 				}
 			}
 			if(uuidnames.length == count){
-				out.write("true");
+				response.sendRedirect("listweather.jsp");
 			}else{
-				out.write("false");
+				request.getRequestDispatcher("/error.jsp?result=刪除资源失败!").forward(request, response);
 			}
 		}
 		if(out != null) out.close();

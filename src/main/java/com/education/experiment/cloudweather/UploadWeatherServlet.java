@@ -111,7 +111,7 @@ public class UploadWeatherServlet extends HttpServlet {
 								if (newFile.exists()) {
 									newFile.delete();
 								}
-								request.getRequestDispatcher("/listweather.jsp").forward(request, response);
+								response.sendRedirect("listweather.jsp");
 							}
 						} else {
 							System.out.println("path is null.");
