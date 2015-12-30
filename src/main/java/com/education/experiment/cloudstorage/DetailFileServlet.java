@@ -47,7 +47,7 @@ public class DetailFileServlet extends HttpServlet {
 			// 获取用户提交的文件名称
 			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
 			System.out.println("uuidname:" + uuidname);
-			if (uuidname.endsWith("txt") || uuidname.endsWith("sql") || uuidname.endsWith("xml") || uuidname.endsWith("properties")) {
+			if (uuidname.endsWith("txt") || uuidname.endsWith("sql") || uuidname.endsWith("xml") || uuidname.endsWith("properties") || uuidname.endsWith("html")) {
 				File temp = new File(System.getProperty("user.home") + File.separator + "temp");
 				if (!temp.exists())
 					temp.mkdir();
