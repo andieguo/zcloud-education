@@ -12,9 +12,8 @@
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
 <link href="css/new-style.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery-1.8.0.js"></script>
-<script src="js/common/weatherlist.js"></script>
 <script src="js/common/checkbox.js"></script>
-<script type="text/javascript" src="js/highcharts.js"></script>
+<script src="js/highcharts.js"></script>
 <script src="js/common/chart.js"></script>
 <script type="text/javascript">
 $(function() {//页面加载时调用该方法
