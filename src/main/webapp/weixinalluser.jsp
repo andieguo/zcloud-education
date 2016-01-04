@@ -1,149 +1,90 @@
 <%@ page language="java" import="java.util.*"
-	import="com.education.experiment.cloudwechat.WeixinUserBean" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+	import="com.education.experiment.commons.UserBean,com.education.experiment.cloudwechat.WeixinUserBean" pageEncoding="UTF-8"%>
+<%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>云服务平台</title>
-		<link href="css/master/appList.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="js/jquery-1.8.0.js"></script>
-		<!--ie6png图片透明补丁-->
-		<!--[if IE 6]>
-    <script type="text/javascript" src="js/DD_belatedPNG.js"></script>
-    <script type="text/javascript">
-        DD_belatedPNG.fix('#header,.cur,.btn,.iconUser,.iconDepartment,.iconIdea,.iconKey,.iconQuit,.iconSet,.iconAbout,.iconTool,.recall,.case,.approve,.statistics,.https,.file,.compareForm,.webmaster,.diary,#down,#up'); //放置css选择器
-        //防止抖动
-        // <![CDATA[
-        if ((window.navigator.appName.toUpperCase().indexOf("MICROSOFT") >= 0) && (document.execCommand)) try {
-            document.execCommand("BackgroundImageCache", false, true);
-        }
-        catch(e) {}
-        // ]]>
-    </script>
-<![endif]-->
-		<!--ie6png图片透明补丁-->
-		<!--头部导航下拉菜单效果-->
-		<script type="text/javascript" src="js/top_navi.js"></script>
-		<!--头部导航下拉菜单效果-->
-		<!--导航条滚动效果-->
-		<script type="text/javascript" src="js/navi002.js"></script>
-		<!--导航条滚动效果-->
-		<!--选择菜单-->
-		<script type="text/javascript" src="js/selectbox.js"></script>
-	</head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>用户数据列表</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
+<link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+<link href="css/new-style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.0.js"></script>
 
-	<body id="wrapper">
-		<!--主体开始-->
-		<div id="content" class="clearfix">
-			<div id="title">
-				<div class="menu">
-					<ul>
-						<li>
-							<a href="uploadweixinsearcher.jsp">返回</a>
+</head>
+<body>
+<div class="hd-main" style="min-width:1000px;">
+	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
+		<img src="images/weixin.png" /><span class="logo">微信关系分析系统</span>
+	</div>
+</div>
+<div class="clearfix1 wrap">
+	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
+		<div class="fns">
+			<div id="header-shaw" style="background-color: #fff;height: 542px;">
+			<%
+				List<WeixinUserBean> list = (List<WeixinUserBean>) request.getAttribute("allweixinuser");
+			%>
+			<form action="" method="get">
+				<div class="module-history-list">
+					<span class="history-list-dir">全部文件</span>
+					<span class="history-list-tips" id="filecount">当前找到 <%=list.size()%> 条结果</span>
+				</div>
+				<div class="list-view-header">
+					<ul class="list-cols">
+						<li class="col" style="width: 10%;">
+							<span class="text">微信ID</span>
+							<span class="order-icon"></span>
+						</li>
+						<li class="col" style="width: 10%;">
+							<span class="text">姓名</span>
+							<span class="order-icon"></span>
+						</li>
+						<li class="col" style="width: 10%;">
+							<span class="text">年龄</span>
+							<span class="order-icon"></span>
+						</li>
+						<li class="col" style="width: 10%;">
+							<span class="text">性别</span>
+							<span class="order-icon"></span>
+						</li>
+						<li class="col" style="width: 10%;">
+							<span class="text">职业</span>
+							<span class="order-icon"></span>
+						</li>
+						<li class="col" style="width: 50%;">
+							<span class="text">好友</span>
+							<span class="order-icon"></span>
 						</li>
 					</ul>
 				</div>
-				<h1>
-					微信用户信息表预览
-				</h1>
-			</div>
-			<!--搜索结果列表开始-->
-			<%
-				List<WeixinUserBean> list = (List<WeixinUserBean>) request
-						.getAttribute("allweixinuser");
-			%>
-			<div id="listSearch">
-				<!--列表头部-->
-				<div id="title">
-					<h2>
-						用户条数
-					</h2>
-					<div id="amount">
-						<span class="result">当前找到 <%=list.size()%> 条结果</span>
-					</div>
-				</div>
-				<!--列表头部-->
-				<!--列表开始-->
-				<div id="list" class="relative">
-					<div class="title clearfix">
-						<span class="li1">微信ID</span>
-						<span class="li1">姓名</span>
-						<span class="li1">年龄</span>
-						<span class="li1">性别</span>
-						<span class="li1">职业</span>
-						<span class="li6">好友</span>
-					</div>
+				<div id="tab_filesystem" class="list-view-container">
 					<%
 						for (WeixinUserBean wub : list) {
 					%>
-					<ul>
-						<!--列表项目-->
-						<li class="li clearfix">
-							<div class="li1">
-								<h4 class="text_overflow" title="">
-									<center>
-										<%=wub.getId()%>
-									</center>
-								</h4>
-							</div>
-							<div class="li1">
-								<h4 class="text_overflow" title="">
-									<center>
-										<%=wub.getName()%>
-									</center>
-								</h4>
-							</div>
-							<div class="li1">
-								<h4 class="text_overflow" title="">
-									<center>
-										<%=wub.getAge()%>
-									</center>
-								</h4>
-							</div>
-							<div class="li1">
-								<h4 class="text_overflow" title="">
-									<center>
-										<%=wub.getSex()%>
-									</center>
-								</h4>
-							</div>
-							<div class="li1">
-								<h4 class="text_overflow" title="">
-									<center>
-										<%=wub.getVocation()%>
-									</center>
-								</h4>
-							</div>
-							<div class="li6">
-								<h4 title="<%=wub.getFriends()%>">
-									<%=wub.getSplitfriends()%>
-								</h4>
-							</div>
-						</li>
-						<!--列表项目-->
-					</ul>
+					<dd class="list-view-item">
+						<div class="file-name" style="width:10%">
+							<div class="text"><%=wub.getId()%></div>
+						</div>
+						<div class="ctime" style="width:10%"><div class="text"><%=wub.getName()%></div></div>
+						<div class="ctime" style="width:10%"><div class="text"><%=wub.getAge()%></div></div>
+						<div class="ctime" style="width:10%"><div class="text"><%=wub.getSex()%></div></div>
+						<div class="ctime" style="width:10%"><div class="text"><%=wub.getVocation()%></div></div>
+						<div class="ctime" style="width:50%"><div class="text"><%=wub.getSplitfriends()%></div></div>
+					</dd>
 					<%
 						}
 					%>
-					<br />
-					<br />
 				</div>
-				<!--列表结束-->
+			</form>
 			</div>
-			<!--搜索结果列表结束-->
 		</div>
-		<!--主体结束-->
-		<!--尾部开始-->
-		<div id="footer"></div>
-		<!--尾部结束-->
-		<!--返回顶部-->
-	</body>
+	</div>
+	<%@ include file="/share/weixin-left.jsp"%>
+</div>
+</div>
+<%@ include file="/share/foot.jsp"%>
+</body>
 </html>

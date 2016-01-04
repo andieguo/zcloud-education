@@ -36,7 +36,7 @@
 						</a></li>
 					</ul></li>
 				<li class="b-list-item separator-1"></li>
-				<li class="b-list-item"><a href="weixinalluser.jsp"
+				<li class="b-list-item"><a href="previewallweixin"
 					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
 					unselectable="on"><span class="text1"><span
 							class="img-ico aside-share"></span>微信用户信息</span></a></li>
