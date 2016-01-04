@@ -141,6 +141,22 @@
 		<url-pattern>/detailweather</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>detailweixin</servlet-name>
+		<servlet-class>com.education.experiment.cloudwechat.DetailWeixinServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>detailweixin</servlet-name>
+		<url-pattern>/detailweixin</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>detailparsing</servlet-name>
+		<servlet-class>com.education.experiment.cloudwechat.DetailParsingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>detailparsing</servlet-name>
+		<url-pattern>/detailparsing</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>downloadweixin</servlet-name>
 		<servlet-class>com.education.experiment.cloudwechat.DownloadWeixinServlet</servlet-class>
 	</servlet>
