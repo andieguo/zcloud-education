@@ -3,146 +3,146 @@
 <%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>云服务平台</title>
-		<link href="css/base.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/header.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/title.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/pageSkin.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/navi002.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/reportOA.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/boxSearch.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="js/jquery-1.8.0.js"></script>
-		<script type="text/javascript">
-	$(document).ready(function() {
-		$("#btnCancel").click(function() {
-			$("#text_box").val("");
-			$("#text_box").focus();
-		});
-	});
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>启动微信数据分析</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
+<link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.0.js"></script>
+<script src="js/common/jobtracker.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	getRuningJob();
+	getOtherJob();
+});
+	
 </script>
-		<!--ie6png图片透明补丁-->
-		<!--[if IE 6]>
-    <script type="text/javascript" src="js/DD_belatedPNG.js"></script>
-    <script type="text/javascript">
-        DD_belatedPNG.fix('#header,.cur,.btn,.iconUser,.iconDepartment,.iconIdea,.iconKey,.iconQuit,.iconSet,.iconAbout,.iconTool,.recall,.case,.approve,.statistics,.https,.file,.compareForm,.webmaster,.diary,#up,#down,.setKeywords a,.icon,.select,.iconMore,.barSearch'); //放置css选择器
-    </script>
-    <script type="text/javascript">
-        //防止抖动
-        // <![CDATA[
-        if ((window.navigator.appName.toUpperCase().indexOf("MICROSOFT") >= 0) && (document.execCommand)) try {
-            document.execCommand("BackgroundImageCache", false, true);
-        }
-        catch(e) {}
-        // ]]>
-    </script>
-<![endif]-->
-		<!--ie6png图片透明补丁-->
-	</head>
-	<body id="wrapper">
-		<!--主体开始-->
-		<div id="content" class="clearfix">
-			<div id="title">
-
-				<h1>
-					微信人物关系分析云
-				</h1>
-			</div>
-
-			<!--列表开始-->
-			<div id="boxSearch">
-				<div class="subNavi">
-					<ul>
-						<li>
-							<a href='downloadweixin.jsp'>示例文件下载</a>
-						</li>
-						<li>
-							<a href='uploadweixin.jsp'>模拟数据上传</a>
-						</li>
-						<li>
-							<a href='uploadweixinsearcher.jsp'>分析条件上传</a>
-						</li>
-						<%
-							UserBean user = (UserBean) session.getAttribute("user");
-							if (user.getUserId().equals("admin")) {
-						%>
-						<li>
-							<a href='deleteweixin.jsp'>模拟数据删除</a>
-						</li>
-						<li>
-							<a href='deleteparsing.jsp'>分析条件删除</a>
-						</li>
-						<li class="current">
-							<a href='previewweixindata?sign=0'>分析数据云计算</a>
-						</li>
-						<%
-							}
-						%>
-						<li>
-							<a href='previewweixinresult'>分析结果查看</a>
-						</li>
-					</ul>
-				</div>
-				<div id="selectSet">
-					<!--默认选项开始-->
-					<dl class="list clearfix">
-						<%
-							int datacount = (Integer) request.getAttribute("datacount");
-							if (datacount > 0) {
-						%>
-						<span>数据文件个数：</span>
-						<span class="input text">&nbsp;<%=datacount%>&nbsp;</span>个
-						<%
-							} else {
-						%>
-						<span>当前数据文件内容：</span>
-						<%
-							}
-						%>
-					</dl>
-					<%
-						String result = (String) request.getAttribute("result");
-					%>
-					<%=result%>
-					<!--默认选项结束-->
-					<br />
-					<br />
-					<div class="foot">
-						<%
-							if (datacount > 0) {
-						%>
-						<form action="weixinparsing" enctype="multipart/form-data"
-							method="get">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="" type="submit" value="开始云计算" />
-						</form>
-						<%
-							}
-						%>
+</head>
+<body>
+<div class="hd-main" style="min-width:1000px;">
+	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
+		<img src="images/qixiang.png" /><span class="logo">气象数据分析系统</span>
+	</div>
+</div>
+<div class="clearfix1 wrap">
+	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
+		<div class="fns">
+			<div id="header-shaw">
+				<form action="weixinparsing" method="get">
+					<div id="selectSet">
+						<div class="foot noneBorder">
+							<B>点击启动快件分析作业：</B>
+							<input name="" type="submit" value="启动" />
+							<input type="hidden" id="sign" name="sign" value="1" />
+						</div>
+						<br />
+						<br />
+						<div class="foot">
+						</div>
 					</div>
+							<div class="fade active" id="zj">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">hadoop > Reduce</h3>
+				</div>
+				<div class="panel-heading">
+					<h3 class="panel-title">正在进行的任务</h3>
+				</div>
+				<div class="panel-body">
+					<table id='tab_running'
+						class="table table-bordered table-condensed table-hover">
+						<thead>
+							<tr>
+								<th width="15%">ID</th>
+								<th width="15%">名称</th>
+								<th width="15%">所属用户</th>
+								<th width="15%">开始时间</th>
+								<th width="20%" colspan="2">map进度</th>
+								<th width="20%" colspan="2">reduce进度</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
 				</div>
 			</div>
 
-			<!--列表结束-->
-			<!--列表尾部开始-->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">已完成任务</h3>
+				</div>
+				<div class="panel-body">
+					<table id='tab_completed'
+						class="table table-bordered table-condensed table-hover">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>名称</th>
+								<th>所属用户</th>
+								<th>开始时间</th>
 
-			<!--列表尾部结束-->
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">失败任务</h3>
+				</div>
+				<div class="panel-body">
+					<table id='tab_failed'
+						class="table table-bordered table-condensed table-hover">
+						<thead>
+							<tr>
+								<th width="25px">ID</th>
+								<th width="15%">名称</th>
+								<th width="15%">所属用户</th>
+								<th width="15%">开始时间</th>
+								<th width="20%" colspan="2">map进度</th>
+								<th width="20%" colspan="2">reduce进度</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">已杀死任务</h3>
+				</div>
+				<div class="panel-body">
+					<table id='tab_killed'
+						class="table table-bordered table-condensed table-hover">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>名称</th>
+								<th>所属用户</th>
+								<th>开始时间</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+				</form>
+			</div>
 		</div>
-		<!--主体结束-->
-		<!--尾部开始-->
-		<div id="footer"></div>
-		<!--尾部结束-->
-	</body>
+	</div>
+	<%@ include file="/share/weixin-left.jsp"%>
+</div>
+<%@ include file="/share/foot.jsp"%>
+</body>
 </html>
-<!--
-<html>
-	<body>
-		<form action="download" enctype="multipart/form-data"
-			method="get">
-			<input type="text" name="filename" />
-			<br />
-			<input type="submit"/>
-		</form>
-	</body>
-</html>-->
