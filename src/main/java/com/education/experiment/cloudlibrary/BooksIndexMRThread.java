@@ -10,7 +10,6 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
-import com.chenlb.mmseg4j.analysis.MaxWordAnalyzer;
 import com.education.experiment.commons.HadoopConfiguration;
 
 import org.apache.hadoop.io.*;
@@ -21,6 +20,7 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.NullOutputFormat;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.document.TextField;
@@ -63,7 +63,7 @@ public class BooksIndexMRThread extends Thread {
 	}
 
 	public static class BooksMapper extends Mapper<LongWritable, Text, NullWritable, NullWritable> {
-		private static final Analyzer analyzer = new MaxWordAnalyzer();
+		private static final Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_42);
 		private IndexWriterConfig iwc = null;
 		private RAMDirectory ramDir = null;
 		private IndexWriter writer = null;
@@ -80,7 +80,7 @@ public class BooksIndexMRThread extends Thread {
 			iwc.setOpenMode(OpenMode.CREATE);
 			iwc.setRAMBufferSizeMB(128.0);
 			iwc.setMaxBufferedDocs(1000);
-			ramDir = new RAMDirectory();
+			ramDir = new RAMDirectory();//RAMDirectory将索引保存到内存中
 			try {
 				writer = new IndexWriter(ramDir, iwc);
 			} catch (IOException e) {
@@ -129,15 +129,17 @@ public class BooksIndexMRThread extends Thread {
 
 			long timeMillis = System.currentTimeMillis();
 			// 开始读取本地的磁盘索引文件目录，然后通过文件流的方式把这些文件回写到HDFS上。
-			String outStr = "/hadoop/booksindex/" + timeMillis;
-			File indexDir = new File(outStr);
+			File temp = new File(System.getProperty("user.home") + File.separator + "temp");
+			if (!temp.exists()) temp.mkdir();
+			String localIndexDir = temp.getPath() + File.separator + timeMillis;
+			File indexDir = new File(localIndexDir);
 			IndexWriterConfig fsIndexWriterConfig = new IndexWriterConfig(Version.LUCENE_42, analyzer);
 			fsIndexWriterConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			fsIndexWriterConfig.setRAMBufferSizeMB(128.0);
 			fsIndexWriterConfig.setMaxBufferedDocs(1000);
 			Directory directory;
 			try {
-				directory = FSDirectory.open(indexDir);
+				directory = FSDirectory.open(indexDir);//FSDirectory将索引保存在本地
 				IndexWriter fsIndexWriter = new IndexWriter(directory, fsIndexWriterConfig);
 				// 把内存中的索引库写到文件系统中
 				fsIndexWriter.addIndexes(ramDir);
@@ -145,7 +147,7 @@ public class BooksIndexMRThread extends Thread {
 
 				FileSystem hdfs = FileSystem.get(context.getConfiguration());
 				FileSystem local = FileSystem.getLocal(context.getConfiguration());
-				Path inPath = new Path(outStr);
+				Path inPath = new Path(localIndexDir);
 				String hdfsPath = "/tomcat/experiment/librarycloud/indexes/" + timeMillis + "-lock" + "/";
 				FileStatus[] inputFiles = local.listStatus(inPath);
 				for (FileStatus ele : inputFiles) {
@@ -176,7 +178,7 @@ public class BooksIndexMRThread extends Thread {
 		// 开始配置job信息
 		Job job = new Job(conf, "Indexing Book Data");
 		job.setJarByClass(BooksIndexMRThread.class);
-		String perfix = "/tomcat/experiment/librarycloud/books/" + book.getAuthor() + "/" + book.getName();
+		String perfix = "/tomcat/experiment/librarycloud/uploaddata/" + book.getAuthor() + "-" + book.getName();
 		Path in = new Path(perfix + ".book");
 		Path out = new Path(perfix + "-result");
 		FileInputFormat.setInputPaths(job, in);//输入
@@ -200,7 +202,7 @@ public class BooksIndexMRThread extends Thread {
 		synchronized (lock) {
 			FileSystem hdfs = FileSystem.get(conf);
 			FileSystem local = FileSystem.getLocal(conf);
-			Path indexes = new Path("/tomcat/experiment/librarycloud/indexes");
+			Path indexes = new Path("/tomcat/experiment/librarycloud/indexes/");
 			FileStatus[] list = hdfs.listStatus(indexes);
 			for (FileStatus fs : list) {
 				if (fs.isDir() && !fs.getPath().getName().contains("lock")) {
@@ -220,7 +222,7 @@ public class BooksIndexMRThread extends Thread {
 				}
 			}
 			File indexDir = new File(System.getProperty("user.home") + File.separator + "temp");
-			Analyzer analyzer = new MaxWordAnalyzer();
+			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_42);
 			IndexWriterConfig fsIndexWriterConfig = new IndexWriterConfig(Version.LUCENE_42, analyzer);
 			fsIndexWriterConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			fsIndexWriterConfig.setRAMBufferSizeMB(128.0);

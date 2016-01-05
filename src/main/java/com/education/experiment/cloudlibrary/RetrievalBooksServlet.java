@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -33,12 +34,11 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
-import com.chenlb.mmseg4j.analysis.MaxWordAnalyzer;
 import com.education.experiment.commons.UserBean;
 
 public class RetrievalBooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Analyzer analyzer = new MaxWordAnalyzer();
+	private static final Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_42);
 	private static final File index = new File("/hadoop/indexes/index");
 
 	public RetrievalBooksServlet() {

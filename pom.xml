@@ -47,15 +47,15 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.java.version}</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.chenlb.mmseg4j</groupId> -->
-<!-- 			<artifactId>mmseg4j-all</artifactId> -->
-<!-- 			<version>1.8.6</version> -->
-<!-- 		</dependency> -->
 		<!-- lucene -->
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-core</artifactId>
+			<version>${org.apache.lucene}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-analyzers-common</artifactId>
 			<version>${org.apache.lucene}</version>
 		</dependency>
 		<dependency>

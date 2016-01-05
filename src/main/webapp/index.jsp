@@ -1,12 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+<%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -33,7 +26,7 @@ background:#f7f7f7;
 			<a target="_blank" href="listnote.jsp" hidefocus="true" class="inote">个人私有存储</a>
 			</li>
 			<li>
-			<a target="_blank" href="uploadbooks.jsp" hidefocus="true" class="icontacts">图书馆图书管理</a>
+			<a target="_blank" href="listbook.jsp" hidefocus="true" class="icontacts">图书馆图书管理</a>
 			</li>
 			<li>
 			<a target="_blank" href="listweather.jsp" hidefocus="true" class="ialbum">气象数据分析</a>
