@@ -123,6 +123,7 @@ public class UploadBookServlet extends HttpServlet {
 									if (newFile.exists()) {
 										newFile.delete();
 									}
+									new BooksIndexMRThread(book).start();
 									response.sendRedirect("listbook.jsp");
 								}
 							} else {

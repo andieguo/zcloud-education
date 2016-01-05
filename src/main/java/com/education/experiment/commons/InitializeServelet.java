@@ -40,15 +40,11 @@ public class InitializeServelet extends HttpServlet {
 			//将/zcloud-education/WEB-INF/classes下的class打包到用户家目录temp下，提交job时需要这个jar文件
 			String javaClassPath = InitializeServelet.class.getClassLoader().getResource("").toString();
 			javaClassPath = javaClassPath.substring(javaClassPath.indexOf("/")+1);
-			File temp = new File(System.getProperty("user.home") + File.separator + "temp");
-			if (!temp.exists()) temp.mkdir();
-			String targetPath = temp+File.separator+"education.jar";
-			System.out.println(targetPath);
-			File targetFile = new File(targetPath);
+			File targetFile = new File(Constants.JAR_HOME);
 			if (targetFile.exists()) {
 				targetFile.delete();
 			}
-			JarUtil jarUtil = new JarUtil(javaClassPath, targetPath);
+			JarUtil jarUtil = new JarUtil(javaClassPath, Constants.JAR_HOME);
 			jarUtil.generateJar();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

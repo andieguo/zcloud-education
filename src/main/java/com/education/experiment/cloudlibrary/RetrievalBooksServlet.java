@@ -34,12 +34,13 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.UserBean;
 
 public class RetrievalBooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_42);
-	private static final File index = new File("/hadoop/indexes/index");
+	private static final File index = new File(Constants.IDNEX_PATH);
 
 	public RetrievalBooksServlet() {
 	}

@@ -53,7 +53,7 @@
 					}
 				},
 				error : function() {
-					alert("系统出现问题");
+					alert("访问hadoop集群失败!");
 				}
 			});
          }
@@ -70,7 +70,7 @@
 		        	printJobTable(url,data.killed,$("#tab_killed"));
 				},
 				error : function() {
-					alert("系统出现问题");
+					alert("访问hadoop集群失败!");
 				}
 			});
          }
