@@ -35,12 +35,13 @@ public class JobTrackerServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		JobStatus[] jobStatusAll;
 		JobClient jobClient = null;
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		List<JobSummaryInfo> runningJobs = new ArrayList<JobSummaryInfo>();
 		List<JobSummaryInfo> completedJobs = new ArrayList<JobSummaryInfo>();
 		List<JobSummaryInfo> failedJobs = new ArrayList<JobSummaryInfo>();
 		List<JobSummaryInfo> killedJobs = new ArrayList<JobSummaryInfo>();
 		ServletContext servletContext = getServletContext();
+		String jobnameRequst = req.getParameter("jobname");
 		try {
 			
 			jobClient = (JobClient) servletContext.getAttribute("jobClient");
@@ -49,31 +50,33 @@ public class JobTrackerServlet extends HttpServlet {
 				JobID jobid = status.getJobID();//jobidjob_201511091736_0001
 				RunningJob job = jobClient.getJob(jobid);
 				String jobname = job.getJobName();
-				String jobstatus = JobStatus.getJobRunState(status.getRunState());//RUNNING = 1,SUCCEEDED = 2,FAILED = 3,PREP = 4,KILLED = 5
-				String starttime = dateFormat.format(new Date(status.getStartTime()));//1447147188397
-				String username = status.getUsername();//hadoop
-				float mapprogress = status.mapProgress();
-				float reduceprogress = status.reduceProgress();
-				String failureinfo = status.getFailureInfo();
-				JobSummaryInfo jobInfo = new JobSummaryInfo(jobid.toString(),jobname,username,jobstatus,failureinfo,starttime,reduceprogress,mapprogress);
-				switch (status.getRunState()) {
-					case 1://RUNNING
-						runningJobs.add(jobInfo);
-						break;
-					case 2://SUCCEEDED
-						completedJobs.add(jobInfo);
-						break;
-					case 3://FAILED
-						failedJobs.add(jobInfo);
-						break;
-					case 4://PREP
-						runningJobs.add(jobInfo);
-						break;
-					case 5://KILLED
-						killedJobs.add(jobInfo);
-						break;
-					default:
-						break;
+				if(jobnameRequst != null && jobname.equals(jobnameRequst)){
+					String jobstatus = JobStatus.getJobRunState(status.getRunState());//RUNNING = 1,SUCCEEDED = 2,FAILED = 3,PREP = 4,KILLED = 5
+					String starttime = dateFormat.format(new Date(status.getStartTime()));//1447147188397
+					String username = status.getUsername();//hadoop
+					float mapprogress = status.mapProgress();
+					float reduceprogress = status.reduceProgress();
+					String failureinfo = status.getFailureInfo();
+					JobSummaryInfo jobInfo = new JobSummaryInfo(jobid.toString(),jobname,username,jobstatus,failureinfo,starttime,reduceprogress,mapprogress);
+					switch (status.getRunState()) {
+						case 1://RUNNING
+							runningJobs.add(jobInfo);
+							break;
+						case 2://SUCCEEDED
+							completedJobs.add(jobInfo);
+							break;
+						case 3://FAILED
+							failedJobs.add(jobInfo);
+							break;
+						case 4://PREP
+							runningJobs.add(jobInfo);
+							break;
+						case 5://KILLED
+							killedJobs.add(jobInfo);
+							break;
+						default:
+							break;
+					}
 				}
 			}
 			resp.setContentType("application/x-json");// 需要设置ContentType 为"application/x-json"

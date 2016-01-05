@@ -16,8 +16,11 @@
 <script type="text/javascript">
 
 $(function(){
-	getRuningJob();
-	getOtherJob();
+	<%
+		String url = (String)application.getAttribute("jobtrackerUrl");
+	%>
+	getRuningJob('<%=url%>','Parsing Weixin Data');
+	getOtherJob('<%=url%>','Parsing Weixin Data');
 });
 	
 </script>
@@ -93,14 +96,6 @@ $(function(){
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>job_201512290834_0009</td>
-									<td>Parsing Weixin Data</td>
-									<td>hadoop</td>
-									<td>2016-01-0410:14:33</td>
-									<td>100%</td>
-									<td>100%</td>
-								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -118,12 +113,6 @@ $(function(){
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>job_201512290834_0009</td>
-									<td>Parsing Weixin Data</td>
-									<td>hadoop</td>
-									<td>2016-01-0410:14:33</td>
-								</tr>
 							</tbody>
 						</table>
 					</div>

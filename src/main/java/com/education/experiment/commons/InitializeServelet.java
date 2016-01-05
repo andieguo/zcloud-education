@@ -29,12 +29,14 @@ public class InitializeServelet extends HttpServlet {
 		properties = PropertiesUtil.loadFromInputStream(this.getClass().getResourceAsStream("/config.properties"));
 		String hostname = properties.getProperty("fs.default.name.hostname");//192.168.100.141
 		String jobPort = properties.getProperty("mapred.job.tracker.port");//9001
+		String jobtrackerPort = properties.getProperty("hadoop.jobtracker.port");//50030
 		conf = HadoopConfiguration.getConfiguration();
 		servletContext = getServletContext();
 		try {
 			//获取jobClient
 			jobClient = new JobClient(new InetSocketAddress(hostname,Integer.valueOf(jobPort)), conf);
 			servletContext.setAttribute("jobClient", jobClient);
+			servletContext.setAttribute("jobtrackerUrl", "http://"+hostname+":"+jobtrackerPort);
 			//将/zcloud-education/WEB-INF/classes下的class打包到用户家目录temp下，提交job时需要这个jar文件
 			String javaClassPath = InitializeServelet.class.getClassLoader().getResource("").toString();
 			javaClassPath = javaClassPath.substring(javaClassPath.indexOf("/")+1);
