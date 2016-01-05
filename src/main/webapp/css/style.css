@@ -495,7 +495,7 @@ a:hover .aside-gprs, a:active .aside-gprs {
   position: relative;
   padding-left:10px;
   z-index: 2;
-  height:483px;
+  /*height:483px;*/
 }
 .b-list-2 .b-list-item {
   float: left;

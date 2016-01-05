@@ -183,7 +183,7 @@
     float: left; }
   .doc-header .doc-header-body {
     height: 26px;
-    width: 92%;
+    width: 93%;
     padding: 0 8px;
     color: #333;
     border: 0; }
@@ -230,5 +230,101 @@
       margin-left: 20px;
       font-size: 0.6em;
       font-weight: 100; }
+
+/* launchweather */
+.launchweather {
+  background-color: #fff;
+  overflow: scroll;
+  overflow-x: auto;
+  height: 543px; }
+  .launchweather .title {
+    margin: 10px; }
+    .launchweather .title .title-left {
+      line-height: 1.8em; }
+    .launchweather .title .title-right {
+      float: right;
+      line-height: 1.8em; }
+    .launchweather .title:after {
+      content: "";
+      display: block;
+      clear: both;
+      visibility: hidden;
+      line-height: 0;
+      height: 0;
+      font-size: 0; }
+  .launchweather .panel {
+    position: relative;
+    margin-left: 10px; }
+    .launchweather .panel .panel-title {
+      margin-bottom: -1px;
+      display: inline-block;
+      padding: 0 20px;
+      border: 1px solid #d2d2d2;
+      border-radius: 2px 2px 0 0;
+      text-align: center;
+      font-weight: bold;
+      line-height: 2.6em; }
+      .launchweather .panel .panel-title:after {
+        content: " :"; }
+    .launchweather .panel .panel-body {
+      width: 99%;
+      border: 1px solid #d2d2d2;
+      border-radius: 2px;
+      background-color: #fff; }
+      .launchweather .panel .panel-body table {
+        width: 100%; }
+        .launchweather .panel .panel-body table * {
+          line-height: 3em; }
+        .launchweather .panel .panel-body table thead {
+          border-bottom: 1px solid #d2d2d2;
+          background: #f7f7f7;
+          text-align: left; }
+          .launchweather .panel .panel-body table thead th {
+            padding: 5px 10px;
+            border-right: 1px solid #e5e5e5; }
+          .launchweather .panel .panel-body table thead .last {
+            border-right: 0; }
+        .launchweather .panel .panel-body table tbody {
+          padding: 10px; }
+          .launchweather .panel .panel-body table tbody tr {
+            border-bottom: 1px solid #d2d2d2; }
+            .launchweather .panel .panel-body table tbody tr td {
+              padding: 0 10px; }
+    .launchweather .panel:after {
+      content: ".";
+      display: block;
+      clear: both;
+      visibility: hidden;
+      line-height: 0;
+      height: 0;
+      font-size: 0; }
+
+/* button */
+.button {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 15px;
+  border-radius: 4px;
+  color: #5a5a5a;
+  line-height: 1.8em; }
+
+.button-default {
+  border: 1px solid #B3B3B3;
+  background-color: #f3f3f3; }
+
+.button-default:hover {
+  background-color: white; }
+
+.button-blue {
+  border: 1px solid #0B63C7;
+  color: #fff;
+  background-color: #5ca4f6; }
+
+.button-blue:hover {
+  background-color: #74b1f7; }
+
+/* base */
+.mb15 {
+  margin-bottom: 15px; }
 
 /*# sourceMappingURL=new-style.css.map */

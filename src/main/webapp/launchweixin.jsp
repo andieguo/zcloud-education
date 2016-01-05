@@ -10,6 +10,7 @@
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+<link href="css/new-style.css" rel="stylesheet" type="text/css" />
 <script src="js/jquery-1.8.0.js"></script>
 <script src="js/common/jobtracker.js"></script>
 <script type="text/javascript">
@@ -30,114 +31,103 @@ $(function(){
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
-			<div id="header-shaw">
-				<form action="weixinparsing" method="get">
-					<div id="selectSet">
-						<div class="foot noneBorder">
-							<B>点击启动快件分析作业：</B>
-							<input name="" type="submit" value="启动" />
-							<input type="hidden" id="sign" name="sign" value="1" />
-						</div>
-						<br />
-						<br />
-						<div class="foot">
-						</div>
+			<div id="header-shaw" class="launchweather">
+				<div class="title">
+					<span class="title-left">微信关系分析系统 > 分析数据计算</span>
+					<span class="title-right">
+					<form action="weixinparsing" method="get">
+						点击启动快件分析作业：
+						<input class="button button-blue" name="" type="submit" value="启动" />
+						</form>
+					</span>
+				</div>
+				<div class="panel mb15">
+					<div class="panel-title">正在进行的任务</div>
+					<div class="panel-body">
+						<table id='tab_running'>
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>名称</th>
+									<th>所属用户</th>
+									<th>开始时间</th>
+									<th>map进度</th>
+									<th class="last">reduce进度</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
 					</div>
-							<div class="fade active" id="zj">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">hadoop > Reduce</h3>
 				</div>
-				<div class="panel-heading">
-					<h3 class="panel-title">正在进行的任务</h3>
-				</div>
-				<div class="panel-body">
-					<table id='tab_running'
-						class="table table-bordered table-condensed table-hover">
-						<thead>
-							<tr>
-								<th width="15%">ID</th>
-								<th width="15%">名称</th>
-								<th width="15%">所属用户</th>
-								<th width="15%">开始时间</th>
-								<th width="20%" colspan="2">map进度</th>
-								<th width="20%" colspan="2">reduce进度</th>
-							</tr>
-						</thead>
-						<tbody>
+				<div class="panel mb15">
+					<div class="panel-title">已完成任务</div>
+					<div class="panel-body">
+						<table id='tab_completed'>
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>名称</th>
+									<th>所属用户</th>
+									<th class="last">开始时间</th>
+								</tr>
+							</thead>
+							<tbody>
 
-						</tbody>
-					</table>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">已完成任务</h3>
+				<div class="panel mb15">
+					<div class="panel-title">失败任务</div>
+					<div class="panel-body">
+						<table id='tab_failed'>
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>名称</th>
+									<th>所属用户</th>
+									<th>开始时间</th>
+									<th>map进度</th>
+									<th class="last">reduce进度</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>job_201512290834_0009</td>
+									<td>Parsing Weixin Data</td>
+									<td>hadoop</td>
+									<td>2016-01-0410:14:33</td>
+									<td>100%</td>
+									<td>100%</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-				<div class="panel-body">
-					<table id='tab_completed'
-						class="table table-bordered table-condensed table-hover">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>名称</th>
-								<th>所属用户</th>
-								<th>开始时间</th>
-
-							</tr>
-						</thead>
-						<tbody>
-
-						</tbody>
-					</table>
+				<div class="panel mb15">
+					<div class="panel-title">已杀死任务</div>
+					<div class="panel-body">
+						<table>
+							<thead id='tab_killed'>
+								<tr>
+									<th>ID</th>
+									<th>名称</th>
+									<th>所属用户</th>
+									<th class="last">开始时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>job_201512290834_0009</td>
+									<td>Parsing Weixin Data</td>
+									<td>hadoop</td>
+									<td>2016-01-0410:14:33</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">失败任务</h3>
-				</div>
-				<div class="panel-body">
-					<table id='tab_failed'
-						class="table table-bordered table-condensed table-hover">
-						<thead>
-							<tr>
-								<th width="25px">ID</th>
-								<th width="15%">名称</th>
-								<th width="15%">所属用户</th>
-								<th width="15%">开始时间</th>
-								<th width="20%" colspan="2">map进度</th>
-								<th width="20%" colspan="2">reduce进度</th>
-							</tr>
-						</thead>
-						<tbody>
-
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">已杀死任务</h3>
-				</div>
-				<div class="panel-body">
-					<table id='tab_killed'
-						class="table table-bordered table-condensed table-hover">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>名称</th>
-								<th>所属用户</th>
-								<th>开始时间</th>
-							</tr>
-						</thead>
-						<tbody>
-
-						</tbody>
-					</table>
-				</div>
-			</div>
-				</form>
 			</div>
 		</div>
 	</div>
