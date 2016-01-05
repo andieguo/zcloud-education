@@ -31,12 +31,12 @@ import org.apache.hadoop.util.Progressable;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
-public class UploadBooksFileServlet extends HttpServlet {
+public class UploadBookServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
-	public UploadBooksFileServlet() {
+	public UploadBookServlet() {
 		super();
 	}
 
@@ -92,15 +92,14 @@ public class UploadBooksFileServlet extends HttpServlet {
 							System.out.println(fileItem.getFieldName() + "   " + fileItem.getName() + "   " + fileItem.isInMemory() + "    " + fileItem.getContentType() + "   " + fileItem.getSize());
 							// 保存文件，其实就是把缓存里的数据写到目标路径HDFS下
 							if (fileItem.getName() != null && fileItem.getSize() != 0) {
-								// File fullFile = new File(fileItem.getName());
 								String[] array = fileItem.getName().split("\\\\");
-								File newFile = new File("/hadoop/tomcat/" + array[array.length - 1]);
+								File newFile = new File(temp.getPath() + File.separator + array[array.length - 1]);
 								try {
 									fileItem.write(newFile);
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
-								String dst = "/tomcat/experiment/librarycloud/books/" + book.getAuthor() + "/" + book.getName() + ".book";
+								String dst = "/tomcat/experiment/librarycloud/uploaddata/" + book.getAuthor() + "-" + book.getName() + ".book";
 								InputStream in = new BufferedInputStream(new FileInputStream(newFile));
 								// 开始往HDFS上写入书本文件信息
 								FileSystem fs = FileSystem.get(conf);
@@ -124,14 +123,7 @@ public class UploadBooksFileServlet extends HttpServlet {
 									if (newFile.exists()) {
 										newFile.delete();
 									}
-									try {
-										new BooksIndexMRThread(book).start();
-										request.getRequestDispatcher("/mrlink.jsp?result=索引作业已成功提交,请等待后台操作,稍后查询!").forward(request, response);
-									} catch (Exception e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-										request.getRequestDispatcher("/error.jsp?result=执行索引JOB出现异常信息!" + e.getMessage()).forward(request, response);
-									}
+									response.sendRedirect("listbook.jsp");
 								}
 							} else {
 								System.out.println("path is null.");

@@ -105,7 +105,7 @@
 				}
 			});
 			if(!value){
-				alert("请选择删除项！");
+				alert("请选择下载项！");
 			}else{
 				form.submit();
 			};

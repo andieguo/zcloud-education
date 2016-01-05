@@ -20,7 +20,7 @@ import org.apache.hadoop.io.IOUtils;
 
 import com.education.experiment.commons.UserBean;
 
-public class DownloadBooksFileServlet extends HttpServlet {
+public class DownloadBookServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static final Configuration conf = new Configuration();
@@ -35,12 +35,11 @@ public class DownloadBooksFileServlet extends HttpServlet {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else {
 			// 获取客户端要下载的课本信息,根据课本信息从HDFS上读取指定的课本文件
-			String name = new String(request.getParameter("name").getBytes("ISO-8859-1"), "UTF-8");
-			String author = new String(request.getParameter("author").getBytes("ISO-8859-1"), "UTF-8");
+			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
 			File temp = new File(System.getProperty("user.home") + File.separator + "temp");
 			if (!temp.exists()) temp.mkdir();
-			File f = new File(temp + File.separator + name);
-			Path dst = new Path("/tomcat/experiment/librarycloud/books/" + author + "/" + name + ".book");
+			File f = new File(temp + File.separator + uuidname);
+			Path dst = new Path("/tomcat/experiment/librarycloud/uploaddata/" + uuidname);
 			// 开始从HDFS读取课本文件
 			FileSystem fs = FileSystem.get(conf);
 			if (!fs.exists(dst)) {
@@ -56,12 +55,11 @@ public class DownloadBooksFileServlet extends HttpServlet {
 					bos.close();
 				}
 				// 读取课本文件结束，此时课本文件被写入到tomcat的临时文件夹下
-				String realname = name + ".book";
 				// tomcat容器开始从临时文件夹下读取课本文件，然后通过文件流传输给客户端
 				if (f.exists()) {
 					// 设置应答的相应消息头
 					response.setContentType("application/x-msdownload");
-					String str = "attachment;filename=" + java.net.URLEncoder.encode(realname, "utf-8");
+					String str = "attachment;filename=" + java.net.URLEncoder.encode(uuidname, "utf-8");
 					response.setHeader("Content-Disposition", str);
 					// 创建一 个输入流对象和指定的文件相关联
 					FileInputStream in = new FileInputStream(f);

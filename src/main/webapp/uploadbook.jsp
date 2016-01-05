@@ -1,13 +1,6 @@
 <%@ page language="java" import="java.util.*"
 	import="com.education.experiment.commons.UserBean" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+<%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -18,8 +11,7 @@
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.8.0.js"></script>
-<script language="javascript" type="text/javascript"
-			src="My97DatePicker/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 </head>
 <body>
 <div class="hd-main" style="min-width:1000px;">
@@ -31,7 +23,7 @@
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
 			<div id="header-shaw">
-				<form action="uploadbooksfile" enctype="multipart/form-data"
+				<form action="uploadbook" enctype="multipart/form-data"
 					method="post">
 					<div id="selectSet">
 						<!--默认选项开始-->
@@ -92,21 +84,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="aside main" style="width: 210px; float:left;">
-		<div style="height: 533px;" class="b-view genere jfk-scrollbar" id="genere">
-			<div class="minheight-forfooter">
-				<ul class="b-list-3" id="aside-menu">
-				<li class="b-list-item"><a href="uploadbooks.jsp" class="sprite2 on" hidefocus="true"><span class="text1"><span class="img-ico aside-mapp"></span>书籍上传和索引</span></a></li>
-				<li class="b-list-item"><a  href="downloadbooks.jsp" class="sprite2 b-no-ln" hidefocus="true"><span class="text1"><span class="img-ico aside-moth"></span>书籍下载</span></a></li>
-				<li class="b-list-item"><a href="retrievalbooks.jsp" class="sprite2 b-no-ln" hidefocus="true" id="tab-share" unselectable="on"><span class="text1"><span class="img-ico aside-share"></span>书籍检索</span></a></li>
-				</ul>			
-			</div>
-		</div>
-	</div>
+	<%@ include file="/share/book-left.jsp"%>
 </div>
-</div>
-<div class="banquan">
-	版权所有© 2013 北京斑步志伟科技公司
-</div>
+<%@ include file="/share/foot.jsp"%>
 </body>
 </html>
