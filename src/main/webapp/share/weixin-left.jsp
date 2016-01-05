@@ -44,7 +44,7 @@
 					class="sprite2 b-no-ln" hidefocus="true" id="tab-recyle"
 					unselectable="on"><span class="text1"><span
 							class="img-ico aside-js"></span>分析数据计算</span></a></li>
-				<li class="b-list-item"><a href="weixinresult.jsp"
+				<li class="b-list-item"><a href="previewweixinresult"
 					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
 					unselectable="on"><span class="text1"><span
 							class="img-ico aside-share"></span>分析结果查看</span></a></li>

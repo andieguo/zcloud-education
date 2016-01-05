@@ -55,15 +55,13 @@ public class WeixinParsingServlet extends HttpServlet {
 		// 每个数据块开始执行之前进行的设置信息，这里主要是从数据库中和分析条件文件中读取预处理的信息,为数据文件的分析做准备.
 		public void setup(Context context) {
 			synchronized (lock) {
-				if (parsingMap == null || weixinuserMap == null) {
-					try {
-						FileSystem fs = FileSystem.get(context.getConfiguration());
-						weixinuserMap = WeiXinParsingUtil.genUserMap(fs);
-						parsingMap = WeiXinParsingUtil.genParsingMap(fs);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+				try {
+					FileSystem fs = FileSystem.get(context.getConfiguration());
+					weixinuserMap = WeiXinParsingUtil.genUserMap(fs);
+					parsingMap = WeiXinParsingUtil.genParsingMap(fs);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}
@@ -97,7 +95,7 @@ public class WeixinParsingServlet extends HttpServlet {
 			for (Text value : values) {
 				content += value.toString() + "\n";
 			}
-			// context.write(new Text(title), new Text(content));
+			context.write(key, new Text(content));
 			// 把结果写入到HDFS中
 			FileSystem hdfs = FileSystem.get(context.getConfiguration());
 			Path path = new Path("/tomcat/experiment/weixincloud/results/" + key.toString() + ".result");
@@ -119,7 +117,7 @@ public class WeixinParsingServlet extends HttpServlet {
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
-		} else if (ub.getUserId().equals("admin")) {
+		} else {
 			WeiXinParsingUtil.generateUserFile();//产生weixin_info.mysql文件
 			FileSystem fs = FileSystem.get(conf);
 			Path out = new Path("/tomcat/experiment/weixincloud/results");
@@ -165,35 +163,20 @@ public class WeixinParsingServlet extends HttpServlet {
 		Map<String, WeixinParsingBean> parsingMap = new HashMap<String, WeixinParsingBean>();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		WeixinParsingBean wpb = new WeixinParsingBean();
-		wpb.setCommunicationPlace("北京市东郊火车站,北京市上寨".split(","));
-		wpb.setDurationTime(80);
+		wpb.setCommunicationPlace("北京市义和庄北口,北京市上寨".split(","));
+		wpb.setDurationTime(1);
 		wpb.setFriend("ALL");
 		wpb.setGender("ALL");
-		wpb.setKeywords("哲学简单性".split(","));
+		wpb.setKeywords("阿里巴巴".split(","));
 		wpb.setMaxAge(100);
-		wpb.setMinAge(10);
-		wpb.setTimePoint(sdf.parse("2013-02-09 14:21:40").getTime());
+		wpb.setMinAge(0);
+		wpb.setTimePoint(sdf.parse("2013-02-10 12:50:19").getTime());
 		wpb.setVocations("餐饮,教育,金融,律师,娱乐,军人,体育,建筑,无业");
-		parsingMap.put("xiaoshang", wpb);
+		parsingMap.put("admin", wpb);
 		// 构造用户数据MAP
-		Map<String, WeixinUserBean> weixinuserMap = new HashMap<String, WeixinUserBean>();
-		WeixinUserBean wub = new WeixinUserBean();
-		wub.setAge(25);
-		wub.setFriends("10003,10071");
-		wub.setId(10001);
-		wub.setName("张三");
-		wub.setSex("男");
-		wub.setVocation("无业");
-		weixinuserMap.put("10003", wub);
-		wub = new WeixinUserBean();
-		wub.setAge(25);
-		wub.setFriends("10003,10001");
-		wub.setId(10071);
-		wub.setName("李");
-		wub.setSex("男");
-		wub.setVocation("无业");
-		weixinuserMap.put("10084", wub);
-		String value = "{10003,10084}	2013-02-09 14:21:40	2013-02-09 17:56:57	北京市东郊火车站	　　#Clojure# 哲学简单性、专心编程不受打扰（freedom to focus）、赋能（empowerment）、一致性和明确性：Closure编程语言中几乎每一个元素的设计思想都是为了促成这些目标的实现。";
+		FileSystem fs = FileSystem.get(HadoopConfiguration.getConfiguration());
+		Map<String, WeixinUserBean> weixinuserMap = WeiXinParsingUtil.genUserMap(fs);
+		String value = "{10002,10072}	2013-02-10 12:50:19	2013-02-10 12:55:46	北京市义和庄北口	　　【新版阿里巴巴和四十大盗】还记得阿里巴巴的故事吗？“匪徒在阿里巴巴家的门柱上画了记号。马尔基娜发现后，又在别家的门柱上也画了同样 的记号。”如今，阿里巴巴与新浪微博结盟。新浪知道你喜欢啥，然后在你的Cookie里留下点记号，阿里巴巴再一看，就把你想要的东东推荐给你......大数据很值钱哦！";
 		Map<String,Boolean> results = WeiXinParsingUtil.parsing(parsingMap, weixinuserMap, value);
 		for(String key : results.keySet()){
 			if(results.get(key)){
