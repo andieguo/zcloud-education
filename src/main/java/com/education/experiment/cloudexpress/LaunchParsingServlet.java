@@ -35,7 +35,7 @@ public class LaunchParsingServlet extends HttpServlet {
 				} else {
 					ept = new ExpressParsingThread();
 					ept.start();
-					request.getRequestDispatcher("/mrlink.jsp?result=已经成功发送启动命令").forward(request, response);
+					request.getRequestDispatcher("/launchexpress.jsp").forward(request, response);
 				}
 			} else {
 				ept.termination();

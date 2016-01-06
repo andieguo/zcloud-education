@@ -50,9 +50,17 @@ public class Constants {
 	 */
 	public static final String HDFS_WEIXIN_RESULTS = "/tomcat/experiment/weixincloud/results/";
 	/**
+	 * eg. /tomcat/experiment/expresscloud/uploaddata/
+	 */
+	public static final String HDFS_EXPRESS_UPLOADDATA = "/tomcat/experiment/expresscloud/uploaddata/";
+	/**
 	 * eg. /home/hadoop/zcloud-education/education.jar
 	 */
 	public static final String JAR_HOME = PROJECTPATH + File.separator + "education.jar";
+	/**
+	 * eg. /tomcat/experiment/expresscloud/results/
+	 */
+	public static final String HDFS_EXPRESS_RESULTS = "/tomcat/experiment/expresscloud/results/";
 
 	static{
 		mkdir(PROJECTPATH);

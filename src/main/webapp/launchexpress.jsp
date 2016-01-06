@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>启动微信数据分析</title>
+<title>启动EMS智能分析</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
@@ -19,8 +19,8 @@ $(function(){
 	<%
 		String url = (String)application.getAttribute("jobtrackerUrl");
 	%>
-	getRuningJob('<%=url%>','Parsing Weixin Data');
-	getOtherJob('<%=url%>','Parsing Weixin Data');
+	getRuningJob('<%=url%>','Parsing Express Data');
+	getOtherJob('<%=url%>','Parsing Express Data');
 });
 	
 </script>
@@ -28,19 +28,21 @@ $(function(){
 <body>
 <div class="hd-main" style="min-width:1000px;">
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
-		<img src="images/weixin.png" /><span class="logo">微信关系分析系统</span>
+		<img src="images/zhineng.png" /><span class="logo">智能EMS速递云系统</span>
 	</div>
 </div>
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
 			<div id="header-shaw" class="launchweather">
+				
 				<div class="title">
-					<span class="title-left">微信关系分析系统 > 分析数据计算</span>
+					<span class="title-left">智能EMS速递云系统 > EMS数据计算</span>
 					<span class="title-right">
-					<form action="weixinparsing" method="get">
+					<form action="launchparsing" method="get">
 						点击启动快件分析作业：
 						<input class="button button-blue" name="" type="submit" value="启动" />
+						<input type="hidden" id="sign" name="sign" value="1" />
 						</form>
 					</span>
 				</div>
@@ -96,6 +98,7 @@ $(function(){
 								</tr>
 							</thead>
 							<tbody>
+
 							</tbody>
 						</table>
 					</div>
@@ -113,6 +116,7 @@ $(function(){
 								</tr>
 							</thead>
 							<tbody>
+								
 							</tbody>
 						</table>
 					</div>
@@ -120,7 +124,7 @@ $(function(){
 			</div>
 		</div>
 	</div>
-	<%@ include file="/share/weixin-left.jsp"%>
+	<%@ include file="/share/express-left.jsp"%>
 </div>
 <%@ include file="/share/foot.jsp"%>
 </body>

@@ -173,6 +173,14 @@
 		<servlet-name>downloadexpress</servlet-name>
 		<url-pattern>/downloadexpress</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>downloadmutilexpress</servlet-name>
+		<servlet-class>com.education.experiment.cloudexpress.DownloadMutilExpressServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>downloadmutilexpress</servlet-name>
+		<url-pattern>/downloadmutilexpress</url-pattern>
+	</servlet-mapping>
 	<!-- ###################详情模块 ########################## -->
 	<servlet>
 		<servlet-name>detailfile</servlet-name>
@@ -213,6 +221,14 @@
 	<servlet-mapping>
 		<servlet-name>detailparsing</servlet-name>
 		<url-pattern>/detailparsing</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>detailexpress</servlet-name>
+		<servlet-class>com.education.experiment.cloudexpress.DetailExpressServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>detailexpress</servlet-name>
+		<url-pattern>/detailexpress</url-pattern>
 	</servlet-mapping>
 
 	<!-- ########################删除模块################################### -->
@@ -255,6 +271,14 @@
 	<servlet-mapping>
 		<servlet-name>deleteparsing</servlet-name>
 		<url-pattern>/deleteparsing</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>deleteexpress</servlet-name>
+		<servlet-class>com.education.experiment.cloudexpress.DeleteExpressServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteexpress</servlet-name>
+		<url-pattern>/deleteexpress</url-pattern>
 	</servlet-mapping>
 	<!-- ##################Preview模块###################################### -->
 	<servlet>

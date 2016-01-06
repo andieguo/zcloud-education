@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>微信数据详情</title>
+<title>快递数据详情</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
@@ -14,7 +14,7 @@
 <body>
 <div class="hd-main" style="min-width:1000px;">
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
-		<img src="images/weixin.png" /><span class="logo">微信关系分析系统</span>
+		<img src="images/zhineng.png" /><span class="logo">智能EMS速递云系统</span>
 	</div>
 </div>
 <%
@@ -28,7 +28,7 @@
 			</div>
 		</div>
 	</div>
-	<%@ include file="/share/weixin-left.jsp"%>
+	<%@ include file="/share/express-left.jsp"%>
 </div>
 </div>
 <%@ include file="/share/foot.jsp"%>

@@ -14,7 +14,7 @@
 <body>
 <div class="hd-main" style="min-width:1000px;">
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
-		<img src="images/geren.png" /><span class="logo">微信关系分析系统</span>
+		<img src="images/weixin.png" /><span class="logo">微信关系分析系统</span>
 	</div>
 </div>
 <%

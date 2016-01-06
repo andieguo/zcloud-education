@@ -1,7 +1,6 @@
 package com.education.experiment.cloudexpress;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,6 +14,7 @@ import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -68,7 +68,7 @@ public class UploadExpressOrderServlet extends HttpServlet {
 					sb.append("备注:null");
 				}
 				FileSystem hdfs = FileSystem.get(conf);
-				Path path = new Path("/tomcat/experiment/expresscloud/uploaddata/" + current.getTime() + ".txt");
+				Path path = new Path(Constants.HDFS_EXPRESS_UPLOADDATA + current.getTime() + ".txt");
 				if (hdfs.exists(path)) {
 					request.getRequestDispatcher("/error.jsp?result=上传的文件已存在!").forward(request, response);
 				} else {

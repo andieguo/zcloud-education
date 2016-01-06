@@ -20,8 +20,9 @@ import org.apache.hadoop.io.IOUtils;
 
 import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.UserBean;
+import com.education.experiment.util.FileUtil;
 
-public class DownloadExpressServlet extends HttpServlet {
+public class DetailExpressServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static final Configuration conf = new Configuration();
@@ -39,7 +40,7 @@ public class DownloadExpressServlet extends HttpServlet {
 			// 获取用户提交的文件名称
 			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
 			System.out.println("uuidname:" + uuidname);
-			File f = new File(Constants.PROJECTPATH + File.separator + uuidname);
+			File f = new File(Constants.PROJECTPATH+ File.separator + uuidname);
 			String dst = Constants.HDFS_EXPRESS_UPLOADDATA + uuidname;
 			// 开始下载数据示例文件
 			FileSystem fs = FileSystem.get(conf);
@@ -47,7 +48,7 @@ public class DownloadExpressServlet extends HttpServlet {
 			OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
 			Path hdfsPath = new Path(dst);
 			if (!fs.exists(hdfsPath)) {
-				request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
+				request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
 			} else {
 				try {
 					hadopin = fs.open(hdfsPath);
@@ -55,25 +56,14 @@ public class DownloadExpressServlet extends HttpServlet {
 					// 下载文件结束
 					// 开始往客户端传送示例文件
 					if (f.exists()) {
-						// 设置应答的相应消息头
-						response.setContentType("application/x-msdownload");
-						String str = "attachment;filename=" + java.net.URLEncoder.encode(uuidname, "utf-8");
-						response.setHeader("Content-Disposition", str);
 						// 创建一 个输入流对象和指定的文件相关联
-						FileInputStream in = new FileInputStream(f);
-						// 从response对象中获取到输出流对象
-						OutputStream out = response.getOutputStream();
-						// 从输入流对象中读数据写入到输出流对象中
-						byte[] buff = new byte[1024 * 1024];
-						int len = 0;
-						while ((len = in.read(buff)) > 0) {
-							out.write(buff, 0, len);
-						}
-						in.close();
-						out.close();
-						f.delete();
+						FileInputStream input = new FileInputStream(f);
+						String content = FileUtil.readInputStream(input);
+						request.setAttribute("content", content);
+						request.getRequestDispatcher("/detailexpress.jsp").forward(request, response);
+						f.delete();//删除文件
 					} else {
-						request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
+						request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
 					}
 				} finally {
 					IOUtils.closeStream(hadopin);

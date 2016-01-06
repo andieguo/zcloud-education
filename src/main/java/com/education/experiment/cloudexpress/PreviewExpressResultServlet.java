@@ -15,6 +15,7 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -29,7 +30,6 @@ public class PreviewExpressResultServlet extends HttpServlet {
 	 * 处理用户提交的查看自己的快递信息的请求，服务端接受到该请求后，会根据用户的ID信息去hdfs上读取相应的文件， 最后把文件的内容返回给客户端.
 	 * */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// request.setCharacterEncoding(Charset.defaultCharset().toString());
 		request.setCharacterEncoding("utf-8");
 		UserBean ub = (UserBean) request.getSession().getAttribute("user");
 		if (ub == null) {
@@ -37,7 +37,7 @@ public class PreviewExpressResultServlet extends HttpServlet {
 		} else {
 			// 开始读取属于客户的快递信息文件
 			FileSystem fs = FileSystem.get(conf);
-			Path path = new Path("/tomcat/experiment/expresscloud/results/" + ub.getUserId());
+			Path path = new Path(Constants.HDFS_EXPRESS_RESULTS + ub.getUserId());
 			if (!fs.exists(path)) {
 				request.setAttribute("result", null);
 				request.getRequestDispatcher("/expressresult.jsp").forward(request, response);
@@ -76,9 +76,6 @@ public class PreviewExpressResultServlet extends HttpServlet {
 					request.getRequestDispatcher("/expressresult.jsp").forward(request, response);
 				}
 			}
-			// 2012-12
-			// AVG{Temp(max:21.760002℃/min:13.001612℃);Humidity(51.97549%);WSP(21.388714m/s)}
-
 		}
 	}
 }

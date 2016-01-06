@@ -2,8 +2,6 @@ package com.education.experiment.cloudlibrary;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
@@ -12,10 +10,8 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
-import com.education.experiment.cloudzhiyun.ZhiyunParsingServlet;
 import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
-import com.education.experiment.util.HadoopUtil;
 
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Job;

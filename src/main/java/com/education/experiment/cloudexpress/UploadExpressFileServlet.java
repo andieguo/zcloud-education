@@ -27,6 +27,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.util.Progressable;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -55,15 +56,11 @@ public class UploadExpressFileServlet extends HttpServlet {
 			if (FileUpload.isMultipartContent(requestContext)) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				// 设置文件的缓存路径
-				File temp = new File("/hadoop/tomcat/temp/");
-				if (!temp.exists()) {
-					temp.mkdir();
-				}
-				factory.setRepository(temp);
+				factory.setRepository(new File(Constants.PROJECTPATH));
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				// 设置上传文件大小的上限，-1表示无上限
 				upload.setSizeMax(1024 * 1024 * 1024);
-				List<?> items = new ArrayList();
+				List<FileItem> items = new ArrayList<FileItem>();
 				try {
 					// 上传文件，并解析出所有的表单字段，包括普通字段和文件字段
 					items = upload.parseRequest(request);
@@ -81,13 +78,13 @@ public class UploadExpressFileServlet extends HttpServlet {
 						// 保存文件，其实就是把缓存里的数据写到tomcat的临时目录下
 						if (fileItem.getName() != null && fileItem.getSize() != 0) {
 							String[] array = fileItem.getName().split("\\\\");
-							File newFile = new File("/hadoop/tomcat/" + array[array.length - 1]);
+							File newFile = new File(Constants.PROJECTPATH + File.separator + array[array.length - 1]);
 							try {
 								fileItem.write(newFile);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-							String dst = "/tomcat/experiment/expresscloud/uploaddata/" + newFile.getName();
+							String dst = Constants.HDFS_EXPRESS_UPLOADDATA + newFile.getName();
 							InputStream in = new BufferedInputStream(new FileInputStream(newFile));
 							// 开始从tomcat的临时目录下读取数据文件，然后往HDFS上写入
 							FileSystem fs = FileSystem.get(conf);
@@ -101,7 +98,6 @@ public class UploadExpressFileServlet extends HttpServlet {
 								OutputStream out = fs.create(path, new Progressable() {
 									public void progress() {
 										// TODO Auto-generated method
-										// stub
 										System.out.println("*");
 									}
 								});

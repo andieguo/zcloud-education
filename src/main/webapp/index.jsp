@@ -32,7 +32,7 @@ background:#f7f7f7;
 			<a target="_blank" href="listweather.jsp" hidefocus="true" class="ialbum">气象数据分析</a>
 			</li>
 			<li>
-			<a target="_blank" href="downloadexpress.jsp" hidefocus="true" class="ipan">智能EMS速递云</a>
+			<a target="_blank" href="listexpress.jsp" hidefocus="true" class="ipan">智能EMS速递云</a>
 			</li>
 			<li>
 			<a target="_blank" href="listweixin.jsp" hidefocus="true" class="imsg">微信关系分析</a>

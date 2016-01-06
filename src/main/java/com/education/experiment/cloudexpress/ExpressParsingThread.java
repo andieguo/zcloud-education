@@ -14,6 +14,7 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 
 import org.apache.hadoop.io.*;
@@ -29,7 +30,6 @@ public class ExpressParsingThread extends Thread {
 	/**
 	 * 此类是一个线程类，当服务端扫描到新的数据文件后，会启动一个改线程，用于向hadoop集群提交分析数据的job任务. hadoop集群会根据快递数据文件和快递人员的信息来启动Map/Reduce任务， 分配快递给最近的快递人员,最后把产生的结果信息写入到HDFS上.
 	 */
-	private static final long serialVersionUID = 1L;
 	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 	private static boolean isLaunch = false;
 	private static final Map<String, GPRSBean> map = new HashMap<String, GPRSBean>();
@@ -190,6 +190,7 @@ public class ExpressParsingThread extends Thread {
 							fs.delete(out, true);
 						}
 						// 初始化job的相关信息
+						conf.set("mapred.jar", Constants.JAR_HOME);
 						Job job = new Job(conf, "Parsing Express Data");
 						job.setJarByClass(ExpressParsingThread.class);
 						FileInputFormat.setInputPaths(job, data);

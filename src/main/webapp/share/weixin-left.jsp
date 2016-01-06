@@ -5,36 +5,23 @@
 		id="genere">
 		<div class="minheight-forfooter">
 			<ul class="b-list-3" id="aside-menu">
-				<li class="b-list-item"><a href="#"><span class="text1"><span
-							class="img-ico aside-recycle"></span>数据列表</span></a>
-					<ul class="contact-list cls part">
-						<li class="icon mou-evt"><a href="listweixin.jsp">
-								<div title="模拟数据列表" class="list-wrap" style="width: auto;">
-									<span class="name">模拟数据列表</span>
-								</div>
-						</a></li>
-						<li class="icon mou-evt"><a href="listparsing.jsp">
-								<div title="分析条件列表" class="list-wrap" style="width: auto;">
-									<span class="name">分析条件列表</span>
-								</div>
-						</a></li>
-
-					</ul></li>
+				<li class="b-list-item"><a href="listweixin.jsp"
+					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
+					unselectable="on"> <span class="text1"><span
+							class="img-ico aside-share"></span>模拟数据列表</span></a></li>
+				<li class="b-list-item"><a href="listparsing.jsp"
+					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
+					unselectable="on"><span class="text1"><span
+							class="img-ico aside-share"></span>分析条件列表</span></a></li>
 				<li class="b-list-item separator-1"></li>
-				<li class="b-list-item"><a href="#"><span class="text1"><span
-							class="img-ico aside-mapp"></span>数据上传</span></a>
-					<ul class="contact-list cls part">
-						<li class="icon mou-evt on"><a href="uploadweixin.jsp">
-								<div title="模拟数据上传" class="list-wrap" style="width: auto;">
-									<span class="name">模拟数据上传</span>
-								</div>
-						</a></li>
-						<li class="icon mou-evt"><a href="uploadparsing.jsp">
-								<div title="分析条件上传" class="list-wrap" style="width: auto;">
-									<span class="name">分析条件上传</span>
-								</div>
-						</a></li>
-					</ul></li>
+				<li class="b-list-item"><a href="uploadweixin.jsp"
+					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
+					unselectable="on"><span class="text1"><span
+							class="img-ico aside-mapp"></span>模拟数据上传</span></a></li>
+				<li class="b-list-item"><a href="uploadparsing.jsp"
+					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
+					unselectable="on"><span class="text1"><span
+							class="img-ico aside-mapp"></span>分析条件上传</span></a></li>
 				<li class="b-list-item separator-1"></li>
 				<li class="b-list-item"><a href="previewallweixin"
 					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
@@ -43,7 +30,7 @@
 				<li class="b-list-item"><a href="launchweixin.jsp"
 					class="sprite2 b-no-ln" hidefocus="true" id="tab-recyle"
 					unselectable="on"><span class="text1"><span
-							class="img-ico aside-js"></span>分析数据计算</span></a></li>
+							class="img-ico aside-start"></span>分析数据计算</span></a></li>
 				<li class="b-list-item"><a href="previewweixinresult"
 					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
 					unselectable="on"><span class="text1"><span
