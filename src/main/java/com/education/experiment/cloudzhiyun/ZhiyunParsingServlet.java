@@ -1,6 +1,5 @@
 package com.education.experiment.cloudzhiyun;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -18,9 +17,9 @@ import com.education.experiment.cloudzhiyun.ClassifyPMReduce;
 import com.education.experiment.cloudzhiyun.Main;
 import com.education.experiment.cloudzhiyun.MinMaxPMMapper;
 import com.education.experiment.cloudzhiyun.MinMaxPMReduce;
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
-import com.education.experiment.util.HadoopUtil;
 
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Job;
@@ -34,7 +33,7 @@ public class ZhiyunParsingServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final Configuration conf = HadoopConfiguration.getConfiguration();
-
+	
 	/*
 	 * 处理用户提交的天气数据云计算分析，用户提交了分析的命令以后，该方法会想hadoop集群提交一个Map/Reduce任务， 用于执行天气分析的任务
 	 */
@@ -47,18 +46,16 @@ public class ZhiyunParsingServlet extends HttpServlet {
 		System.out.println("date:" + date);
 		if (ub == null) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
-		} else if (ub.getUserId().equals("admin")) {
+		} else {
 			FileSystem fs = FileSystem.get(conf);
 			Path in = new Path("/tomcat/experiment/zhiyuncloud/uploaddata");
 			Path out = new Path("/tomcat/experiment/zhiyuncloud/results");
 			if (fs.exists(out)) {
 				fs.delete(out, true);
 			}
-			String path = ZhiyunParsingServlet.class.getClassLoader().getResource("").toString();
-			String jsonpath = path.substring(0, path.indexOf("classes")) + "lib/json-20140107.jar";
-			String jarpath = System.getProperty("user.home") + File.separator + "temp"+File.separator+"education.jar";
-			HadoopUtil.addJarToDistributedCache(jsonpath, conf);
-			conf.set("mapred.jar", jarpath);
+			String classpath = conf.get("mapred.job.classpath.archives");
+			System.out.println("archives-classpath:"+classpath);
+			conf.set("mapred.jar", Constants.JAR_HOME);
 			conf.set("type", type);
 			conf.set("date", date);
 			// 开始生成处理天气数据的Map/Reduce任务job信息，然后提交给hadoop集群开始执行.

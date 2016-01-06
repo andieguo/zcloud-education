@@ -3,6 +3,8 @@ package com.education.experiment.commons;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.servlet.ServletContext;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.mapred.JobClient;
 
+import com.education.experiment.cloudzhiyun.ZhiyunParsingServlet;
+import com.education.experiment.util.HadoopUtil;
 import com.education.experiment.util.JarUtil;
 import com.education.experiment.util.PropertiesUtil;
 
@@ -46,6 +50,23 @@ public class InitializeServelet extends HttpServlet {
 			}
 			JarUtil jarUtil = new JarUtil(javaClassPath, Constants.JAR_HOME);
 			jarUtil.generateJar();
+			//配置BooksIndexMRThread job 所有的jar
+			String path = ZhiyunParsingServlet.class.getClassLoader().getResource("").toString();
+			System.setProperty("path.separator", ":");
+			List<String> jarPathList = new ArrayList<String>();
+			jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-core-4.2.1.jar");
+			jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-analyzers-common-4.2.1.jar");
+			jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-highlighter-4.2.1.jar");
+			jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-queries-4.2.1.jar");
+			jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-queryparser-4.2.1.jar");
+			jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-sandbox-4.2.1.jar");
+			jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/jakarta-regexp-1.4.jar");
+			jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-memory-4.2.1.jar");
+			//配置zhiyunparsing job所需的json-20140107.jar
+			jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/json-20140107.jar");
+			for(String key : jarPathList){
+				HadoopUtil.addJarToDistributedCache(key, conf);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

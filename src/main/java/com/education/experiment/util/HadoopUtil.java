@@ -4,14 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.URLDecoder;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.filecache.DistributedCache;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
-import com.education.experiment.cloudweather.WordCount;
 import com.education.experiment.cloudzhiyun.ZhiyunParsingServlet;
 
 public class HadoopUtil {

@@ -174,19 +174,6 @@ public class BooksIndexMRThread extends Thread {
 
 	// 配置job相关信息，然后提交给Hadoop集群，让其开始执行该job
 	private void index(Book book) throws IOException, InterruptedException, ClassNotFoundException {
-		String path = ZhiyunParsingServlet.class.getClassLoader().getResource("").toString();
-		List<String> jarPathList = new ArrayList<String>();
-		jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-core-4.2.1.jar");
-		jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-analyzers-common-4.2.1.jar");
-		jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-highlighter-4.2.1.jar");
-		jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-queries-4.2.1.jar");
-		jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-queryparser-4.2.1.jar");
-		jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-sandbox-4.2.1.jar");
-		jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/jakarta-regexp-1.4.jar");
-		jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-memory-4.2.1.jar");
-		for(String key : jarPathList){
-			HadoopUtil.addJarToDistributedCache(key, conf);
-		}
 		conf.set("bookname", book.getName());
 		conf.set("bookauthor", book.getAuthor());
 		conf.set("publishdate", book.getPublishDate());
