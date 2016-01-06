@@ -40,7 +40,7 @@ import com.education.experiment.commons.UserBean;
 public class RetrievalBooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_42);
-	private static final File index = new File(Constants.IDNEX_PATH);
+	private static final File index = new File(Constants.LOCAL_BOOK_IDNEX);
 
 	public RetrievalBooksServlet() {
 	}

@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 
+import com.education.experiment.commons.Constants;
+
 public class WeatherDataGenUtil {
 
 	// 2012-01-01 Temp(max:8.16℃/min:-5.34℃);Humidity(0.68%);WSP(22.61m/s)
@@ -21,9 +23,7 @@ public class WeatherDataGenUtil {
 		try {
 			for(int year=startyear;year<=endyear;year++){
 				//生成文件夹
-				File temp = new File(System.getProperty("user.home") + File.separator + "temp");
-				if (!temp.exists()) temp.mkdir();
-				File weather = new File(temp+File.separator+"weather");
+				File weather = new File(Constants.PROJECTPATH + File.separator + "weather");
 				if (!weather.exists()) weather.mkdir();
 				//默认为UTF-8格式
 				BufferedWriter writer = new BufferedWriter(new FileWriter(new File(weather + File.separator + "weatherdata-" + year+".txt"), false));//覆盖

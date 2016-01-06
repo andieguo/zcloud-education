@@ -1,6 +1,5 @@
 package com.education.experiment.cloudweather;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -11,6 +10,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -102,16 +102,15 @@ public class WeatherParsingServlet extends HttpServlet {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		} else if (ub.getUserId().equals("admin")) {
 			FileSystem fs = FileSystem.get(conf);
-			Path out = new Path("/tomcat/experiment/weathercloud/results");
+			Path out = new Path(Constants.HDFS_WEATHER_RESULTS);
 			if (fs.exists(out)) {
 				fs.delete(out, true);
 			}
 			// 开始生成处理天气数据的Map/Reduce任务job信息，然后提交给hadoop集群开始执行.
-			String jarpath = System.getProperty("user.home") + File.separator + "temp"+File.separator+"education.jar";
-			conf.set("mapred.jar", jarpath);
+			conf.set("mapred.jar", Constants.JAR_HOME);
 			Job job = new Job(conf, "Parsing Meteorological Data");
 			job.setJarByClass(WeatherParsingServlet.class);
-			Path in = new Path("/tomcat/experiment/weathercloud/uploaddata");
+			Path in = new Path(Constants.HDFS_WEATHER_UPLOADDATA);
 			FileInputFormat.setInputPaths(job, in);
 			FileOutputFormat.setOutputPath(job, out);
 

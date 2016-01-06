@@ -32,6 +32,7 @@ public class FileUtil {
 				}
 				out.closeEntry();
 				in.close();
+				f.delete();
 			}
 		}
 		out.flush();

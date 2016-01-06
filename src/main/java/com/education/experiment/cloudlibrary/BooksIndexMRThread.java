@@ -150,7 +150,7 @@ public class BooksIndexMRThread extends Thread {
 				FileSystem hdfs = FileSystem.get(context.getConfiguration());
 				FileSystem local = FileSystem.getLocal(context.getConfiguration());
 				Path inPath = new Path(localIndexDir);
-				String hdfsPath = Constants.HDFS_BOOK_INDEX + timeMillis + "-lock" + "/";
+				String hdfsPath = Constants.HDFS_BOOK_INDEXES + timeMillis + "-lock" + "/";
 				FileStatus[] inputFiles = local.listStatus(inPath);
 				for (FileStatus ele : inputFiles) {
 					FSDataOutputStream fsdos = hdfs.create(new Path(hdfsPath + ele.getPath().getName()));
@@ -164,7 +164,7 @@ public class BooksIndexMRThread extends Thread {
 					fsdos.close();
 				}
 				local.delete(inPath, true);
-				hdfs.rename(new Path(hdfsPath), new Path(Constants.HDFS_BOOK_INDEX + timeMillis + "/"));
+				hdfs.rename(new Path(hdfsPath), new Path(Constants.HDFS_BOOK_INDEXES + timeMillis + "/"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -194,7 +194,7 @@ public class BooksIndexMRThread extends Thread {
 		// 开始配置job信息
 		Job job = new Job(conf, "Indexing Book Data");
 		job.setJarByClass(BooksIndexMRThread.class);
-		String perfix = Constants.HDFS_BOOK_HOME + book.getAuthor() + "-" + book.getName();
+		String perfix = Constants.HDFS_BOOK_UPLOADDATA + book.getAuthor() + "-" + book.getName();
 		Path in = new Path(perfix + ".book");
 		Path out = new Path(perfix + "-result");
 		FileInputFormat.setInputPaths(job, in);//输入
@@ -218,14 +218,14 @@ public class BooksIndexMRThread extends Thread {
 		synchronized (lock) {
 			FileSystem hdfs = FileSystem.get(conf);
 			FileSystem local = FileSystem.getLocal(conf);
-			Path indexes = new Path(Constants.HDFS_BOOK_INDEX);
+			Path indexes = new Path(Constants.HDFS_BOOK_INDEXES);
 			FileStatus[] list = hdfs.listStatus(indexes);
 			for (FileStatus fs : list) {
 				if (fs.isDir() && !fs.getPath().getName().contains("lock")) {
 					FileStatus[] indexList = hdfs.listStatus(fs.getPath());
 					for (FileStatus ele : indexList) {
 						FSDataInputStream fsdis = hdfs.open(ele.getPath());
-						FSDataOutputStream fsdos = local.create(new Path(Constants.INDEX_TMP_PATH + File.separator + fs.getPath().getName() + File.separator + ele.getPath().getName()));
+						FSDataOutputStream fsdos = local.create(new Path(Constants.LOCAL_BOOK_TMP + File.separator + fs.getPath().getName() + File.separator + ele.getPath().getName()));
 						byte[] buffer = new byte[256];
 						int readByte = 0;
 						while ((readByte = fsdis.read(buffer)) > 0) {
@@ -238,14 +238,14 @@ public class BooksIndexMRThread extends Thread {
 				}
 			}
 			//合并之后的本地临时索引库
-			File indexTmpDir = new File(Constants.INDEX_TMP_PATH);
+			File indexTmpDir = new File(Constants.LOCAL_BOOK_TMP);
 			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_42);
 			IndexWriterConfig fsIndexWriterConfig = new IndexWriterConfig(Version.LUCENE_42, analyzer);
 			fsIndexWriterConfig.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			fsIndexWriterConfig.setRAMBufferSizeMB(128.0);
 			fsIndexWriterConfig.setMaxBufferedDocs(1000);
 			//本地正式的索引库
-			Directory directory = FSDirectory.open(new File(Constants.IDNEX_PATH));
+			Directory directory = FSDirectory.open(new File(Constants.LOCAL_BOOK_IDNEX));
 			File[] arrayFile = indexTmpDir.listFiles();
 			for (File file : arrayFile) {
 				if (file.isDirectory()) {

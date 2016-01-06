@@ -12,33 +12,53 @@ public class Constants {
 	public static final String WEATHER_PATH = PROJECTPATH+File.separator+"weather";
 	public static final String BOOK_PATH =  PROJECTPATH+File.separator+"book";
 	public static final String WEIXIN_PATH =  PROJECTPATH+File.separator+"weixin";
-	public static final String INDEXES_PATH =  PROJECTPATH+File.separator+"indexes";
+	public static final String LOCAL_BOOK_INDEXES =  PROJECTPATH+File.separator+"indexes";
 	/**
 	 * eg. /home/hadoop/zcloud-education/indexes/index
 	 */
-	public static final String IDNEX_PATH = INDEXES_PATH + File.separator+"index";
+	public static final String LOCAL_BOOK_IDNEX = LOCAL_BOOK_INDEXES + File.separator+"index";
 	/**
 	 * eg. /home/hadoop/zcloud-education/indexes/tmp
 	 */
-	public static final String INDEX_TMP_PATH = INDEXES_PATH + File.separator+"tmp";
+	public static final String LOCAL_BOOK_TMP = LOCAL_BOOK_INDEXES + File.separator+"tmp";
 	/**
 	 * eg. /tomcat/experiment/librarycloud/indexes/
 	 */
-	public static final String HDFS_BOOK_INDEX = "/tomcat/experiment/librarycloud/indexes/";
+	public static final String HDFS_BOOK_INDEXES = "/tomcat/experiment/librarycloud/indexes/";
 	/**
 	 * eg. /tomcat/experiment/librarycloud/uploaddata/
 	 */
-	public static final String HDFS_BOOK_HOME = "/tomcat/experiment/librarycloud/uploaddata/";
+	public static final String HDFS_BOOK_UPLOADDATA = "/tomcat/experiment/librarycloud/uploaddata/";
+	/**
+	 * eg. /tomcat/experiment/weathercloud/uploaddata/
+	 */
+	public static final String HDFS_WEATHER_UPLOADDATA = "/tomcat/experiment/weathercloud/uploaddata/";
+	/**
+	 * eg. /tomcat/experiment/weathercloud/results/
+	 */
+	public static final String HDFS_WEATHER_RESULTS = "/tomcat/experiment/weathercloud/results/";
+	/**
+	 * eg. /tomcat/experiment/weixincloud/uploadparsing/
+	 */
+	public static final String HDFS_WEIXIN_UPLOADPARSING = "/tomcat/experiment/weixincloud/uploadparsing/";
+	/**
+	 * eg. /tomcat/experiment/weixincloud/uploaddata/
+	 */
+	public static final String HDFS_WEIXIN_UPLOADDATA = "/tomcat/experiment/weixincloud/uploaddata/";
+	/**
+	 * eg. /tomcat/experiment/weixincloud/uploaddata/
+	 */
+	public static final String HDFS_WEIXIN_RESULTS = "/tomcat/experiment/weixincloud/results/";
 	/**
 	 * eg. /home/hadoop/zcloud-education/education.jar
 	 */
-	public static final String JAR_HOME = PROJECTPATH + File.separator + "education.jar";;
-	
+	public static final String JAR_HOME = PROJECTPATH + File.separator + "education.jar";
+
 	static{
 		mkdir(PROJECTPATH);
-		mkdir(INDEXES_PATH);
-		mkdir(IDNEX_PATH);
-		mkdir(INDEX_TMP_PATH);
+		mkdir(LOCAL_BOOK_INDEXES);
+		mkdir(LOCAL_BOOK_IDNEX);
+		mkdir(LOCAL_BOOK_TMP);
 	} 
 	
 	public static void mkdir(String path){

@@ -13,6 +13,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
 import com.education.experiment.commons.BaseDao;
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -35,7 +36,7 @@ public class DeleteWeatherServlet extends HttpServlet {
 			String uuidnames[] = request.getParameterValues("filename");
 			for (String uuid : uuidnames) {
 				String uuidname = new String(uuid.getBytes("ISO-8859-1"), "UTF-8");
-				String dst = "/tomcat/experiment/weathercloud/uploaddata/" + uuidname;
+				String dst = Constants.HDFS_WEATHER_UPLOADDATA + uuidname;
 				// 开始删除用户提交的文件名称
 				FileSystem fs = FileSystem.get(conf);
 				Path hdfsPath = new Path(dst);

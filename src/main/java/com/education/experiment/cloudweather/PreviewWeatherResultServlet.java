@@ -20,6 +20,7 @@ import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.json.JSONObject;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -46,8 +47,8 @@ public class PreviewWeatherResultServlet extends HttpServlet {
 		if (ub != null) {
 			// 开始读取结果文件
 			FileSystem fs = FileSystem.get(conf);
-			Path _success = new Path("/tomcat/experiment/weathercloud/results/_SUCCESS");
-			Path reduceRusult = new Path("/tomcat/experiment/weathercloud/results/part-r-00000");
+			Path _success = new Path(Constants.HDFS_WEATHER_RESULTS + "_SUCCESS");
+			Path reduceRusult = new Path(Constants.HDFS_WEATHER_RESULTS + "part-r-00000");
 			if (fs.exists(_success) && fs.exists(reduceRusult)) {
 				FSDataInputStream fsdis = fs.open(reduceRusult);
 				BufferedReader br = new BufferedReader(new InputStreamReader(fsdis, "UTF-8"));
