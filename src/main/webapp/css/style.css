@@ -1,4 +1,4 @@
-html, body { height: 100%; margin: 0; padding: 0; }
+锘縣tml, body { height: 100%; margin: 0; padding: 0; }
 h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td, figure {
     margin: 0;
     padding: 0;
@@ -29,14 +29,14 @@ a:hover {
 }
 body, button, input, select, textarea, td, th {
     color: #333333;
-    font: 12px/1.5 tahoma,arial,宋体;
+    font: 12px/1.5 tahoma,arial,瀹嬩綋;
 }
 h1, h2, h3, h4, h5, h6 {
     font-size: 100%;
 }
 .dd{
 margin:5px;}
-/*Logo部分*/
+/*Logo閮ㄥ垎*/
 
 .b-list-1 .b-list-item span, .img-ico {
     float: left;
@@ -45,7 +45,7 @@ margin:5px;}
     float: left;
 }
 .hd-main {
-    background:#FFFFFF;
+    background: #274669;
     border-bottom: 1px solid #B3B3B3;
     box-shadow: 0 0 5px #C3C3C3;
     height: 60px;
@@ -58,10 +58,19 @@ margin:5px;}
     position: absolute;
     top: 0;
 }
+.logo-main img {
+  display: inline-block;
+  margin-top: 5px;
+}
 .logo{
-	height:60px;
+  display: inline-block;
+  margin: 15px;
+  color: #fff;
 	font-size:26px;
-	font-family:"黑体";
+	font-family:"寰蒋闆呴粦";
+  font-weight: bold;
+  line-height: 1em;
+  vertical-align:top;
 }
 .yun-logo {
     background: url("../images/logo.gif") no-repeat scroll 0 0 transparent;
@@ -109,7 +118,7 @@ margin:5px;}
     line-height: 16px;
     width: 16px;
 }
-/*首页导航部分*/
+/*棣栭〉瀵艰埅閮ㄥ垎*/
 .service-list {
   display: block;
   margin-left: auto;
@@ -229,7 +238,7 @@ margin:5px;}
     color: #000000;
     text-decoration: none;
 }
-/*内部导航部分*/
+/*鍐呴儴瀵艰埅閮ㄥ垎*/
 .wrap { width: 100%; height: 100%; }
 
 .clearfix1{
@@ -484,18 +493,19 @@ a:hover .aside-gprs, a:active .aside-gprs {
     position: relative;
     width: 174px;
 }
-/*右侧内容*/
+/*鍙充晶鍐呭*/
 .fns {
   border-width: 0 1px 0 0;
   height: 100%;
   margin-left: 209px;
 }
 #header-shaw {
-  background: url("../images/bg.png") repeat scroll center 0px #F7F7F7;
+  background: url("../images/bg.png") repeat scroll center 0px #fff;
   position: relative;
-  padding-left:10px;
+  padding-left:20px;
+  padding-right:20px;
   z-index: 2;
-  /*height:483px;*/
+  height: 543px;
 }
 .b-list-2 .b-list-item {
   float: left;

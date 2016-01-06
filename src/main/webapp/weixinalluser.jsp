@@ -23,60 +23,47 @@
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
-			<div id="header-shaw" style="background-color: #fff;height: 542px;">
+			<div id="header-shaw" class="launchweather">
 			<%
 				List<WeixinUserBean> list = (List<WeixinUserBean>) request.getAttribute("allweixinuser");
 			%>
 			<form action="" method="get">
-				<div class="module-history-list">
-					<span class="history-list-dir">全部文件</span>
-					<span class="history-list-tips" id="filecount">当前找到 <%=list.size()%> 条结果</span>
+				<div class="title">
+					<span class="title-left">微信关系分析系统 > 微信用户信息</span>
+					<span class="title-right" id="filecount">当前找到 <%=list.size()%> 条结果</span>
 				</div>
-				<div class="list-view-header">
-					<ul class="list-cols">
-						<li class="col" style="width: 10%;">
-							<span class="text">微信ID</span>
-							<span class="order-icon"></span>
-						</li>
-						<li class="col" style="width: 10%;">
-							<span class="text">姓名</span>
-							<span class="order-icon"></span>
-						</li>
-						<li class="col" style="width: 10%;">
-							<span class="text">年龄</span>
-							<span class="order-icon"></span>
-						</li>
-						<li class="col" style="width: 10%;">
-							<span class="text">性别</span>
-							<span class="order-icon"></span>
-						</li>
-						<li class="col" style="width: 10%;">
-							<span class="text">职业</span>
-							<span class="order-icon"></span>
-						</li>
-						<li class="col" style="width: 50%;">
-							<span class="text">好友</span>
-							<span class="order-icon"></span>
-						</li>
-					</ul>
-				</div>
-				<div id="tab_filesystem" class="list-view-container">
-					<%
-						for (WeixinUserBean wub : list) {
-					%>
-					<dd class="list-view-item">
-						<div class="file-name" style="width:10%">
-							<div class="text"><%=wub.getId()%></div>
-						</div>
-						<div class="ctime" style="width:10%"><div class="text"><%=wub.getName()%></div></div>
-						<div class="ctime" style="width:10%"><div class="text"><%=wub.getAge()%></div></div>
-						<div class="ctime" style="width:10%"><div class="text"><%=wub.getSex()%></div></div>
-						<div class="ctime" style="width:10%"><div class="text"><%=wub.getVocation()%></div></div>
-						<div class="ctime" style="width:50%"><div class="text"><%=wub.getSplitfriends()%></div></div>
-					</dd>
-					<%
-						}
-					%>
+				<div class="panel mb15">
+					<!-- <div class="panel-title">正在进行的任务</div> -->
+					<div class="panel-body">
+						<table id='tab_running'>
+							<thead>
+								<tr>
+									<th>微信ID</th>
+									<th>姓名</th>
+									<th>年龄</th>
+									<th>性别</th>
+									<th>职业</th>
+									<th width="42%" class="last">好友</th>
+								</tr>
+							</thead>
+							<tbody>
+								<%
+									for (WeixinUserBean wub : list) {
+								%>
+								<tr>
+									<td><%=wub.getId()%></td>
+									<td><%=wub.getName()%></td>
+									<td><%=wub.getAge()%></td>
+									<td><%=wub.getSex()%></td>
+									<td><%=wub.getVocation()%></td>
+									<td><%=wub.getSplitfriends()%></td>
+								</tr>
+								<%
+									}
+								%>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</form>
 			</div>

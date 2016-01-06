@@ -49,17 +49,8 @@ $(function() {//页面加载时调用该方法
 </div>
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
-
-		<!--主体开始-->
-		<div id="content" class="clearfix">
-			<div id="title">
-				<h1>
-					气象数据分析云
-				</h1>
-			</div>
-
-				<div id="selectSet">
-					<dl class="list clearfix">
+		<div class="fns">
+			<div id="header-shaw">
 						<span>全年气象数据平均值：</span>
 						最高温度：<span class="input text" id="maxTempText"></span>℃
 						<br>
@@ -71,12 +62,7 @@ $(function() {//页面加载时调用该方法
 						<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						风速：<span class="input text" id="wspText"></span>m/s
-					</dl>
-					<br />
-					<div id="container01"
-						style="min-width: 400px; height: 400px; margin: 0 auto">
-					</div>
-				</div>
+					<div id="container01" style="width: 100%; height: 400px; margin: 0 auto"></div>
 			</div>
 		</div>
 	</div>

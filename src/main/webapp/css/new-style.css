@@ -136,7 +136,8 @@
         height: 100%;
         right: 0;
         top: 0;
-        z-index: 2; }
+        z-index: 2;
+        padding-top: 7px; }
         .list-view-container .list-view-item .file-name .operate .icon {
           display: inline-block;
           margin-right: 4px;
@@ -169,7 +170,7 @@
   float: left;
   margin-top: 15px;
   margin-bottom: 10px;
-  width: 98%;
+  width: 100%;
   background: none repeat scroll 0 0 #FFFFFF;
   border: 1px solid #ccc;
   -moz-border-radius: 3px;
@@ -189,7 +190,7 @@
     border: 0; }
 
 .eidtor {
-  width: 98%; }
+  width: 100%; }
 
 .submit-reset {
   margin-top: 10px; }
@@ -235,10 +236,9 @@
 .launchweather {
   background-color: #fff;
   overflow: scroll;
-  overflow-x: auto;
-  height: 543px; }
+  overflow-x: auto; }
   .launchweather .title {
-    margin: 10px; }
+    margin: 10px 0; }
     .launchweather .title .title-left {
       line-height: 1.8em; }
     .launchweather .title .title-right {
@@ -253,21 +253,21 @@
       height: 0;
       font-size: 0; }
   .launchweather .panel {
-    position: relative;
-    margin-left: 10px; }
+    position: relative; }
     .launchweather .panel .panel-title {
       margin-bottom: -1px;
       display: inline-block;
       padding: 0 20px;
       border: 1px solid #d2d2d2;
       border-radius: 2px 2px 0 0;
+      background-color: #f7f7f7;
       text-align: center;
       font-weight: bold;
       line-height: 2.6em; }
       .launchweather .panel .panel-title:after {
         content: " :"; }
     .launchweather .panel .panel-body {
-      width: 99%;
+      width: 100%;
       border: 1px solid #d2d2d2;
       border-radius: 2px;
       background-color: #fff; }
