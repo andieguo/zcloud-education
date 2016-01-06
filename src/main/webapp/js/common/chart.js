@@ -4,13 +4,14 @@ function drawChart(mintempSeries,maxtempSeries,humiditySeries,wspSeries) {
 	 $('#container01').highcharts({
 		chart : {
 			renderTo : 'container',
-			type : 'spline'
+			type : 'spline',
+			margin: [50, 20, 80, 80]
+		},
+		credits: { 
+			enabled: false //不显示LOGO 
 		},
 		title : {
-			text : '气象数据统计'
-		},
-		subtitle : {
-			text : '2012-2013年'
+			text : null
 		},
 		xAxis: {
             type:"datetime",
@@ -22,7 +23,12 @@ function drawChart(mintempSeries,maxtempSeries,humiditySeries,wspSeries) {
 			title : {
 				text : '单位：摄氏度,百分比,米每秒'
 			},
-			min : -20
+            tickPixelInterval: 40,
+			gridLineDashStyle: 'longdash',
+    		lineColor: '#C0D0E0',
+    		lineWidth: 1,
+    		tickWidth: 1,
+    		tickColor: '#C0D0E0'
 		},
 		tooltip : {
 			formatter : function() {
@@ -32,6 +38,17 @@ function drawChart(mintempSeries,maxtempSeries,humiditySeries,wspSeries) {
 			}
 		},
 		plotOptions: {
+	          spline: {
+	              lineWidth: 2,
+	              states: {
+	                  hover: {
+	                      lineWidth: 3
+	                  }
+	              },
+	              marker: {
+	                  enabled: false
+	              }
+	          },
 			series: {
 				stickyTracking: false
 			},
