@@ -10,6 +10,7 @@ import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -97,7 +98,7 @@ public class UploadWeixinParsingServlet extends HttpServlet {
 			}
 			// 开始往hadoop的HDFS上写入分析条件的文件
 			FileSystem hdfs = FileSystem.get(conf);
-			Path path = new Path("/tomcat/experiment/weixincloud/uploadparsing/" + ub.getUserId() + ".pars");
+			Path path = new Path(Constants.HDFS_WEIXIN_UPLOADPARSING + ub.getUserId() + ".pars");
 			if (result != null) {
 				request.getRequestDispatcher("/error.jsp?result=" + result + "!").forward(request, response);
 			} else {

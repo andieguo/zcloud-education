@@ -15,6 +15,7 @@ import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -26,7 +27,7 @@ public class PreviewWeixinResultServlet extends HttpServlet {
 	}
 
 	/*
-	 * 处理用户提交的浏览微信分析结果文件的请求，服务端接受到请求以后，从HDF S读取MapReduce产生的结果数据文件，然后把信息返回给客户端
+	 * 处理用户提交的浏览微信分析结果文件的请求，服务端接受到请求以后，从HDFS读取MapReduce产生的结果数据文件，然后把信息返回给客户端
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// request.setCharacterEncoding(Charset.defaultCharset().toString());
@@ -37,13 +38,13 @@ public class PreviewWeixinResultServlet extends HttpServlet {
 		} else {
 			// 开始读取HDFS上的结果数据文件
 			FileSystem fs = FileSystem.get(conf);
-			Path _success = new Path("/tomcat/experiment/weathercloud/results/_SUCCESS");
+			Path _success = new Path(Constants.HDFS_WEIXIN_RESULTS + "_SUCCESS");
 			if (!fs.exists(_success)) {
 				request.setAttribute("result", null);
 				request.getRequestDispatcher("/weixinresult.jsp").forward(request, response);
 			} else {
 				request.setAttribute("result", "");
-				Path reduceRusult = new Path("/tomcat/experiment/weixincloud/results/" + ub.getUserId() + ".result");
+				Path reduceRusult = new Path(Constants.HDFS_WEIXIN_RESULTS + ub.getUserId() + ".result");
 				if (fs.exists(reduceRusult)) {
 					FSDataInputStream fsdis = fs.open(reduceRusult);
 					BufferedReader br = new BufferedReader(new InputStreamReader(fsdis, "UTF-8"));

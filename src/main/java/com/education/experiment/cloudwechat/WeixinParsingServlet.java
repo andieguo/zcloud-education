@@ -1,6 +1,5 @@
 package com.education.experiment.cloudwechat;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -16,6 +15,7 @@ import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 import com.education.experiment.commons.WeiXinParsingUtil;
@@ -98,7 +98,7 @@ public class WeixinParsingServlet extends HttpServlet {
 			context.write(key, new Text(content));
 			// 把结果写入到HDFS中
 			FileSystem hdfs = FileSystem.get(context.getConfiguration());
-			Path path = new Path("/tomcat/experiment/weixincloud/results/" + key.toString() + ".result");
+			Path path = new Path(Constants.HDFS_WEIXIN_RESULTS + key.toString() + ".result");
 			if (hdfs.exists(path)) {
 				hdfs.delete(path, true);
 			}
@@ -120,16 +120,15 @@ public class WeixinParsingServlet extends HttpServlet {
 		} else {
 			WeiXinParsingUtil.generateUserFile();//产生weixin_info.mysql文件
 			FileSystem fs = FileSystem.get(conf);
-			Path out = new Path("/tomcat/experiment/weixincloud/results");
+			Path out = new Path(Constants.HDFS_WEIXIN_RESULTS);
 			if (fs.exists(out)) {
 				fs.delete(out, true);
 			}
-			String jarpath = System.getProperty("user.home") + File.separator + "temp"+File.separator+"education.jar";
-			conf.set("mapred.jar", jarpath);
+			conf.set("mapred.jar", Constants.JAR_HOME);
 			// 开始根据配置文件生成job信息
 			Job job = new Job(conf, "Parsing Weixin Data");
 			job.setJarByClass(WeixinParsingServlet.class);
-			Path in = new Path("/tomcat/experiment/weixincloud/uploaddata");
+			Path in = new Path(Constants.HDFS_WEIXIN_UPLOADDATA);
 			FileInputFormat.setInputPaths(job, in);
 			FileOutputFormat.setOutputPath(job, out);
 

@@ -26,6 +26,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.util.Progressable;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -57,10 +58,8 @@ public class UploadWeixinServlet extends HttpServlet {
 			if (FileUpload.isMultipartContent(requestContext)) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				// 设置文件的缓存路径
-				File temp = new File(System.getProperty("user.home") + File.separator + "temp");
-				if (!temp.exists())
-					temp.mkdir();
-				factory.setRepository(temp);
+				File projectHome = new File(Constants.PROJECTPATH);
+				factory.setRepository(projectHome);
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				// 设置上传文件大小的上限，-1表示无上限
 				upload.setSizeMax(1024 * 1024 * 1024);
@@ -83,13 +82,13 @@ public class UploadWeixinServlet extends HttpServlet {
 						if (fileItem.getName() != null && fileItem.getSize() != 0) {
 							// File fullFile = new File(fileItem.getName());
 							String[] array = fileItem.getName().split("\\\\");
-							File newFile = new File(temp.getPath() + File.separator + array[array.length - 1]);
+							File newFile = new File(projectHome.getPath() + File.separator + array[array.length - 1]);
 							try {
 								fileItem.write(newFile);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-							String dst = "/tomcat/experiment/weixincloud/uploaddata/" + newFile.getName();
+							String dst = Constants.HDFS_WEIXIN_UPLOADDATA + newFile.getName();
 							InputStream in = new BufferedInputStream(new FileInputStream(newFile));
 							// 开始把临时文件夹下的文件写入到HDFS当中
 							FileSystem fs = FileSystem.get(conf);

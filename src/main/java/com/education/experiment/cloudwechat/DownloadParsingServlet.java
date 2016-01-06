@@ -18,6 +18,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.UserBean;
 
 public class DownloadParsingServlet extends HttpServlet {
@@ -41,11 +42,8 @@ public class DownloadParsingServlet extends HttpServlet {
 			// 获取用户提交的文件名称
 			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
 			System.out.println("uuidname:" + uuidname);
-			File temp = new File(System.getProperty("user.home") + File.separator + "temp");
-			if (!temp.exists())
-				temp.mkdir();
-			File f = new File(temp.getPath() + File.separator + uuidname);
-			String dst = "/tomcat/experiment/weixincloud/uploadparsing/" + uuidname;
+			File f = new File(Constants.PROJECTPATH + File.separator + uuidname);
+			String dst = Constants.HDFS_WEIXIN_UPLOADPARSING + uuidname;
 			// 开始从hadoop的HDFS上读取示例文件--并存储到本地的临时文件中
 			FileSystem fs = FileSystem.get(conf);
 			InputStream hadopin = null;
@@ -79,9 +77,9 @@ public class DownloadParsingServlet extends HttpServlet {
 					while ((len = in.read(buff)) > 0) {
 						out.write(buff, 0, len);
 					}
-					f.delete();
 					in.close();
 					out.close();
+					f.delete();
 				} else {
 					request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
 				}

@@ -18,6 +18,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.UserBean;
 import com.education.experiment.util.FileUtil;
 
@@ -39,10 +40,8 @@ public class DetailParsingServlet extends HttpServlet {
 			// 获取用户提交的文件名称
 			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
 			System.out.println("uuidname:" + uuidname);
-			File temp = new File(System.getProperty("user.home") + File.separator + "temp");
-			if (!temp.exists()) temp.mkdir();
-			File f = new File(temp.getPath() + File.separator + uuidname);
-			String dst = "/tomcat/experiment/weixincloud/uploadparsing/" + uuidname;
+			File f = new File(Constants.PROJECTPATH + File.separator + uuidname);
+			String dst = Constants.HDFS_WEIXIN_UPLOADPARSING + uuidname;
 			// 开始下载数据示例文件
 			FileSystem fs = FileSystem.get(conf);
 			InputStream hadopin = null;

@@ -21,6 +21,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 import com.education.experiment.util.FileUtil;
@@ -60,7 +61,7 @@ public class DownloadMutilParsingServlet extends HttpServlet {
 					String uuidname = new String(uuid.getBytes("ISO-8859-1"), "UTF-8");
 					System.out.println("uuidname:" + uuidname);
 					File f = new File(temp.getPath() + File.separator + uuidname);// 创建临时文件，读取HDFS上的文件存储在本地临时文件中，再文件f的内容返回给response
-					String dst = "/tomcat/experiment/weixincloud/uploadparsing/" + uuidname;
+					String dst = Constants.HDFS_WEIXIN_UPLOADPARSING + uuidname;
 					bos = new BufferedOutputStream(new FileOutputStream(f));
 					System.out.println("dst:" + dst);
 					Path hdfsPath = new Path(dst);
