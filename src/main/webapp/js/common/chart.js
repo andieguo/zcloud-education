@@ -5,8 +5,12 @@ function drawChart(mintempSeries,maxtempSeries,humiditySeries,wspSeries) {
 		chart : {
 			renderTo : 'container',
 			type : 'spline',
-			margin: [50, 20, 80, 80]
+			margin: [50, 20, 40, 80]
 		},
+        legend: {
+            align: 'center',
+            verticalAlign: 'top',
+        },
 		credits: { 
 			enabled: false //不显示LOGO 
 		},
@@ -42,7 +46,7 @@ function drawChart(mintempSeries,maxtempSeries,humiditySeries,wspSeries) {
 	              lineWidth: 2,
 	              states: {
 	                  hover: {
-	                      lineWidth: 3
+	                      lineWidth: 4
 	                  }
 	              },
 	              marker: {
