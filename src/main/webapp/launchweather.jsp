@@ -35,7 +35,6 @@ $(function(){
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
 			<div id="header-shaw" class="launchweather">
-				
 				<div class="title">
 					<span class="title-left">气象数据分析系统 > 气象数据计算</span>
 					<span class="title-right">

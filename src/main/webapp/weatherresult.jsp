@@ -50,19 +50,39 @@ $(function() {//页面加载时调用该方法
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
-			<div id="header-shaw">
-						<span>全年气象数据平均值：</span>
-						最高温度：<span class="input text" id="maxTempText"></span>℃
-						<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						最低温度：<span class="input text" id="minTempText"></span>℃
-						<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						湿度：<span class="input text" id="humidityText"></span>%
-						<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						风速：<span class="input text" id="wspText"></span>m/s
-					<div id="container01" style="width: 100%; height: 400px; margin: 0 auto"></div>
+			<div id="header-shaw" class="launchweather">
+				<div class="title">
+					<span class="title-left">气象数据分析系统 > 气象数据查看</span>
+				</div>
+				<div class="panel mb15">
+					<div class="panel-title">全年气象数据平均值</div>
+					<div class="panel-body">
+						<table id='tab_running'>
+							<thead>
+								<tr>
+									<th>最高温度</th>
+									<th>最低温度</th>
+									<th>湿度</th>
+									<th class="last">风速</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><span id="maxTempText"></span>℃</td>
+									<td><span id="minTempText"></span>℃</td>
+									<td><span id="wspText"></span>m/s</td>
+									<td><span id="wspText">24.6</span>m/s</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="panel mb15">
+					<div class="panel-title">气象数据统计</div>
+					<div class="panel-body">
+						<div id="container01" style="width: 100%; height: 300px; margin: 0 auto"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
