@@ -23,8 +23,8 @@
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
-			<div id="header-shaw" class="details" style="padding-left: 30px;padding-right:30px;background-color: #fff;height: 542px;">
-				<textarea rows="35" cols="170"><%=content %></textarea>
+			<div id="header-shaw">
+				<textarea class="detail"><%=content %></textarea>
 			</div>
 		</div>
 	</div>
