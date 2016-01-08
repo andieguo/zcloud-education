@@ -47,7 +47,7 @@ $(function(){
 				<div class="panel mb15">
 					<div class="panel-title">正在进行的任务</div>
 					<div class="panel-body">
-						<table id='tab_running'>
+						<table class="list" id='tab_running'>
 							<thead>
 								<tr>
 									<th>ID</th>
@@ -66,7 +66,7 @@ $(function(){
 				<div class="panel mb15">
 					<div class="panel-title">已完成任务</div>
 					<div class="panel-body">
-						<table id='tab_completed'>
+						<table class="list" id='tab_completed'>
 							<thead>
 								<tr>
 									<th>ID</th>
@@ -84,7 +84,7 @@ $(function(){
 				<div class="panel mb15">
 					<div class="panel-title">失败任务</div>
 					<div class="panel-body">
-						<table id='tab_failed'>
+						<table class="list" id='tab_failed'>
 							<thead>
 								<tr>
 									<th>ID</th>
@@ -104,7 +104,7 @@ $(function(){
 				<div class="panel mb15">
 					<div class="panel-title">已杀死任务</div>
 					<div class="panel-body">
-						<table>
+						<table class="list">
 							<thead id='tab_killed'>
 								<tr>
 									<th>ID</th>

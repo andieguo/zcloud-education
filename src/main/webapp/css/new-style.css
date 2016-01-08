@@ -232,19 +232,19 @@
       font-size: 0.6em;
       font-weight: 100; }
 
-/* launchweather */
-.launchweather {
+/* header-shaw */
+#header-shaw {
   background-color: #fff;
   overflow: scroll;
   overflow-x: auto; }
-  .launchweather .title {
+  #header-shaw .title {
     margin: 10px 0; }
-    .launchweather .title .title-left {
+    #header-shaw .title .title-left {
       line-height: 1.8em; }
-    .launchweather .title .title-right {
+    #header-shaw .title .title-right {
       float: right;
       line-height: 1.8em; }
-    .launchweather .title:after {
+    #header-shaw .title:after {
       content: "";
       display: block;
       clear: both;
@@ -252,78 +252,106 @@
       line-height: 0;
       height: 0;
       font-size: 0; }
-  .launchweather .panel {
-    position: relative; }
-    .launchweather .panel .panel-title {
-      margin-bottom: -1px;
-      display: inline-block;
-      padding: 0 20px;
-      border: 1px solid #d2d2d2;
-      border-radius: 2px 2px 0 0;
-      background-color: #f7f7f7;
-      text-align: center;
-      font-weight: bold;
-      line-height: 2.6em; }
-      .launchweather .panel .panel-title:after {
-        content: " :"; }
-    .launchweather .panel .panel-body {
-      width: 100%;
-      border: 1px solid #d2d2d2;
-      border-radius: 2px;
-      background-color: #fff; }
-      .launchweather .panel .panel-body table {
-        width: 100%; }
-        .launchweather .panel .panel-body table * {
+
+.panel {
+  position: relative; }
+  .panel .panel-title {
+    margin-bottom: -1px;
+    display: inline-block;
+    padding: 0 20px;
+    border: 1px solid #d2d2d2;
+    border-radius: 2px 2px 0 0;
+    background-color: #f7f7f7;
+    text-align: center;
+    font-weight: bold;
+    line-height: 2.6em; }
+    .panel .panel-title:after {
+      content: " :"; }
+  .panel .panel-body {
+    width: 100%;
+    border: 1px solid #d2d2d2;
+    border-radius: 2px;
+    background-color: #fff; }
+    .panel .panel-body .list {
+      width: 100%; }
+      .panel .panel-body .list thead {
+        border-bottom: 1px solid #d2d2d2;
+        background: #f7f7f7;
+        text-align: left; }
+        .panel .panel-body .list thead th {
+          padding: 5px 10px;
+          border-right: 1px solid #e5e5e5;
           line-height: 3em; }
-        .launchweather .panel .panel-body table thead {
-          border-bottom: 1px solid #d2d2d2;
-          background: #f7f7f7;
-          text-align: left; }
-          .launchweather .panel .panel-body table thead th {
-            padding: 5px 10px;
-            border-right: 1px solid #e5e5e5; }
-          .launchweather .panel .panel-body table thead .last {
-            border-right: 0; }
-        .launchweather .panel .panel-body table tbody {
-          padding: 10px; }
-          .launchweather .panel .panel-body table tbody tr {
-            border-bottom: 1px solid #d2d2d2; }
-            .launchweather .panel .panel-body table tbody tr td {
-              padding: 0 10px; }
-      .launchweather .panel .panel-body .upload {
-        margin: 20px auto 20px 0;
-        width: 100%; }
-        .launchweather .panel .panel-body .upload * {
-          line-height: 1.4em; }
-        .launchweather .panel .panel-body .upload tr {
-          border: 0; }
-          .launchweather .panel .panel-body .upload tr th {
-            width: 20%;
-            padding: 10px;
-            text-align: right; }
-          .launchweather .panel .panel-body .upload tr td {
-            padding: 10px; }
-            .launchweather .panel .panel-body .upload tr td input {
-              margin-right: 10px; }
-            .launchweather .panel .panel-body .upload tr td .input-text {
-              padding: 3px 5px;
-              border: 1px solid #C6C8CC;
-              border-radius: 2px; }
-              .launchweather .panel .panel-body .upload tr td .input-text:hover {
-                border: 1px solid #5CA4F6; }
-            .launchweather .panel .panel-body .upload tr td label {
-              margin-right: 20px; }
-        .launchweather .panel .panel-body .upload .button {
-          padding: 3px 20px;
-          line-height: 2em; }
-    .launchweather .panel:after {
-      content: ".";
-      display: block;
-      clear: both;
-      visibility: hidden;
-      line-height: 0;
-      height: 0;
-      font-size: 0; }
+        .panel .panel-body .list thead .last {
+          border-right: 0; }
+      .panel .panel-body .list tbody {
+        padding: 10px; }
+        .panel .panel-body .list tbody tr {
+          border-bottom: 1px solid #d2d2d2; }
+          .panel .panel-body .list tbody tr td {
+            padding: 0 10px;
+            line-height: 3em; }
+  .panel:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+    font-size: 0; }
+
+.upload {
+  margin: 20px auto 20px 0;
+  width: 100%; }
+  .upload tr {
+    border-bottom: 0; }
+    .upload tr th {
+      width: 20%;
+      padding: 10px;
+      text-align: right;
+      line-height: 1.4em; }
+    .upload tr td {
+      padding: 10px;
+      line-height: 1.4em; }
+      .upload tr td input {
+        margin-right: 10px; }
+  .upload .input-text {
+    padding: 3px 5px;
+    border: 1px solid #C6C8CC;
+    border-radius: 2px; }
+    .upload .input-text:hover {
+      border: 1px solid #A3CEFF; }
+    .upload .input-text:focus {
+      border: 1px solid #5CA4F6; }
+  .upload .input-browse {
+    position: relative; }
+    .upload .input-browse .input-left {
+      margin-right: 0;
+      padding: 3px 5px;
+      border: 1px solid #C6C8CC;
+      border-radius: 2px 0 0 2px; }
+    .upload .input-browse .input-right {
+      margin-left: -1px;
+      padding: 5px 10px;
+      border: 1px solid #C6C8CC;
+      border-radius: 0 2px 2px 0; }
+    .upload .input-browse .input-top {
+      cursor: pointer;
+      filter: Alpha(Opacity=0);
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 24px;
+      width: 197px;
+      border: 1px solid #C6C8CC;
+      border-radius: 2px;
+      font-size: 100px; }
+  .upload label {
+    margin-right: 20px; }
+  .upload .button {
+    padding: 3px 20px;
+    line-height: 2em; }
 
 /* detail */
 .detail {

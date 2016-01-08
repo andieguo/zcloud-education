@@ -35,7 +35,7 @@
 				<div class="panel mb15">
 					<!-- <div class="panel-title">正在进行的任务</div> -->
 					<div class="panel-body">
-						<table id='tab_running'>
+						<table class="list" id='tab_running'>
 							<thead>
 								<tr>
 									<th>微信ID</th>

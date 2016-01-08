@@ -57,7 +57,7 @@ $(function() {//页面加载时调用该方法
 				<div class="panel mb15">
 					<div class="panel-title">全年气象数据平均值</div>
 					<div class="panel-body">
-						<table id='tab_running'>
+						<table class="list" id='tab_running'>
 							<thead>
 								<tr>
 									<th>最高温度</th>

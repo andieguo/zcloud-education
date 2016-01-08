@@ -9,6 +9,7 @@
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+<link href="css/new-style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="hd-main" style="min-width:1000px;">
@@ -19,47 +20,41 @@
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
-			<div id="header-shaw">
-				<form action="upload" enctype="multipart/form-data" method="post">
-					<div id="selectSet">
-						<!--默认选项开始-->
-						<div id="normal">
-							<dl class="list clearfix">
-								<dt class="dt">
-									文&nbsp;件&nbsp;一：
-								</dt>
-								<dd class="dd">
-									<script type="text/javascript" src="js/file_uploader.js"></script>
-									<span class="text input relative"> <input type="text"
-											id="text_box1" class="text_box" /><a class="file_btn">浏
-											览</a> <input name="myfile" type="file" id="file_uploader1"
-											class="file_uploader" /> </span>
-								</dd>
-							</dl>
-							<dl class="list clearfix">
-								<dt class="dt">
-									文&nbsp;件&nbsp;二：
-								</dt>
-								<dd class="dd">
-									<script type="text/javascript" src="js/file_uploader.js"></script>
-									<span class="text input relative"> <input type="text"
-											id="text_box2" class="text_box" /><a class="file_btn">浏
-											览</a> <input name="myfile" type="file" id="file_uploader2"
-											class="file_uploader" /> </span>
-								</dd>
-							</dl>
-							<br />
-						</div>
-						<!--默认选项结束-->
-
-						<div class="foot">
-							<span class="submit"><input name="" type="submit"
-									value="上 传" /> </span>
-							<span class="reset"><input name="" id="btnCancel"
-									type="reset" value="重 置" /> </span>
-						</div>
-					</div>
-				</form>
+			<div id="header-shaw" class="launchweather">
+				<div class="title">
+					<span class="title-left">个人私有存储系统 > 云文件上传</span>
+				</div>
+				<div class="panel mb15">
+					<div class="panel-body">
+						<form action="upload" enctype="multipart/form-data" method="post">
+						<table class="upload">
+							<tr>
+								<th>文件一：</th>
+								<td>
+									<div class="input-browse">
+										<script type="text/javascript" src="js/file_uploader.js"></script>
+										<input class="input-left" type="text" id="text_box1" /><span class="input-right">浏 览</span><input class="input-top" name="myfile" type="file" id="file_uploader1" />
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>文件二：</th>
+								<td>
+									<div class="input-browse">
+										<script type="text/javascript" src="js/file_uploader.js"></script>
+										<input class="input-left" type="text" id="text_box2" /><span class="input-right">浏 览</span><input class="input-top" name="myfile" type="file" id="file_uploader2" />
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>
+									<input class="button button-blue" name="" type="submit" value="上 传" /><input class="button button-default" name="" id="btnCancel" type="reset" value="重 置" />
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
