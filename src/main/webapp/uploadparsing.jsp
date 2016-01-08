@@ -10,133 +10,102 @@
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+<link href="css/new-style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<div class="hd-main" style="min-width: 1000px;">
-		<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
-			<img src="images/weixin.png" /><span class="logo">微信关系分析系统</span>
-		</div>
+<div class="hd-main" style="min-width: 1000px;">
+	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
+		<img src="images/weixin.png" /><span class="logo">微信关系分析系统</span>
 	</div>
-	<div class="clearfix1 wrap">
-		<div id="Container"
-			style="float: left; width: 100%; height: 100%; min-width: 790px;">
-			<div class="fns">
-				<div id="header-shaw"
-					style="padding-top: 0px; padding-bottom: 60px;">
-					<form action="uploadweixinparsing" method="post">
-						<div id="selectSet" style="padding-top: 0px; padding-bottom: 0px;">
-							<!--默认选项开始-->
-							<div id="normal">
-								<dl class="list clearfix">
-									<dt class="dt">通信时间点：</dt>
-									<dd class="dd">
-										<div class="input dateTime">
-											<input name="datePoint" id="datePoint" class="Wdate input"
-												type="text" style="cursor: pointer;" value=""
-												onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
-										</div>
-									</dd>
-									（注：大于等于为符合条件）
-								</dl>
-								<dl class="list clearfix">
-									<dt class="dt">通信时长：</dt>
-									<dd class="dd">
-										<span class="input text"><input name="minute"
-											type="text" value="" /> </span>分钟
-									</dd>
-									（注：大于等于为符合条件）
-								</dl>
-								<dl class="list clearfix">
-									<dt class="dt">性别选择：</dt>
-									<dd class="dd">
-										<span><input name="sex" type="radio" value="男男"
-											checked="checked" /> <label for="allPoint"> 男男 </label> </span> <span><input
-											name="sex" type="radio" value="女女" /> <label
-											for="selectPoint"> 女女 </label> </span> <span><input
-											name="sex" type="radio" value="异性" /> <label
-											for="selectPoint"> 异性 </label> </span> <span><input
-											name="sex" type="radio" value="ALL" /> <label
-											for="selectPoint"> 全部 </label> </span>
-									</dd>
-								</dl>
-								<dl class="list clearfix">
-									<dt class="dt">是否好友关系：</dt>
-									<dd class="dd">
-										<span><input name="isfriend" type="radio" value="是"
-											checked="checked" /> <label for="allPoint"> 是 </label> </span> <span><input
-											name="isfriend" type="radio" value="否" /> <label
-											for="selectPoint"> 否 </label> </span> <span><input
-											name="isfriend" type="radio" value="ALL" /> <label
-											for="selectPoint"> 两者都包含 </label> </span>
-									</dd>
-								</dl>
-								<dl class="list clearfix">
-									<dt class="dt">年龄范围：</dt>
-									<dd class="dd">
-										<span class="text input"><input name="agespan"
-											type="text" /> </span>
-									</dd>
-									（格式：35至38）
-								</dl>
-								<dl class="list clearfix">
-									<dt class="dt">职业：</dt>
-									<dd class="dd">
-										<p>
-											<span><label> <input class="checkbox"
-													name="vocation" type="checkbox" value="餐饮" /> 餐饮
-											</label> </span> <span><label> <input class="checkbox"
-													name="vocation" type="checkbox" value="教育" /> 教育
-											</label> </span> <span><label> <input class="checkbox"
-													name="vocation" type="checkbox" value="金融" /> 金融
-											</label> </span> <span><label> <input class="checkbox"
-													name="vocation" type="checkbox" value="律师" /> 律师
-											</label> </span> <span><label> <input class="checkbox"
-													name="vocation" type="checkbox" value="娱乐" /> 娱乐
-											</label> </span>
-										</p>
-										<p>
-											<span><label> <input class="checkbox"
-													name="vocation" type="checkbox" value="军人" /> 军人
-											</label> </span> <span><label> <input class="checkbox"
-													name="vocation" type="checkbox" value="体育" /> 体育
-											</label> </span> <span><label> <input class="checkbox"
-													name="vocation" type="checkbox" value="建筑" /> 建筑
-											</label> </span> <span><label> <input class="checkbox"
-													name="vocation" type="checkbox" value="无业" /> 无业
-											</label> </span>
-										</p>
-									</dd>
-								</dl>
-								<dl class="list clearfix">
-									<dt class="dt">通信地点：</dt>
-									<dd class="dd">
-										<span class="text input"><input name="places"
-											type="text" /> </span>
-									</dd>
-									（多个通信地点用英文逗号隔开）
-								</dl>
-								<dl class="list clearfix">
-									<dt class="dt">通信内容关键词：</dt>
-									<dd class="dd">
-										<span class="text input"><input name="keywords"
-											type="text" /> </span>
-									</dd>
-									（多个关键词用英文逗号隔开）
-								</dl>
-							</div>
-							<!--默认选项结束-->
-							<div class="foot">
-								<span class="submit"><input name="" type="submit"
-									value="上 传" /> </span> <span class="reset"><input name=""
-									id="btnCancel" type="reset" value="重 置" /> </span>
-							</div>
-						</div>
-					</form>
+</div>
+<div class="clearfix1 wrap">
+	<div id="Container" style="float: left; width: 100%; height: 100%; min-width: 790px;">
+		<div class="fns">
+			<div id="header-shaw" class="launchweather">
+				<div class="title">
+					<span class="title-left">微信关系分析系统 > 分析条件上传</span>
+				</div>
+				<div class="panel mb15">
+					<div class="panel-title">正在进行的任务</div>
+					<div class="panel-body">
+						<form action="uploadweixinparsing" method="post">
+						<table class="upload">
+							<tr>
+								<th>通信时间点：</th>
+								<td>
+									<input class="input-text" name="datePoint" id="datePoint" type="text" value="" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />（注：大于等于为符合条件）
+								</td>
+							</tr>
+							<tr>
+								<th>通信时长：</th>
+								<td>
+									<input class="input-text" name="minute" type="text" value="" />分钟 （注：大于等于为符合条件）
+								</td>
+							</tr>
+							<tr>
+								<th>性别选择：</th>
+								<td>
+									<label><input class="checkbox" name="sex" type="radio" value="男男" checked="checked" />男男</label>
+									<label><input class="checkbox" name="sex" type="radio" value="女女" />女女</label>
+									<label><input class="checkbox" name="sex" type="radio" value="异性" />异性</label>
+									<label><input class="checkbox" name="sex" type="radio" value="ALL" />全部</label>
+								</td>
+							</tr>
+							<tr>
+								<th>是否好友关系：</th>
+								<td>
+									<label><input class="checkbox" name="isfriend" type="radio" value="是" checked="checked" />是</label>
+									<label><input class="checkbox" name="isfriend" type="radio" value="否" />否</label>
+									<label><input class="checkbox" name="isfriend" type="radio" value="ALL" />两者都包含</label>
+								</td>
+							</tr>
+							<tr>
+								<th>年龄范围：</th>
+								<td>
+									<input class="input-text" name="agespan" type="text" />（格式：35至38）
+								</td>
+							</tr>
+							<tr>
+								<th>职业：</th>
+								<td>
+									<label><input class="checkbox" name="vocation" type="checkbox" value="餐饮" />餐饮</label>
+									<label><input class="checkbox" name="vocation" type="checkbox" value="教育" />教育</label>
+									<label><input class="checkbox" name="vocation" type="checkbox" value="金融" />金融</label>
+									<label><input class="checkbox" name="vocation" type="checkbox" value="律师" />律师</label>
+									<label><input class="checkbox" name="vocation" type="checkbox" value="娱乐" />娱乐</label>
+									<label><input class="checkbox" name="vocation" type="checkbox" value="军人" />军人</label>
+									<label><input class="checkbox" name="vocation" type="checkbox" value="体育" />体育</label>
+									<label><input class="checkbox" name="vocation" type="checkbox" value="建筑" />建筑</label>
+									<label><input class="checkbox" name="vocation" type="checkbox" value="无业" />无业</label>
+								</td>
+							</tr>
+							<tr>
+								<th>通信地点：</th>
+								<td>
+									<input class="input-text" name="places" type="text" />（多个通信地点用英文逗号隔开）
+								</td>
+							</tr>
+							<tr>
+								<th>通信内容关键词：</th>
+								<td>
+									<input class="input-text" name="keywords" type="text" />（多个关键词用英文逗号隔开）
+								</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>
+									<input class="button button-blue" name="" type="submit" value="上 传" /><input class="button button-default" name="" id="btnCancel" type="reset" value="重 置" />
+								</td>
+							</tr>
+						</table>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-		<%@ include file="/share/weixin-left.jsp"%>
 	</div>
-	<%@ include file="/share/foot.jsp"%>
+	<%@ include file="/share/weixin-left.jsp"%>
+</div>
+<%@ include file="/share/foot.jsp"%>
 </body>
 </html>

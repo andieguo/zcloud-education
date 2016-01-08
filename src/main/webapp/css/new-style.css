@@ -290,6 +290,32 @@
             border-bottom: 1px solid #d2d2d2; }
             .launchweather .panel .panel-body table tbody tr td {
               padding: 0 10px; }
+      .launchweather .panel .panel-body .upload {
+        margin: 20px auto 20px 0;
+        width: 100%; }
+        .launchweather .panel .panel-body .upload * {
+          line-height: 1.4em; }
+        .launchweather .panel .panel-body .upload tr {
+          border: 0; }
+          .launchweather .panel .panel-body .upload tr th {
+            width: 20%;
+            padding: 10px;
+            text-align: right; }
+          .launchweather .panel .panel-body .upload tr td {
+            padding: 10px; }
+            .launchweather .panel .panel-body .upload tr td input {
+              margin-right: 10px; }
+            .launchweather .panel .panel-body .upload tr td .input-text {
+              padding: 3px 5px;
+              border: 1px solid #C6C8CC;
+              border-radius: 2px; }
+              .launchweather .panel .panel-body .upload tr td .input-text:hover {
+                border: 1px solid #5CA4F6; }
+            .launchweather .panel .panel-body .upload tr td label {
+              margin-right: 20px; }
+        .launchweather .panel .panel-body .upload .button {
+          padding: 3px 20px;
+          line-height: 2em; }
     .launchweather .panel:after {
       content: ".";
       display: block;
