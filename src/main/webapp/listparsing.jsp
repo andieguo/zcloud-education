@@ -38,7 +38,7 @@ $(function(){
 			<div id="header-shaw" style="background-color: #fff;height: 542px;">
 			<form action="" method="get">
 				<div class="module-history-list">
-					<span class="history-list-dir">全部文件</span>
+					<span class="history-list-dir">微信关系分析系统 > 分析条件列表</span>
 					<span class="history-list-tips" id="filecount"></span>
 				</div>
 				<div class="list-view-header">

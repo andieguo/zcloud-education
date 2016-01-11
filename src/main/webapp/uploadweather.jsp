@@ -24,9 +24,10 @@
 		<div class="fns">
 			<div id="header-shaw" class="launchweather">
 				<div class="title">
-					<span class="title-left">个人私有存储系统 > 云文件上传</span>
+					<span class="title-left">气象数据分析系统 > 气象数据上传</span>
 				</div>
 				<div class="panel mb15">
+					<div class="panel-title">气象数据上传</div>
 					<div class="panel-body">
 						<form action="uploadweather" enctype="multipart/form-data" method="post">
 						<table class="upload">

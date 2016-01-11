@@ -1,14 +1,13 @@
 /* previewuser */
 .module-history-list {
   position: relative;
-  height: 30px;
-  line-height: 30px;
-  display: block;
-  padding-left: 10px; }
+  height: 40px;
+  line-height: 40px;
+  display: block; }
   .module-history-list .history-list-dir {
     position: relative;
-    height: 30px;
-    line-height: 30px;
+    height: 40px;
+    line-height: 40px;
     display: block; }
   .module-history-list .history-list-tips {
     position: absolute;
@@ -168,7 +167,6 @@
 .doc-header {
   position: relative;
   float: left;
-  margin-top: 15px;
   margin-bottom: 10px;
   width: 100%;
   background: none repeat scroll 0 0 #FFFFFF;
@@ -345,8 +343,7 @@
       height: 24px;
       width: 197px;
       border: 1px solid #C6C8CC;
-      border-radius: 2px;
-      font-size: 100px; }
+      border-radius: 2px; }
   .upload label {
     margin-right: 20px; }
   .upload .button {
