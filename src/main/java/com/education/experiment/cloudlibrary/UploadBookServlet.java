@@ -28,6 +28,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.util.Progressable;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -58,9 +59,7 @@ public class UploadBookServlet extends HttpServlet {
 			if (FileUpload.isMultipartContent(requestContext)) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				// 设置文件的缓存路径,首先把文件写入到tomcat的临时文件夹下
-				File temp = new File(System.getProperty("user.home") + File.separator + "temp");
-				if (!temp.exists())
-					temp.mkdir();
+				File temp = new File(Constants.LOCAL_BOOK_PATH);
 				factory.setRepository(temp);
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				// 设置上传文件大小的上限，-1表示无上限
@@ -99,7 +98,7 @@ public class UploadBookServlet extends HttpServlet {
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
-								String dst = "/tomcat/experiment/librarycloud/uploaddata/" + book.getAuthor() + "-" + book.getName() + ".book";
+								String dst = Constants.HDFS_BOOK_UPLOADDATA + book.getAuthor() + "-" + book.getName() + ".book";
 								InputStream in = new BufferedInputStream(new FileInputStream(newFile));
 								// 开始往HDFS上写入书本文件信息
 								FileSystem fs = FileSystem.get(conf);

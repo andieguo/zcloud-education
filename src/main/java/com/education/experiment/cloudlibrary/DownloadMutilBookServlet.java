@@ -21,6 +21,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 import com.education.experiment.util.FileUtil;
@@ -50,26 +51,26 @@ public class DownloadMutilBookServlet extends HttpServlet {
 			try {
 				// 获取用户提交的文件名称
 				String uuidnames[] = request.getParameterValues("filename");
-				// 创建临时文件夹
-				File temp = new File(System.getProperty("user.home") + File.separator + "temp");
-				if (!temp.exists()) temp.mkdir();
-				// 读取HDFS上的文件存储在本地临时文件中
 				// 开始从HDFS上读取文件
 				FileSystem fs = FileSystem.get(conf);
 				for (String uuid : uuidnames) {
 					String uuidname = new String(uuid.getBytes("ISO-8859-1"), "UTF-8");
 					System.out.println("uuidname:" + uuidname);
-					File f = new File(temp.getPath() + File.separator + uuidname);// 创建临时文件，读取HDFS上的文件存储在本地临时文件中，再文件f的内容返回给response
-					String dst = "/tomcat/experiment/librarycloud/uploaddata/" + uuidname;
-					bos = new BufferedOutputStream(new FileOutputStream(f));
-					System.out.println("dst:" + dst);
-					Path hdfsPath = new Path(dst);
-					if (fs.exists(hdfsPath)) {// 服务器端的内容存在
-						hadopin = fs.open(hdfsPath);
-						// 将HDFS上的文件拷贝到临时文件f中
-						IOUtils.copyBytes(hadopin, bos, 4096, true);
-						fileList.add(f);
+					File f = new File(Constants.LOCAL_BOOK_PATH + File.separator + uuidname);
+					if(!f.exists()){
+						// 读取HDFS上的文件存储在本地临时文件中
+						// 创建临时文件，读取HDFS上的文件存储在本地临时文件中，再文件f的内容返回给response
+						String dst = "/tomcat/experiment/librarycloud/uploaddata/" + uuidname;
+						bos = new BufferedOutputStream(new FileOutputStream(f));
+						System.out.println("dst:" + dst);
+						Path hdfsPath = new Path(dst);
+						if (fs.exists(hdfsPath)) {// 服务器端的内容存在
+							hadopin = fs.open(hdfsPath);
+							// 将HDFS上的文件拷贝到临时文件f中
+							IOUtils.copyBytes(hadopin, bos, 4096, true);
+						}
 					}
+					fileList.add(f);
 				}
 				// 读取文件结束,将文件f的内容返回给response,开始给客户端传送文件。
 				response.setContentType("application/x-msdownload");
