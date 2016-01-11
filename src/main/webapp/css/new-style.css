@@ -287,8 +287,8 @@
         .panel .panel-body .list tbody tr {
           border-bottom: 1px solid #d2d2d2; }
           .panel .panel-body .list tbody tr td {
-            padding: 0 10px;
-            line-height: 3em; }
+            padding: 10px;
+            line-height: 2em; }
   .panel:after {
     content: ".";
     display: block;

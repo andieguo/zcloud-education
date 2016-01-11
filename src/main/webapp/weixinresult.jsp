@@ -22,86 +22,59 @@
 </div>
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
-			<!--列表开始-->
-			<div id="boxSearch">
-				<div class="subNavi">
-					<ul>
-						<li>
-							<a href='downloadweixin.jsp'>示例文件下载</a>
-						</li>
-						<li>
-							<a href='uploadweixin.jsp'>模拟数据上传</a>
-						</li>
-						<li>
-							<a href='uploadweixinsearcher.jsp'>分析条件上传</a>
-						</li>
-						<%
-							UserBean user = (UserBean) session.getAttribute("user");
-							if (user.getUserId().equals("admin")) {
-						%>
-						<li>
-							<a href='deleteweixin.jsp'>模拟数据删除</a>
-						</li>
-						<li>
-							<a href='deleteparsing.jsp'>分析条件删除</a>
-						</li>
-						<li>
-							<a href='previewweixindata?sign=0'>分析数据云计算</a>
-						</li>
-						<%
-							}
-						%>
-						<li class="current">
-							<a href='previewweixinresult'>分析结果查看</a>
-						</li>
-					</ul>
+		<div class="fns">
+			<div id="header-shaw" class="launchweather">
+				<!--列表开始-->
+				<%
+					String result = (String) request.getAttribute("result");
+					if (result != null) {
+						List<WeixinResultBean> list = (ArrayList<WeixinResultBean>) request.getAttribute("list");
+				%>
+				<div class="title">
+					<span class="title-left">微信关系分析系统 > 微信结果查看</span>
+					<span class="title-right">系统为您分析出 <%=list.size()%> 条结果</span>
 				</div>
-				<div id="selectSet">
-					<%
-						String result = (String) request.getAttribute("result");
-						if (result != null) {
-							List<WeixinResultBean> list = (ArrayList<WeixinResultBean>) request.getAttribute("list");
-					%>
-					<dl class="list clearfix">
-						<span>系统为您分析出 <%=list.size()%> 条结果：</span>
-						<br />
-						<%
-							for (WeixinResultBean wrb : list) {
-						%>
-						<span class="input text">通信人:</span>&nbsp;&nbsp;<%=wrb.getLinkman()%>
-						<br>
-						<span class="input text"></>开始时间:</span>&nbsp;&nbsp;<%=wrb.getBegintime()%>
-						<br>
-							<span class="input text">结束时间:</span>&nbsp;&nbsp;<%=wrb.getEndtime()%>
-						<br>
-						<span class="input text">通信地点:</span>&nbsp;&nbsp;<%=wrb.getPlace()%>
-						<br>
-						<span class="input text">通信内容:</span>&nbsp;&nbsp;<%=wrb.getLinkcontent()%>
-						<br>
-						-----------------------------------------<br>
-									<%
-										}
-									%>
-								
-					</dl>
-					<br />
-					<%
-						} else {
-					%>
-					当前无分析数据结果可供浏览，可能分析数据任务正在执行当中。
-					<br>
-						<br>
-							<br>
-								<%
-									}
-								%>
-							
+				<div class="panel mb15">
+					<div class="panel-body">
+						<table class="list">
+							<thead>
+								<tr>
+									<th>通信人</th>
+									<th>开始时间</th>
+									<th>结束时间</th>
+									<th>通信地点</th>
+									<th width="50%" class="last">通信内容</th>
+								</tr>
+							</thead>
+							<tbody>
+				<%
+					for (WeixinResultBean wrb : list) {
+				%>
+								<tr>
+									<td><%=wrb.getLinkman()%></td>
+									<td><%=wrb.getBegintime()%></td>
+									<td><%=wrb.getEndtime()%></td>
+									<td><%=wrb.getPlace()%></td>
+									<td><%=wrb.getLinkcontent()%></td>
+								</tr>
+				<%
+					}
+				%>
+				<%
+					} else {
+				%>
+				当前无分析数据结果可供浏览，可能分析数据任务正在执行当中。
+				<%
+					}
+				%>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	<%@ include file="/share/weixin-left.jsp"%>
-</div>
+	</div>
 </div>
 <%@ include file="/share/foot.jsp"%>
 </body>
