@@ -40,36 +40,34 @@ public class DetailWeatherServlet extends HttpServlet {
 			// 获取用户提交的文件名称
 			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
 			System.out.println("uuidname:" + uuidname);
-			File f = new File(Constants.PROJECTPATH+ File.separator + uuidname);
-			String dst = Constants.HDFS_WEATHER_UPLOADDATA + uuidname;
-			// 开始下载数据示例文件
-			FileSystem fs = FileSystem.get(conf);
-			InputStream hadopin = null;
-			OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
-			Path hdfsPath = new Path(dst);
-			if (!fs.exists(hdfsPath)) {
-				request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
-			} else {
-				try {
-					hadopin = fs.open(hdfsPath);
-					IOUtils.copyBytes(hadopin, bos, 4096, true);
-					// 下载文件结束
-					// 开始往客户端传送示例文件
-					if (f.exists()) {
-						// 创建一 个输入流对象和指定的文件相关联
-						FileInputStream input = new FileInputStream(f);
-						String content = FileUtil.readInputStream(input);
-						request.setAttribute("content", content);
-						request.getRequestDispatcher("/detailweather.jsp").forward(request, response);
-						f.delete();//删除文件
-					} else {
-						request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
+			File f = new File(Constants.LOCAL_WEATHER_PATH + File.separator + uuidname);
+			if (!f.exists()) {//本地无缓存
+				String dst = Constants.HDFS_WEATHER_UPLOADDATA + uuidname;
+				// 开始下载数据示例文件
+				FileSystem fs = FileSystem.get(conf);
+				InputStream hadopin = null;
+				OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
+				Path hdfsPath = new Path(dst);
+				if (!fs.exists(hdfsPath)) {
+					request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
+				} else {
+					try {
+						hadopin = fs.open(hdfsPath);
+						IOUtils.copyBytes(hadopin, bos, 4096, true);
+					} finally {
+						IOUtils.closeStream(hadopin);
+						bos.close();
 					}
-				} finally {
-					IOUtils.closeStream(hadopin);
-					bos.close();
 				}
 			}
+			// 下载文件结束
+			// 开始往客户端传送示例文件
+			// 创建一 个输入流对象和指定的文件相关联
+			FileInputStream input = new FileInputStream(f);
+			String content = FileUtil.readInputStream(input);
+			request.setAttribute("content", content);
+			request.getRequestDispatcher("/detailweather.jsp").forward(request, response);
+			f.delete();//删除文件
 		}
 	}
 }

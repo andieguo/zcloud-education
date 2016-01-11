@@ -53,16 +53,14 @@ public class DownloadMutilFileServlet extends HttpServlet {
 			try {
 				// 获取用户提交的文件名称
 				String uuidnames[] = request.getParameterValues("filename");
-				// 创建临时文件夹
-				File stoageHome = new File(Constants.LOCAL_STORAGE_PATH);
-				// 读取HDFS上的文件存储在本地临时文件中
-				// 开始从HDFS上读取文件
 				FileSystem fs = FileSystem.get(conf);
 				for (String uuid : uuidnames) {
 					String uuidname = new String(uuid.getBytes("ISO-8859-1"), "UTF-8");
 					System.out.println("uuidname:" + uuidname);
-					File f = new File(stoageHome + File.separator + uuidname);// 创建临时文件，读取HDFS上的文件存储在本地临时文件中，再文件f的内容返回给response
+					// 创建临时文件，读取HDFS上的文件存储在本地临时文件中，再将文件f的内容返回给response
+					File f = new File(Constants.LOCAL_STORAGE_PATH + File.separator + uuidname);
 					if(!f.exists()){//本地没有缓存
+						// 开始从HDFS上读取文件,读取HDFS上的文件存储在本地临时文件中
 						String dst = "/tomcat/users/" + ub.getUserId() + "/" + command + "/" + uuidname;
 						bos = new BufferedOutputStream(new FileOutputStream(f));
 						System.out.println("dst:" + dst);
@@ -75,7 +73,7 @@ public class DownloadMutilFileServlet extends HttpServlet {
 					}
 					fileList.add(f);
 				}
-				// 读取文件结束,将文件f的内容返回给response,开始给客户端传送文件。
+				//读取文件结束,将文件f的内容返回给response,开始给客户端传送文件。
 				response.setContentType("application/x-msdownload");
 				String zipFileName = simpleDateFormat.format(new Date())+".zip";
 				//设置content-disposition响应头控制浏览器以下载的形式打开文件

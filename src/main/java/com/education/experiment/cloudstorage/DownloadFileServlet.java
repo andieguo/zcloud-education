@@ -45,8 +45,7 @@ public class DownloadFileServlet extends HttpServlet {
 			// 获取用户提交的文件名称
 			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
 			System.out.println("uuidname:" + uuidname);
-			File stoageHome = new File(Constants.LOCAL_STORAGE_PATH);
-			File f = new File(stoageHome.getPath() + File.separator + uuidname);// 创建临时文件，读取HDFS上的文件存储在本地临时文件中，再文件f的内容返回给response
+			File f = new File(Constants.LOCAL_STORAGE_PATH + File.separator + uuidname);// 创建临时文件，读取HDFS上的文件存储在本地临时文件中，再文件f的内容返回给response
 			if (!f.exists()) {//本地没有缓存
 				String dst = "/tomcat/users/" + ub.getUserId() + "/"+command+ "/" + uuidname;
 				// 开始从HDFS上读取文件
