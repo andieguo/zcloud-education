@@ -55,7 +55,7 @@ public class UploadWeatherServlet extends HttpServlet {
 			if (FileUpload.isMultipartContent(requestContext)) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				// 设置文件的缓存路径
-				File projectHome = new File(Constants.PROJECTPATH);
+				File projectHome = new File(Constants.LOCAL_WEATHER_PATH);
 				factory.setRepository(projectHome);
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				// 设置上传文件大小的上限，-1表示无上限

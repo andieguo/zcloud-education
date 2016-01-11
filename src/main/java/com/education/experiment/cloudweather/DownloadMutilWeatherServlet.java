@@ -57,19 +57,22 @@ public class DownloadMutilWeatherServlet extends HttpServlet {
 				for (String uuid : uuidnames) {
 					String uuidname = new String(uuid.getBytes("ISO-8859-1"), "UTF-8");
 					System.out.println("uuidname:" + uuidname);
-					File f = new File(Constants.PROJECTPATH + File.separator + uuidname);// 创建临时文件，读取HDFS上的文件存储在本地临时文件中，再文件f的内容返回给response
-					String dst = Constants.HDFS_WEATHER_UPLOADDATA + uuidname;
-					bos = new BufferedOutputStream(new FileOutputStream(f));
-					System.out.println("dst:" + dst);
-					Path hdfsPath = new Path(dst);
-					if (fs.exists(hdfsPath)) {// 服务器端的内容存在
-						hadopin = fs.open(hdfsPath);
-						// 将HDFS上的文件拷贝到临时文件f中
-						IOUtils.copyBytes(hadopin, bos, 4096, true);
-						fileList.add(f);
+					//创建临时文件，读取HDFS上的文件存储在本地临时文件中，再文件f的内容返回给response
+					File f = new File(Constants.LOCAL_WEATHER_PATH + File.separator + uuidname);
+					if(!f.exists()){
+						String dst = Constants.HDFS_WEATHER_UPLOADDATA + uuidname;
+						bos = new BufferedOutputStream(new FileOutputStream(f));
+						System.out.println("dst:" + dst);
+						Path hdfsPath = new Path(dst);
+						if (fs.exists(hdfsPath)) {// 服务器端的内容存在
+							hadopin = fs.open(hdfsPath);
+							// 将HDFS上的文件拷贝到临时文件f中
+							IOUtils.copyBytes(hadopin, bos, 4096, true);
+						}
 					}
+					fileList.add(f);
 				}
-				// 读取文件结束,将文件f的内容返回给response,开始给客户端传送文件。
+				//读取文件结束,将文件f的内容返回给response,开始给客户端传送文件。
 				response.setContentType("application/x-msdownload");
 				String zipFileName = "weather-"+simpleDateFormat.format(new Date())+".zip";
 				//设置content-disposition响应头控制浏览器以下载的形式打开文件

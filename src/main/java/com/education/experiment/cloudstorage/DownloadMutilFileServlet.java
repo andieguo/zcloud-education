@@ -75,7 +75,7 @@ public class DownloadMutilFileServlet extends HttpServlet {
 				}
 				//读取文件结束,将文件f的内容返回给response,开始给客户端传送文件。
 				response.setContentType("application/x-msdownload");
-				String zipFileName = simpleDateFormat.format(new Date())+".zip";
+				String zipFileName = command+"-" + simpleDateFormat.format(new Date())+".zip";
 				//设置content-disposition响应头控制浏览器以下载的形式打开文件
 				response.setHeader("Content-Disposition", "attachment;filename=" + zipFileName);
 				// 从输入流对象中读数据写入到输出流对象中
