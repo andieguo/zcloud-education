@@ -26,6 +26,7 @@ public class HtmlParseUtil {
 		bean.setUser(userElement.text());
 		bean.setDateContent(dateElement.text());
 		System.out.println(bean);
+		if(input != null) input.close();
 		return bean;
 	}
 	
