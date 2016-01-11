@@ -1,14 +1,13 @@
 /* previewuser */
 .module-history-list {
   position: relative;
-  height: 30px;
-  line-height: 30px;
-  display: block;
-  padding-left: 10px; }
+  height: 40px;
+  line-height: 40px;
+  display: block; }
   .module-history-list .history-list-dir {
     position: relative;
-    height: 30px;
-    line-height: 30px;
+    height: 40px;
+    line-height: 40px;
     display: block; }
   .module-history-list .history-list-tips {
     position: absolute;
@@ -168,7 +167,6 @@
 .doc-header {
   position: relative;
   float: left;
-  margin-top: 15px;
   margin-bottom: 10px;
   width: 100%;
   background: none repeat scroll 0 0 #FFFFFF;

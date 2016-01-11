@@ -21,6 +21,9 @@
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
 			<div id="header-shaw">
+				<div class="module-history-list">
+					<span class="history-list-dir">个人私有存储系统 > 新建云日记</span>
+				</div>
 			<form action="notecommit" method="post">
 				<div class="doc-header">
 					<span class="doc-header-title">日记标题</span>

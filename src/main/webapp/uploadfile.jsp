@@ -25,6 +25,7 @@
 					<span class="title-left">个人私有存储系统 > 云文件上传</span>
 				</div>
 				<div class="panel mb15">
+					<div class="panel-title">云文件上传</div>
 					<div class="panel-body">
 						<form action="upload" enctype="multipart/form-data" method="post">
 						<table class="upload">
