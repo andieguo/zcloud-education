@@ -30,20 +30,11 @@
 						<form action="upload" enctype="multipart/form-data" method="post">
 						<table class="upload">
 							<tr>
-								<th>文件一：</th>
+								<th>文件：</th>
 								<td>
 									<div class="input-browse">
 										<script type="text/javascript" src="js/file_uploader.js"></script>
 										<input class="input-left" type="text" id="text_box1" /><span class="input-right">浏 览</span><input class="input-top" name="myfile" type="file" id="file_uploader1" />
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th>文件二：</th>
-								<td>
-									<div class="input-browse">
-										<script type="text/javascript" src="js/file_uploader.js"></script>
-										<input class="input-left" type="text" id="text_box2" /><span class="input-right">浏 览</span><input class="input-top" name="myfile" type="file" id="file_uploader2" />
 									</div>
 								</td>
 							</tr>

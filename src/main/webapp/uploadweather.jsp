@@ -32,7 +32,7 @@
 						<form action="uploadweather" enctype="multipart/form-data" method="post">
 						<table class="upload">
 							<tr>
-								<th>文件一：</th>
+								<th>气象文件：</th>
 								<td>
 									<div class="input-browse">
 										<script type="text/javascript" src="js/file_uploader.js"></script>
