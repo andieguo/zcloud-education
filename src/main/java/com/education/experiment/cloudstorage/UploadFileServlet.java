@@ -30,6 +30,7 @@ import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.util.Progressable;
 
 import com.education.experiment.commons.BaseDao;
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
@@ -60,10 +61,8 @@ public class UploadFileServlet extends HttpServlet {
 			if (FileUpload.isMultipartContent(requestContext)) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				// 设置本地文件的缓存路径
-				File temp = new File(System.getProperty("user.home") + File.separator + "temp");
-				if (!temp.exists())
-					temp.mkdir();
-				factory.setRepository(temp);
+				File stoageHome = new File(Constants.LOCAL_STORAGE_PATH);
+				factory.setRepository(stoageHome);
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				// 设置上传文件大小的上限，-1表示无上限
 				upload.setSizeMax(1024 * 1024 * 1024);
@@ -87,7 +86,7 @@ public class UploadFileServlet extends HttpServlet {
 						if (fileItem.getName() != null && fileItem.getSize() != 0) {
 							// File fullFile = new File(fileItem.getName());
 							String[] array = fileItem.getName().split("\\\\");
-							File newFile = new File(temp.getPath() + File.separator + array[array.length - 1]);
+							File newFile = new File(stoageHome.getPath() + File.separator + array[array.length - 1]);
 							try {
 								fileItem.write(newFile);
 							} catch (Exception e) {

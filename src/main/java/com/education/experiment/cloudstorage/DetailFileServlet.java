@@ -18,6 +18,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 
+import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.NoteBean;
 import com.education.experiment.commons.UserBean;
@@ -48,44 +49,39 @@ public class DetailFileServlet extends HttpServlet {
 			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
 			System.out.println("uuidname:" + uuidname);
 			if (uuidname.endsWith("txt") || uuidname.endsWith("sql") || uuidname.endsWith("xml") || uuidname.endsWith("properties") || uuidname.endsWith("html")) {
-				File temp = new File(System.getProperty("user.home") + File.separator + "temp");
-				if (!temp.exists())
-					temp.mkdir();
-				File f = new File(temp.getPath() + File.separator + uuidname);// 创建临时文件，读取HDFS上的文件存储在本地临时文件中，再文件f的内容返回给response
-				String dst = "/tomcat/users/" + ub.getUserId() + "/" + command + "/" + uuidname;
-				// 开始从HDFS上读取文件
-				FileSystem fs = FileSystem.get(conf);
-				InputStream hadopin = null;
-				OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
-				System.out.println("dst:" + dst);
-				Path hdfsPath = new Path(dst);
-				if (!fs.exists(hdfsPath)) {// 服务器端的内容不存在
-					request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
-				} else {
-					try {
-						hadopin = fs.open(hdfsPath);
-						IOUtils.copyBytes(hadopin, bos, 4096, true);
-						// 读取文件结束,将文件f的内容返回给response
-						if (f.exists()) {
-							// 创建一 个输入流对象和指定的文件相关联
-							FileInputStream input = new FileInputStream(f);
-							if (command.equals("notes")) {
-								NoteBean noteBean = HtmlParseUtil.parse(input);
-								request.setAttribute("noteBean", noteBean);
-								request.getRequestDispatcher("/detailnote.jsp").forward(request, response);
-							} else if(command.equals("files")){
-								String content = FileUtil.readInputStream(input);
-								request.setAttribute("content", content);
-								request.getRequestDispatcher("/detailfile.jsp").forward(request, response);
-							}
-							f.delete();//删除文件
-						} else {
-							request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
+				File stoageHome = new File(Constants.LOCAL_STORAGE_PATH);
+				File f = new File(stoageHome.getPath() + File.separator + uuidname);// 创建临时文件，读取HDFS上的文件存储在本地临时文件中，再文件f的内容返回给response
+				if (!f.exists()) {//缓存到本地
+					String dst = "/tomcat/users/" + ub.getUserId() + "/" + command + "/" + uuidname;
+					// 开始从HDFS上读取文件
+					FileSystem fs = FileSystem.get(conf);
+					InputStream hadopin = null;
+					OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
+					System.out.println("dst:" + dst);
+					Path hdfsPath = new Path(dst);
+					if (!fs.exists(hdfsPath)) {// 服务器端的内容不存在
+						request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
+					} else {
+						try {
+							hadopin = fs.open(hdfsPath);
+							IOUtils.copyBytes(hadopin, bos, 4096, true);
+						} finally {
+							IOUtils.closeStream(hadopin);
+							bos.close();
 						}
-					} finally {
-						IOUtils.closeStream(hadopin);
-						bos.close();
 					}
+				}
+				// 读取文件结束,将文件f的内容返回给response
+				// 创建一 个输入流对象和指定的文件相关联
+				FileInputStream input = new FileInputStream(f);
+				if (command.equals("notes")) {
+					NoteBean noteBean = HtmlParseUtil.parse(input);
+					request.setAttribute("noteBean", noteBean);
+					request.getRequestDispatcher("/detailnote.jsp").forward(request, response);
+				} else if(command.equals("files")){
+					String content = FileUtil.readInputStream(input);
+					request.setAttribute("content", content);
+					request.getRequestDispatcher("/detailfile.jsp").forward(request, response);
 				}
 			} else {
 				request.getRequestDispatcher("/error.jsp?result=不支持预览的文件格式!").forward(request, response);

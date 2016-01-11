@@ -9,10 +9,15 @@ public class Constants {
 	 * eg. /home/hadoop/zcloud-education
 	 */
 	public static final String PROJECTPATH = HOMEPATH+File.separator+PROJECTNAME;
-	public static final String WEATHER_PATH = PROJECTPATH+File.separator+"weather";
-	public static final String BOOK_PATH =  PROJECTPATH+File.separator+"book";
-	public static final String WEIXIN_PATH =  PROJECTPATH+File.separator+"weixin";
-	public static final String LOCAL_BOOK_INDEXES =  PROJECTPATH+File.separator+"indexes";
+	public static final String LOCAL_STORAGE_PATH = PROJECTPATH+File.separator+"storage";
+	public static final String LOCAL_EXPRESS_PATH = PROJECTPATH+File.separator+"express";
+	public static final String LOCAL_WEATHER_PATH = PROJECTPATH+File.separator+"weather";
+	public static final String LOCAL_BOOK_PATH =  PROJECTPATH+File.separator+"book";
+	public static final String LOCAL_WEIXIN_PATH =  PROJECTPATH+File.separator+"weixin";
+	/**
+	 * eg. /home/hadoop/zcloud-education/indexes
+	 */
+	public static final String LOCAL_BOOK_INDEXES =  LOCAL_BOOK_PATH+File.separator+"indexes";
 	/**
 	 * eg. /home/hadoop/zcloud-education/indexes/index
 	 */
@@ -64,6 +69,11 @@ public class Constants {
 
 	static{
 		mkdir(PROJECTPATH);
+		mkdir(LOCAL_STORAGE_PATH);
+		mkdir(LOCAL_WEIXIN_PATH);
+		mkdir(LOCAL_WEATHER_PATH);
+		mkdir(LOCAL_EXPRESS_PATH);
+		mkdir(LOCAL_BOOK_PATH);
 		mkdir(LOCAL_BOOK_INDEXES);
 		mkdir(LOCAL_BOOK_IDNEX);
 		mkdir(LOCAL_BOOK_TMP);
