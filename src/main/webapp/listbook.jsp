@@ -29,7 +29,7 @@ $(function(){
 <body>
 <div class="hd-main" style="min-width:1000px;">
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
-		<img src="images/qixiang.png" /><span class="logo">图书馆图书管理系统</span>
+		<img src="images/book.png" /><span class="logo">图书馆图书管理系统</span>
 	</div>
 </div>
 <div class="clearfix1 wrap">

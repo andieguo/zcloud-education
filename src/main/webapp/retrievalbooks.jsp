@@ -1,35 +1,17 @@
 <%@ page language="java" import="java.util.*"
 	import="com.education.experiment.commons.UserBean" import="com.education.experiment.cloudlibrary.Book"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+<%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>云服务平台</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
 		<link href="css/base.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/header.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/title.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/pageSkin.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/navi002.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/reportOA.css" rel="stylesheet" type="text/css" />
-		<link href="css/module/boxSearch.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="js/jquery-1.8.0.js"></script>
-		<script type="text/javascript">
-	$(document).ready(function() {
-		$("#btnCancel").click(function() {
-			$("#text_box1").val("");
-			$("#text_box2").val("");
-		});
-	});
-</script>
+		<link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
+		<link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+		<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 		<%
 			String name = "";
 			String author = "";
@@ -43,96 +25,57 @@
 				section = book.getSection();
 			}
 		%>
+		
 		<script type="text/javascript">
-		$(document).ready(function() {
-		$("#name").val("<%=name%>");
-		$("#author").val("<%=author%>");
-		$("#publishdate").val("<%=publishdate%>");
-		$("#section").val("<%=section%>");
-	});
-</script>
-		<script type="text/javascript">
-	function submitItem() {
-		with (document.getElementById("bookform")) {
-			method = "get";
-			action = "retrievalbooks";
-			submit();
-		}
-	}
-
-	$(document)
-			.ready(
-					function() {
-						$("#btnSave")
-								.click(
-										function() {
-											var name = $(
-													"input:text[name='name']")
-													.val();
-											var author = $(
-													"input:text[name='author']")
-													.val();
-											var publishdate = $(
-													"input:text[name='publishdate']")
-													.val();
-											var section = $(
-													"input:text[name='section']")
-													.val();
-											if (name == "" && author == ""
-													&& publishdate == ""
-													&& section == "") {
-												alert("请输入查询条件!");
-											} else {
-												submitItem();
-											}
-										});
-					});
-</script>
-		<script language="javascript" type="text/javascript"
-			src="My97DatePicker/WdatePicker.js"></script>
-		<!--ie6png图片透明补丁-->
-		<!--[if IE 6]>
-    <script type="text/javascript" src="js/DD_belatedPNG.js"></script>
-    <script type="text/javascript">
-        DD_belatedPNG.fix('#header,.cur,.btn,.iconUser,.iconDepartment,.iconIdea,.iconKey,.iconQuit,.iconSet,.iconAbout,.iconTool,.recall,.case,.approve,.statistics,.https,.file,.compareForm,.webmaster,.diary,#up,#down,.setKeywords a,.icon,.select,.iconMore,.barSearch'); //放置css选择器
-    </script>
-    <script type="text/javascript">
-        //防止抖动
-        // <![CDATA[
-        if ((window.navigator.appName.toUpperCase().indexOf("MICROSOFT") >= 0) && (document.execCommand)) try {
-            document.execCommand("BackgroundImageCache", false, true);
-        }
-        catch(e) {}
-        // ]]>
-    </script>
-<![endif]-->
-		<!--ie6png图片透明补丁-->
+			function submitItem() {
+				with (document.getElementById("bookform")) {
+					method = "get";
+					action = "retrievalbooks";
+					submit();
+				}
+			}
+			
+			$(document).ready(function() {
+				$("#btnCancel").click(function() {
+					$("#text_box1").val("");
+					$("#text_box2").val("");
+				});
+			});
+			
+			$(document).ready(function() {
+				$("#name").val("<%=name%>");
+				$("#author").val("<%=author%>");
+				$("#publishdate").val("<%=publishdate%>");
+				$("#section").val("<%=section%>");
+			});
+		
+			$(document).ready(function() {
+				$("#btnSave").click(
+						function() {
+							var name = $("input:text[name='name']").val();
+							var author = $("input:text[name='author']").val();
+							var publishdate = $("input:text[name='publishdate']").val();
+							var section = $("input:text[name='section']").val();
+							if (name == "" && author == ""&& publishdate == ""&& section == "") {
+								alert("请输入查询条件!");
+							} else {
+								submitItem();
+							}
+						});
+			});
+		</script>
 	</head>
-	<body id="wrapper">
-		<!--主体开始-->
-		<div id="content" class="clearfix">
-			<div id="title">
-				<h1>
-					图书馆图书管理云
-				</h1>
-			</div>
-
-			<!--列表开始-->
-			<div id="boxSearch">
-				<div class="subNavi">
-					<ul>
-						<li>
-							<a href='uploadbooks.jsp'>书籍上传和索引</a>
-						</li>
-						<li>
-							<a href='downloadbooks.jsp'>书籍下载</a>
-						</li>
-						<li class="current">
-							<a href='retrievalbooks.jsp'>书籍检索</a>
-						</li>
-					</ul>
-				</div>
-
+	<body>
+<div class="hd-main" style="min-width:1000px;">
+	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
+		<img src="images/book.png" /><span class="logo">图书馆图书管理系统</span>
+	</div>
+</div>
+	<!--主体开始-->
+	<div class="clearfix1 wrap">
+	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
+		<div class="fns">
+			<div id="header-shaw">
 				<form id="bookform">
 					<div id="selectSet">
 						<!--默认选项开始-->
@@ -259,9 +202,12 @@
 				</form>
 			</div>
 		</div>
-		<!--主体结束-->
-		<!--尾部开始-->
-		<div id="footer"></div>
-		<!--尾部结束-->
+	</div>
+	<%@ include file="/share/book-left.jsp"%>
+	</div>
+	<!--主体结束-->
+	<!--尾部开始-->
+	<div id="footer"></div>
+	<!--尾部结束-->
 	</body>
 </html>
