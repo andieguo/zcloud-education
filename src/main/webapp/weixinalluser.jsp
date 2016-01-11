@@ -43,7 +43,7 @@
 									<th>年龄</th>
 									<th>性别</th>
 									<th>职业</th>
-									<th width="42%" class="last">好友</th>
+									<th width="45%" class="last">好友</th>
 								</tr>
 							</thead>
 							<tbody>

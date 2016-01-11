@@ -67,7 +67,6 @@ public class DetailWeatherServlet extends HttpServlet {
 			String content = FileUtil.readInputStream(input);
 			request.setAttribute("content", content);
 			request.getRequestDispatcher("/detailweather.jsp").forward(request, response);
-			f.delete();//删除文件
 		}
 	}
 }
