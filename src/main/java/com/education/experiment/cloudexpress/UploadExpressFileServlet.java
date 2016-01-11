@@ -56,7 +56,7 @@ public class UploadExpressFileServlet extends HttpServlet {
 			if (FileUpload.isMultipartContent(requestContext)) {
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				// 设置文件的缓存路径
-				factory.setRepository(new File(Constants.PROJECTPATH));
+				factory.setRepository(new File(Constants.LOCAL_EXPRESS_PATH));
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				// 设置上传文件大小的上限，-1表示无上限
 				upload.setSizeMax(1024 * 1024 * 1024);
@@ -78,7 +78,7 @@ public class UploadExpressFileServlet extends HttpServlet {
 						// 保存文件，其实就是把缓存里的数据写到tomcat的临时目录下
 						if (fileItem.getName() != null && fileItem.getSize() != 0) {
 							String[] array = fileItem.getName().split("\\\\");
-							File newFile = new File(Constants.PROJECTPATH + File.separator + array[array.length - 1]);
+							File newFile = new File(Constants.LOCAL_EXPRESS_PATH + File.separator + array[array.length - 1]);
 							try {
 								fileItem.write(newFile);
 							} catch (Exception e) {

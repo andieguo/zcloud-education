@@ -22,9 +22,6 @@ public class UpdateGPRSServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
-	// private static final SimpleDateFormat sdf = new SimpleDateFormat(
-	// "yyyy-MM-dd HH:mm:ss");
-
 	public UpdateGPRSServlet() {
 		super();
 	}
