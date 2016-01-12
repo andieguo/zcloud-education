@@ -208,7 +208,7 @@
 	</div>
 	<!--主体结束-->
 	<!--尾部开始-->
-	<div id="footer"></div>
+	<%@ include file="/share/foot.jsp"%>
 	<!--尾部结束-->
 	</body>
 </html>
