@@ -98,7 +98,7 @@ public class UploadBookServlet extends HttpServlet {
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
-								String dst = Constants.HDFS_BOOK_UPLOADDATA + book.getAuthor() + "-" + book.getName() + ".book";
+								String dst = Constants.HDFS_BOOK_UPLOADDATA + book.getAuthor() + "-" + book.getName() +  "-" + book.getPublishDate() +".book";
 								InputStream in = new BufferedInputStream(new FileInputStream(newFile));
 								// 开始往HDFS上写入书本文件信息
 								FileSystem fs = FileSystem.get(conf);
@@ -122,7 +122,6 @@ public class UploadBookServlet extends HttpServlet {
 									if (newFile.exists()) {
 										newFile.delete();
 									}
-									new BooksIndexMRThread(book).start();
 									response.sendRedirect("listbook.jsp");
 								}
 							} else {

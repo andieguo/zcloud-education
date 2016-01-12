@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>上传书籍并索引</title>
+<title>上传书籍</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
@@ -75,7 +75,7 @@
 						<!--默认选项结束-->
 						<div class="foot clearfix">
 							<span class="submit"><input name="" type="submit"
-									value="上传并索引" /> </span>
+									value="上传" /> </span>
 							<span class="reset"><input name="" id="btnCancel"
 									type="reset" value="重 置" /> </span>
 						</div>

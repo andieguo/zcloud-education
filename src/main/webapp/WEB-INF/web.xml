@@ -379,6 +379,14 @@
 		<url-pattern>/launchparsing</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>launchindex</servlet-name>
+		<servlet-class>com.education.experiment.cloudlibrary.LaunchBookIndexServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>launchindex</servlet-name>
+		<url-pattern>/launchindex</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>retrievalbooks</servlet-name>
 		<servlet-class>com.education.experiment.cloudlibrary.RetrievalBooksServlet</servlet-class>
 	</servlet>
