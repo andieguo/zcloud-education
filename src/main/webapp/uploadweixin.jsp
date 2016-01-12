@@ -26,6 +26,7 @@
 					<span class="title-left">微信关系分析系统 > 模拟数据上传</span>
 				</div>
 				<div class="panel mb15">
+					<div class="panel-title">模拟数据上传</div>
 					<div class="panel-body">
 						<form action="uploadweixin" enctype="multipart/form-data" method="post">
 						<table class="upload">

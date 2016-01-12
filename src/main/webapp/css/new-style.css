@@ -233,7 +233,8 @@
 #header-shaw {
   background-color: #fff;
   overflow: scroll;
-  overflow-x: auto; }
+  overflow-x: auto;
+  padding-bottom: 30px; }
   #header-shaw .title {
     margin: 10px 0; }
     #header-shaw .title .title-left {

@@ -1,4 +1,9 @@
-﻿window.onload = function gaoliang() {
+﻿window.onload = function() {
+	gaoliang();
+	contentHeight();
+};
+//左导航高亮
+function gaoliang() {
     //获取div下面所有的a标签（返回节点对象）
     var myNav = document.getElementById("nav").getElementsByTagName("a");
     //获取当前窗口的url
@@ -16,3 +21,13 @@
         }
     }
 };
+//高度自适应
+function contentHeight() {
+    var browserHeight = document.documentElement.clientHeight;
+    var leftHeight =  browserHeight - 72 + "px";
+    var rightHeight =  browserHeight - 92 + "px";
+    var tabHeight =  browserHeight - 192 + "px";
+    document.getElementById("genere").style.height = leftHeight;
+    document.getElementById("header-shaw").style.height = rightHeight;
+    document.getElementById("tab_filesystem").style.height = tabHeight;
+}

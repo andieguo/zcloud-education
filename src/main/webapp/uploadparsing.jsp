@@ -26,6 +26,7 @@
 					<span class="title-left">微信关系分析系统 > 分析条件上传</span>
 				</div>
 				<div class="panel mb15">
+					<div class="panel-title">分析条件上传</div>
 					<div class="panel-body">
 						<form action="uploadweixinparsing" method="post">
 						<table class="upload">

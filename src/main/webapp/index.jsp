@@ -39,10 +39,6 @@ background:#f7f7f7;
 		</ul>
 	</div>
 </div>
-<div class="footer">
-<p>
-	版权所有© 2013 中智讯（武汉）科技有限公司
-</p>
-</div>
+<%@ include file="/share/foot.jsp"%> 
 </body>
 </html>
