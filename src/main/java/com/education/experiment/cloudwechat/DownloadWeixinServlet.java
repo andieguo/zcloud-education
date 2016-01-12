@@ -50,15 +50,19 @@ public class DownloadWeixinServlet extends HttpServlet {
 				InputStream hadopin = null;
 				OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
 				Path hdfsPath = new Path(dst);
-				if (!fs.exists(hdfsPath)) {
-					request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
-				} else {
-					try {
+				try {
+					if (!fs.exists(hdfsPath)) {
+						request.getRequestDispatcher("/error.jsp?result=下载的资源不存在!").forward(request, response);
+					} else {
 						hadopin = fs.open(hdfsPath);
 						IOUtils.copyBytes(hadopin, bos, 4096, true);
-					} finally {
-						IOUtils.closeStream(hadopin);
-						IOUtils.closeStream(bos);
+					}
+				} finally {
+					if(hadopin != null) IOUtils.closeStream(hadopin);
+					if(bos != null) bos.close();
+					if(f.length() == 0){
+						f.delete();
+						return;
 					}
 				}
 			} 

@@ -56,8 +56,8 @@ public class DetailBookServlet extends HttpServlet {
 						IOUtils.copyBytes(hadopin, bos, 4096, true);
 					}
 				} finally {
-					IOUtils.closeStream(hadopin);
-					bos.close();
+					if(hadopin != null) IOUtils.closeStream(hadopin);
+					if(bos != null) bos.close();
 					if(f.length() == 0){
 						f.delete();
 						return;

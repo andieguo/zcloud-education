@@ -54,15 +54,19 @@ public class DownloadFileServlet extends HttpServlet {
 				OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
 				System.out.println("dst:" + dst);
 				Path hdfsPath = new Path(dst);
-				if (!fs.exists(hdfsPath)) {// 服务器端的内容不存在
-					request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
-				} else {
-					try {
+				try {
+					if (!fs.exists(hdfsPath)) {
+						request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
+					} else {
 						hadopin = fs.open(hdfsPath);
 						IOUtils.copyBytes(hadopin, bos, 4096, true);
-					} finally {
-						IOUtils.closeStream(hadopin);
-						bos.close();
+					}
+				} finally {
+					if(hadopin != null) IOUtils.closeStream(hadopin);
+					if(bos != null) bos.close();
+					if(f.length() == 0){
+						f.delete();
+						return;
 					}
 				}
 			}

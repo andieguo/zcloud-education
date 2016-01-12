@@ -70,6 +70,11 @@ public class DownloadMutilFileServlet extends HttpServlet {
 							// 将HDFS上的文件拷贝到临时文件f中
 							IOUtils.copyBytes(hadopin, bos, 4096, true);
 						}
+						if(hadopin != null) IOUtils.closeStream(hadopin);
+						if(bos != null) bos.close();
+						if(f.length() == 0){
+							f.delete();
+						}
 					}
 					fileList.add(f);
 				}

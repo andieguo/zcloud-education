@@ -39,20 +39,24 @@ public class DownloadBookServlet extends HttpServlet {
 			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
 			File f = new File(Constants.LOCAL_BOOK_PATH + File.separator + uuidname);
 			if (!f.exists()) {
-				Path dst = new Path(Constants.HDFS_BOOK_UPLOADDATA + uuidname);
-				// 开始从HDFS读取课本文件
+				String dst = Constants.HDFS_BOOK_UPLOADDATA + uuidname;
 				FileSystem fs = FileSystem.get(conf);
-				if (!fs.exists(dst)) {
-					request.getRequestDispatcher("/error.jsp?result=下载资源不存在!").forward(request, response);
-				} else {
-					InputStream hadopin = null;
-					OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
-					try {
-						hadopin = fs.open(dst);
+				InputStream hadopin = null;
+				OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
+				Path hdfsPath = new Path(dst);
+				try {
+					if (!fs.exists(hdfsPath)) {
+						request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
+					} else {
+						hadopin = fs.open(hdfsPath);
 						IOUtils.copyBytes(hadopin, bos, 4096, true);
-					} finally {
-						IOUtils.closeStream(hadopin);
-						bos.close();
+					}
+				} finally {
+					if(hadopin != null) IOUtils.closeStream(hadopin);
+					if(bos != null) bos.close();
+					if(f.length() == 0){
+						f.delete();
+						return;
 					}
 				}
 			} 
