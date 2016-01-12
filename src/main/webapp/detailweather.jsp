@@ -24,6 +24,9 @@
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
 			<div id="header-shaw">
+				<div class="module-history-list">
+					<span class="history-list-dir">气象数据分析系统 > 气象数据列表</span>
+				</div>
 				<textarea class="detail"><%=content %></textarea>
 			</div>
 		</div>
