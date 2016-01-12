@@ -4,35 +4,36 @@
 	<div style="height: 533px;" class="b-view genere jfk-scrollbar"
 		id="genere">
 		<div class="minheight-forfooter">
-			<ul class="b-list-3" id="aside-menu">
+			<script src="js/head-nav.js"></script>
+			<ul id="nav" class="b-list-3">
 				<li class="b-list-item"><a href="listweixin.jsp"
-					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
+					class="" hidefocus="true" id="tab-share"
 					unselectable="on"> <span class="text1"><span
 							class="img-ico aside-share"></span>模拟数据列表</span></a></li>
 				<li class="b-list-item"><a href="listparsing.jsp"
-					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
+					class="" hidefocus="true" id="tab-share"
 					unselectable="on"><span class="text1"><span
 							class="img-ico aside-share"></span>分析条件列表</span></a></li>
 				<li class="b-list-item separator-1"></li>
 				<li class="b-list-item"><a href="uploadweixin.jsp"
-					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
+					class="" hidefocus="true" id="tab-share"
 					unselectable="on"><span class="text1"><span
 							class="img-ico aside-mapp"></span>模拟数据上传</span></a></li>
 				<li class="b-list-item"><a href="uploadparsing.jsp"
-					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
+					class="" hidefocus="true" id="tab-share"
 					unselectable="on"><span class="text1"><span
 							class="img-ico aside-mapp"></span>分析条件上传</span></a></li>
 				<li class="b-list-item separator-1"></li>
 				<li class="b-list-item"><a href="previewallweixin"
-					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
+					class="" hidefocus="true" id="tab-share"
 					unselectable="on"><span class="text1"><span
 							class="img-ico aside-share"></span>微信用户信息</span></a></li>
 				<li class="b-list-item"><a href="launchweixin.jsp"
-					class="sprite2 b-no-ln" hidefocus="true" id="tab-recyle"
+					class="" hidefocus="true" id="tab-recyle"
 					unselectable="on"><span class="text1"><span
 							class="img-ico aside-start"></span>分析数据计算</span></a></li>
 				<li class="b-list-item"><a href="previewweixinresult"
-					class="sprite2 b-no-ln" hidefocus="true" id="tab-share"
+					class="" hidefocus="true" id="tab-share"
 					unselectable="on"><span class="text1"><span
 							class="img-ico aside-share"></span>分析结果查看</span></a></li>
 			</ul>
