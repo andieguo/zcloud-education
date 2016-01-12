@@ -19,13 +19,14 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 
 import com.education.experiment.commons.Constants;
+import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 import com.education.experiment.util.FileUtil;
 
 public class DetailBookServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = new Configuration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	/**
 	 * 处理用户提交的下载天气示例文件的请求，用户提交请求后，服务端会从指定的目录下下载天气示例文件.
@@ -47,16 +48,19 @@ public class DetailBookServlet extends HttpServlet {
 				InputStream hadopin = null;
 				OutputStream bos = new BufferedOutputStream(new FileOutputStream(f));
 				Path hdfsPath = new Path(dst);
-				if (!fs.exists(hdfsPath)) {
-					request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
-				} else {
-					try {
+				try {
+					if (!fs.exists(hdfsPath)) {
+						request.getRequestDispatcher("/error.jsp?result=访问资源不存在!").forward(request, response);
+					} else {
 						hadopin = fs.open(hdfsPath);
 						IOUtils.copyBytes(hadopin, bos, 4096, true);
-						
-					} finally {
-						IOUtils.closeStream(hadopin);
-						bos.close();
+					}
+				} finally {
+					IOUtils.closeStream(hadopin);
+					bos.close();
+					if(f.length() == 0){
+						f.delete();
+						return;
 					}
 				}
 			} 
@@ -67,6 +71,21 @@ public class DetailBookServlet extends HttpServlet {
 			String content = FileUtil.readInputStream(input);
 			request.setAttribute("content", content);
 			request.getRequestDispatcher("/detailbook.jsp").forward(request, response);
+		}
+	}
+	
+	public static void main(String[] args) {
+		try {
+			FileSystem fs = FileSystem.get(conf);
+			Path hdfsPath = new Path("/tomcat/experiment/librarycloud/uploaddata/hello.txt");
+			if (!fs.exists(hdfsPath)) {
+				System.out.println("no exist!");
+			}else{
+				System.out.println("exist!");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

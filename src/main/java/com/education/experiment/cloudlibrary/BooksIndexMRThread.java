@@ -113,6 +113,7 @@ public class BooksIndexMRThread extends Thread {
 			try {
 				if (sb.toString() != null) {
 					Document doc = new Document();
+					//对于需要分词的内容我们使用TextField，对于像id这样不需要分词的内容我们使用StringField。
 					doc.add(new TextField("name", context.getConfiguration().get("bookname"), Store.YES));
 					doc.add(new TextField("author", context.getConfiguration().get("bookauthor"), Store.YES));
 					doc.add(new TextField("publishdate", context.getConfiguration().get("publishdate"), Store.YES));

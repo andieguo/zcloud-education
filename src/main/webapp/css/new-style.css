@@ -91,7 +91,7 @@
       border-right: 0; }
 
 .list-view-container {
-  height: 468px;
+  height: 440px;
   overflow: scroll;
   overflow-x: auto; }
   .list-view-container .list-view-item {

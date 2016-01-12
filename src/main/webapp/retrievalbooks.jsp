@@ -11,6 +11,7 @@
 		<link href="css/base.css" rel="stylesheet" type="text/css" />
 		<link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 		<link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+		<script src="js/jquery-1.8.0.js"></script>
 		<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 		<%
 			String name = "";
