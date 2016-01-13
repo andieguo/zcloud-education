@@ -19,6 +19,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 
 import com.education.experiment.commons.Constants;
+import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
 public class DownloadWeixinServlet extends HttpServlet {
@@ -27,7 +28,7 @@ public class DownloadWeixinServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = new Configuration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	/*
 	 * 处理用户提交的下载微信示例数据文件请求，服务端会从指定目录里下载该文件到tomcat的临时文件夹下，然后再传输给客户端该文件.

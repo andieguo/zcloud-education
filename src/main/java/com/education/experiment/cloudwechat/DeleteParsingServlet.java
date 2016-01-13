@@ -13,12 +13,13 @@ import org.apache.hadoop.fs.Path;
 
 import com.education.experiment.commons.BaseDao;
 import com.education.experiment.commons.Constants;
+import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
 public class DeleteParsingServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = new Configuration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	/**
 	 * 处理用户提交的删除分析条件的请求,服务端会根据客户端提交的文件名称，到HDFS上的指定文件目录下删除该文件

@@ -13,12 +13,13 @@ import org.apache.hadoop.fs.Path;
 
 import com.education.experiment.commons.BaseDao;
 import com.education.experiment.commons.Constants;
+import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
 public class DeleteWeixinServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = new Configuration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	/**
 	 * 处理用户提交的删除微信数据的请求，服务会根据用户提交的数据文件名称，然后从HDFS上的指定目录下删除该文件
