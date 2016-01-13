@@ -39,6 +39,6 @@ background:#f7f7f7;
 		</ul>
 	</div>
 </div>
-<%@ include file="/share/foot.jsp"%> 
+<div class="banquan" style="background:none;color:#333;">版权所有© 2013 中智讯（武汉）科技有限公司</div>
 </body>
 </html>
