@@ -50,15 +50,15 @@
 							<input class="check" name="chkAll" id="chkAll" onClick="ChkAllClick('filename','chkAll')" type="checkbox"/>
 							<span class="text">文件名</span>
 							<span class="order-icon"></span>
-							<a class="g-button" href="#">
+							<a class="g-button" onClick="downloadAllAction('notes')">
 								<span class="g-button-right">
-									<em class="icon icon-download-gray" title="下载" onClick="downloadAllAction('notes')"></em>
+									<em class="icon icon-download-gray" title="下载"></em>
 									<span class="text">下载</span>
 								</span>
 							</a>
-							<a class="g-button" href="#">
+							<a class="g-button"  onClick="deleteAllAction('<%=ub.getUserId()%>','notes')">
 								<span class="g-button-right">
-									<em class="icon icon-delete" title="删除" onClick="deleteAllAction('<%=ub.getUserId()%>','notes')"></em>
+									<em class="icon icon-delete" title="删除"></em>
 									<span class="text">删除</span>
 								</span>
 							</a>
