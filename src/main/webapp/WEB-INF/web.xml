@@ -69,12 +69,12 @@
 		<url-pattern>/uploadexpressfile</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>uploadexpressorder</servlet-name>
-		<servlet-class>com.education.experiment.cloudexpress.UploadExpressOrderServlet</servlet-class>
+		<servlet-name>uploadexpressinfo</servlet-name>
+		<servlet-class>com.education.experiment.cloudexpress.UploadExpressInfoServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>uploadexpressorder</servlet-name>
-		<url-pattern>/uploadexpressorder</url-pattern>
+		<servlet-name>uploadexpressinfo</servlet-name>
+		<url-pattern>/uploadexpressinfo</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>uploadweixinparsing</servlet-name>

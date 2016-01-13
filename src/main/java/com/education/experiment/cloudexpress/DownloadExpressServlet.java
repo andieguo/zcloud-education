@@ -19,12 +19,13 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 
 import com.education.experiment.commons.Constants;
+import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
 public class DownloadExpressServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final Configuration conf = new Configuration();
+	private static final Configuration conf = HadoopConfiguration.getConfiguration();
 
 	/**
 	 * 处理用户提交的下载天气示例文件的请求，用户提交请求后，服务端会从指定的目录下下载天气示例文件.

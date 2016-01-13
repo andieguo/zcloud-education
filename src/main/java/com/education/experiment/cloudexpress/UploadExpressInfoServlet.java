@@ -18,7 +18,7 @@ import com.education.experiment.commons.Constants;
 import com.education.experiment.commons.HadoopConfiguration;
 import com.education.experiment.commons.UserBean;
 
-public class UploadExpressOrderServlet extends HttpServlet {
+public class UploadExpressInfoServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -28,7 +28,7 @@ public class UploadExpressOrderServlet extends HttpServlet {
 
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	public UploadExpressOrderServlet() {
+	public UploadExpressInfoServlet() {
 		super();
 	}
 
