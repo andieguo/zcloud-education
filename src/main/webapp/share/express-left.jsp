@@ -9,7 +9,7 @@
 			<li class="b-list-item"><a href="uploadexpressinfo.jsp"><span class="text1"><span class="img-ico aside-mapp"></span>快递信息上传</span></a></li>
 			<li class="b-list-item"><a href="launchexpress.jsp"><span class="text1"><span class="img-ico aside-start"></span>智能分析</span></a></li>
 			<li class="b-list-item"><a href="gprsupdate.jsp"><span class="text1"><span class="img-ico aside-gprs"></span>我的GPRS更新</span></a></li>	
-			<li class="b-list-item"><a href="expressresult.jsp"><span class="text1"><span class="img-ico aside-box"></span>智能分析结果</span></a></li>						
+			<li class="b-list-item"><a href="previewexpress?sign=0"><span class="text1"><span class="img-ico aside-box"></span>智能分析结果</span></a></li>						
 			</ul>
 		</div>
 	</div>

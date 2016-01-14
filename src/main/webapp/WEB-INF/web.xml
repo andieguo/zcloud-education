@@ -371,12 +371,12 @@
 		<url-pattern>/weixinparsing</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>launchparsing</servlet-name>
-		<servlet-class>com.education.experiment.cloudexpress.LaunchParsingServlet</servlet-class>
+		<servlet-name>expressparsing</servlet-name>
+		<servlet-class>com.education.experiment.cloudexpress.ExpressParsingServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>launchparsing</servlet-name>
-		<url-pattern>/launchparsing</url-pattern>
+		<servlet-name>expressparsing</servlet-name>
+		<url-pattern>/expressparsing</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>launchindex</servlet-name>

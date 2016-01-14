@@ -39,7 +39,7 @@ $(function(){
 				<div class="title">
 					<span class="title-left">智能EMS速递云系统 > EMS数据计算</span>
 					<span class="title-right">
-					<form action="launchparsing" method="get">
+					<form action="expressparsing" method="get">
 						点击启动快件分析作业：
 						<input class="button button-blue" name="" type="submit" value="启动" />
 						<input type="hidden" id="sign" name="sign" value="1" />
