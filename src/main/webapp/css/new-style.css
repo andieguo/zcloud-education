@@ -328,7 +328,8 @@
       margin-right: 0;
       padding: 3px 5px;
       border: 1px solid #C6C8CC;
-      border-radius: 2px 0 0 2px; }
+      border-radius: 2px 0 0 2px;
+      width: 250px; }
     .upload .input-browse .input-right {
       margin-left: -1px;
       padding: 5px 10px;
@@ -342,7 +343,7 @@
       left: 0;
       top: 0;
       height: 24px;
-      width: 197px;
+      width: 309px;
       border: 1px solid #C6C8CC;
       border-radius: 2px; }
   .upload label {

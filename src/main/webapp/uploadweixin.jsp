@@ -11,6 +11,7 @@
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
 <link href="css/new-style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.8.0.js"></script>
 </head>
 <body>
 <div class="hd-main" style="min-width:1000px;">
