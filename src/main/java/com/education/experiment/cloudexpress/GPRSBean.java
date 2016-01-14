@@ -19,4 +19,10 @@ public class GPRSBean {
 	public void setLatitude(float latitude) {
 		this.latitude = latitude;
 	}
+
+	@Override
+	public String toString() {
+		return "GPRSBean [longitude=" + longitude + ", latitude=" + latitude + "]";
+	}
+	
 }
