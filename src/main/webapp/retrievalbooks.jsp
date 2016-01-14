@@ -11,6 +11,7 @@
 		<link href="css/base.css" rel="stylesheet" type="text/css" />
 		<link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 		<link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+		<link href="css/new-style.css" rel="stylesheet" type="text/css" />
 		<script src="js/jquery-1.8.0.js"></script>
 		<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 		<%
@@ -76,54 +77,53 @@
 	<div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
-			<div id="header-shaw">
-				<form id="bookform">
-					<div id="selectSet">
-						<!--默认选项开始-->
-						<div id="normal">
-							<dl class="list clearfix">
-								<dt class="dt">
-									书名：
-								</dt>
-								<dd class="dd">
-									<span class="input text"><input name="name" id="name"
-											type="text" value="" /> </span>
-								</dd>
-							</dl>
-							<dl class="list clearfix">
-								<dt class="dt">
-									作者：
-								</dt>
-								<dd class="dd">
-									<span class="input text"><input name="author"
-											id="author" type="text" value="" /> </span>
-								</dd>
-							</dl>
-							<dl class="list clearfix">
-								<dt class="dt">
-									出版日期：
-								</dt>
-								<dd class="dd">
-									<div class="input dateTime">
+			<div id="header-shaw" class="launchweather">
+				<div class="title">
+					<span class="title-left">图书馆图书管理系统 > 书籍检索</span>
+				</div>
+				<div class="panel mb15">
+					<div class="panel-title">书籍检索</div>
+					<div class="panel-body">
+						<form id="bookform">
+						<table class="upload">
+							<tr>
+								<th>书名：</th>
+								<td>
+									<input class="input-text" name="name" type="text" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>作者：</th>
+								<td>
+									<input class="input-text" name="author" type="text" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>出版日期：</th>
+								<td>
+									<div class="input dateTime input-text">
 										<input name="publishdate" id="publishdate" class="Wdate input"
-											type="text" style="cursor: pointer;" value=""
+											type="text" style="cursor: pointer;height: 18px;" value=""
 											onFocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
 									</div>
-								</dd>
-							</dl>
-							<dl class="list clearfix">
-								<dt class="dt">
-									内容：
-								</dt>
-								<dd class="dd">
-									<span class="input text"><input name="section"
-											id=section " 
-											type="text" value="" /> </span>
-								</dd>
-							</dl>
-							<br />
-						</div>
-						<!--默认选项结束-->
+								</td>
+							</tr>
+							<tr>
+								<th>内容：</th>
+								<td>
+									<div class="input-browse">
+										<script type="text/javascript" src="js/file_uploader.js"></script>
+										<input class="input-left" type="text" id="text_box1" /><span class="input-right">浏 览</span><input class="input-top" name="myfile" type="file" id="file_uploader1" />（编码格式：UTF-8）
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>
+									<input class="button button-blue" name="" type="submit" value="上 传" /><input class="button button-default" name="" id="btnCancel" type="reset" value="重 置" />
+								</td>
+							</tr>
+						</table>
 						<%
 							String result = (String) request.getAttribute("result");
 							if (result != null) {
@@ -193,14 +193,9 @@
 						%>
 						没有搜索到相关内容查询结果!
 						<%} %>
-						<div class="foot">
-							<span class="submit"><input name="" type="button"
-									id="btnSave" value="查 询" /> </span>
-							<span class="reset"><input name="" id="btnCancel"
-									type="reset" value="重 置" /> </span>
-						</div>
+						</form>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>

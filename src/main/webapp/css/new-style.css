@@ -317,7 +317,8 @@
   .upload .input-text {
     padding: 3px 5px;
     border: 1px solid #C6C8CC;
-    border-radius: 2px; }
+    border-radius: 2px;
+    width: 300px; }
     .upload .input-text:hover {
       border: 1px solid #A3CEFF; }
     .upload .input-text:focus {
