@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 
 <div class="aside main" style="width: 210px; float:left;">
-	<div style="height:533px;" class="b-view genere jfk-scrollbar" id="genere">
+	<div style="height: 533px;" class="b-view genere jfk-scrollbar" id="genere">
 		<div class="minheight-forfooter">
 			<script src="js/head-nav.js"></script>
 			<ul id="nav" class="b-list-3">
