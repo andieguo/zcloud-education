@@ -120,7 +120,7 @@
 							<tr>
 								<th></th>
 								<td>
-									<input class="button button-blue" name="" type="submit" value="上 传" /><input class="button button-default" name="" id="btnCancel" type="reset" value="重 置" />
+									<input class="button button-blue" name="" type="submit" value="查 询" /><input class="button button-default" name="" id="btnCancel" type="reset" value="重 置" />
 								</td>
 							</tr>
 						</table>

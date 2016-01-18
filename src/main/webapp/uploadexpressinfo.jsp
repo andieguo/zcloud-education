@@ -10,6 +10,7 @@
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+<link href="css/new-style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.8.0.js"></script>
 <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 </head>
@@ -22,57 +23,49 @@
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
-			<div id="header-shaw">
-				<form action="uploadexpressinfo" method="post">
-					<div id="selectSet">
-						<!--默认选项开始-->
-						<div id="normal">
-							<dl class="list clearfix">
-								<dt class="dt">
-									经度：
-								</dt>
-								<dd class="dd">
-									<span class="input text"><input name="longitude" type="text"
-											value="" /> </span>
-								</dd>
-							</dl>
-							<dl class="list clearfix">
-								<dt class="dt">
-									纬度：
-								</dt>
-								<dd class="dd">
-									<span class="input text"><input name="latitude"
-											type="text" value="" /> </span>
-								</dd>
-							</dl>
-							<dl class="list clearfix">
-								<dt class="dt">
-									地址：
-								</dt>
-								<dd class="dd">
-									<span class="input text"><input name="address"
-											type="text" value="" /> </span>
-								</dd>
-							</dl>
-							<dl class="list clearfix">
-								<dt class="dt">
-									备注：
-								</dt>
-								<dd class="dd">
-									<span class="input text"><textarea rows="5" cols="25" name="remark"></textarea> </span>
-								</dd>
-							</dl>
-							<br />
-						</div>
-						<!--默认选项结束-->
-						<div class="foot clearfix">
-							<span class="submit"><input name="" type="submit"
-									value="上传" /> </span>
-							<span class="reset"><input name="" id="btnCancel"
-									type="reset" value="重 置" /> </span>
-						</div>
+			<div id="header-shaw" class="launchweather">
+				<div class="title">
+					<span class="title-left">智能EMS速递云系统 > 快递文件上传</span>
+				</div>
+				<div class="panel mb15">
+					<div class="panel-title">快递文件上传</div>
+					<div class="panel-body">
+						<form action="uploadexpressinfo" method="post">
+						<table class="upload">
+							<tr>
+								<th>经度：</th>
+								<td>
+									<input class="input-text" name="longitude" type="text" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>纬度：</th>
+								<td>
+									<input class="input-text" name="latitude" type="text" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>地址：</th>
+								<td>
+									<input class="input-text" name="address" type="text" value="" />
+								</td>
+							</tr>
+							<tr>
+								<th>备注：</th>
+								<td>
+									<textarea class="input-text" rows="5" name="remark"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>
+									<input class="button button-blue" name="" type="submit" value="上 传" /><input class="button button-default" name="" id="btnCancel" type="reset" value="重 置" />
+								</td>
+							</tr>
+						</table>
+						</form>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>

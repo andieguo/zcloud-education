@@ -41,7 +41,7 @@ $(function(){
 					<form action="weatherparsing" method="get">
 						点击启动快件分析作业：
 						<input class="button button-blue" name="" type="submit" value="启动" />
-						</form>
+					</form>
 					</span>
 				</div>
 				<div class="panel mb15">

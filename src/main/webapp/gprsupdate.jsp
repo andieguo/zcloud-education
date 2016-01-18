@@ -10,6 +10,7 @@
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/boxSearch.css" rel="stylesheet" type="text/css" />
 <link href="css/reportOA.css" rel="stylesheet" type="text/css" />
+<link href="css/new-style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="hd-main" style="min-width:1000px;">
@@ -20,46 +21,37 @@
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">
 		<div class="fns">
-			<div id="header-shaw">
-				<form action="updategprs" method="post">
-					<div id="content" class="clearfix">
-						<!--列表开始-->
-						<div id="boxSearch">
-							<div id="selectSet">
-								<!--默认选项开始-->
-								<div id="normal">
-									<dl class="list clearfix">
-										<dt class="dt">
-											当前经度：
-										</dt>
-										<dd class="dd">
-											<span class="input text"><input name="longitude"
-													type="text" value="" /> </span>
-										</dd>
-										（例如：116.33533）
-									</dl>
-									<dl class="list clearfix">
-										<dt class="dt">
-											当前纬度：
-										</dt>
-										<dd class="dd">
-											<span class="input text"><input name="latitude"
-													type="text" value="" /> </span>
-										</dd>
-										（例如：39.20567）
-									</dl>
-								</div>
-								<!--默认选项结束-->
-								<div class="foot">
-									<span class="submit"><input name="" type="submit"
-											value="更 新" /> </span>
-									<span class="reset"><input name="" id="btnCancel"
-											type="reset" value="重 置" /> </span>
-								</div>
-							</div>
-						</div>
+			<div id="header-shaw" class="launchweather">
+				<div class="title">
+					<span class="title-left">智能EMS速递云系统 > 快递文件上传</span>
+				</div>
+				<div class="panel mb15">
+					<div class="panel-title">快递文件上传</div>
+					<div class="panel-body">
+						<form action="updategprs" method="post">
+						<table class="upload">
+							<tr>
+								<th>当前经度：</th>
+								<td>
+									<input class="input-text" name="longitude" type="text" value="" />（例如：116.33533）
+								</td>
+							</tr>
+							<tr>
+								<th>当前纬度：</th>
+								<td>
+									<input class="input-text" name="latitude" type="text" value="" />（例如：39.20567）
+								</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>
+									<input class="button button-blue" name="" type="submit" value="上 传" /><input class="button button-default" name="" id="btnCancel" type="reset" value="重 置" />
+								</td>
+							</tr>
+						</table>
+						</form>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
