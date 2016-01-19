@@ -412,10 +412,10 @@ a:hover .aside-stop, a:active .aside-stop {
     background-position: -175px -196px;
 }
 .aside-mapp {
-    background-position: -180px -281px;
+    background-position: -181px -281px;
 }
 a:hover .aside-mapp, a:active .aside-mapp {
-    background-position: -231px -280px;
+    background-position: -232px -280px;
 }
 .on .aside-mapp, .on:link .aside-mapp, .on:link .aside-mapp, .on:hover .aside-mapp, .on:active .aside-mapp {
      background-position: -231px -280px;
@@ -555,13 +555,13 @@ a:hover .aside-gprs, a:active .aside-gprs {
   width: 20px;
 }
 .aside-box {
-    background-position: -205px -110px;
+    background-position: -205px -111px;
 }
 a:hover .aside-box, a:active .aside-box {
-    background-position: -228px -110px;
+    background-position: -228px -111px;
 }
 .on .aside-box, .on:link .aside-box, .on:link .aside-box, .on:hover .aside-box, .on:active .aside-box {
-    background-position: -228px -110px;
+    background-position: -228px -111px;
 }
 .icon-update {
   background-position: -183px -282px;

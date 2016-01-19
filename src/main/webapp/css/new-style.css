@@ -386,6 +386,36 @@
 .button-blue:hover {
   background-color: #74b1f7; }
 
+/* icon */
+.note-icon {
+  height: 20px;
+  left: 2px;
+  margin: 0;
+  position: absolute;
+  top: 6px;
+  width: 23px;
+  background: url("../images/note-icon.gif") no-repeat scroll 0 0 transparent; }
+
+a:hover .list-diary {
+  background-position: -28px -157px; }
+a:hover .new-diary {
+  background-position: -29px -33px; }
+a:hover .index-construction {
+  background-position: -228px -111px; }
+a .list-diary {
+  background-position: -2px -157px; }
+a .new-diary {
+  background-position: -2px -34px; }
+a .index-construction {
+  background-position: -205px -111px; }
+
+.on .list-diary {
+  background-position: -28px -157px; }
+.on .new-diary {
+  background-position: -29px -33px; }
+.on .index-construction {
+  background-position: -228px -111px; }
+
 /* base */
 .mb15 {
   margin-bottom: 15px; }

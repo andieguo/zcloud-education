@@ -22,20 +22,20 @@
 				<li class="b-list-item"><a href="uploadparsing.jsp"
 					class="" hidefocus="true" id="tab-share"
 					unselectable="on"><span class="text1"><span
-							class="img-ico aside-mapp"></span>分析条件上传</span></a></li>
+							class="note-icon new-diary"></span>分析条件上传</span></a></li>
 				<li class="b-list-item separator-1"></li>
 				<li class="b-list-item"><a href="previewallweixin"
 					class="" hidefocus="true" id="tab-share"
 					unselectable="on"><span class="text1"><span
-							class="img-ico aside-share"></span>微信用户信息</span></a></li>
+							class="note-icon list-diary"></span>微信用户信息</span></a></li>
 				<li class="b-list-item"><a href="launchweixin.jsp"
 					class="" hidefocus="true" id="tab-recyle"
 					unselectable="on"><span class="text1"><span
-							class="img-ico aside-start"></span>分析数据计算</span></a></li>
+							class="img-ico aside-box"></span>分析数据计算</span></a></li>
 				<li class="b-list-item"><a href="previewweixinresult"
 					class="" hidefocus="true" id="tab-share"
 					unselectable="on"><span class="text1"><span
-							class="img-ico aside-share"></span>分析结果查看</span></a></li>
+							class="img-ico aside-gprs"></span>分析结果查看</span></a></li>
 			</ul>
 		</div>
 	</div>
