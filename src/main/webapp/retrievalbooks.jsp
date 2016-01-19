@@ -89,13 +89,13 @@
 							<tr>
 								<th>书名：</th>
 								<td>
-									<input class="input-text" name="name" type="text" value="" />
+									<input class="input-text" name="name" id="name" type="text" value="" />
 								</td>
 							</tr>
 							<tr>
 								<th>作者：</th>
 								<td>
-									<input class="input-text" name="author" type="text" value="" />
+									<input class="input-text" name="author" id="author" type="text" value="" />
 								</td>
 							</tr>
 							<tr>
@@ -111,16 +111,13 @@
 							<tr>
 								<th>内容：</th>
 								<td>
-									<div class="input-browse">
-										<script type="text/javascript" src="js/file_uploader.js"></script>
-										<input class="input-left" type="text" id="text_box1" /><span class="input-right">浏 览</span><input class="input-top" name="myfile" type="file" id="file_uploader1" />（编码格式：UTF-8）
-									</div>
+									<input class="input-text" type="text" name="section" id="section" />（编码格式：UTF-8）
 								</td>
 							</tr>
 							<tr>
 								<th></th>
 								<td>
-									<input class="button button-blue" name="" type="submit" value="查 询" /><input class="button button-default" name="" id="btnCancel" type="reset" value="重 置" />
+									<input class="button button-blue" name="btnSave" id="btnSave" type="submit" value="查 询" /><input class="button button-default" name="" id="btnCancel" type="reset" value="重 置" />
 								</td>
 							</tr>
 						</table>
