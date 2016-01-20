@@ -34,29 +34,39 @@
 					<span class="title-left">微信关系分析系统 > 微信结果查看</span>
 					<span class="title-right">系统为您分析出 <%=list.size()%> 条结果</span>
 				</div>
+				<%
+					for (WeixinResultBean wrb : list) {
+				%>
 				<div class="panel mb15">
 					<div class="panel-body">
 						<table class="list">
 							<thead>
 								<tr>
-									<th>通信人</th>
-									<th>开始时间</th>
-									<th>结束时间</th>
-									<th>通信地点</th>
-									<th width="50%" class="last">通信内容</th>
+									<th width="20%">通信人</th>
+									<th class="last"><%=wrb.getLinkman()%></th>
 								</tr>
 							</thead>
 							<tbody>
-				<%
-					for (WeixinResultBean wrb : list) {
-				%>
 								<tr>
-									<td><%=wrb.getLinkman()%></td>
+									<td>开始时间</td>
 									<td><%=wrb.getBegintime()%></td>
+								</tr>
+								<tr>
+									<td>结束时间</td>
 									<td><%=wrb.getEndtime()%></td>
+								</tr>
+								<tr>
+									<td>通信地点</td>
 									<td><%=wrb.getPlace()%></td>
+								</tr>
+								<tr>
+									<td valign="top">通信内容</td>
 									<td><%=wrb.getLinkcontent()%></td>
 								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 				<%
 					}
 				%>
@@ -67,10 +77,6 @@
 				<%
 					}
 				%>
-							</tbody>
-						</table>
-					</div>
-				</div>
 			</div>
 		</div>
 	<%@ include file="/share/weixin-left.jsp"%>

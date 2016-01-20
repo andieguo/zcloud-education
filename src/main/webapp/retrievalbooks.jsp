@@ -82,7 +82,6 @@
 					<span class="title-left">图书馆图书管理系统 > 书籍检索</span>
 				</div>
 				<div class="panel mb15">
-					<div class="panel-title">书籍检索</div>
 					<div class="panel-body">
 						<form id="bookform">
 						<table class="upload">
@@ -121,78 +120,86 @@
 								</td>
 							</tr>
 						</table>
-						<%
-							String result = (String) request.getAttribute("result");
-							if (result != null) {
-						%>
-						系统共为你检索出 ${totalPosts} 条结果:
-						<br />
-						<br />
-						<c:forEach items="${entryList}" var="entry">
-							<tr align="center">
-								<td>
-									<span class="input text">书名:</span>&nbsp;&nbsp;${entry.name}
-								</td>
-								<br />
-								<td>
-									<span class="input text">作者:</span>&nbsp;&nbsp;${entry.author}
-								</td>
-								<br />
-								<td>
-									<span class="input text">发布日期:</span>&nbsp;&nbsp;${entry.publishDate}
-								</td>
-								<br />
-								<td>
-									<span class="input text">章节摘要:</span>&nbsp;&nbsp;${entry.section}
-								</td>
-							</tr>
-							<br /><br />
-						</c:forEach>
-						<br />
-						<br />
-						<dl class="list clearfix">
-							<dt class="dt">
-							</dt>
-							<dd class="dd">
-								<a href="retrievalbooks?pageNumber=1">首页</a>
-								<c:if test="${pageNumber>1}">
-									<a href="retrievalbooks?pageNumber=${pageNumber-1}&name=<%=name%>&author=<%=author%>&publishdate=<%=publishdate%>&section=<%=section%>">上一页</a>
-								</c:if>
-								跳转到第
-								<select name="pageNumber" onchange="gotoSelectedPage();">
-									<c:forEach begin="1" end="${totalPages}" step="1"
-										var="pageIndex">
-										<c:choose>
-											<c:when test="${pageIndex eq pageNumber}">
-												<option value="${pageIndex}" selected="selected">
-													${pageIndex}
-												</option>
-											</c:when>
-											<c:otherwise>
-												<option value="${pageIndex}">
-													${pageIndex}
-												</option>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-								</select>
-								页
-								<c:if test="${pageNumber<totalPages}">
-									<a
-										href="retrievalbooks?pageNumber=${pageNumber+1}&name=<%=name%>&author=<%=author%>&publishdate=<%=publishdate%>&section=<%=section%>">下一页</a>
-								</c:if>
-								<a
-									href="retrievalbooks?pageNumber=${totalPages}&name=<%=name%>&author=<%=author%>&publishdate=<%=publishdate%>&section=<%=section%>">末页</a>
-							</dd>
-						</dl>
-						<%
-							}else{
-						%>
-						没有搜索到相关内容查询结果!
-						<%} %>
-						</form>
 					</div>
 				</div>
+				<%
+					String result = (String) request.getAttribute("result");
+					if (result != null) {
+				%>
+				<div class="module-history-list">
+					<span class="history-list-tips" id="filecount">系统共为你检索出 ${totalPosts} 条结果:</span>
+				</div>
+				<c:forEach items="${entryList}" var="entry">
+				<div class="panel mb15">
+					<div class="panel-body">
+						<table class="list">
+							<thead>
+								<tr>
+									<th width="20%">书名:</th>
+									<th class="last">《${entry.name}》</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>作者:</td>
+									<td>${entry.author}</td>
+								</tr>
+								<tr>
+									<td>发布日期:</td>
+									<td>${entry.publishDate}</td>
+								</tr>
+								<tr>
+									<td valign="top">章节摘要:</td>
+									<td>${entry.section}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				</c:forEach>
+				<dl class="list clearfix">
+					<dt class="dt">
+					</dt>
+					<dd class="dd">
+						<a href="retrievalbooks?pageNumber=1">首页</a>
+						<c:if test="${pageNumber>1}">
+							<a href="retrievalbooks?pageNumber=${pageNumber-1}&name=<%=name%>&author=<%=author%>&publishdate=<%=publishdate%>&section=<%=section%>">上一页</a>
+						</c:if>
+						跳转到第
+						<select name="pageNumber" onchange="gotoSelectedPage();">
+							<c:forEach begin="1" end="${totalPages}" step="1"
+								var="pageIndex">
+								<c:choose>
+									<c:when test="${pageIndex eq pageNumber}">
+										<option value="${pageIndex}" selected="selected">
+											${pageIndex}
+										</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${pageIndex}">
+											${pageIndex}
+										</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</select>
+						页
+						<c:if test="${pageNumber<totalPages}">
+							<a
+								href="retrievalbooks?pageNumber=${pageNumber+1}&name=<%=name%>&author=<%=author%>&publishdate=<%=publishdate%>&section=<%=section%>">下一页</a>
+						</c:if>
+						<a
+							href="retrievalbooks?pageNumber=${totalPages}&name=<%=name%>&author=<%=author%>&publishdate=<%=publishdate%>&section=<%=section%>">末页</a>
+					</dd>
+				</dl>
+				<%
+					}else{
+				%>
+				<div class="module-history-list">
+					<span class="history-list-tips" id="filecount">没有搜索到相关内容查询结果!</span>
+				</div>
+				<%} %>
+				</form>
 			</div>
 		</div>
 	</div>
