@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -92,8 +92,6 @@
 	</head>
 
 	<body id="wrapper">
-		<!--头部开始-->
-		<!--头部结束-->
 		<!--主体开始-->
 		<div id="content" class="clearfix">
 			<div id="title" class="clearfix">
