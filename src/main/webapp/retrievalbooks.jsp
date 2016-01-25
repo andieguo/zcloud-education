@@ -1,10 +1,11 @@
-<%@ page language="java" import="java.util.*"
-	import="com.education.experiment.commons.UserBean" import="com.education.experiment.cloudlibrary.Book"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,com.education.experiment.commons.UserBean" import="com.education.experiment.commons.UserBean" import="com.education.experiment.cloudlibrary.Book" pageEncoding="UTF-8"%>
 <%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
+<%
+	UserBean ub = (UserBean) request.getSession().getAttribute("user");
+%>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>云服务平台</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -72,6 +73,7 @@
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
 		<img src="images/book.png" /><span class="logo">图书馆图书管理系统</span>
 	</div>
+	<%@ include file="/share/head-user.jsp"%>
 </div>
 	<!--主体开始-->
 	<div class="clearfix1 wrap">
