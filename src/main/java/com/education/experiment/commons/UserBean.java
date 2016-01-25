@@ -7,9 +7,26 @@ public class UserBean {
 	private String phoneNumber;
 	private String remark;
 	private long cloudSize;
-
-	public long getCloudSize() {
+	
+	public long getCloudSize(){
 		return cloudSize;
+	}
+
+	public String getCloudSizeString() {
+		String cloudsNum = "0B";
+		if(cloudSize > 0){
+			cloudsNum = cloudSize+"B";
+		}
+		if(cloudSize > 1024){
+			cloudsNum = cloudSize/1024 +"KB";
+		}
+		if(cloudSize > 1024*1024){
+			cloudsNum = cloudSize/1024/1024+"MB";
+		}
+		if(cloudSize > 1024*1024*1024){
+			cloudsNum = cloudSize/1024/1024/1024+"GB";
+		}
+		return cloudsNum;
 	}
 
 	public void setCloudSize(long cloudSize) {
@@ -85,4 +102,11 @@ public class UserBean {
 			return false;
 		return true;
 	}
+	
+	public static void main(String[] args) {
+		UserBean userBean = new UserBean();
+		userBean.setCloudSize(10736436491L);
+		System.out.println(userBean.getCloudSize());
+	}
+	
 }

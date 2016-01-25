@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,13 @@ public class FileUtil {
 	
 	public static void zipUtil(List<File> fileList,OutputStream output) throws Exception{
 		ZipOutputStream out = new ZipOutputStream(output);
+		System.out.println(System.getProperty("file.encoding"));
+		System.out.println("Default Charset=" + Charset.defaultCharset());
+		if(System.getProperty("os.name").startsWith("Windows")){
+			out.setEncoding("gbk");
+		}else{
+			out.setEncoding("UTF-8");
+		}
 		for (File f : fileList) {
 			if (f.exists()) {
 				// 设置应答的相应消息头

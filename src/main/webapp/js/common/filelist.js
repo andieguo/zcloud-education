@@ -39,18 +39,23 @@
 	}
 
 	function formatsize(size){
+		var numStr = "0B";
+		if(size > 0){
+			numStr = size+"B";
+		}
 		if(size > 1024){
 			var num = new Number(size/1024);
-			return  num.toFixed(2)+"KB";
-		}else if(size > 1024*1024){
-			var num = new Number(size/1024/1024);
-			return num.toFixed(2)+"MB";
-		}else if(size > 1024*1024*1024){
-			var num = new Number(size/1024/1024/1024);
-			return num.toFixed(2)+"GB";
-		}else{
-			return size+"B";
+			numStr = num.toFixed(2)+"KB";
 		}
+		if(size > 1024*1024){
+			var num = new Number(size/1024/1024);
+			numStr = num.toFixed(2)+"MB";
+		}
+		if(size > 1024*1024*1024){
+			var num = new Number(size/1024/1024/1024);
+			numStr = num.toFixed(2)+"GB";
+		}
+		return numStr;
 	}
 	
 	function add0(m) {
@@ -126,7 +131,7 @@
 			}
 		});
 		if(!value){
-			alert("请选择删除项！");
+			alert("请选择下载项！");
 		}else{
 			form.submit();
 		};

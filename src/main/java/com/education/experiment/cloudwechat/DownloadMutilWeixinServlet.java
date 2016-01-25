@@ -87,9 +87,6 @@ public class DownloadMutilWeixinServlet extends HttpServlet {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} finally {
-				IOUtils.closeStream(hadopin);
-				bos.close();
 			}
 		}
 	}

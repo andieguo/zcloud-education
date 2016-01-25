@@ -31,6 +31,9 @@
 		<li style="_width:90px;max-width:116px" class="b-list-item list-li haspulldown">
 		<font color="red"><%=ub.getUserId()%>,欢迎您!</font>
 		</li>
+		<li style="_width:90px;max-width:116px" class="b-list-item list-li haspulldown">
+		<font color="red">云盘容量：<%=ub.getCloudSizeString()%></font>
+		</li>
 		<li class="b-list-item list-li"><a href="loginout" class="b-no-ln">退出</a></li>
 	</ul>
 </div>
