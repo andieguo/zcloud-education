@@ -1,8 +1,11 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,com.education.experiment.commons.UserBean" pageEncoding="UTF-8"%>
 <%@ include file="/share/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<%
+	UserBean ub = (UserBean) request.getSession().getAttribute("user");
+%>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <title>云文件上传</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -17,6 +20,7 @@
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
 		<img src="images/geren.png" /><span class="logo">个人私有存储系统</span>
 	</div>
+	<%@ include file="/share/head-user.jsp"%>
 </div>
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">

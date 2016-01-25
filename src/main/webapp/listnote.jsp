@@ -27,15 +27,7 @@
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
 		<img src="images/geren.png" /><span class="logo">个人私有存储系统</span>
 	</div>
-	<ul xmlns="http://www.w3.org/1999/xhtml" class="b-list-1 options fMainBlue top_menu">
-		<li style="_width:90px;max-width:116px" class="b-list-item list-li haspulldown">
-		<font color="red"><%=ub.getUserId()%>,欢迎您!</font>
-		</li>
-		<li style="_width:90px;max-width:116px" class="b-list-item list-li haspulldown">
-		<font color="red">云盘容量：<%=ub.getCloudSizeString()%></font>
-		</li>
-		<li class="b-list-item list-li"><a href="loginout" class="b-no-ln">退出</a></li>
-	</ul>
+	<%@ include file="/share/head-user.jsp"%>
 </div>
 <div class="clearfix1 wrap">
 	<div id="Container" style="float:left;width: 100%; height: 100%;min-width:790px;">

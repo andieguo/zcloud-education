@@ -15,7 +15,7 @@ background:#f7f7f7;
 <body>
 <div class="hd-main" style="min-width:1000px;">
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
-	<img width="50" height="50"src="images/logo.png" /><span class="logo">云计算实训项目</span>
+	<img width="136" height="50"src="images/logo.png" /><span class="logo">云计算实训项目</span>
 	</div>
 </div>
 <div class="clearfix1 wrap">

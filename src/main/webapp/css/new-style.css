@@ -420,4 +420,12 @@ a .index-construction {
 .mb15 {
   margin-bottom: 15px; }
 
+.right-main {
+  right: 25px;
+  position: absolute;
+  top: 24px;
+  color: #fff; }
+  .right-main a {
+    color: #fff; }
+
 /*# sourceMappingURL=new-style.css.map */
