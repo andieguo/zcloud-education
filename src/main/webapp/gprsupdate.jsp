@@ -30,7 +30,7 @@
 					<span class="title-left">智能EMS速递云系统 > 快递文件上传</span>
 				</div>
 				<div class="panel mb15">
-					<div class="panel-title">快递文件上传</div>
+					<div class="panel-title">我的GPS信息</div>
 					<div class="panel-body">
 						<form action="updategprs" method="post">
 						<table class="upload">

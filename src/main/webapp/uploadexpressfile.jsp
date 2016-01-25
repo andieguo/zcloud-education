@@ -31,12 +31,12 @@
 					<span class="title-left">智能EMS速递云系统 > 快递文件上传</span>
 				</div>
 				<div class="panel mb15">
-					<div class="panel-title">气象数据上传</div>
+					<div class="panel-title">快递文件上传</div>
 					<div class="panel-body">
 						<form action="uploadexpressfile" enctype="multipart/form-data" method="post">
 						<table class="upload">
 							<tr>
-								<th>气象文件：</th>
+								<th>快递文件：</th>
 								<td>
 									<div class="input-browse">
 										<script type="text/javascript" src="js/file_uploader.js"></script>
