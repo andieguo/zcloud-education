@@ -16,6 +16,7 @@
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
 		<img src="images/geren.png" /><span class="logo">个人私有存储系统</span>
 	</div>
+	<%@ include file="/share/head-user.jsp"%>
 </div>
 <%
 	NoteBean noteBean = (NoteBean)request.getAttribute("noteBean");

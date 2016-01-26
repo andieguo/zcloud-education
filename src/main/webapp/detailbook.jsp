@@ -16,6 +16,7 @@
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
 		<img src="images/book.png" /><span class="logo">图书馆图书管理系统</span>
 	</div>
+	<%@ include file="/share/head-user.jsp"%>
 </div>
 <%
 	String  content = (String)request.getAttribute("content");

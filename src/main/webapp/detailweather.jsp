@@ -16,6 +16,7 @@
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
 		<img src="images/qixiang.png" /><span class="logo">气象数据分析系统</span>
 	</div>
+	<%@ include file="/share/head-user.jsp"%>
 </div>
 <%
 	String  content = (String)request.getAttribute("content");

@@ -16,6 +16,7 @@
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
 		<img src="images/zhineng.png" /><span class="logo">智能EMS速递云系统</span>
 	</div>
+	<%@ include file="/share/head-user.jsp"%>
 </div>
 <%
 	String  content = (String)request.getAttribute("content");

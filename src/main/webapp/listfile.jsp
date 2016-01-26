@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <%
-	UserBean ub = (UserBean) request.getSession().getAttribute("user");
+	UserBean userBean = (UserBean) request.getSession().getAttribute("user");
 %>
 <title>云文件列表</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -19,7 +19,7 @@
 <script type="text/javascript">
 
 $(function(){
-     getFileSystem('<%=ub.getUserId()%>','files');
+     getFileSystem('<%=userBean.getUserId()%>','files');
 });
 	
 </script>

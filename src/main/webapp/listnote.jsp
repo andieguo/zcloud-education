@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <%
-	UserBean ub = (UserBean) request.getSession().getAttribute("user");
+	UserBean userBean = (UserBean) request.getSession().getAttribute("user");
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>云日记列表</title>
@@ -18,7 +18,7 @@
 <script src="js/common/checkbox.js"></script>
 <script type="text/javascript">
 	$(function() {
-		getFileSystem('<%=ub.getUserId()%>','notes');
+		getFileSystem('<%=userBean.getUserId()%>','notes');
 	});
 </script>
 </head>
