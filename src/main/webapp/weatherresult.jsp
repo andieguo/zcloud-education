@@ -35,7 +35,8 @@ $(function() {//页面加载时调用该方法
 			drawChart(mintempSeries,maxtempSeries,humiditySeries,wspSeries);
 		},
 		error : function() {
-			alert("系统出现问题");
+			//alert("系统出现问题");
+			console.log("天气分析：没有获取到计算结果");
 		}
 	});
 });
@@ -72,7 +73,7 @@ $(function() {//页面加载时调用该方法
 									<td><span id="maxTempText"></span>℃</td>
 									<td><span id="minTempText"></span>℃</td>
 									<td><span id="wspText"></span>m/s</td>
-									<td><span id="wspText">24.6</span>m/s</td>
+									<td><span id="wspText"></span>m/s</td>
 								</tr>
 							</tbody>
 						</table>

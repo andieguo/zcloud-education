@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>云计算实训</title>
+<title>大数据分析实训</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <style>
@@ -15,7 +15,7 @@ background:#f7f7f7;
 <body>
 <div class="hd-main" style="min-width:1000px;">
 	<div class="logo-main" xmlns="http://www.w3.org/1999/xhtml">
-	<img width="136" height="50"src="images/logo.png" /><span class="logo">云计算实训项目</span>
+	<img width="136" height="50"src="images/logo.png" /><span class="logo">大数据分析实训项目</span>
 	</div>
 </div>
 <div class="clearfix1 wrap">

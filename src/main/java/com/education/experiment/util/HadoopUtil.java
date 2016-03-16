@@ -43,7 +43,7 @@ public class HadoopUtil {
 	public static void addJarToDistributedCache(Class classToAdd, Configuration conf)throws IOException {
 
 	        // Retrieve jar file for class2Add
-	        String path = classToAdd.getProtectionDomain().getCodeSource().getLocation().getPath();
+	        String path = classToAdd.getProtectionDomain().getCodeSource().getLocation().getPath().replaceAll("%20"," ");
 	        System.out.println(path);
 	        File jarFile = new File(path);
 

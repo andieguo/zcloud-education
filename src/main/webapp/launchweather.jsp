@@ -40,7 +40,7 @@ $(function(){
 					<span class="title-left">气象数据分析系统 > 气象数据计算</span>
 					<span class="title-right">
 					<form action="weatherparsing" method="get">
-						点击启动快件分析作业：
+						点击启动气象数据分析作业：
 						<input class="button button-blue" name="" type="submit" value="启动" />
 					</form>
 					</span>

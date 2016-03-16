@@ -42,7 +42,7 @@ public class InitializeServelet extends HttpServlet {
 			servletContext.setAttribute("jobClient", jobClient);
 			servletContext.setAttribute("jobtrackerUrl", "http://"+hostname+":"+jobtrackerPort);
 			//将/zcloud-education/WEB-INF/classes下的class打包到用户家目录temp下，提交job时需要这个jar文件
-			String javaClassPath = InitializeServelet.class.getClassLoader().getResource("").toString();
+			String javaClassPath = InitializeServelet.class.getClassLoader().getResource("").toString().replace("%20", " ");
 			javaClassPath = javaClassPath.substring(javaClassPath.indexOf("/")+1);
 			File targetFile = new File(Constants.JAR_HOME);
 			if (targetFile.exists()) {

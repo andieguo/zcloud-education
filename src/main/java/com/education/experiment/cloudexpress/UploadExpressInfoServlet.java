@@ -76,9 +76,9 @@ public class UploadExpressInfoServlet extends HttpServlet {
 					hdfsOut.write(sb.toString().getBytes(request.getCharacterEncoding()));
 					hdfsOut.close();
 					if (ub.getUserId().equals("admin")) {
-						response.sendRedirect("unlimit.jsp");
+						response.sendRedirect("listexpress.jsp");
 					} else {
-						response.sendRedirect("limited.jsp");
+						response.sendRedirect("listexpress.jsp");
 					}
 				}
 			}

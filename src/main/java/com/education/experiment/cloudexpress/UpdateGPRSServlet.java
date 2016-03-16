@@ -82,9 +82,11 @@ public class UpdateGPRSServlet extends HttpServlet {
 					hdfsOut.close();
 				}
 				if (ub.getUserId().equals("admin")) {
-					response.sendRedirect("unlimit.jsp");
+					//response.sendRedirect("/unlimit.jsp");
+					request.getRequestDispatcher("/unlimit.jsp").forward(request, response);
 				} else {
-					response.sendRedirect("limited.jsp");
+					//response.sendRedirect("/limited.jsp");
+					request.getRequestDispatcher("/limited.jsp").forward(request, response);
 				}
 			}
 		} else {
