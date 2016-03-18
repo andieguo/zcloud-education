@@ -39,6 +39,9 @@ public class DetailParsingServlet extends HttpServlet {
 			String uuidname = new String(request.getParameter("filename").getBytes("ISO-8859-1"), "UTF-8");
 			System.out.println("uuidname:" + uuidname);
 			File f = new File(Constants.LOCAL_WEIXIN_PATH + File.separator + uuidname);
+			if (f.exists()) {
+				f.delete();
+			}
 			if (!f.exists()) {
 				String dst = Constants.HDFS_WEIXIN_UPLOADPARSING + uuidname;
 				FileSystem fs = FileSystem.get(conf);

@@ -214,17 +214,20 @@ public class ExpressParsingServlet extends HttpServlet{
 						job.setOutputValueClass(NullWritable.class);
 						job.setNumReduceTasks(0);
 						// 提交job到hadoop集群上，并让其开始执行此任务
-						job.waitForCompletion(true);
+						//job.waitForCompletion(true);
+						job.submit();
 //						for (FileStatus ele : dataes) {
 //							fs.delete(ele.getPath(), true);
 //						}
+						request.getRequestDispatcher("/launchexpress.jsp").forward(request, response);
 					}
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				request.getRequestDispatcher("/error.jsp?result=任务作业提交失败,请查看集群是否正常运行.").forward(request, response);
 			}
-			request.getRequestDispatcher("/launchexpress.jsp").forward(request, response);
+			
 		}
 	}
 	

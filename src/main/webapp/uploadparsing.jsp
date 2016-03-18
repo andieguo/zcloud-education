@@ -34,13 +34,13 @@
 							<tr>
 								<th>通信时间点：</th>
 								<td>
-									<input class="input-text" name="datePoint" id="datePoint" type="text" value="" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />（注：大于等于为符合条件）
+									<input class="input-text" name="datePoint" id="datePoint" type="text" value="" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />（注：大于等于为符合条件，例:2012-01-01 04:23:05）
 								</td>
 							</tr>
 							<tr>
 								<th>通信时长：</th>
 								<td>
-									<input class="input-text" name="minute" type="text" value="" />分钟 （注：大于等于为符合条件）
+									<input class="input-text" name="minute" type="text" value="" />分钟 （注：大于等于为符合条件,单位：分钟）
 								</td>
 							</tr>
 							<tr>

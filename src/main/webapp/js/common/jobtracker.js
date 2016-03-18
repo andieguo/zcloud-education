@@ -48,8 +48,10 @@
 					console.log(data);
 					if(data.running.length > 0){
 						console.log("执行了getRuningJob方法");
-						window.setTimeout(getRuningJob(url,jobname),1000);//休息1S后执行getRuningJob方法
+						window.setTimeout(getRuningJob(url,jobname),2000);//休息1S后执行getRuningJob方法
 						printRunJobTable(url,data.running,$("#tab_running"));
+					} else {
+						window.setTimeout(getRuningJob(url,jobname),5000);//休息5S后执行getRuningJob方法
 					}
 				},
 				error : function() {

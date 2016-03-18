@@ -59,19 +59,37 @@ public class LaunchBookIndexServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
 			//删除本地Index库
 			deleteDir(new File(Constants.LOCAL_BOOK_IDNEX));
 			//构建索引
-			index(req,resp);
-		} catch (ClassNotFoundException e) {
+			
+			new Thread(){
+				public void run(){
+					try {
+						index(req,resp);
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}.start();
+					
+			
+			//resp.sendRedirect("/launchbook.jsp");
+			req.getRequestDispatcher("/launchbook.jsp").forward(req, resp);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			req.getRequestDispatcher("/error.jsp?result=任务作业提交失败,请查看集群是否正常运行.").forward(req, resp);
 		}
 	}
 
@@ -211,7 +229,7 @@ public class LaunchBookIndexServlet extends HttpServlet {
 		// 提交job到hadoop集群
 		job.waitForCompletion(true);
 		//提交任务后，即执行跳转
-		resp.sendRedirect("launchbook.jsp");
+		//resp.sendRedirect("launchbook.jsp");
 		// master服务端开始从HDFS读取每一个map任务产生的数据块，然后往本地的索引目录下合并;
 		// 由于是多线程的操作，在合并的同时可能会多个线程对本地目录进行操作，以免文件产生错误，
 		// 对本地的文件目录加锁，在每一个时刻只允许一个线程对其进行索引文件写入

@@ -51,7 +51,7 @@ public class InitializeServelet extends HttpServlet {
 			JarUtil jarUtil = new JarUtil(javaClassPath, Constants.JAR_HOME);
 			jarUtil.generateJar();
 			//配置BooksIndexMRThread job 所有的jar
-			String path = ZhiyunParsingServlet.class.getClassLoader().getResource("").toString();
+			String path = ZhiyunParsingServlet.class.getClassLoader().getResource("").toString().replace("%20", " ");
 			System.setProperty("path.separator", ":");
 			List<String> jarPathList = new ArrayList<String>();
 			jarPathList.add(path.substring(0, path.indexOf("classes")) + "lib/lucene-core-4.2.1.jar");
